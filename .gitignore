@@ -1,0 +1,36 @@
+# Configuração local e segredos
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+.aws/
+
+# Python
+backend/.venv/
+**/__pycache__/
+*.py[cod]
+.pytest_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+*.egg-info/
+
+# Node e relatórios gerados
+**/node_modules/
+frontend/dist/
+coverage/
+*.tsbuildinfo
+*.log
+
+# Mídia e temporários locais; não apagar automaticamente
+/storage/
+/tmp/
+
+# Configuração privada de ferramentas e SO
+.agents/
+.codex/
+.DS_Store
+Thumbs.db
+.idea/
+*.swp

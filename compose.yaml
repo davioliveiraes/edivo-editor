@@ -1,0 +1,125 @@
+name: edivo
+
+x-backend: &backend
+  image: edivo-backend:r01
+  build:
+    context: ./backend
+    args:
+      EDIVO_UID: ${EDIVO_UID:-1000}
+      EDIVO_GID: ${EDIVO_GID:-1000}
+  environment: &backend-environment
+    EDIVO_ENV: ${EDIVO_ENV:-development}
+    EDIVO_LOG_LEVEL: ${EDIVO_LOG_LEVEL:-INFO}
+    EDIVO_DATABASE_URL: postgresql+psycopg://${POSTGRES_USER:?Execute python3 scripts/setup-local.py}:${POSTGRES_PASSWORD:?Execute python3 scripts/setup-local.py}@db:5432/${POSTGRES_DB:?Execute python3 scripts/setup-local.py}
+    EDIVO_STORAGE_ROOT: /data/storage
+    EDIVO_CORS_ORIGINS: ${EDIVO_CORS_ORIGINS:-["http://127.0.0.1:5173","http://localhost:5173"]}
+    EDIVO_FFMPEG_BIN: ffmpeg
+    EDIVO_FFPROBE_BIN: ffprobe
+    EDIVO_DATABASE_CONNECT_TIMEOUT: 2
+    EDIVO_FFMPEG_TIMEOUT_SECONDS: 5
+    EDIVO_CAPABILITIES_CACHE_SECONDS: 300
+  user: "${EDIVO_UID:-1000}:${EDIVO_GID:-1000}"
+  init: true
+  read_only: true
+  tmpfs:
+    - /tmp:rw,noexec,nosuid,size=128m,mode=1777
+  cap_drop:
+    - ALL
+  security_opt:
+    - no-new-privileges:true
+  stop_grace_period: 15s
+
+services:
+  db:
+    image: postgres:16.13-bookworm
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER:?Execute python3 scripts/setup-local.py}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:?Execute python3 scripts/setup-local.py}
+      POSTGRES_DB: ${POSTGRES_DB:?Execute python3 scripts/setup-local.py}
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U \"$$POSTGRES_USER\" -d \"$$POSTGRES_DB\""]
+      interval: 5s
+      timeout: 3s
+      retries: 12
+      start_period: 10s
+    security_opt:
+      - no-new-privileges:true
+    restart: unless-stopped
+
+  migrate:
+    <<: *backend
+    command: ["alembic", "upgrade", "head"]
+    depends_on:
+      db:
+        condition: service_healthy
+    restart: "no"
+
+  api:
+    <<: *backend
+    command: ["python", "-m", "uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "8000", "--no-access-log"]
+    ports:
+      - "127.0.0.1:8000:8000"
+    volumes:
+      - type: bind
+        source: ./storage
+        target: /data/storage
+        bind:
+          create_host_path: false
+    depends_on:
+      db:
+        condition: service_healthy
+      migrate:
+        condition: service_completed_successfully
+    healthcheck:
+      test: ["CMD", "python", "-c", "import urllib.request; urllib.request.urlopen('http://127.0.0.1:8000/api/v1/system/ready', timeout=5).close()"]
+      interval: 10s
+      timeout: 6s
+      retries: 6
+      start_period: 15s
+    restart: unless-stopped
+
+  worker:
+    <<: *backend
+    command: ["python", "-m", "app.worker.main"]
+    volumes:
+      - type: bind
+        source: ./storage
+        target: /data/storage
+        bind:
+          create_host_path: false
+    depends_on:
+      db:
+        condition: service_healthy
+      migrate:
+        condition: service_completed_successfully
+    restart: unless-stopped
+
+  frontend:
+    build:
+      context: ./frontend
+    image: edivo-frontend:r01
+    environment:
+      API_PROXY_TARGET: http://api:8000
+    ports:
+      - "127.0.0.1:5173:5173"
+    depends_on:
+      api:
+        condition: service_healthy
+    init: true
+    cap_drop:
+      - ALL
+    security_opt:
+      - no-new-privileges:true
+    healthcheck:
+      test: ["CMD", "node", "-e", "fetch('http://127.0.0.1:5173').then(r=>process.exit(r.ok?0:1)).catch(()=>process.exit(1))"]
+      interval: 10s
+      timeout: 5s
+      retries: 6
+      start_period: 10s
+    stop_grace_period: 10s
+    restart: unless-stopped
+
+volumes:
+  postgres_data:
