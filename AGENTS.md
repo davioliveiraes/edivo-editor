@@ -4,18 +4,25 @@
 
 Leia integralmente `docs/EDIVO_DOCUMENTACAO_PROJETO.md`,
 `docs/EDIVO_INSTRUCOES_CHATGPT.md`, `docs/R00_EDIVO_PLANEJAMENTO_TECNICO.md`
-e `docs/R01_EDIVO_ESPECIFICACAO_OPERACIONAL.md` antes de implementar.
-A especificação operacional R01 define o escopo atual; R00 define a arquitetura.
-Preserve esses quatro documentos e alterações preexistentes.
+e `docs/R01_EDIVO_ESPECIFICACAO_OPERACIONAL.md` antes de implementar. Leia também
+`docs/R02_EDIVO_ESPECIFICACAO_OPERACIONAL.md`, README e evidências de `docs/r01/`.
+A especificação operacional R02 define o escopo atual autorizado; R00 define a
+arquitetura e R01 deve permanecer funcional. Preserve os documentos de origem,
+as evidências históricas e alterações preexistentes.
 
-## Escopo atual: R01
+## Escopo atual: R02 — projetos, upload e metadados
 
-Implementar somente a fundação executável: React/TypeScript strict/Vite,
+Preservar a fundação executável: React/TypeScript strict/Vite,
 FastAPI/Python 3.12, PostgreSQL 16/SQLAlchemy 2/psycopg 3/Alembic baseline,
 worker independente ocioso, diagnóstico FFmpeg/FFprobe e Docker Compose local.
-Não criar tabelas de negócio, CRUD de projetos, uploads, player, timeline,
-processamento de mídia do usuário, jobs, exportações, autenticação, Redis,
-Celery, heditor, agentes de IA ou Higgsfield. R02 exige nova autorização.
+A R02 autoriza Project com exclusão lógica, MediaAsset, migração incremental,
+CRUD de projetos, upload de um MP4 com validação segura e FFprobe, SHA-256,
+originais imutáveis e interface de projetos/biblioteca. Limites padrão: 500 MiB
+de arquivo e 600 segundos, com controle do corpo durante a entrada e parsing
+multipart limitado. Não expor caminhos privados ou storage como conteúdo estático.
+Não implementar player/streaming, timeline, cortes, edição de áudio, preview,
+render, jobs, exportações, autenticação, Redis, Celery, heditor, agentes de IA ou
+Higgsfield. R03 exige nova autorização.
 Não criar abstrações ou módulos vazios para funcionalidades futuras.
 
 ## Implementação e qualidade
@@ -34,8 +41,11 @@ Não criar abstrações ou módulos vazios para funcionalidades futuras.
 
 ## Segurança e dados
 
-- Publicar apenas `127.0.0.1:5173` e `127.0.0.1:8000`. Banco e worker sem
-  portas no host. Não montar diretórios privados nem expor storage como estático.
+- Publicar API/frontend somente em `127.0.0.1`, com portas de host configuráveis
+  por `EDIVO_API_PORT`/`EDIVO_FRONTEND_PORT` (defaults 8000/5173). O usuário
+  autorizou 8001/5174 no `.env` local para coexistir com outro projeto. Banco e
+  worker sem portas no host. Não montar diretórios privados nem expor storage
+  como estático.
 - Segredos somente em `.env` local ignorado; nunca imprimir senha, DSN,
   caminhos privados ou stack traces em respostas ou logs da aplicação.
 - Subprocessos com argumentos estruturados, timeout e sem `shell=True`.

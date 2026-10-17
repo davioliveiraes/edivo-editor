@@ -20,6 +20,8 @@ def main() -> int:
             "# Configuração local gerada; não versionar.",
             "EDIVO_ENV=development",
             "EDIVO_LOG_LEVEL=INFO",
+            "EDIVO_API_PORT=8000",
+            "EDIVO_FRONTEND_PORT=5173",
             f"EDIVO_UID={os.getuid()}",
             f"EDIVO_GID={os.getgid()}",
             "POSTGRES_USER=edivo",

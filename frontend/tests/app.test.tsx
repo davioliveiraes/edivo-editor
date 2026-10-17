@@ -3,6 +3,10 @@ import userEvent from '@testing-library/user-event';
 import { describe, expect, it, vi } from 'vitest';
 import { App } from '@/app/app';
 
+// Keep the original nine shell/health regression cases isolated from CRUD requests.
+// The real workspace is covered independently in projects.test.tsx.
+vi.mock('@/features/projects/projects-workspace', () => ({ ProjectsWorkspace: () => null }));
+
 const healthy = () =>
   new Response(JSON.stringify({ status: 'ok', service: 'edivo-api', version: '0.1.0' }), {
     status: 200,

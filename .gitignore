@@ -32,5 +32,6 @@ coverage/
 .codex/
 .DS_Store
 Thumbs.db
+*:Zone.Identifier
 .idea/
 *.swp

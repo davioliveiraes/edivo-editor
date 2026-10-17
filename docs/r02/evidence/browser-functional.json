@@ -1,0 +1,76 @@
+{
+  "status": "passed",
+  "browser": "145.0.7632.6",
+  "run_id": "r02-browser-1792264143",
+  "project_id": "29a9bb01-f60a-4ffe-a83e-7fc8a747686e",
+  "checks": [
+    {
+      "check": "real_frontend_proxy_and_projects_loaded",
+      "status": "passed"
+    },
+    {
+      "check": "create_project_via_ui_and_empty_library",
+      "status": "passed"
+    },
+    {
+      "check": "edit_project_name_and_purpose_via_ui",
+      "status": "passed"
+    },
+    {
+      "check": "logical_delete_requires_confirmation_and_can_cancel",
+      "status": "passed"
+    },
+    {
+      "check": "real_mp4_upload_with_audio_and_silent_library",
+      "status": "passed",
+      "detail": {
+        "assets": 2
+      }
+    },
+    {
+      "check": "real_upload_transfer_and_indeterminate_analysis_states_observed",
+      "status": "passed"
+    },
+    {
+      "check": "library_dimensions_fps_codecs_size_and_sha256_visible",
+      "status": "passed"
+    },
+    {
+      "check": "client_rejects_invalid_extension_before_upload",
+      "status": "passed"
+    },
+    {
+      "check": "server_rejects_fake_mp4_and_ui_displays_error",
+      "status": "passed"
+    },
+    {
+      "check": "project_library_persist_after_reload_without_fake_player",
+      "status": "passed"
+    },
+    {
+      "check": "theme_toggle_persisted_after_reload",
+      "status": "passed"
+    },
+    {
+      "check": "mobile_375_project_library_and_hash_without_horizontal_overflow",
+      "status": "passed"
+    },
+    {
+      "check": "browser_network_offline_reports_unavailable_and_theme_works",
+      "status": "passed"
+    },
+    {
+      "check": "browser_network_recovery_and_retry",
+      "status": "passed"
+    },
+    {
+      "check": "confirmed_soft_delete_hides_project_and_library",
+      "status": "passed"
+    },
+    {
+      "check": "no_browser_pageerrors",
+      "status": "passed"
+    }
+  ],
+  "page_errors": []
+}

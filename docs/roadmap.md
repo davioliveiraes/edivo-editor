@@ -1,8 +1,9 @@
 # Edivo — continuidade após a fundação
 
 O roadmap aprovado permanece em `R00_EDIVO_PLANEJAMENTO_TECNICO.md`. A
-implementação atual está restrita à R01. Consulte `r01/acceptance.md` antes de
-considerá-la aceita; código implementado não substitui validação operacional.
+implementação atual abrange a R01 e a R02 autorizadas. Consulte
+`r01/acceptance.md` e `r02/acceptance.md` antes de considerá-las aceitas;
+código implementado não substitui validação operacional.
 
 | Etapa | Entrega autorizável |
 | --- | --- |
@@ -16,5 +17,6 @@ considerá-la aceita; código implementado não substitui validação operaciona
 | R08 | Edição assistida com plano revisável e QA |
 | R09 | Pesquisa e prova de conceito Higgsfield |
 
-Cada avanço exige autorização do usuário. R01 não instala heditor e não cria
-modelos, endpoints ou telas de etapas futuras. Git permanece sob gestão manual.
+Cada avanço exige autorização do usuário. R03 ainda não foi autorizada.
+A R02 termina em projetos, upload e biblioteca; não inclui player ou editor,
+nem instala heditor. Git permanece sob gestão manual.

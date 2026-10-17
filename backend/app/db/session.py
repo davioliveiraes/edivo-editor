@@ -1,7 +1,21 @@
+import logging
+
 from sqlalchemy import Engine, create_engine, text
-from sqlalchemy.orm import sessionmaker
+from sqlalchemy.exc import SQLAlchemyError
+from sqlalchemy.orm import Session, sessionmaker
 
 from app.core.config import Settings
+
+logger = logging.getLogger("edivo.database")
+
+
+def safe_rollback(session: Session | None) -> None:
+    """A broken connection must not mask the sanitized original failure."""
+    if session is not None:
+        try:
+            session.rollback()
+        except SQLAlchemyError:
+            logger.warning("database_rollback_failed")
 
 
 class Database:

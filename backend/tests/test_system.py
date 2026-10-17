@@ -104,4 +104,8 @@ def test_no_future_api_routes(application):
         "/api/v1/system/health",
         "/api/v1/system/ready",
         "/api/v1/system/capabilities",
+        "/api/v1/projects",
+        "/api/v1/projects/{project_id}",
+        "/api/v1/projects/{project_id}/media",
+        "/api/v1/projects/{project_id}/media/{media_id}",
     }

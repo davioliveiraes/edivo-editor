@@ -27,6 +27,12 @@ class Settings(BaseSettings):
     ffprobe_bin: str = Field(default="ffprobe", min_length=1, repr=False)
     ffmpeg_timeout_seconds: float = Field(default=5, gt=0, le=30)
     capabilities_cache_seconds: float = Field(default=300, ge=1, le=3600)
+    upload_max_bytes: int = Field(default=500 * 1024 * 1024, ge=1, le=2 * 1024**3)
+    upload_multipart_overhead_bytes: int = Field(default=64 * 1024, ge=1024, le=1024 * 1024)
+    media_max_duration_seconds: int = Field(default=600, ge=1, le=86400)
+    ffprobe_timeout_seconds: float = Field(default=15, gt=0, le=120)
+    ffprobe_max_output_bytes: int = Field(default=1024 * 1024, ge=1024, le=8 * 1024 * 1024)
+    storage_min_free_bytes: int = Field(default=64 * 1024 * 1024, ge=0, le=10 * 1024**3)
 
     @field_validator("database_url")
     @classmethod

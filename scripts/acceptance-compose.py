@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Execute o aceite real R01, preservando arquivos, banco e volumes existentes.
+"""Execute a regressão operacional R01, inclusive na evolução autorizada R02.
 
 Requer Docker operacional e .env preparado. Durante os casos negativos, o banco
 e o worker desta stack param brevemente e são restaurados mesmo em falhas.
@@ -10,6 +10,7 @@ from __future__ import annotations
 
 import argparse
 import json
+import os
 import subprocess
 import sys
 import time
@@ -46,7 +47,25 @@ def compose(*args: str, data: str | None = None, timeout: int = 180) -> str:
     return command([*COMPOSE, *args], data=data, timeout=timeout)
 
 
-def get(path: str, *, port: int = 8000) -> tuple[int, object]:
+def configured_port(name: str, default: int) -> int:
+    value = str(default)
+    env_file = ROOT / ".env"
+    if env_file.is_file():
+        for line in env_file.read_text(encoding="utf-8").splitlines():
+            key, separator, candidate = line.partition("=")
+            if separator and key.strip() == name:
+                value = candidate.strip().strip("\"'")
+    value = os.environ.get(name, value)
+    try:
+        port = int(value)
+    except ValueError:
+        raise AcceptanceError(f"Porta {name} inválida; use um inteiro entre 1 e 65535.") from None
+    require(1 <= port <= 65535, f"Porta {name} fora do intervalo permitido.")
+    return port
+
+
+def get(path: str, *, port: int | None = None) -> tuple[int, object]:
+    port = port if port is not None else configured_port("EDIVO_API_PORT", 8000)
     try:
         with urlopen(f"http://127.0.0.1:{port}{path}", timeout=15) as response:
             body = response.read().decode("utf-8")
@@ -114,7 +133,9 @@ def main() -> int:
         print(json.dumps(checks[-1], ensure_ascii=False), flush=True)
 
     try:
-        print("Validando e iniciando a stack local Edivo R01...", flush=True)
+        print("Validando a fundação local Edivo e sua regressão R01...", flush=True)
+        api_port = configured_port("EDIVO_API_PORT", 8000)
+        frontend_port = configured_port("EDIVO_FRONTEND_PORT", 5173)
         compose("version")
         compose("config", "--quiet")
         passed("compose_config")
@@ -158,22 +179,23 @@ def main() -> int:
                     "Capabilities identificou dependência FFmpeg indisponível.",
                 )
             passed(f"api_{path}_200", response)
-        require(get("/", port=5173)[0] == 200, "Frontend não respondeu HTTP 200.")
+        require(get("/", port=frontend_port)[0] == 200, "Frontend não respondeu HTTP 200.")
         require(
-            get("/api/v1/system/health", port=5173)[0] == 200,
+            get("/api/v1/system/health", port=frontend_port)[0] == 200,
             "Proxy Vite/API indisponível.",
         )
         passed("frontend_vite_proxy_200")
 
         baseline = json.loads(execute_python("api", DATABASE_DIAGNOSTIC))
-        require(
-            baseline["revision"] == "0001_r01_baseline",
-            "Baseline Alembic não aplicada.",
-        )
+        approved_schemas = {
+            "0001_r01_baseline": ["alembic_version"],
+            "0002_r02_projects_media": ["alembic_version", "media_assets", "projects"],
+        }
+        require(baseline["revision"] in approved_schemas, "Revisão Alembic não autorizada.")
         require(baseline["postgres"].startswith("16."), "PostgreSQL precisa ser major 16.")
         require(
-            baseline["tables"] == ["alembic_version"],
-            "Foram encontradas tabelas fora do escopo R01.",
+            baseline["tables"] == approved_schemas[baseline["revision"]],
+            "Foram encontradas tabelas fora do escopo autorizado.",
         )
         compose("exec", "-T", "api", "alembic", "upgrade", "head")
         require(
@@ -253,7 +275,10 @@ def main() -> int:
                 or {}
             )
             published = {key: value for key, value in ports.items() if value}
-            expected = {"api": ("8000/tcp", "8000"), "frontend": ("5173/tcp", "5173")}
+            expected = {
+                "api": ("8000/tcp", str(api_port)),
+                "frontend": ("5173/tcp", str(frontend_port)),
+            }
             if service in expected:
                 internal, host = expected[service]
                 require(

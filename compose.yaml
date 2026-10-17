@@ -1,7 +1,7 @@
 name: edivo
 
 x-backend: &backend
-  image: edivo-backend:r01
+  image: edivo-backend:r02
   build:
     context: ./backend
     args:
@@ -18,6 +18,12 @@ x-backend: &backend
     EDIVO_DATABASE_CONNECT_TIMEOUT: 2
     EDIVO_FFMPEG_TIMEOUT_SECONDS: 5
     EDIVO_CAPABILITIES_CACHE_SECONDS: 300
+    EDIVO_UPLOAD_MAX_BYTES: ${EDIVO_UPLOAD_MAX_BYTES:-524288000}
+    EDIVO_UPLOAD_MULTIPART_OVERHEAD_BYTES: ${EDIVO_UPLOAD_MULTIPART_OVERHEAD_BYTES:-65536}
+    EDIVO_MEDIA_MAX_DURATION_SECONDS: ${EDIVO_MEDIA_MAX_DURATION_SECONDS:-600}
+    EDIVO_FFPROBE_TIMEOUT_SECONDS: ${EDIVO_FFPROBE_TIMEOUT_SECONDS:-15}
+    EDIVO_FFPROBE_MAX_OUTPUT_BYTES: ${EDIVO_FFPROBE_MAX_OUTPUT_BYTES:-1048576}
+    EDIVO_STORAGE_MIN_FREE_BYTES: ${EDIVO_STORAGE_MIN_FREE_BYTES:-67108864}
   user: "${EDIVO_UID:-1000}:${EDIVO_GID:-1000}"
   init: true
   read_only: true
@@ -60,7 +66,7 @@ services:
     <<: *backend
     command: ["python", "-m", "uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "8000", "--no-access-log"]
     ports:
-      - "127.0.0.1:8000:8000"
+      - "127.0.0.1:${EDIVO_API_PORT:-8000}:8000"
     volumes:
       - type: bind
         source: ./storage
@@ -99,11 +105,13 @@ services:
   frontend:
     build:
       context: ./frontend
-    image: edivo-frontend:r01
+    image: edivo-frontend:r02
     environment:
       API_PROXY_TARGET: http://api:8000
+      VITE_UPLOAD_MAX_BYTES: ${EDIVO_UPLOAD_MAX_BYTES:-524288000}
+      VITE_MEDIA_MAX_DURATION_SECONDS: ${EDIVO_MEDIA_MAX_DURATION_SECONDS:-600}
     ports:
-      - "127.0.0.1:5173:5173"
+      - "127.0.0.1:${EDIVO_FRONTEND_PORT:-5173}:5173"
     depends_on:
       api:
         condition: service_healthy

@@ -1,0 +1,63 @@
+{
+  "status": "passed",
+  "browser": "145.0.7632.6",
+  "run_id": "r02-final-visual-1792266970379",
+  "project_id": "d6fa0098-5b78-4e28-aa3c-7a617955f322",
+  "checks": [
+    {
+      "check": "desktop-dark",
+      "status": "passed",
+      "skip_link_geometry": {
+        "focused": false,
+        "top": -60,
+        "bottom": -12,
+        "scrollY": 0,
+        "overflow": false
+      }
+    },
+    {
+      "check": "desktop-light",
+      "status": "passed",
+      "skip_link_geometry": {
+        "focused": false,
+        "top": -60,
+        "bottom": -12,
+        "scrollY": 0,
+        "overflow": false
+      }
+    },
+    {
+      "check": "mobile-375-light",
+      "status": "passed",
+      "skip_link_geometry": {
+        "focused": false,
+        "top": -60,
+        "bottom": -12,
+        "scrollY": 0,
+        "overflow": false
+      }
+    }
+  ],
+  "images": [
+    "browser-desktop-dark.png",
+    "browser-desktop-light.png",
+    "browser-mobile-375.png",
+    "browser-workspace-dark.png",
+    "browser-workspace-mobile-375.png"
+  ],
+  "uploaded_assets": 2,
+  "uploaded_bytes": 14502,
+  "soft_delete_status": 204,
+  "retained_originals": 2,
+  "capture_method": "Native blur and instant scroll to document top; full-page captures and clips; no CSS overrides or hidden application elements.",
+  "harness_occurrences": [
+    "The first functional attempt used a case-sensitive fps assertion although the correct UI value is 24 FPS. The assertion was corrected and all 16 checks then passed.",
+    "The first visual attempt clipped against the viewport instead of the full page. Adding fullPage to the screenshot clip produced the final clean captures."
+  ],
+  "synthetic_session_totals": {
+    "completed_imports_across_four_harness_attempts": 8,
+    "uploaded_bytes_across_four_harness_attempts": 58008,
+    "soft_deleted_qa_projects": 4,
+    "physical_original_deletions": 0
+  }
+}

@@ -1,6 +1,7 @@
 import { ArrowDown, Layers2, Moon, ShieldCheck, Sparkle, Sun } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { ApiStatus } from '@/features/system/api-status';
+import { ProjectsWorkspace } from '@/features/projects/projects-workspace';
 import { useTheme } from './use-theme';
 
 function EdivoMark() {
@@ -53,12 +54,12 @@ export function App() {
         <div className="hero-grid">
           <section className="hero-copy" aria-labelledby="welcome-title">
             <p className="release-badge">
-              <span>R01</span> Fundação executável
+              <span>R02</span> Projetos, upload e metadados
             </p>
             <h1 id="welcome-title">
               Boas histórias.
               <br />
-              Uma nova<span className="accent-word"> base.</span>
+              Um novo<span className="accent-word"> começo.</span>
             </h1>
             <p className="hero-description">
               Este é o Edivo. Um editor de vídeo web pensado para transformar suas ideias em
@@ -69,19 +70,21 @@ export function App() {
                 <Layers2 size={19} aria-hidden="true" />
               </div>
               <div>
-                <h2>Estamos construindo o começo.</h2>
+                <h2>Comece pelos seus originais.</h2>
                 <p>
-                  A fundação está aqui. Os recursos do editor serão disponibilizados nas próximas
-                  etapas.
+                  Organize projetos e importe seus vídeos. Os recursos do editor serão
+                  disponibilizados nas próximas etapas.
                 </p>
               </div>
             </div>
-            <a className="text-link" href="#about-edivo">
-              Conheça a proposta <ArrowDown size={15} aria-hidden="true" />
+            <a className="text-link" href="#/projects">
+              Abrir meus projetos <ArrowDown size={15} aria-hidden="true" />
             </a>
           </section>
           <ApiStatus />
         </div>
+
+        <ProjectsWorkspace />
 
         <section className="principles-section" id="about-edivo" aria-labelledby="principles-title">
           <div className="principles-heading">
@@ -115,7 +118,10 @@ export function App() {
                 <Sparkle size={20} aria-hidden="true" />
                 <h3>Espaço para evoluir.</h3>
               </div>
-              <p>Projetos e importação chegam na próxima etapa. A edição vem na sequência.</p>
+              <p>
+                Projetos organizados e originais preservados. Os recursos de edição chegam nas
+                próximas etapas.
+              </p>
             </article>
           </div>
         </section>
@@ -125,7 +131,7 @@ export function App() {
         <p>
           Edivo<span aria-hidden="true"> / </span>Feito para suas próximas histórias.
         </p>
-        <span>R01 · Desenvolvimento local</span>
+        <span>R02 · Desenvolvimento local</span>
       </footer>
     </div>
   );
