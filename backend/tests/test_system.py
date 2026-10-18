@@ -108,4 +108,6 @@ def test_no_future_api_routes(application):
         "/api/v1/projects/{project_id}",
         "/api/v1/projects/{project_id}/media",
         "/api/v1/projects/{project_id}/media/{media_id}",
+        "/api/v1/projects/{project_id}/media/{media_id}/stream",
+        "/api/v1/projects/{project_id}/edit-spec",
     }

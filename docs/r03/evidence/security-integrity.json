@@ -1,0 +1,135 @@
+{
+  "status": "passed",
+  "recorded_at": "2026-10-18T21:49:41.923211+00:00",
+  "read_only": true,
+  "checks": [
+    {
+      "check": "local_env_0600",
+      "status": "passed",
+      "detail": null
+    },
+    {
+      "check": "storage_private_0700",
+      "status": "passed",
+      "detail": null
+    },
+    {
+      "check": "all_originals_0400",
+      "status": "passed",
+      "detail": {
+        "0400": 30
+      }
+    },
+    {
+      "check": "all_originals_owned_by_local_user",
+      "status": "passed",
+      "detail": null
+    },
+    {
+      "check": "staging_empty",
+      "status": "passed",
+      "detail": null
+    },
+    {
+      "check": "db_expected_port_bindings",
+      "status": "passed",
+      "detail": {}
+    },
+    {
+      "check": "api_expected_port_bindings",
+      "status": "passed",
+      "detail": {
+        "8000/tcp": [
+          {
+            "HostIp": "127.0.0.1",
+            "HostPort": "8001"
+          }
+        ]
+      }
+    },
+    {
+      "check": "worker_expected_port_bindings",
+      "status": "passed",
+      "detail": {}
+    },
+    {
+      "check": "frontend_expected_port_bindings",
+      "status": "passed",
+      "detail": {
+        "5173/tcp": [
+          {
+            "HostIp": "127.0.0.1",
+            "HostPort": "5174"
+          }
+        ]
+      }
+    },
+    {
+      "check": "api_restricted_runtime",
+      "status": "passed",
+      "detail": null
+    },
+    {
+      "check": "worker_restricted_runtime",
+      "status": "passed",
+      "detail": null
+    },
+    {
+      "check": "api_worker_shared_managed_storage",
+      "status": "passed",
+      "detail": null
+    },
+    {
+      "check": "postgres_named_volume_preserved",
+      "status": "passed",
+      "detail": {
+        "name": "edivo_postgres_data"
+      }
+    },
+    {
+      "check": "application_logs_no_credentials_dsn_or_traceback",
+      "status": "passed",
+      "detail": null
+    },
+    {
+      "check": "obra_control_original_container_ids_preserved",
+      "status": "passed",
+      "detail": [
+        {
+          "id": "1a35ac4adf07",
+          "name": "obra-control-frontend-1",
+          "state": "exited"
+        },
+        {
+          "id": "bc11ea210a9c",
+          "name": "obra-control-backend-1",
+          "state": "exited"
+        },
+        {
+          "id": "d90a8cddb8dc",
+          "name": "obra-control-db-1",
+          "state": "exited"
+        }
+      ]
+    },
+    {
+      "check": "storage_audit_consistent",
+      "status": "passed",
+      "detail": null
+    },
+    {
+      "check": "preexisting_rows_documents_and_locks_preserved",
+      "status": "passed",
+      "detail": null
+    },
+    {
+      "check": "browser_persistence_verified",
+      "status": "passed",
+      "detail": null
+    }
+  ],
+  "original_count": 30,
+  "original_bytes": 3489278,
+  "obra_note": "Same original IDs, observed exited on resume; no lifecycle or configuration actions performed on ObraControl.",
+  "git_mutations": false
+}

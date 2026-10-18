@@ -1,0 +1,254 @@
+{
+  "status": "passed",
+  "stage": "R03.2",
+  "generated_at": "2026-10-17T21:35:12.410577+00:00",
+  "checks": [
+    {
+      "check": "r03_migration_current_repeat_and_model_check",
+      "status": "passed",
+      "detail": null
+    },
+    {
+      "check": "real_r02_imports_audio_silent_sha256_and_readonly_originals",
+      "status": "passed",
+      "detail": {
+        "assets": [
+          "1c92db50-5ed1-4116-82c1-414d03ecc8ff",
+          "79cf80e0-826d-4c19-81a6-bedc150c4f8f"
+        ],
+        "silent_bytes": 2443,
+        "audio_bytes": 12721
+      }
+    },
+    {
+      "check": "real_source_shorter_than_100ms_accepts_only_full_interval",
+      "status": "passed",
+      "detail": {
+        "duration_ms": 34
+      }
+    },
+    {
+      "check": "unsaved_project_returns_edit_spec_not_found_404",
+      "status": "passed",
+      "detail": null
+    },
+    {
+      "check": "first_revision_expected_zero_201_and_get_latest",
+      "status": "passed",
+      "detail": null
+    },
+    {
+      "check": "identical_current_save_is_noop_but_stale_revision_conflicts",
+      "status": "passed",
+      "detail": null
+    },
+    {
+      "check": "project_target_preset_is_independent_from_saved_canvas",
+      "status": "passed",
+      "detail": null
+    },
+    {
+      "check": "strict_validation_trim_schema_focal_types_extras_nonfinite_422",
+      "status": "passed",
+      "detail": {
+        "requests": 28
+      }
+    },
+    {
+      "check": "foreign_missing_source_and_missing_project_are_404",
+      "status": "passed",
+      "detail": null
+    },
+    {
+      "check": "second_revision_append_only_preserves_first",
+      "status": "passed",
+      "detail": null
+    },
+    {
+      "check": "simultaneous_expected_two_updates_one_wins_one_409",
+      "status": "passed",
+      "detail": {
+        "statuses": [
+          200,
+          409
+        ]
+      }
+    },
+    {
+      "check": "postgres_immutability_triggers_unique_foreign_keys_checks_with_rollback",
+      "status": "passed",
+      "detail": {
+        "update_immutable": {
+          "blocked": true,
+          "sqlstate": "55000"
+        },
+        "delete_immutable": {
+          "blocked": true,
+          "sqlstate": "55000"
+        },
+        "unique_revision": {
+          "blocked": true,
+          "sqlstate": "23505"
+        },
+        "project_fk": {
+          "blocked": true,
+          "sqlstate": "23503"
+        },
+        "media_fk": {
+          "blocked": true,
+          "sqlstate": "23503"
+        },
+        "positive_revision": {
+          "blocked": true,
+          "sqlstate": "23514"
+        },
+        "schema_v1": {
+          "blocked": true,
+          "sqlstate": "23514"
+        }
+      }
+    },
+    {
+      "check": "restart_preserves_latest_history_sha256_size_permissions_and_originals",
+      "status": "passed",
+      "detail": null
+    },
+    {
+      "check": "soft_deleted_project_cannot_get_save_or_stream_but_preserves_data",
+      "status": "passed",
+      "detail": null
+    }
+  ],
+  "completed_checks": 14,
+  "failure": null,
+  "cleanup": [
+    {
+      "project_id": "caa52715-39c5-4fde-b6c9-0b810ea84291",
+      "status": 404
+    },
+    {
+      "project_id": "e1492b94-793b-408c-9612-f0045c070d7c",
+      "status": 204
+    },
+    {
+      "project_id": "37ba2536-0b2f-4138-bc69-e3596f478182",
+      "status": 204
+    }
+  ],
+  "retained_synthetic_asset_ids": [
+    "1c92db50-5ed1-4116-82c1-414d03ecc8ff",
+    "79cf80e0-826d-4c19-81a6-bedc150c4f8f",
+    "9ae09dd7-f09c-4d2b-932b-380ba43e2336"
+  ],
+  "data_policy": "Only QA projects soft-deleted; originals and revisions retained; SQL probes rolled back.",
+  "commands": [
+    {
+      "command": "docker compose exec -T api alembic current",
+      "status": "passed"
+    },
+    {
+      "command": "docker compose exec -T api alembic upgrade head",
+      "status": "passed"
+    },
+    {
+      "command": "docker compose exec -T api alembic check",
+      "status": "passed"
+    },
+    {
+      "command": "docker compose exec -T api python -",
+      "status": "passed"
+    },
+    {
+      "command": "docker compose exec -T worker python -",
+      "status": "passed"
+    },
+    {
+      "command": "docker compose exec -T worker python -",
+      "status": "passed"
+    },
+    {
+      "command": "docker compose exec -T api python -",
+      "status": "passed"
+    },
+    {
+      "command": "docker compose exec -T worker python -",
+      "status": "passed"
+    },
+    {
+      "command": "docker compose exec -T api python -",
+      "status": "passed"
+    },
+    {
+      "command": "docker compose exec -T api python -",
+      "status": "passed"
+    },
+    {
+      "command": "docker compose exec -T api python -",
+      "status": "passed"
+    },
+    {
+      "command": "docker compose exec -T api python -",
+      "status": "passed"
+    },
+    {
+      "command": "docker compose exec -T api python -",
+      "status": "passed"
+    },
+    {
+      "command": "docker compose exec -T api python -",
+      "status": "passed"
+    },
+    {
+      "command": "docker compose exec -T api python -",
+      "status": "passed"
+    },
+    {
+      "command": "docker compose exec -T api python -",
+      "status": "passed"
+    },
+    {
+      "command": "docker compose exec -T api python -",
+      "status": "passed"
+    },
+    {
+      "command": "docker compose exec -T api python -",
+      "status": "passed"
+    },
+    {
+      "command": "docker compose exec -T api python -",
+      "status": "passed"
+    },
+    {
+      "command": "docker compose restart db api worker",
+      "status": "passed"
+    },
+    {
+      "command": "docker compose exec -T api python -",
+      "status": "passed"
+    },
+    {
+      "command": "docker compose exec -T worker python -",
+      "status": "passed"
+    },
+    {
+      "command": "docker compose exec -T worker python -",
+      "status": "passed"
+    },
+    {
+      "command": "docker compose exec -T worker python -",
+      "status": "passed"
+    },
+    {
+      "command": "docker compose exec -T api python -",
+      "status": "passed"
+    },
+    {
+      "command": "docker compose exec -T worker python -",
+      "status": "passed"
+    },
+    {
+      "command": "docker compose start db api worker",
+      "status": "passed"
+    }
+  ]
+}

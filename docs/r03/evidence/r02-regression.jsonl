@@ -1,0 +1,14 @@
+{"check": "ffmpeg_real_synthetic_fixtures", "status": "passed", "detail": {"audio": 12721, "silent": 2443, "audio_only": 10012}}
+{"check": "project_crud_and_validation_201_200_422", "status": "passed", "detail": null}
+{"check": "project_pagination_deterministic", "status": "passed", "detail": null}
+{"check": "real_upload_audio_and_silent_chunked_without_content_length", "status": "passed", "detail": {"audio": {"duration_ms": 1001, "video_codec": "h264", "audio_codec": "aac"}, "silent": {"duration_ms": 1001, "fps_num": 30000, "fps_den": 1001, "has_audio": false}}}
+{"check": "postgres_storage_worker_sha256_size_0400_distinct_keys", "status": "passed", "detail": null}
+{"check": "media_pagination_detail_and_project_isolation", "status": "passed", "detail": null}
+{"check": "real_invalid_empty_fake_corrupt_extension_audio_only_multipart_400_415_422", "status": "passed", "detail": null}
+{"check": "oversized_content_length_rejected_before_receiving_body_413", "status": "passed", "detail": {"max_body_bytes": 524353536}}
+{"check": "interrupted_upload_and_all_negatives_leave_no_rows_or_temp_and_preserve_originals", "status": "passed", "detail": null}
+{"check": "missing_and_soft_deleted_projects_upload_404", "status": "passed", "detail": null}
+{"check": "project_media_and_sha256_persist_after_db_api_worker_restart", "status": "passed", "detail": null}
+{"check": "database_offline_domain_503_sanitized_health_200_and_recovery", "status": "passed", "detail": null}
+{"check": "soft_delete_preserves_records_and_originals", "status": "passed", "detail": {"retained_qa_originals": 3}}
+{"status": "passed", "checks": 13}

@@ -36,6 +36,14 @@ class StagedFile:
     checksum_sha256: str
 
 
+@dataclass(frozen=True)
+class OpenedOriginal:
+    """A validated, pinned inode; callers own and must close the descriptor."""
+
+    file: BinaryIO
+    stat_result: os.stat_result
+
+
 class LocalStorage:
     def __init__(self, settings: Settings) -> None:
         self.root = settings.storage_root.absolute()
@@ -129,6 +137,52 @@ class LocalStorage:
             raise AppError(
                 503, "storage_unavailable", "Não foi possível preservar o arquivo original."
             ) from None
+
+    def open_original(
+        self, storage_key: str, project_id: UUID, asset_id: UUID, byte_size: int
+    ) -> OpenedOriginal:
+        """Open only the authorized original, without following any path symlink.
+
+        Directory-relative opens pin every parent inode, including root ancestors.
+        Subsequent reads use the returned descriptor, never a second pathname open.
+        O_NONBLOCK also prevents an unexpected FIFO from blocking before fstat.
+        """
+        directory_fd = None
+        file_fd = None
+        try:
+            expected_key = f"originals/{project_id}/{asset_id}/source.mp4"
+            if storage_key != expected_key or byte_size <= 0:
+                raise OSError("invalid_original_key")
+            root_parts = self.root.parts
+            if self.root.anchor != "/":
+                raise OSError("invalid_storage_root")
+            directory_flags = os.O_RDONLY | os.O_DIRECTORY | os.O_NOFOLLOW | os.O_CLOEXEC
+            directory_fd = os.open("/", directory_flags)
+            for part in (*root_parts[1:], *expected_key.split("/")[:-1]):
+                next_fd = os.open(part, directory_flags, dir_fd=directory_fd)
+                os.close(directory_fd)
+                directory_fd = next_fd
+            file_fd = os.open(
+                "source.mp4",
+                os.O_RDONLY | os.O_NOFOLLOW | os.O_CLOEXEC | os.O_NONBLOCK,
+                dir_fd=directory_fd,
+            )
+            metadata = os.fstat(file_fd)
+            if not stat.S_ISREG(metadata.st_mode) or metadata.st_size != byte_size:
+                raise OSError("invalid_original_file")
+            file = os.fdopen(file_fd, "rb")
+            file_fd = None  # Ownership transfers to the file object.
+            return OpenedOriginal(file, metadata)
+        except (OSError, ValueError):
+            logger.warning("original_read_unavailable")
+            raise AppError(
+                503, "storage_unavailable", "Vídeo temporariamente indisponível."
+            ) from None
+        finally:
+            if file_fd is not None:
+                os.close(file_fd)
+            if directory_fd is not None:
+                os.close(directory_fd)
 
     @staticmethod
     def discard_staging(path: Path) -> None:

@@ -1,0 +1,250 @@
+{
+  "status": "passed",
+  "stage": "player",
+  "run_id": "r03-player-1792273747",
+  "browser": "145.0.7632.6",
+  "project_id": "063bc413-964b-470a-a573-27bec267f0a2",
+  "checks": [
+    {
+      "check": "synthetic_project_and_r02_imports_real",
+      "status": "passed",
+      "detail": {
+        "project_id": "063bc413-964b-470a-a573-27bec267f0a2",
+        "assets": [
+          {
+            "id": "c9e554cd-cd97-4e44-8602-1dbd23d88331",
+            "filename": "horizontal.mp4",
+            "duration_ms": 4004,
+            "has_audio": true,
+            "codec": "h264"
+          },
+          {
+            "id": "d5f0483d-0090-476f-939e-2846e53dfdb6",
+            "filename": "silent_vertical.mp4",
+            "duration_ms": 4004,
+            "has_audio": false,
+            "codec": "h264"
+          }
+        ]
+      }
+    },
+    {
+      "check": "library_opens_editor_hash_route",
+      "status": "passed"
+    },
+    {
+      "check": "native_h264_aac_metadata_and_no_autoplay",
+      "status": "passed",
+      "detail": {
+        "paused": true,
+        "current_time": 0,
+        "duration": 4.004,
+        "ready_state": 1,
+        "width": 640,
+        "height": 360,
+        "error": null,
+        "src": "/api/v1/projects/063bc413-964b-470a-a573-27bec267f0a2/media/c9e554cd-cd97-4e44-8602-1dbd23d88331/stream",
+        "preload": "metadata",
+        "native_events": [
+          "",
+          "loadedmetadata"
+        ],
+        "decoded_frames": 0,
+        "audio_decoded_bytes": 0
+      }
+    },
+    {
+      "check": "real_play_pause_native_media_events",
+      "status": "passed",
+      "detail": {
+        "advanced_seconds": 0.617187,
+        "decoded_frames": 23,
+        "audio_decoded_bytes": 8046,
+        "native_events": [
+          "",
+          "loadedmetadata",
+          "timeupdate",
+          "seeked",
+          "playing",
+          "timeupdate",
+          "timeupdate",
+          "pause"
+        ]
+      }
+    },
+    {
+      "check": "real_seek_via_accessible_control",
+      "status": "passed",
+      "detail": {
+        "paused": true,
+        "current_time": 2.205,
+        "duration": 4.004,
+        "ready_state": 4,
+        "width": 640,
+        "height": 360,
+        "error": null,
+        "src": "/api/v1/projects/063bc413-964b-470a-a573-27bec267f0a2/media/c9e554cd-cd97-4e44-8602-1dbd23d88331/stream",
+        "preload": "metadata",
+        "native_events": [
+          "",
+          "loadedmetadata",
+          "timeupdate",
+          "seeked",
+          "playing",
+          "timeupdate",
+          "timeupdate",
+          "pause",
+          "seeking",
+          "timeupdate",
+          "seeked"
+        ],
+        "decoded_frames": 93,
+        "audio_decoded_bytes": 29237
+      }
+    },
+    {
+      "check": "silent_vertical_mp4_native_metadata",
+      "status": "passed",
+      "detail": {
+        "paused": true,
+        "current_time": 0,
+        "duration": 4.004,
+        "ready_state": 4,
+        "width": 360,
+        "height": 640,
+        "error": null,
+        "src": "/api/v1/projects/063bc413-964b-470a-a573-27bec267f0a2/media/d5f0483d-0090-476f-939e-2846e53dfdb6/stream",
+        "preload": "metadata",
+        "native_events": [
+          "",
+          "loadedmetadata"
+        ],
+        "decoded_frames": 4,
+        "audio_decoded_bytes": 0
+      }
+    },
+    {
+      "check": "silent_video_real_play_pause",
+      "status": "passed",
+      "detail": {
+        "advanced_seconds": 0.777615,
+        "decoded_frames": 28,
+        "audio_decoded_bytes": 0,
+        "native_events": [
+          "",
+          "loadedmetadata",
+          "playing",
+          "timeupdate",
+          "timeupdate",
+          "timeupdate",
+          "pause"
+        ]
+      }
+    },
+    {
+      "check": "native_video_http_range_206",
+      "status": "passed",
+      "detail": [
+        {
+          "path": "/api/v1/projects/063bc413-964b-470a-a573-27bec267f0a2/media/d5f0483d-0090-476f-939e-2846e53dfdb6/stream",
+          "status": 206,
+          "range": "bytes=0-",
+          "content_range": "bytes 0-752212/752213",
+          "content_length": "752213"
+        },
+        {
+          "path": "/api/v1/projects/063bc413-964b-470a-a573-27bec267f0a2/media/c9e554cd-cd97-4e44-8602-1dbd23d88331/stream",
+          "status": 206,
+          "range": "bytes=0-",
+          "content_range": "bytes 0-748081/748082",
+          "content_length": "748082"
+        },
+        {
+          "path": "/api/v1/projects/063bc413-964b-470a-a573-27bec267f0a2/media/c9e554cd-cd97-4e44-8602-1dbd23d88331/stream",
+          "status": 206,
+          "range": "bytes=720896-",
+          "content_range": "bytes 720896-748081/748082",
+          "content_length": "27186"
+        },
+        {
+          "path": "/api/v1/projects/063bc413-964b-470a-a573-27bec267f0a2/media/d5f0483d-0090-476f-939e-2846e53dfdb6/stream",
+          "status": 206,
+          "range": "bytes=0-",
+          "content_range": "bytes 0-752212/752213",
+          "content_length": "752213"
+        },
+        {
+          "path": "/api/v1/projects/063bc413-964b-470a-a573-27bec267f0a2/media/d5f0483d-0090-476f-939e-2846e53dfdb6/stream",
+          "status": 206,
+          "range": "bytes=327680-",
+          "content_range": "bytes 327680-752212/752213",
+          "content_length": "424533"
+        },
+        {
+          "path": "/api/v1/projects/063bc413-964b-470a-a573-27bec267f0a2/media/d5f0483d-0090-476f-939e-2846e53dfdb6/stream",
+          "status": 206,
+          "range": "bytes=720896-",
+          "content_range": "bytes 720896-752212/752213",
+          "content_length": "31317"
+        }
+      ]
+    },
+    {
+      "check": "single_native_player_and_desktop_no_overflow",
+      "status": "passed"
+    },
+    {
+      "check": "no_uncaught_browser_page_errors",
+      "status": "passed"
+    }
+  ],
+  "page_errors": [],
+  "stream_responses": [
+    {
+      "path": "/api/v1/projects/063bc413-964b-470a-a573-27bec267f0a2/media/d5f0483d-0090-476f-939e-2846e53dfdb6/stream",
+      "status": 206,
+      "range": "bytes=0-",
+      "content_range": "bytes 0-752212/752213",
+      "content_length": "752213"
+    },
+    {
+      "path": "/api/v1/projects/063bc413-964b-470a-a573-27bec267f0a2/media/c9e554cd-cd97-4e44-8602-1dbd23d88331/stream",
+      "status": 206,
+      "range": "bytes=0-",
+      "content_range": "bytes 0-748081/748082",
+      "content_length": "748082"
+    },
+    {
+      "path": "/api/v1/projects/063bc413-964b-470a-a573-27bec267f0a2/media/c9e554cd-cd97-4e44-8602-1dbd23d88331/stream",
+      "status": 206,
+      "range": "bytes=720896-",
+      "content_range": "bytes 720896-748081/748082",
+      "content_length": "27186"
+    },
+    {
+      "path": "/api/v1/projects/063bc413-964b-470a-a573-27bec267f0a2/media/d5f0483d-0090-476f-939e-2846e53dfdb6/stream",
+      "status": 206,
+      "range": "bytes=0-",
+      "content_range": "bytes 0-752212/752213",
+      "content_length": "752213"
+    },
+    {
+      "path": "/api/v1/projects/063bc413-964b-470a-a573-27bec267f0a2/media/d5f0483d-0090-476f-939e-2846e53dfdb6/stream",
+      "status": 206,
+      "range": "bytes=327680-",
+      "content_range": "bytes 327680-752212/752213",
+      "content_length": "424533"
+    },
+    {
+      "path": "/api/v1/projects/063bc413-964b-470a-a573-27bec267f0a2/media/d5f0483d-0090-476f-939e-2846e53dfdb6/stream",
+      "status": 206,
+      "range": "bytes=720896-",
+      "content_range": "bytes 720896-752212/752213",
+      "content_length": "31317"
+    }
+  ],
+  "screenshots": [
+    "r03-player-1792273747-desktop-dark.png"
+  ],
+  "data_policy": "Synthetic QA seed remains active between stages; imported originals are preserved."
+}

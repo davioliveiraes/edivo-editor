@@ -1,0 +1,126 @@
+{
+  "status": "passed",
+  "recorded_at": "2026-10-18T21:49:37.496595+00:00",
+  "project_id": "063bc413-964b-470a-a573-27bec267f0a2",
+  "soft_delete_status": 204,
+  "after_delete_access_checks": [
+    {
+      "path_type": "project",
+      "method": "GET",
+      "status": 404
+    },
+    {
+      "path_type": "edit-spec",
+      "method": "GET",
+      "status": 404
+    },
+    {
+      "path_type": "media",
+      "method": "GET",
+      "status": 404
+    },
+    {
+      "path_type": "media",
+      "method": "HEAD",
+      "status": 404
+    }
+  ],
+  "retained_originals": 7,
+  "retained_revisions": 8,
+  "snapshot": {
+    "originals": [
+      {
+        "asset_id": "0271f285-c835-4947-a216-16a4ebfc4757",
+        "sha256": "21f80a300605ada9efebe154efbd60ccb8aa2267c88d044f3b2421ec1adaf887",
+        "bytes": 748082,
+        "mode": "0400",
+        "mtime_ns": 1792359036488988412
+      },
+      {
+        "asset_id": "05ed36d3-04e5-495b-8c98-4a5953e98fb0",
+        "sha256": "cd2ee31f6ff872ed2f48f885199cbbb8646700b1d01b07c3a8986a674fa5465f",
+        "bytes": 298726,
+        "mode": "0400",
+        "mtime_ns": 1792359036746030693
+      },
+      {
+        "asset_id": "231cf0c1-47c8-426e-9dcb-daf19b84c79c",
+        "sha256": "dd19889b2460e2cbbd28e0f629aaee3c4b557c6539a4337265d40b2f233fd7d8",
+        "bytes": 179262,
+        "mode": "0400",
+        "mtime_ns": 1792359037112211675
+      },
+      {
+        "asset_id": "3882929e-2db7-4432-bec4-6b370086b074",
+        "sha256": "502265e2ad5bb7fb33e4d5c6c163f89a0e2d7b17c34680bebf7e4dd4e99b8557",
+        "bytes": 145785,
+        "mode": "0400",
+        "mtime_ns": 1792359036960312374
+      },
+      {
+        "asset_id": "747faf9e-9f80-43eb-8ed7-f920e4a60d40",
+        "sha256": "63660e2f8e53374902d3afb3a4ce95dc9616e79fd8b4383c03937950716a94b1",
+        "bytes": 451685,
+        "mode": "0400",
+        "mtime_ns": 1792359036215319562
+      },
+      {
+        "asset_id": "c9e554cd-cd97-4e44-8602-1dbd23d88331",
+        "sha256": "e1504e9c63cc7d08fe137f533b09a0d03629adf089fad6059fdf7ac4ccd30709",
+        "bytes": 748082,
+        "mode": "0400",
+        "mtime_ns": 1792273751754605116
+      },
+      {
+        "asset_id": "d5f0483d-0090-476f-939e-2846e53dfdb6",
+        "sha256": "c24de55d74fedd3c029db193655b43c3f28be9419ef7c71688f67e8256be0b2b",
+        "bytes": 752213,
+        "mode": "0400",
+        "mtime_ns": 1792273752119224510
+      }
+    ],
+    "revisions": [
+      {
+        "id": "6d90b500-17d0-4aab-b82c-bc2ea5751882",
+        "revision_number": 1,
+        "spec_sha256": "2ab06663e618b722f0eb698457e90b9158da789d94e68c7ba63f3f4835a1220e"
+      },
+      {
+        "id": "0fe4f0f9-16e7-476c-a40d-239e1697c9e1",
+        "revision_number": 2,
+        "spec_sha256": "67a5196fc545ece2bc3bd579a10005f25ac02925d9301b317eab697b94b69a18"
+      },
+      {
+        "id": "8b726feb-4ab0-409d-9295-33b356491882",
+        "revision_number": 3,
+        "spec_sha256": "2ab06663e618b722f0eb698457e90b9158da789d94e68c7ba63f3f4835a1220e"
+      },
+      {
+        "id": "b86e7368-1afe-466b-9dd4-023827031f37",
+        "revision_number": 4,
+        "spec_sha256": "f0aee094ac7d3e879ed77afebae9392c6ce92e99258d70bd4ff2deeb79a4a2de"
+      },
+      {
+        "id": "0724045a-8477-4695-9dde-e19b7e352e88",
+        "revision_number": 5,
+        "spec_sha256": "2ab06663e618b722f0eb698457e90b9158da789d94e68c7ba63f3f4835a1220e"
+      },
+      {
+        "id": "d05be21e-f809-4f90-94ed-74d20c8e74c6",
+        "revision_number": 6,
+        "spec_sha256": "67a5196fc545ece2bc3bd579a10005f25ac02925d9301b317eab697b94b69a18"
+      },
+      {
+        "id": "07553bea-b4c3-425d-8214-8eec01f934ed",
+        "revision_number": 7,
+        "spec_sha256": "2ab06663e618b722f0eb698457e90b9158da789d94e68c7ba63f3f4835a1220e"
+      },
+      {
+        "id": "2a9b3c91-931d-4065-a87c-8f2e51b5fb58",
+        "revision_number": 8,
+        "spec_sha256": "f0aee094ac7d3e879ed77afebae9392c6ce92e99258d70bd4ff2deeb79a4a2de"
+      }
+    ]
+  },
+  "original_or_volume_removals": 0
+}

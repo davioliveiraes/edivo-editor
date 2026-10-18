@@ -1,0 +1,231 @@
+{
+  "verified_at": "2026-10-18T21:31:17.523191+00:00",
+  "stage": "R03.5",
+  "status": "passed",
+  "scope": "Current backend, R01/R02 regressions, migrations and real Edivo Compose runtimes. Browser and final storage inventory are documented separately.",
+  "unit_tests": {
+    "unique_backend_cases": 315,
+    "r01_r02_cases": 167,
+    "streaming_cases": 74,
+    "edit_spec_cases": 74,
+    "host_passed": 315,
+    "container_passed": 315,
+    "duplicate_runs_are_not_additional_cases": true
+  },
+  "commands": [
+    {
+      "command": ".venv/bin/python --version",
+      "cwd": "backend",
+      "exit_code": 0,
+      "result": "Python 3.12.3; existing virtual environment preserved"
+    },
+    {
+      "command": ".venv/bin/pytest -q",
+      "cwd": "backend",
+      "environment": "sandbox",
+      "exit_code": 130,
+      "status": "interrupted_environment_blocked",
+      "result": "No test output: TestClient asynchronous loop blocked by this sandbox. Interrupted and rerun with approved escalation."
+    },
+    {
+      "command": ".venv/bin/pytest -q",
+      "cwd": "backend",
+      "environment": "approved execution outside sandbox",
+      "exit_code": 0,
+      "result": "315 passed, 1 warning in 13.41s"
+    },
+    {
+      "command": ".venv/bin/ruff check .",
+      "cwd": "backend",
+      "exit_code": 0,
+      "result": "All checks passed!"
+    },
+    {
+      "command": ".venv/bin/ruff format --check .",
+      "cwd": "backend",
+      "exit_code": 0,
+      "result": "50 files already formatted"
+    },
+    {
+      "command": "docker compose config --quiet",
+      "exit_code": 0,
+      "result": "Valid; configuration was not printed"
+    },
+    {
+      "command": "docker compose exec -T api alembic current",
+      "exit_code": 0,
+      "result": "0003_r03_edit_spec_revisions (head)"
+    },
+    {
+      "command": "docker compose exec -T api alembic upgrade head",
+      "exit_code": 0,
+      "result": "Repeated upgrade succeeds with no new revision or destructive operation"
+    },
+    {
+      "command": "docker compose exec -T api alembic check",
+      "exit_code": 0,
+      "result": "No new upgrade operations detected."
+    },
+    {
+      "command": "python3 scripts/acceptance-r03.py",
+      "exit_code": 0,
+      "passed_checks": 29,
+      "evidence": "streaming-http.json"
+    },
+    {
+      "command": "python3 scripts/acceptance-r02.py",
+      "exit_code": 0,
+      "passed_checks": 13,
+      "evidence": "r02-regression.json"
+    },
+    {
+      "command": "python3 scripts/acceptance-compose.py --skip-build",
+      "exit_code": 0,
+      "passed_checks": 27,
+      "evidence": "compose-qa.json"
+    },
+    {
+      "command": "python3 scripts/acceptance-upload-limits.py",
+      "exit_code": 0,
+      "passed_checks": 19,
+      "evidence": "upload-limits.json"
+    }
+  ],
+  "compose_quality_commands": [
+    {
+      "check": "pytest",
+      "status": "passed",
+      "detail": "============================= test session starts ==============================\nplatform linux -- Python 3.12.14, pytest-9.1.1, pluggy-1.7.0\nrootdir: /app\nconfigfile: pyproject.toml\ntestpaths: tests\nplugins: anyio-4.15.1\ncollected 315 items\n\ntests/test_edit_spec.py ................................................ [ 15%]\n..........................                                               [ 23%]\ntests/test_ffmpeg_capabilities.py ........                               [ 26%]\ntests/test_local_storage.py ..........                                   [ 29%]\ntests/test_logging.py .                                                  [ 29%]\ntests/test_media_probe.py ......................................         [ 41%]\ntests/test_media_stream.py ............................................. [ 55%]\n.............................                                            [ 65%]\ntests/test_media_upload.py .....................................         [ 76%]\ntests/test_projects.py .................................                 [ 87%]\ntests/test_readiness.py ..                                               [ 87%]\ntests/test_settings.py ...........                                       [ 91%]\ntests/test_system.py ..........                                          [ 94%]\ntests/test_upload_settings.py .............                              [ 98%]\ntests/test_worker.py ....                                                [100%]\n\n=============================== warnings summary ===============================\n../opt/venv/lib/python3.12/site-packages/fastapi/testclient.py:1\n  /opt/venv/lib/python3.12/site-packages/fastapi/testclient.py:1: StarletteDeprecationWarning: Using `httpx` with `starlette.testclient` is deprecated; install `httpx2` instead.\n    from starlette.testclient import TestClient as TestClient  # noqa\n\n-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html\n======================= 315 passed, 1 warning in 14.63s ========================"
+    },
+    {
+      "check": "ruff_check",
+      "status": "passed",
+      "detail": "All checks passed!"
+    },
+    {
+      "check": "ruff_format",
+      "status": "passed",
+      "detail": "50 files already formatted"
+    },
+    {
+      "check": "vitest",
+      "status": "passed",
+      "detail": "> edivo-frontend@0.1.0 test\n> vitest --run\n\n\n RUN  v5.0.5 /app\n\n ✓ tests/editor.test.tsx (15 tests) 2918ms\n   ✓ Editor navigation and sources (6)\n     ✓ recognizes the editor hash without breaking the project workspace 914ms\n     ✓ allows selecting one source and uses the private relative streaming URL 394ms\n     ✓ restores a saved source even outside the loaded library page 507ms\n ✓ tests/app.test.tsx (9 tests) 3442ms\n   ✓ Edivo foundation interface (9)\n     ✓ presents the product, current scope and a distinct loading state 954ms\n     ✓ fetches the relative endpoint and presents the real response version 541ms\n     ✓ handles network failure without exposing technical error details 513ms\n     ✓ recovers from an outage when the user retries 371ms\n     ✓ toggles and persists the theme with an accessible control 414ms\n ✓ tests/media.test.tsx (17 tests) 4886ms\n   ✓ Media library and import (17)\n     ✓ renders verified metadata, rational FPS, size, audio and integrity details 1208ms\n     ✓ distinguishes loading, library failure and a successful empty retry 399ms\n     ✓ rejects wrong extensions, empty files and over-limit files before transfer 326ms\n     ✓ uses real transport progress, a separate inspection phase and only confirms a 201 import 408ms\n     ✓ handles HTTP 415 (unsupported_media) without claiming success 350ms\n     ✓ paginates the project library through relative requests 517ms\n ✓ tests/projects.test.tsx (11 tests) 5365ms\n   ✓ Project management (11)\n     ✓ distinguishes loading and an empty project list 704ms\n     ✓ creates a project with trimmed inputs and opens its detail 1585ms\n     ✓ keeps the creation form and displays a service failure 530ms\n     ✓ updates name, purpose and optional preset and refreshes the list 703ms\n     ✓ requests deterministic offset pagination and disables the end of the list 861ms\n ✓ tests/editor-controls.test.tsx (23 tests) 6581ms\n   ✓ Non-destructive timeline (6)\n     ✓ represents one source with full duration, playhead and selected region 1297ms\n     ✓ bounds integer trims to duration and a minimum of 100 milliseconds 710ms\n     ✓ supports keyboard markers, shift steps, Home and End 419ms\n     ✓ seeks on the timeline and marks the real native playhead 851ms\n   ✓ Explicit saving and conflicts (6)\n     ✓ saves an initial complete plan with expected_revision0 and then a new version 496ms\n     ✓ retains local edits on503, shows sanitized error and permits retry 302ms\n\n Test Files  5 passed (5)\n      Tests  75 passed (75)\n   Start at  21:23:40\n   Duration  12.79s (tests 44%, environment 30%, transform 13%, import 8%, setup 5%)"
+    },
+    {
+      "check": "eslint",
+      "status": "passed",
+      "detail": "> edivo-frontend@0.1.0 lint\n> eslint . --max-warnings 0"
+    },
+    {
+      "check": "prettier",
+      "status": "passed",
+      "detail": "> edivo-frontend@0.1.0 format:check\n> prettier . --check\n\nChecking formatting...\nAll matched files use Prettier code style!"
+    },
+    {
+      "check": "frontend_build",
+      "status": "passed",
+      "detail": "> edivo-frontend@0.1.0 build\n> tsc -b && vite build\n\nvite v8.3.4 building client environment for production...\ntransforming...\n✓ 1950 modules transformed.\nrendering chunks...\ncomputing gzip size...\ndist/index.html                                        1.14 kB │ gzip:  0.57 kB\ndist/assets/manrope-latin-500-normal-BYYD-dBL.woff2   14.04 kB\ndist/assets/dm-sans-latin-600-normal-Aqo67rzb.woff2   14.14 kB\ndist/assets/manrope-latin-600-normal-4f0koTD-.woff2   14.17 kB\ndist/assets/dm-sans-latin-400-normal-CW0RaeGs.woff2   14.20 kB\ndist/assets/manrope-latin-700-normal-BZp_XxE4.woff2   14.21 kB\ndist/assets/dm-sans-latin-500-normal-B9HHJjqV.woff2   14.30 kB\ndist/assets/manrope-latin-500-normal-DMZssgOp.woff    18.24 kB\ndist/assets/dm-sans-latin-600-normal-BmdmIIQ2.woff    18.32 kB\ndist/assets/dm-sans-latin-400-normal-BwCSEQnW.woff    18.35 kB\ndist/assets/manrope-latin-600-normal-BqgrALkZ.woff    18.38 kB\ndist/assets/manrope-latin-700-normal-DGRFkw-m.woff    18.41 kB\ndist/assets/dm-sans-latin-500-normal-Dr3UlScf.woff    18.52 kB\ndist/assets/index-Dlff6Uuq.css                        37.08 kB │ gzip:  8.25 kB\ndist/assets/index-DfPeZMkV.js                        309.81 kB │ gzip: 96.10 kB\n\n✓ built in 759ms"
+    }
+  ],
+  "runtime_versions": {
+    "backend": {
+      "python": "3.12.14",
+      "packages": {
+        "fastapi": "0.143.3",
+        "pydantic": "2.14.1",
+        "pydantic-settings": "2.16.0",
+        "SQLAlchemy": "2.0.55",
+        "psycopg": "3.3.6",
+        "alembic": "1.20.0",
+        "uvicorn": "0.54.0",
+        "pytest": "9.1.1",
+        "httpx": "0.28.1",
+        "ruff": "0.17.1"
+      },
+      "uv": "uv 0.13.1 (x86_64-unknown-linux-gnu)"
+    },
+    "frontend": {
+      "node": "v24.14.0",
+      "npm": "11.9.0"
+    }
+  },
+  "database": {
+    "revision": "0003_r03_edit_spec_revisions",
+    "postgres": "16.13 (Debian 16.13-1.pgdg12+1)",
+    "tables": [
+      "alembic_version",
+      "edit_spec_revisions",
+      "media_assets",
+      "projects"
+    ]
+  },
+  "ffmpeg": {
+    "api": {
+      "status": "ok",
+      "ffmpeg": "5.1.9-0+deb12u1",
+      "ffprobe": "5.1.9-0+deb12u1",
+      "video_codec": "h264",
+      "audio_codec": "aac",
+      "resolution": [
+        320,
+        180
+      ],
+      "duration_seconds": 1.0,
+      "filters_exercised": [
+        "scale",
+        "crop",
+        "pad",
+        "drawtext"
+      ],
+      "decode": "ok"
+    },
+    "worker": {
+      "status": "ok",
+      "ffmpeg": "5.1.9-0+deb12u1",
+      "ffprobe": "5.1.9-0+deb12u1",
+      "video_codec": "h264",
+      "audio_codec": "aac",
+      "resolution": [
+        320,
+        180
+      ],
+      "duration_seconds": 1.0,
+      "filters_exercised": [
+        "scale",
+        "crop",
+        "pad",
+        "drawtext"
+      ],
+      "decode": "ok"
+    }
+  },
+  "worker": {
+    "idle": {
+      "cpu_percent_sample": 0.0
+    },
+    "sigterm_exit_code": 0,
+    "restored": true
+  },
+  "services_at_window_end": {
+    "api": "healthy",
+    "db": "healthy",
+    "frontend": "healthy",
+    "worker": "running",
+    "migrate_exit_code": 0
+  },
+  "exposure": {
+    "api": "127.0.0.1:8001",
+    "frontend": "127.0.0.1:5174",
+    "db_published": false,
+    "worker_published": false
+  },
+  "warnings": [
+    {
+      "source": "Starlette TestClient",
+      "count_per_pytest_run": 1,
+      "message": "Using httpx with starlette.testclient is deprecated; upstream suggests httpx2. Existing dependency versions were preserved because this warning does not fail tests."
+    }
+  ],
+  "data_policy": "Synthetic imports only; QA projects soft-deleted; original files retained at mode0400. Only Edivo services were restarted or subjected to the restored outage tests. No Git mutation, volume removal or ObraControl operation."
+}

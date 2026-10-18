@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Execute a regressão operacional R01, inclusive na evolução autorizada R02.
+"""Execute a regressão operacional R01 nas evoluções autorizadas R02/R03.
 
 Requer Docker operacional e .env preparado. Durante os casos negativos, o banco
 e o worker desta stack param brevemente e são restaurados mesmo em falhas.
@@ -190,6 +190,12 @@ def main() -> int:
         approved_schemas = {
             "0001_r01_baseline": ["alembic_version"],
             "0002_r02_projects_media": ["alembic_version", "media_assets", "projects"],
+            "0003_r03_edit_spec_revisions": [
+                "alembic_version",
+                "edit_spec_revisions",
+                "media_assets",
+                "projects",
+            ],
         }
         require(baseline["revision"] in approved_schemas, "Revisão Alembic não autorizada.")
         require(baseline["postgres"].startswith("16."), "PostgreSQL precisa ser major 16.")

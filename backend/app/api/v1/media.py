@@ -10,8 +10,10 @@ from starlette.concurrency import run_in_threadpool
 from starlette.datastructures import UploadFile
 from starlette.formparsers import MultiPartException, MultiPartParser
 from starlette.requests import ClientDisconnect
+from starlette.responses import FileResponse
 
 from app.api.dependencies import SessionDependency, get_settings
+from app.api.media_stream import PrivateMediaResponse
 from app.core.config import Settings
 from app.core.errors import AppError, ErrorResponse
 from app.core.upload_limits import UploadBodyExceeded
@@ -166,3 +168,45 @@ def project_media_detail(
     project_id: UUID, media_id: UUID, session: SessionDependency
 ) -> MediaResponse:
     return MediaResponse.model_validate(get_media(session, project_id, media_id))
+
+
+STREAM_RESPONSES = {
+    200: {"content": {"video/mp4": {"schema": {"type": "string", "format": "binary"}}}},
+    206: {
+        "description": "Um intervalo de bytes do MP4 original.",
+        "content": {"video/mp4": {"schema": {"type": "string", "format": "binary"}}},
+    },
+    416: {"model": ErrorResponse, "description": "Range inválido, múltiplo ou insatisfatível."},
+}
+
+
+@router.get(
+    "/{project_id}/media/{media_id}/stream",
+    response_class=FileResponse,
+    responses=STREAM_RESPONSES,
+)
+@router.head(
+    "/{project_id}/media/{media_id}/stream",
+    response_class=FileResponse,
+    responses=STREAM_RESPONSES,
+)
+def stream_media(
+    project_id: UUID,
+    media_id: UUID,
+    session: SessionDependency,
+    settings: SettingsDependency,
+) -> FileResponse:
+    asset = get_media(session, project_id, media_id)
+    if asset.kind != "source_video" or asset.mime_detected != "video/mp4":
+        raise AppError(503, "media_unavailable", "Vídeo temporariamente indisponível.")
+    original = LocalStorage(settings).open_original(
+        asset.storage_key, project_id, media_id, asset.byte_size
+    )
+    try:
+        response = PrivateMediaResponse(original, asset.checksum_sha256)
+        # A long transfer must not retain a PostgreSQL connection/transaction.
+        safe_rollback(session)
+        return response
+    except BaseException:
+        original.file.close()
+        raise

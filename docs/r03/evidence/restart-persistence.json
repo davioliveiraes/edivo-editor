@@ -1,0 +1,21 @@
+{
+  "status": "passed",
+  "purpose": "Final R03 proof after explicit UI save of revision 8",
+  "commands": [
+    {"command": "docker compose restart db", "exit_code": 0},
+    {"command": "docker compose up -d --no-build --wait --wait-timeout 90 db", "exit_code": 0},
+    {"command": "docker compose restart api worker", "exit_code": 0},
+    {"command": "docker compose up -d --no-build --wait --wait-timeout 120 api worker frontend", "exit_code": 0}
+  ],
+  "result": "All Edivo services healthy; migration one-shot exited 0. Independent Chromium verification recovered the exact revision and passed real playback/Range checks.",
+  "browser_verification": "browser-verify.json",
+  "browser_passed_checks": 5,
+  "expected_revision": 8,
+  "expected_revision_id": "2a9b3c91-931d-4065-a87c-8f2e51b5fb58",
+  "project_id": "063bc413-964b-470a-a573-27bec267f0a2",
+  "trim": {"start_ms": 1001, "end_ms": 2600},
+  "canvas": {"preset": "9:16", "fit": "cover", "focal_x": 0.25, "focal_y": 0.75},
+  "volume_removals": 0,
+  "original_file_changes": 0,
+  "obra_control_actions": []
+}

@@ -1,0 +1,11 @@
+{
+  "status": "consistent",
+  "read_only": true,
+  "registered_assets": 30,
+  "originals_on_disk": 30,
+  "missing_asset_ids": [],
+  "mismatched_asset_ids": [],
+  "unsafe_asset_ids": [],
+  "unregistered_original_ids": [],
+  "temporary_entries": 0
+}

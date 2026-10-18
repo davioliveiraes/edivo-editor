@@ -1,0 +1,1203 @@
+{
+  "report_schema_version": 1,
+  "product": "Edivo",
+  "release": "R03 — Player, Timeline, Cortes e Presets de Aspecto",
+  "generated_at": "2026-10-18T21:51:51.450040+00:00",
+  "status": "passed",
+  "completion_claimed": true,
+  "ready_for_r04": true,
+  "pending_final_steps": [],
+  "authorization": {
+    "implemented_release": "R03",
+    "r04_started": false,
+    "git_management": "manual by user",
+    "git_mutations_performed": false,
+    "user_media_sent_to_external_providers": false,
+    "originals_deleted_or_overwritten": false,
+    "volumes_removed": false,
+    "obra_control_changed": false
+  },
+  "versions": {
+    "host_python": "3.12.3",
+    "backend_runtime": {
+      "python": "3.12.14",
+      "packages": {
+        "fastapi": "0.143.3",
+        "pydantic": "2.14.1",
+        "pydantic-settings": "2.16.0",
+        "SQLAlchemy": "2.0.55",
+        "psycopg": "3.3.6",
+        "alembic": "1.20.0",
+        "uvicorn": "0.54.0",
+        "pytest": "9.1.1",
+        "httpx": "0.28.1",
+        "ruff": "0.17.1"
+      },
+      "uv": "uv 0.13.1 (x86_64-unknown-linux-gnu)"
+    },
+    "starlette": "1.8.0",
+    "python_multipart": "0.0.32",
+    "frontend_runtime": {
+      "node": "v24.14.0",
+      "npm": "11.9.0"
+    },
+    "frontend_installed": {
+      "react": "19.3.1",
+      "typescript": "6.0.3",
+      "vite": "8.3.4",
+      "tailwindcss": "4.3.3",
+      "lucide-react": "1.59.0",
+      "vitest": "5.0.5",
+      "@testing-library/react": "16.3.3",
+      "eslint": "10.13.0",
+      "prettier": "3.9.10"
+    },
+    "postgresql": "16.13 (Debian 16.13-1.pgdg12+1)",
+    "docker_engine": "29.8.0",
+    "docker_compose": "5.5.1",
+    "ffmpeg": "5.1.9-0+deb12u1",
+    "ffprobe": "5.1.9-0+deb12u1",
+    "browser_chromium": "145.0.7632.6",
+    "playwright_qa_helper": "1.58.2"
+  },
+  "services": {
+    "db": {
+      "image": "postgres:16.13-bookworm",
+      "host_port": null,
+      "volume": "edivo_postgres_data"
+    },
+    "api": {
+      "image": "edivo-backend:r03",
+      "host_binding": "127.0.0.1:8001",
+      "internal_port": 8000
+    },
+    "worker": {
+      "image": "edivo-backend:r03",
+      "host_port": null,
+      "idle": true,
+      "sigterm_exit_code": 0,
+      "cpu_percent_sample": 0.0
+    },
+    "migrate": {
+      "image": "edivo-backend:r03",
+      "host_port": null,
+      "exit_code": 0
+    },
+    "frontend": {
+      "image": "edivo-frontend:r03",
+      "host_binding": "127.0.0.1:5174",
+      "internal_port": 5173
+    },
+    "storage": {
+      "private": true,
+      "shared_by": [
+        "api",
+        "worker"
+      ],
+      "served_as_static": false,
+      "expected_original_mode": "0400"
+    },
+    "final_status": {
+      "api": "healthy",
+      "db": "healthy",
+      "frontend": "healthy",
+      "worker": "running",
+      "migrate_exit_code": 0
+    }
+  },
+  "database": {
+    "revision": "0003_r03_edit_spec_revisions",
+    "postgres": "16.13 (Debian 16.13-1.pgdg12+1)",
+    "tables": [
+      "alembic_version",
+      "edit_spec_revisions",
+      "media_assets",
+      "projects"
+    ]
+  },
+  "ffmpeg_diagnostics": {
+    "api": {
+      "status": "ok",
+      "ffmpeg": "5.1.9-0+deb12u1",
+      "ffprobe": "5.1.9-0+deb12u1",
+      "video_codec": "h264",
+      "audio_codec": "aac",
+      "resolution": [
+        320,
+        180
+      ],
+      "duration_seconds": 1.0,
+      "filters_exercised": [
+        "scale",
+        "crop",
+        "pad",
+        "drawtext"
+      ],
+      "decode": "ok"
+    },
+    "worker": {
+      "status": "ok",
+      "ffmpeg": "5.1.9-0+deb12u1",
+      "ffprobe": "5.1.9-0+deb12u1",
+      "video_codec": "h264",
+      "audio_codec": "aac",
+      "resolution": [
+        320,
+        180
+      ],
+      "duration_seconds": 1.0,
+      "filters_exercised": [
+        "scale",
+        "crop",
+        "pad",
+        "drawtext"
+      ],
+      "decode": "ok"
+    }
+  },
+  "test_counts": {
+    "backend": {
+      "unique_cases": 315,
+      "r01_r02_regressions": 167,
+      "r03_streaming": 74,
+      "r03_edit_spec": 74,
+      "host_passed": 315,
+      "container_passed": 315,
+      "warning_count_per_run": 1
+    },
+    "frontend": {
+      "unique_cases": 75,
+      "r01_r02_regressions": 37,
+      "r03_player": 15,
+      "r03_editor_controls": 23,
+      "test_files": 5,
+      "container_passed": 75
+    },
+    "integration_groups": [
+      {
+        "name": "Compose operational",
+        "passed": 27,
+        "evidence": "evidence/compose-qa.json"
+      },
+      {
+        "name": "Streaming real HTTP",
+        "passed": 29,
+        "evidence": "evidence/streaming-http.json"
+      },
+      {
+        "name": "EditSpec real PostgreSQL and HTTP",
+        "passed": 14,
+        "evidence": "evidence/edit-spec-http.json"
+      },
+      {
+        "name": "R02 regression real HTTP",
+        "passed": 13,
+        "evidence": "evidence/r02-regression.json"
+      },
+      {
+        "name": "R02 real scaled upload limits",
+        "passed": 19,
+        "evidence": "evidence/upload-limits.json"
+      }
+    ],
+    "browser_groups": [
+      {
+        "stage": "player",
+        "passed": 10,
+        "run_id": "r03-player-1792273747",
+        "evidence": "evidence/browser-player.json"
+      },
+      {
+        "stage": "editor",
+        "passed": 29,
+        "run_id": "r03-editor-1792359621",
+        "evidence": "evidence/browser-editor.json"
+      },
+      {
+        "stage": "verify",
+        "passed": 5,
+        "run_id": "r03-verify-1792360125",
+        "evidence": "evidence/browser-verify.json"
+      }
+    ],
+    "count_policy": "315 backend and 75 frontend are distinct cases; repeated host/container runs and integration/browser assertions are reported separately, never summed into a misleading grand total."
+  },
+  "commands": [
+    {
+      "command": ".venv/bin/python --version",
+      "cwd": "backend",
+      "exit_code": 0,
+      "result": "Python 3.12.3; existing virtual environment preserved"
+    },
+    {
+      "command": ".venv/bin/pytest -q",
+      "cwd": "backend",
+      "environment": "sandbox",
+      "exit_code": 130,
+      "status": "interrupted_environment_blocked",
+      "result": "No test output: TestClient asynchronous loop blocked by this sandbox. Interrupted and rerun with approved escalation."
+    },
+    {
+      "command": ".venv/bin/pytest -q",
+      "cwd": "backend",
+      "environment": "approved execution outside sandbox",
+      "exit_code": 0,
+      "result": "315 passed, 1 warning in 13.41s"
+    },
+    {
+      "command": ".venv/bin/ruff check .",
+      "cwd": "backend",
+      "exit_code": 0,
+      "result": "All checks passed!"
+    },
+    {
+      "command": ".venv/bin/ruff format --check .",
+      "cwd": "backend",
+      "exit_code": 0,
+      "result": "50 files already formatted"
+    },
+    {
+      "command": "docker compose config --quiet",
+      "exit_code": 0,
+      "result": "Valid; configuration was not printed"
+    },
+    {
+      "command": "docker compose exec -T api alembic current",
+      "exit_code": 0,
+      "result": "0003_r03_edit_spec_revisions (head)"
+    },
+    {
+      "command": "docker compose exec -T api alembic upgrade head",
+      "exit_code": 0,
+      "result": "Repeated upgrade succeeds with no new revision or destructive operation"
+    },
+    {
+      "command": "docker compose exec -T api alembic check",
+      "exit_code": 0,
+      "result": "No new upgrade operations detected."
+    },
+    {
+      "command": "python3 scripts/acceptance-r03.py",
+      "exit_code": 0,
+      "passed_checks": 29,
+      "evidence": "evidence/streaming-http.json"
+    },
+    {
+      "command": "python3 scripts/acceptance-r02.py",
+      "exit_code": 0,
+      "passed_checks": 13,
+      "evidence": "evidence/r02-regression.json"
+    },
+    {
+      "command": "python3 scripts/acceptance-compose.py --skip-build",
+      "exit_code": 0,
+      "passed_checks": 27,
+      "evidence": "evidence/compose-qa.json"
+    },
+    {
+      "command": "python3 scripts/acceptance-upload-limits.py",
+      "exit_code": 0,
+      "passed_checks": 19,
+      "evidence": "evidence/upload-limits.json"
+    },
+    {
+      "command": "docker compose exec -T api pytest",
+      "exit_code": 0,
+      "status": "passed",
+      "executor": "scripts/acceptance-compose.py",
+      "check": "pytest",
+      "evidence": "evidence/compose-qa.json"
+    },
+    {
+      "command": "docker compose exec -T api ruff check .",
+      "exit_code": 0,
+      "status": "passed",
+      "executor": "scripts/acceptance-compose.py",
+      "check": "ruff_check",
+      "evidence": "evidence/compose-qa.json"
+    },
+    {
+      "command": "docker compose exec -T api ruff format --check .",
+      "exit_code": 0,
+      "status": "passed",
+      "executor": "scripts/acceptance-compose.py",
+      "check": "ruff_format",
+      "evidence": "evidence/compose-qa.json"
+    },
+    {
+      "command": "docker compose exec -T frontend npm run test -- --run",
+      "exit_code": 0,
+      "status": "passed",
+      "executor": "scripts/acceptance-compose.py",
+      "check": "vitest",
+      "evidence": "evidence/compose-qa.json"
+    },
+    {
+      "command": "docker compose exec -T frontend npm run lint",
+      "exit_code": 0,
+      "status": "passed",
+      "executor": "scripts/acceptance-compose.py",
+      "check": "eslint",
+      "evidence": "evidence/compose-qa.json"
+    },
+    {
+      "command": "docker compose exec -T frontend npm run format:check",
+      "exit_code": 0,
+      "status": "passed",
+      "executor": "scripts/acceptance-compose.py",
+      "check": "prettier",
+      "evidence": "evidence/compose-qa.json"
+    },
+    {
+      "command": "docker compose exec -T frontend npm run build",
+      "exit_code": 0,
+      "status": "passed",
+      "executor": "scripts/acceptance-compose.py",
+      "check": "frontend_build",
+      "evidence": "evidence/compose-qa.json"
+    },
+    {
+      "command": "docker compose build api",
+      "exit_code": 0,
+      "status": "passed",
+      "provenance": "implementation executor"
+    },
+    {
+      "command": "docker compose build frontend",
+      "exit_code": 0,
+      "status": "passed",
+      "provenance": "implementation executor; final UI image"
+    },
+    {
+      "command": "docker compose up -d --no-build --wait --wait-timeout 180",
+      "exit_code": 0,
+      "status": "passed",
+      "provenance": "implementation executor"
+    },
+    {
+      "command": "python3 scripts/acceptance-editspec.py --output docs/r03/evidence/edit-spec-http.json",
+      "exit_code": 0,
+      "status": "passed",
+      "passed_checks": 14,
+      "evidence": "evidence/edit-spec-http.json"
+    },
+    {
+      "command": "python3 scripts/generate-r03-fixtures.py",
+      "exit_code": 0,
+      "status": "passed",
+      "evidence": "evidence/fixture-manifest.json"
+    },
+    {
+      "command": "python3 scripts/browser-r03.py --stage player",
+      "exit_code": 0,
+      "status": "passed",
+      "passed_checks": 10,
+      "evidence": "evidence/browser-player.json"
+    },
+    {
+      "command": "python3 scripts/browser-r03.py --stage editor",
+      "exit_code": 0,
+      "status": "passed",
+      "passed_checks": 29,
+      "evidence": "evidence/browser-editor.json"
+    },
+    {
+      "command": "python3 scripts/browser-r03.py --stage verify",
+      "status": "passed",
+      "evidence": "evidence/browser-verify.json",
+      "exit_code": 0,
+      "passed_checks": 5
+    },
+    {
+      "command": "node -e 'const fs=require(\"node:fs\"); const names=[\"react\",\"typescript\",\"vite\",\"tailwindcss\",\"lucide-react\",\"vitest\",\"@testing-library/react\",\"eslint\",\"prettier\"]; process.stdout.write(JSON.stringify(Object.fromEntries(names.map(name=>[name,JSON.parse(fs.readFileSync(\"node_modules/\"+name+\"/package.json\",\"utf8\")).version]))));'",
+      "cwd": "frontend",
+      "exit_code": 0,
+      "status": "passed",
+      "result": "Actual node_modules versions inspected without reinstalling dependencies"
+    },
+    {
+      "command": "backend/.venv/bin/ruff check --config backend/pyproject.toml scripts/acceptance-r03.py scripts/acceptance-editspec.py scripts/browser-r03.py scripts/generate-r03-fixtures.py scripts/acceptance-compose.py",
+      "exit_code": 0,
+      "status": "passed",
+      "result": "All checks passed; explicit project configuration"
+    },
+    {
+      "command": "backend/.venv/bin/ruff format --check --config backend/pyproject.toml scripts/acceptance-r03.py scripts/acceptance-editspec.py scripts/browser-r03.py scripts/generate-r03-fixtures.py scripts/acceptance-compose.py",
+      "exit_code": 0,
+      "status": "passed",
+      "result": "5 files already formatted"
+    },
+    {
+      "command": "node --check scripts/browser-r03.mjs",
+      "exit_code": 0,
+      "status": "passed",
+      "result": "Checked after final harness changes"
+    },
+    {
+      "command": "frontend/node_modules/.bin/prettier --config frontend/.prettierrc.json --check scripts/browser-r03.mjs",
+      "exit_code": 0,
+      "status": "passed"
+    },
+    {
+      "command": "git diff --check",
+      "exit_code": 0,
+      "status": "passed",
+      "read_only": true
+    },
+    {
+      "command": "python3 /tmp/final_edivo_r03_cleanup.py",
+      "exit_code": 0,
+      "status": "passed",
+      "result": "Only browser QA project soft-deleted; seven originals and eight immutable revisions compared before/after; audits read-only",
+      "evidence": [
+        "evidence/browser-cleanup.json",
+        "evidence/storage-audit.json",
+        "evidence/security-integrity.json",
+        "evidence/preservation.json"
+      ]
+    },
+    {
+      "command": "docker compose exec -T api python -",
+      "stdin_file": "scripts/audit-storage.py",
+      "exit_code": 0,
+      "status": "passed",
+      "executor": "final QA cleanup helper using subprocess stdin",
+      "read_only": true,
+      "evidence": "evidence/storage-audit.json"
+    },
+    {
+      "command": "docker compose restart db",
+      "exit_code": 0,
+      "status": "passed",
+      "evidence": "evidence/restart-persistence.json"
+    },
+    {
+      "command": "docker compose up -d --no-build --wait --wait-timeout 90 db",
+      "exit_code": 0,
+      "status": "passed",
+      "evidence": "evidence/restart-persistence.json"
+    },
+    {
+      "command": "docker compose restart api worker",
+      "exit_code": 0,
+      "status": "passed",
+      "evidence": "evidence/restart-persistence.json"
+    },
+    {
+      "command": "docker compose up -d --no-build --wait --wait-timeout 120 api worker frontend",
+      "exit_code": 0,
+      "status": "passed",
+      "evidence": "evidence/restart-persistence.json"
+    }
+  ],
+  "browser": {
+    "engine": "Chromium",
+    "version": "145.0.7632.6",
+    "runtime_image": "mcr.microsoft.com/playwright:v1.58.2-noble",
+    "mocked_media_or_api": false,
+    "native_range_observed": true,
+    "decoded_frames_observed": true,
+    "decoded_audio_observed": true,
+    "autoplay_with_audio": false,
+    "page_error_count_successful_runs": 0,
+    "fixture_count": 7,
+    "fixtures": [
+      "horizontal.mp4",
+      "rotated.mp4",
+      "sar.mp4",
+      "silent_vertical.mp4",
+      "square.mp4",
+      "unsupported.mp4",
+      "vfr.mp4"
+    ],
+    "coverage": [
+      "synthetic_project_and_r02_imports_real",
+      "empty_project_has_import_navigation_and_no_fictitious_player",
+      "real_playback_audio_silent_horizontal_square_rotated_sar_vfr",
+      "real_mpeg4_part2_codec_failure_is_explained_without_transcoding",
+      "real_browser_offline_media_failure_sanitized",
+      "real_browser_media_recovers_after_network_restored",
+      "timeline_marker_keyboard_arrows_shift_home_and_integer_ms",
+      "timeline_real_pointer_capture_drag_changes_trim",
+      "timeline_click_seek_playhead_and_mark_in_out_from_native_time",
+      "native_playback_stops_at_selected_out_point",
+      "seek_before_in_point_while_playing_clamps_to_selected_region",
+      "all_four_presets_apply_real_css_aspect_ratios",
+      "cover_contain_and_normalized_focal_are_visual_and_preserved",
+      "explicit_ui_save_real_postgresql_revision",
+      "playhead_changes_neither_dirty_state_nor_revision",
+      "browser_reload_recovers_saved_trim_canvas_source_and_revision",
+      "cancel_source_change_preserves_unsaved_draft",
+      "native_browser_back_cancel_preserves_url_component_draft_and_seek",
+      "cancel_hash_navigation_preserves_editor_and_local_changes",
+      "native_beforeunload_cancel_keeps_unsaved_changes",
+      "real_409_conflict_retains_draft_and_never_overwrites_external_revision",
+      "conflict_reload_requires_explicit_discard_and_recovers_external_revision",
+      "confirmed_navigation_discards_only_local_draft_and_reopens_saved_revision",
+      "editor_dark_light_theme_and_local_persistence",
+      "mobile_375_native_touch_marker_drag_and_no_horizontal_overflow",
+      "mobile_landscape_layout_has_no_horizontal_overflow",
+      "editor_native_video_requests_private_http_range_206",
+      "single_track_editor_desktop_has_no_horizontal_overflow",
+      "no_uncaught_browser_page_errors"
+    ],
+    "layouts": [
+      "desktop dark",
+      "desktop light",
+      "375px mobile portrait with emulated native touch",
+      "mobile landscape"
+    ],
+    "screenshots": [
+      "evidence/r03-editor-1792359621-unsupported-codec.png",
+      "evidence/r03-editor-1792359621-desktop-contain.png",
+      "evidence/r03-editor-1792359621-desktop-dark.png",
+      "evidence/r03-editor-1792359621-desktop-light.png",
+      "evidence/r03-editor-1792359621-mobile-375.png",
+      "evidence/r03-editor-1792359621-mobile-landscape.png",
+      "evidence/r03-verify-1792360125-persisted-editor.png"
+    ],
+    "successful_run_ids": {
+      "player": "r03-player-1792273747",
+      "editor": "r03-editor-1792359621",
+      "verify": "r03-verify-1792360125"
+    },
+    "persistence_after_restart": {
+      "status": "passed",
+      "revision_number": 8,
+      "trim": {
+        "start_ms": 1001,
+        "end_ms": 2600
+      },
+      "canvas": {
+        "preset": "9:16",
+        "fit": "cover",
+        "focal_x": 0.25,
+        "focal_y": 0.75
+      },
+      "source_media_id": "c9e554cd-cd97-4e44-8602-1dbd23d88331",
+      "native_playback_after_restart": true,
+      "range206_after_restart": true,
+      "evidence": [
+        "evidence/restart-persistence.json",
+        "evidence/browser-verify.json"
+      ]
+    },
+    "cleanup": {
+      "status": "passed",
+      "project_soft_delete_status": 204,
+      "subsequent_project_edit_spec_get_and_stream_get_head": "404",
+      "retained_originals": 7,
+      "retained_revisions": 8,
+      "evidence": "evidence/browser-cleanup.json"
+    }
+  },
+  "preservation": {
+    "preexisting_projects_compared": 8,
+    "preexisting_media_rows_compared": 13,
+    "row_hash_mismatches": 0,
+    "historical_documents_migrations_locks": "Unchanged SHA-256 or read-only Git HEAD comparison",
+    "evidence": "evidence/preservation.json",
+    "final_storage_audit": "passed",
+    "final_security_permissions_audit": "passed",
+    "registered_assets": 30,
+    "originals_on_disk": 30,
+    "original_bytes": 3489278,
+    "all_original_modes": "0400",
+    "storage_directory_mode": "0700",
+    "local_env_mode": "0600",
+    "missing_mismatched_unsafe_or_orphan_assets": 0,
+    "staging_entries": 0,
+    "final_audit_evidence": [
+      "evidence/storage-audit.json",
+      "evidence/security-integrity.json",
+      "evidence/browser-cleanup.json"
+    ]
+  },
+  "warnings": [
+    {
+      "source": "Starlette TestClient",
+      "count_per_pytest_run": 1,
+      "message": "Using httpx with starlette.testclient is deprecated; upstream suggests httpx2. Existing dependency versions were preserved because this warning does not fail tests."
+    }
+  ],
+  "acceptance_criteria": [
+    {
+      "number": 1,
+      "id": "r01_r02_regression",
+      "criterion": "R01 e R02 continuam funcionais",
+      "status": "passed",
+      "evidence": [
+        "evidence/backend-qa.json",
+        "evidence/r02-regression.json",
+        "evidence/upload-limits.json",
+        "evidence/compose-qa.json"
+      ]
+    },
+    {
+      "number": 2,
+      "id": "migration",
+      "criterion": "Migração R03 aplicada corretamente",
+      "status": "passed",
+      "evidence": [
+        "evidence/edit-spec-http.json",
+        "evidence/backend-qa.json"
+      ]
+    },
+    {
+      "number": 3,
+      "id": "private_range_stream",
+      "criterion": "Streaming privado suporta HTTP Range",
+      "status": "passed",
+      "evidence": [
+        "evidence/streaming-http.json",
+        "evidence/browser-editor.json"
+      ]
+    },
+    {
+      "number": 4,
+      "id": "media_authorization",
+      "criterion": "Acesso indevido a mídias bloqueado",
+      "status": "passed",
+      "evidence": [
+        "evidence/streaming-http.json",
+        "evidence/backend-qa.json"
+      ]
+    },
+    {
+      "number": 5,
+      "id": "real_browser_playback",
+      "criterion": "MP4 reproduz realmente no navegador",
+      "status": "passed",
+      "evidence": [
+        "evidence/browser-player.json",
+        "evidence/browser-editor.json"
+      ]
+    },
+    {
+      "number": 6,
+      "id": "play_pause_seek",
+      "criterion": "Play/Pause e seek funcionam",
+      "status": "passed",
+      "evidence": [
+        "evidence/browser-player.json",
+        "evidence/browser-editor.json"
+      ]
+    },
+    {
+      "number": 7,
+      "id": "single_track_timeline",
+      "criterion": "Timeline possui uma faixa funcional",
+      "status": "passed",
+      "evidence": [
+        "evidence/browser-editor.json",
+        "evidence/compose-qa.json"
+      ]
+    },
+    {
+      "number": 8,
+      "id": "trim_in_out",
+      "criterion": "Início e fim podem ser selecionados",
+      "status": "passed",
+      "evidence": [
+        "evidence/browser-editor.json",
+        "evidence/compose-qa.json"
+      ]
+    },
+    {
+      "number": 9,
+      "id": "four_presets",
+      "criterion": "Quatro presets estão disponíveis",
+      "status": "passed",
+      "evidence": [
+        "evidence/browser-editor.json",
+        "evidence/compose-qa.json"
+      ]
+    },
+    {
+      "number": 10,
+      "id": "fit_and_focal",
+      "criterion": "Cover/contain e ponto focal funcionam",
+      "status": "passed",
+      "evidence": [
+        "evidence/browser-editor.json",
+        "evidence/compose-qa.json"
+      ]
+    },
+    {
+      "number": 11,
+      "id": "edit_spec_persistence",
+      "criterion": "EditSpec salvo e recuperado após reinício final",
+      "status": "passed",
+      "evidence": [
+        "evidence/edit-spec-http.json",
+        "evidence/browser-editor.json",
+        "evidence/browser-verify.json"
+      ]
+    },
+    {
+      "number": 12,
+      "id": "immutable_revisions",
+      "criterion": "Revisões anteriores não são sobrescritas",
+      "status": "passed",
+      "evidence": [
+        "evidence/edit-spec-http.json",
+        "evidence/backend-qa.json"
+      ]
+    },
+    {
+      "number": 13,
+      "id": "optimistic_conflicts",
+      "criterion": "Conflitos retornam HTTP 409",
+      "status": "passed",
+      "evidence": [
+        "evidence/edit-spec-http.json",
+        "evidence/browser-editor.json"
+      ]
+    },
+    {
+      "number": 14,
+      "id": "original_integrity",
+      "criterion": "Originais permanecem intactos",
+      "status": "passed",
+      "evidence": [
+        "evidence/preservation.json",
+        "evidence/storage-audit.json",
+        "evidence/security-integrity.json"
+      ]
+    },
+    {
+      "number": 15,
+      "id": "final_qa",
+      "criterion": "QA automatizado e integrado passa",
+      "status": "passed",
+      "evidence": [
+        "evidence/backend-qa.json",
+        "evidence/compose-qa.json",
+        "evidence/browser-verify.json"
+      ]
+    },
+    {
+      "number": 16,
+      "id": "synthetic_browser_qa",
+      "criterion": "Navegador validado com mídia sintética real",
+      "status": "passed",
+      "evidence": [
+        "evidence/fixture-manifest.json",
+        "evidence/browser-player.json",
+        "evidence/browser-editor.json"
+      ]
+    },
+    {
+      "number": 17,
+      "id": "documentation_evidence",
+      "criterion": "Documentação e evidências entregues",
+      "status": "passed",
+      "evidence": [
+        "acceptance.md",
+        "compatibility.md",
+        "qa-results.json"
+      ]
+    },
+    {
+      "number": 18,
+      "id": "scope",
+      "criterion": "Nenhuma funcionalidade R04+ antecipada",
+      "status": "passed",
+      "evidence": [
+        "acceptance.md",
+        "compatibility.md",
+        "qa-results.json"
+      ]
+    }
+  ],
+  "acceptance_summary": {
+    "total": 18,
+    "passed": 18,
+    "pending": 0,
+    "failed": 0
+  },
+  "evidence_manifest": {
+    "status": "frozen",
+    "frozen_at": "2026-10-18T21:51:51.457271+00:00",
+    "algorithm": "SHA-256",
+    "file_count": 40,
+    "files": [
+      {
+        "path": "evidence/backend-qa.json",
+        "bytes": 12156,
+        "sha256": "9302a33132e97b75b33970421a54e3c46a94e5c23504cd49221a8ad4c4f650e8"
+      },
+      {
+        "path": "evidence/browser-cleanup.json",
+        "bytes": 3996,
+        "sha256": "84fc05e4686a1e9f278d0b8c8cd783aafd70e202ff3e25a95be56360be919c07"
+      },
+      {
+        "path": "evidence/browser-editor.json",
+        "bytes": 21065,
+        "sha256": "be940c497111a351c514c8c98ed181b2c25af39256e2d63cf88880e0c2dd15a3"
+      },
+      {
+        "path": "evidence/browser-player.json",
+        "bytes": 7627,
+        "sha256": "c497faab772c9cb7a879139213ca86c1eca879a8edf17cbd83ba305a9024f315"
+      },
+      {
+        "path": "evidence/browser-verify.json",
+        "bytes": 2191,
+        "sha256": "16838e844a49454172c064e007ad96d18589a49fa7a09332f34f9519180010b6"
+      },
+      {
+        "path": "evidence/compose-qa.json",
+        "bytes": 13176,
+        "sha256": "c4d3579567142ed1cbac5541a4381325316f83ea0470ccb8d7adf55c05c01d00"
+      },
+      {
+        "path": "evidence/compose-qa.jsonl",
+        "bytes": 13755,
+        "sha256": "dc822d72d9c4d15b54ae46468b062f481000be5873017fb91b8dcbca2927f7be"
+      },
+      {
+        "path": "evidence/edit-spec-http.json",
+        "bytes": 6216,
+        "sha256": "8312a7dc1079a4a1fee97a2642cf1e4d1047063b27c6fc81a644b55b396c4167"
+      },
+      {
+        "path": "evidence/fixture-manifest.json",
+        "bytes": 4621,
+        "sha256": "842c95a8f688f609f65c39fcb7e5f0fb79d8d3cb75154eb2e77c332370b2c011"
+      },
+      {
+        "path": "evidence/preservation.json",
+        "bytes": 5871,
+        "sha256": "745ac34af9334d663448c7ce49534716270904eb92ce31445f8c209aef39441e"
+      },
+      {
+        "path": "evidence/r02-regression.json",
+        "bytes": 2486,
+        "sha256": "657b82ae5c12bb3f3cd4d7237ae91eb1c6c868973566d208928b171dd0456054"
+      },
+      {
+        "path": "evidence/r02-regression.jsonl",
+        "bytes": 1625,
+        "sha256": "02f5f75a63c2cf1df21e9de2befb88c7bdc6207a8644f23ed7e4a2df45baabb1"
+      },
+      {
+        "path": "evidence/r03-editor-1792359031-failure.png",
+        "bytes": 168510,
+        "sha256": "dd768d2afe3256bd4a4889515e23f0d8927fb9d8c8f7344c7d91d08553a60c2b"
+      },
+      {
+        "path": "evidence/r03-editor-1792359031-unsupported-codec.png",
+        "bytes": 119631,
+        "sha256": "825d63b572211d87f93b6a4e06f8752282f5321d4337a11154d728882a4cfd35"
+      },
+      {
+        "path": "evidence/r03-editor-1792359031.json",
+        "bytes": 15819,
+        "sha256": "33f73b24d18cac75c28b1186e170ddc29aaa27333799fec626297faa2819776e",
+        "kind": "retained_failed_harness_attempt"
+      },
+      {
+        "path": "evidence/r03-editor-1792359307-desktop-contain.png",
+        "bytes": 122775,
+        "sha256": "26c3a9635643d44f034fea589629913cf45f838a33b1e2ca366b37098c319a98"
+      },
+      {
+        "path": "evidence/r03-editor-1792359307-desktop-dark.png",
+        "bytes": 126438,
+        "sha256": "4dba8a667689ee6a0e2fa7b524f157c59c6cee60aa63b8a3c86318b60632f72e"
+      },
+      {
+        "path": "evidence/r03-editor-1792359307-desktop-light.png",
+        "bytes": 126245,
+        "sha256": "d266dac2db58bed4740a55eb2f348d6943f328cb2bc086331a958d343a70684a"
+      },
+      {
+        "path": "evidence/r03-editor-1792359307-mobile-375.png",
+        "bytes": 112771,
+        "sha256": "6cc76a0e07a1b49e7e14644ad7dc1c5d48c2b10be3f98300a1b548e7e94a9636"
+      },
+      {
+        "path": "evidence/r03-editor-1792359307-mobile-landscape.png",
+        "bytes": 122612,
+        "sha256": "5f19afa0f73b04091b7e4dd33397dcc1e0ad380db1befc6507d14599d34a2078"
+      },
+      {
+        "path": "evidence/r03-editor-1792359307-unsupported-codec.png",
+        "bytes": 119631,
+        "sha256": "825d63b572211d87f93b6a4e06f8752282f5321d4337a11154d728882a4cfd35"
+      },
+      {
+        "path": "evidence/r03-editor-1792359307.json",
+        "bytes": 23292,
+        "sha256": "f695a4cef0abd43eab26aaf2d1359c63a9bcead208944167d4c41e160478bf4a"
+      },
+      {
+        "path": "evidence/r03-editor-1792359405-failure.png",
+        "bytes": 137833,
+        "sha256": "59c7b8d125f733bfa2fdab99049d18b595b474b9dd92c2ca586c46455a00d049"
+      },
+      {
+        "path": "evidence/r03-editor-1792359405.json",
+        "bytes": 7199,
+        "sha256": "ab2497a23a843856667dfb9c0d5ff3ae5a2bfcc3439178092486d79029c3f260",
+        "kind": "retained_failed_harness_attempt"
+      },
+      {
+        "path": "evidence/r03-editor-1792359621-desktop-contain.png",
+        "bytes": 122990,
+        "sha256": "1092528445caa6b78b9005e014fac6dcb17ce7fe031ab9f08c408770c2974c41"
+      },
+      {
+        "path": "evidence/r03-editor-1792359621-desktop-dark.png",
+        "bytes": 126393,
+        "sha256": "164762237f28fd06eb74a8d198ccba9093b9dc7d397b721ec4d81562147aa2a8"
+      },
+      {
+        "path": "evidence/r03-editor-1792359621-desktop-light.png",
+        "bytes": 126187,
+        "sha256": "81af02965e8f6d14e1f331fbb452a7c462260fe53168cfd0441693764c6871ce"
+      },
+      {
+        "path": "evidence/r03-editor-1792359621-mobile-375.png",
+        "bytes": 112807,
+        "sha256": "5549c24ed7d7ead6ecc007e22d26c0a0d005ca4fa6ec11295aaa4a9fe876668e"
+      },
+      {
+        "path": "evidence/r03-editor-1792359621-mobile-landscape.png",
+        "bytes": 122649,
+        "sha256": "c1d41854abd5e4da44c0419b76b895fbd27a061c6f46870496a23edf08fb8cd9"
+      },
+      {
+        "path": "evidence/r03-editor-1792359621-unsupported-codec.png",
+        "bytes": 122285,
+        "sha256": "296fc4ccc6e857500aaa0f87ba461187dfdb4fcff6da5c70a8cc1f7b06a152d5"
+      },
+      {
+        "path": "evidence/r03-editor-1792359621.json",
+        "bytes": 21065,
+        "sha256": "be940c497111a351c514c8c98ed181b2c25af39256e2d63cf88880e0c2dd15a3"
+      },
+      {
+        "path": "evidence/r03-player-1792273747-desktop-dark.png",
+        "bytes": 86524,
+        "sha256": "6285e8dc9ce39618a882cdcc810bed95f14277132fcf2660d678a60593b190a9"
+      },
+      {
+        "path": "evidence/r03-player-1792273747.json",
+        "bytes": 7627,
+        "sha256": "c497faab772c9cb7a879139213ca86c1eca879a8edf17cbd83ba305a9024f315"
+      },
+      {
+        "path": "evidence/r03-verify-1792360125-persisted-editor.png",
+        "bytes": 122637,
+        "sha256": "d443269dbf7af652bf9310ef7141658fcc4ee1fdaa51f5bcfa3f99f92624a0fb"
+      },
+      {
+        "path": "evidence/r03-verify-1792360125.json",
+        "bytes": 2191,
+        "sha256": "16838e844a49454172c064e007ad96d18589a49fa7a09332f34f9519180010b6"
+      },
+      {
+        "path": "evidence/restart-persistence.json",
+        "bytes": 1069,
+        "sha256": "abfae5b8b38e41087d21e34688de30e70cb1da0a1a9b8cdb08bf65b87d51337c"
+      },
+      {
+        "path": "evidence/security-integrity.json",
+        "bytes": 2949,
+        "sha256": "1679953a17cfaab002e297c898bbc2a8698e8433806a6a43b91fe7f08c740c58"
+      },
+      {
+        "path": "evidence/storage-audit.json",
+        "bytes": 248,
+        "sha256": "b78fed6e9a1f02650ec60cbc35106bea9e07e8fb32bf3185c94c8e7d21afcd01"
+      },
+      {
+        "path": "evidence/streaming-http.json",
+        "bytes": 1550,
+        "sha256": "e744f2620ad11058c58acdde67fd32d40c75c0fe5282973475f5c71d28d2e6b1"
+      },
+      {
+        "path": "evidence/upload-limits.json",
+        "bytes": 1999,
+        "sha256": "8ffbfe3b2cd17b9e23dffcbbd1380d6632406f484e82a92bb7218d724b7ad4c1"
+      }
+    ],
+    "policy": "Every file under evidence/ is listed, including retained unsuccessful harness attempts. qa-results.json is outside this directory and excluded to avoid a circular checksum."
+  },
+  "contracts": {
+    "stream": {
+      "methods": [
+        "GET",
+        "HEAD"
+      ],
+      "endpoint": "/api/v1/projects/{project_id}/media/{media_id}/stream",
+      "statuses": {
+        "complete": 200,
+        "single_range": 206,
+        "invalid_multiple_unsatisfiable_range": 416,
+        "inactive_or_foreign_project_media": 404,
+        "missing_or_inaccessible_file": 503
+      },
+      "range_forms": [
+        "closed",
+        "open",
+        "suffix",
+        "single_byte"
+      ],
+      "chunk_bytes": 65536,
+      "headers": [
+        "Accept-Ranges: bytes",
+        "Content-Type: video/mp4",
+        "Content-Length",
+        "Content-Range when applicable",
+        "Cache-Control: private, no-store",
+        "X-Content-Type-Options: nosniff",
+        "Content-Disposition: inline"
+      ],
+      "head_body": false,
+      "etag": "Strong SHA-256 from persisted original checksum",
+      "if_range": "Matching strong ETag or Last-Modified permits 206; weak/mismatch returns complete 200; malformed Range always 416",
+      "storage_security": "Active project/media association, exact managed key, dir_fd/O_NOFOLLOW at every component, regular-file and size checks, pinned descriptor, no pathsend, descriptor close after disconnect/cancellation"
+    },
+    "edit_spec": {
+      "schema_version": 1,
+      "endpoint": "/api/v1/projects/{project_id}/edit-spec",
+      "methods": [
+        "GET",
+        "PUT"
+      ],
+      "first_save_status": 201,
+      "subsequent_save_status": 200,
+      "not_saved_status": 404,
+      "not_saved_code": "edit_spec_not_found",
+      "conflict_status": 409,
+      "conflict_code": "edit_spec_conflict",
+      "first_expected_revision": 0,
+      "identical_save_policy": "No-op only with current expected_revision: retain id, revision_number and created_at. Stale expected_revision always conflicts.",
+      "minimum_trim_ms": 100,
+      "short_source_policy": "For duration_ms < 100, only full interval [0, duration_ms] is valid",
+      "strict_integer_fields": [
+        "schema_version",
+        "expected_revision",
+        "trim.start_ms",
+        "trim.end_ms"
+      ],
+      "unknown_fields": "rejected recursively",
+      "focal_range": [
+        0,
+        1
+      ],
+      "nonfinite_focal_values": "rejected",
+      "presets": [
+        "9:16",
+        "1:1",
+        "4:5",
+        "16:9"
+      ],
+      "fit_modes": [
+        "cover",
+        "contain"
+      ],
+      "contain_focal_policy": "Persisted but ignored visually",
+      "project_preset_policy": "Initial suggestion only; future project updates do not modify the saved canvas",
+      "transaction_policy": "Project FOR UPDATE before current revision lookup; unique(project_id,revision_number)",
+      "immutability": "Append-only ORM behavior and PostgreSQL UPDATE/DELETE trigger; SQLSTATE 55000 verified",
+      "playhead_changes_create_revisions": false,
+      "strict_validation_real_negative_payloads": 28,
+      "simultaneous_real_update_statuses": [
+        200,
+        409
+      ]
+    }
+  },
+  "resolved_environment_or_harness_occurrences": [
+    {
+      "occurrence": "TestClient stalled inside host sandbox",
+      "resolution": "Interrupted and repeated through approved execution outside sandbox: 315 passed; container 315 also passed",
+      "evidence": "evidence/backend-qa.json"
+    },
+    {
+      "occurrence": "Host Chromium missing libnspr4",
+      "resolution": "Used official Playwright Docker image and isolated temporary QA dependencies; no application dependency changes"
+    },
+    {
+      "occurrence": "Temporary QA files lost during interruption",
+      "resolution": "Regenerated only synthetic fixtures/helpers. Originals and persisted database were preserved; initial row hashes and historical read-only comparisons were recovered",
+      "evidence": "evidence/preservation.json"
+    },
+    {
+      "occurrence": "Home Ruff configuration selected for a root-level script check",
+      "resolution": "Explicit backend/pyproject.toml project configuration used; final checks passed for all five QA Python scripts."
+    },
+    {
+      "occurrence": "Offline harness reused buffered media and did not trigger a network error",
+      "resolution": "Fresh browser context exercises real offline media failure; application playback was not mocked",
+      "retained_attempt": "evidence/r03-editor-1792359031.json"
+    },
+    {
+      "occurrence": "Harness asserted pause before asynchronous native event dispatch",
+      "resolution": "Wait for the actual native pause event before assertion; no fabricated playback state",
+      "retained_attempt": "evidence/r03-editor-1792359405.json"
+    }
+  ],
+  "limitations": [
+    "Playback was validated in Chromium 145 in Docker only. No cross-browser, physical mobile/touch hardware or GPU compatibility matrix was executed.",
+    "Keyboard and native touch input were exercised through browser automation; this does not replace physical-device usability evaluation.",
+    "HTMLMediaElement seek and trim stopping are approximate, particularly with VFR, keyframes and codec behavior; no frame-perfect guarantee or encoded export exists.",
+    "The native browser applied rotation and sample aspect ratio for synthetic fixtures. This does not guarantee pixel-perfect equivalence with a future FFmpeg render.",
+    "Valid MP4 import does not guarantee HTML5 decoder support. MPEG-4 Part2 was really rejected by Chromium and displayed a codec message without transcoding.",
+    "Default 500 MiB / 600 s limits were preserved. Full-size 500 MiB and 600 s physical fixtures were not imported; ingress, duration, timeout and cleanup limits were exercised with reduced isolated configuration.",
+    "One upstream Starlette TestClient/httpx deprecation warning remains per pytest run; existing compatible dependencies pass tests.",
+    "Loopback development access is not multiuser authentication. No authentication, SaaS or public deployment was added."
+  ],
+  "obra_control": {
+    "changed": false,
+    "operations_performed": [],
+    "original_container_ids": {
+      "frontend": "1a35ac4adf07",
+      "backend": "bc11ea210a9c",
+      "db": "d90a8cddb8dc"
+    },
+    "observation": "The same container IDs were observed stopped when work resumed; no ObraControl container was started, stopped, recreated or reconfigured by this implementation.",
+    "evidence": "evidence/security-integrity.json"
+  },
+  "r04_authorized": false,
+  "essential_failures": [],
+  "essential_pending_items": [],
+  "next_stage": {
+    "release": "R04",
+    "technically_ready": true,
+    "authorized": false,
+    "started": false,
+    "instruction": "Do not start R04 without new explicit user authorization."
+  },
+  "security_integrity": {
+    "status": "passed",
+    "check_count": 18,
+    "read_only": true,
+    "checks": [
+      "local_env_0600",
+      "storage_private_0700",
+      "all_originals_0400",
+      "all_originals_owned_by_local_user",
+      "staging_empty",
+      "db_expected_port_bindings",
+      "api_expected_port_bindings",
+      "worker_expected_port_bindings",
+      "frontend_expected_port_bindings",
+      "api_restricted_runtime",
+      "worker_restricted_runtime",
+      "api_worker_shared_managed_storage",
+      "postgres_named_volume_preserved",
+      "application_logs_no_credentials_dsn_or_traceback",
+      "obra_control_original_container_ids_preserved",
+      "storage_audit_consistent",
+      "preexisting_rows_documents_and_locks_preserved",
+      "browser_persistence_verified"
+    ],
+    "evidence": "evidence/security-integrity.json"
+  }
+}

@@ -12,6 +12,7 @@ from starlette.exceptions import HTTPException
 from starlette.responses import JSONResponse
 
 from app import __version__
+from app.api.v1.edit_specs import router as edit_specs_router
 from app.api.v1.media import router as media_router
 from app.api.v1.projects import router as projects_router
 from app.api.v1.system import router as system_router
@@ -49,8 +50,9 @@ def create_app(settings: Settings | None = None) -> FastAPI:
     application.add_middleware(
         CORSMiddleware,
         allow_origins=settings.cors_origins,
-        allow_methods=["GET", "POST", "PATCH", "DELETE"],
-        allow_headers=["Accept", "Content-Type"],
+        allow_methods=["GET", "HEAD", "POST", "PUT", "PATCH", "DELETE"],
+        allow_headers=["Accept", "Content-Type", "Range", "If-Range"],
+        expose_headers=["Accept-Ranges", "Content-Range", "Content-Length", "ETag"],
     )
     application.add_middleware(
         UploadBodyLimitMiddleware,
@@ -125,6 +127,7 @@ def create_app(settings: Settings | None = None) -> FastAPI:
     application.include_router(system_router)
     application.include_router(projects_router)
     application.include_router(media_router)
+    application.include_router(edit_specs_router)
     return application
 
 

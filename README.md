@@ -1,15 +1,16 @@
 # Edivo
 
 Editor de vídeo web **local-first**, com React/TypeScript, FastAPI/Python e
-FFmpeg. A **R02 — Projetos, Upload e Metadados** acrescenta projetos com exclusão
-lógica, importação segura de MP4 e biblioteca com metadados verificados pelo
-FFprobe. A fundação e os diagnósticos da R01 são preservados. Não existe editor,
-player ou renderização de mídia do usuário nesta etapa.
+FFmpeg. A **R03 — Player, Timeline, Cortes e Presets** acrescenta reprodução
+HTML5 privada e um plano de edição não destrutivo com revisões no PostgreSQL.
+Projetos, upload MP4 e metadados da R02 e a fundação da R01 são preservados.
+Os cortes e enquadramentos são configurações; nenhum vídeo editado é gerado.
 
-O contrato atual está na [especificação R02](docs/R02_EDIVO_ESPECIFICACAO_OPERACIONAL.md).
-O [relatório R02](docs/r02/acceptance.md) e suas [evidências de QA](docs/r02/qa-results.json)
-registram a validação desta entrega; o [aceite R01](docs/r01/acceptance.md) permanece
-como histórico. Os documentos originais de planejamento em `docs/` foram
+O contrato atual está na [especificação R03](docs/R03_EDIVO_ESPECIFICACAO_OPERACIONAL.md).
+Consulte o [aceite R03](docs/r03/acceptance.md), as [evidências de QA](docs/r03/qa-results.json)
+e o [gate de compatibilidade](docs/r03/compatibility.md). O [relatório R02](docs/r02/acceptance.md)
+e o [aceite R01](docs/r01/acceptance.md) permanecem como histórico.
+Os documentos originais de planejamento em `docs/` foram
 preservados. Consulte também
 [arquitetura](docs/architecture.md), [decisões](docs/adr/0001-r01-foundation.md),
 [roadmap](docs/roadmap.md) e [convenções para agentes](AGENTS.md).
@@ -141,7 +142,9 @@ PostgreSQL usa o volume nomeado `edivo_postgres_data`; API e worker compartilham
 `./storage`. A baseline Alembic cria somente o registro de versão, sem tabelas
 de negócio. A revisão incremental **`0002_r02_projects_media`**, posterior à
 **`0001_r01_baseline`**, cria `projects` e `media_assets`, preservando a baseline
-e os dados existentes. Para aplicar/repetir e consultar a revisão:
+e os dados existentes. A **`0003_r03_edit_spec_revisions`** acrescenta somente
+revisões de EditSpec, índices, constraints e proteção contra alteração/exclusão
+das revisões. Para aplicar/repetir e consultar a revisão:
 
 ```bash
 docker compose run --rm migrate
@@ -203,8 +206,9 @@ positivos, a FK e a chave única. O checksum não é único: duas importações 
 mesmo arquivo geram registros e destinos independentes.
 
 Os JSON públicos de mídia contêm os metadados de exibição e integridade;
-`storage_key`, paths locais e o JSON bruto do FFprobe não são devolvidos. Não
-existe rota de reprodução/download nem publicação estática do storage na R02.
+`storage_key`, paths locais e o JSON bruto do FFprobe não são devolvidos.
+A R03 acrescenta streaming privado por projeto/mídia; o storage permanece
+sem publicação estática ou endpoint genérico de arquivos.
 
 Exemplos com arquivo sintético ou próprio:
 
@@ -225,9 +229,11 @@ com mensagens sanitizadas. Swagger apresenta os contratos em `/docs`.
 | HTTP | Situações |
 | --- | --- |
 | `400` | Multipart malformado/incompleto, campos extras, mais de um arquivo, Content-Length inválido |
-| `404` | Projeto inexistente/excluído, mídia ausente ou pertencente a outro projeto; DELETE repetido |
+| `404` | Projeto inexistente/excluído, mídia ausente ou pertencente a outro projeto; DELETE repetido; edição ainda não salva |
+| `409` | `edit_spec_conflict`: revisão esperada desatualizada |
 | `413` | Body total ou arquivo real acima dos limites |
 | `415` | Extensão ou container não MP4 suportado |
+| `416` | Range de streaming inválido, múltiplo ou insatisfatível |
 | `422` | Dados/UUID/paginação inválidos; MP4 vazio, corrompido, sem vídeo útil, duração excessiva ou metadados inconsistentes |
 | `503` | Banco/storage indisponíveis, FFprobe ausente ou timeout de análise |
 
@@ -235,6 +241,94 @@ A exclusão de projeto exige confirmação na interface e preenche `deleted_at`.
 Oculta o projeto e bloqueia novas importações/consultas de mídia por ele, mas
 **preserva registros e arquivos originais**. Restauração e exclusão física não
 fazem parte desta entrega.
+
+## Editor, streaming e EditSpec v1
+
+Abra **Abrir editor** na biblioteca do projeto. A rota
+`#/projects/{uuid}/editor` mantém a navegação por hash existente. Selecione uma
+fonte importada, reproduza/pause e busque no vídeo. O player usa `<video>` nativo,
+`preload="metadata"` e URLs relativas; não baixa o MP4 inteiro em JavaScript.
+Não há autoplay com áudio. Tempo e playhead seguem eventos e tempo reais do vídeo.
+
+A timeline possui uma faixa. Clique/toque para buscar; arraste os marcadores ou
+use o teclado e os campos em milissegundos para definir entrada/saída. O intervalo
+mínimo é 100 ms; fontes menores permitem somente o trecho completo. A reprodução
+do trecho pausa no fim dentro da precisão do navegador. Playhead não é edição.
+
+Escolha `9:16` (1080×1920), `1:1` (1080×1080), `4:5` (1080×1350) ou `16:9`
+(1920×1080). Essas dimensões são referências, sem arquivo de saída nesta etapa.
+`cover` preenche o quadro e permite focal normalizado em `[0,1]`; `contain`
+mostra a fonte inteira com fundo neutro e mantém o focal salvo sem aplicá-lo.
+`Project.target_preset` sugere somente a primeira edição; revisões salvas possuem
+seu próprio preset.
+
+**Salvar edição** é explícito. A interface distingue alterações locais,
+salvamento e revisão salva; confirma descarte ao sair/trocar fonte. Em conflito,
+recarregue conscientemente a revisão atual antes de tentar salvar novamente.
+Não há sobrescrita automática, autosave ou endpoint de restauração/histórico.
+
+| Método | Endpoint | Resultado |
+| --- | --- | --- |
+| `GET` / `HEAD` | `/api/v1/projects/{project_id}/media/{media_id}/stream` | `200` completo; `206` Range; HEAD sem corpo |
+| `GET` | `/api/v1/projects/{project_id}/edit-spec` | `200` revisão atual; `404 edit_spec_not_found` antes do primeiro save |
+| `PUT` | `/api/v1/projects/{project_id}/edit-spec` | `201` primeira revisão; `200` atualização/no-op; `409 edit_spec_conflict` |
+
+O stream aceita **um** Range fechado (`bytes=0-1023`), aberto (`bytes=1024-`)
+ou suffix (`bytes=-1024`). Range inválido/múltiplo/insatisfatível retorna `416`,
+envelope sanitizado e `Content-Range: bytes */tamanho`. Respostas de mídia usam
+`Content-Type: video/mp4`, `Accept-Ranges: bytes`, comprimento correto,
+`Cache-Control: private, no-store` e `X-Content-Type-Options: nosniff`.
+`If-Range` compara ETag forte derivado do SHA-256 ou Last-Modified: correspondência
+permite `206`, divergência/ETag fraca retorna `200`. Range malformado é rejeitado
+antes dessa comparação. Acesso a projeto excluído ou mídia de outro projeto
+retorna `404`. Arquivos ausentes/inacessíveis retornam erro sanitizado.
+
+A API resolve exclusivamente a chave interna esperada por UUID. Cada componente
+é aberto sem seguir symlinks; tamanho e arquivo regular são verificados. O
+descritor validado é mantido até finalizar a resposta, sem reabrir um path sujeito
+a troca. Starlette fornece streaming de 64 KiB e processamento de Range; o
+adaptador fecha o descritor inclusive em HEAD, erro e desconexão. A sessão do
+banco é liberada antes da transferência. Ler não altera SHA-256 ou modo 0400.
+
+Verificação manual nas portas deste ambiente (substitua os UUIDs):
+
+```bash
+curl -I http://127.0.0.1:8001/api/v1/projects/PROJECT_UUID/media/MEDIA_UUID/stream
+curl -sS -D - -o /dev/null -H 'Range: bytes=0-15' \
+  http://127.0.0.1:8001/api/v1/projects/PROJECT_UUID/media/MEDIA_UUID/stream
+curl -fsS http://127.0.0.1:8001/api/v1/projects/PROJECT_UUID/edit-spec
+```
+
+Exemplo de PUT completo (substitua ambos os UUIDs e a duração pela fonte real):
+
+```json
+{
+  "expected_revision": 0,
+  "schema_version": 1,
+  "source_media_id": "UUID_DA_MIDIA",
+  "trim": { "start_ms": 1000, "end_ms": 3500 },
+  "canvas": { "preset": "9:16", "fit": "cover", "focal_x": 0.5, "focal_y": 0.5 }
+}
+```
+
+Tempos, schema e revisão são inteiros estritos; campos desconhecidos e focais
+não finitos são rejeitados. A resposta acrescenta `id`, `project_id`,
+`revision_number` e `created_at` ao plano. A próxima gravação envia o número
+atual em `expected_revision`. Conteúdo idêntico com a revisão correta é **no-op**
+`200`: preserva ID/número/data. Revisão desatualizada sempre causa `409`.
+
+`edit_spec_revisions` armazena UUID, FKs para projeto/fonte, sequência por projeto,
+schema 1, JSONB controlado e data UTC. Transação curta com lock `FOR UPDATE` no
+projeto serializa os saves; unique `(project_id, revision_number)` reforça a
+integridade. Revisões anteriores são imutáveis na aplicação e por trigger
+PostgreSQL que bloqueia UPDATE/DELETE. Não modifique revisões por SQL.
+
+O HTML5 pode não decodificar todo codec aceito no upload. Erros de codec e rede
+são apresentados sem transcoding automático. Rotação/display matrix e pixel
+aspect ratio são interpretados pelo navegador; a resolução codificada da
+biblioteca pode diferir da dimensão visual. VFR, keyframes e agendamento do
+navegador limitam seek e pausa: **não há promessa de precisão por frame** nem
+equivalência com uma exportação futura.
 
 ## Política de upload e integridade
 
@@ -291,7 +385,7 @@ o relatório R02 para a execução e o resultado observado dessa auditoria.
 
 ## Desenvolvimento e qualidade
 
-Os containers incluem dependências de desenvolvimento e as suítes R01/R02:
+Os containers incluem dependências de desenvolvimento e as suítes R01/R02/R03:
 
 ```bash
 docker compose exec api pytest
@@ -303,11 +397,10 @@ docker compose exec frontend npm run format:check
 docker compose exec frontend npm run build
 ```
 
-A validação local do frontend executou **37 testes** (9 de regressão R01 e 28
-da R02), ESLint, Prettier e build TypeScript/Vite. Esses testes usam respostas
-HTTP e transporte XHR simulados para verificar a interface; não substituem
-uploads reais no PostgreSQL/storage ou a prova em navegador. Contagens finais,
-comandos integrados e eventuais impedimentos ficam nas evidências R02.
+As suítes de interface usam respostas HTTP e transporte XHR simulados;
+eventos de mídia simulados em unidade não comprovam decodificação real.
+Contagens finais, comandos, falhas corrigidas e provas com PostgreSQL, storage e
+Chromium reais estão no [QA R03](docs/r03/qa-results.json).
 
 Os Dockerfiles copiam o código para a imagem. Após alterações, execute
 `docker compose up -d --build`. O build garante instalação por `uv.lock` e
@@ -361,6 +454,8 @@ usuário e não é uma funcionalidade de renderização do produto.
 python3 scripts/acceptance-compose.py
 python3 scripts/acceptance-r02.py
 python3 scripts/acceptance-upload-limits.py
+python3 scripts/acceptance-r03.py
+python3 scripts/acceptance-editspec.py --output docs/r03/evidence/edit-spec-http.json
 docker compose exec -T api python - < scripts/audit-storage.py
 ```
 
@@ -368,6 +463,29 @@ O script de regressão valida a stack e executa cenários operacionais, inclusiv
 interrupção temporária do banco e reinício do worker. Execute quando não houver outra
 validação usando os mesmos serviços. Consulte seu resultado e o relatório de
 aceite; testes de UI com mocks não substituem a comunicação real pelo proxy.
+
+O QA de navegador R03 usa Chromium do container oficial Playwright, separado
+das dependências do produto. Com os serviços Edivo saudáveis:
+
+```bash
+npm install --prefix /tmp/edivo-browser playwright@1.58.2 --no-audit --no-fund
+docker pull mcr.microsoft.com/playwright:v1.58.2-noble
+python3 scripts/generate-r03-fixtures.py
+python3 scripts/browser-r03.py --stage player
+python3 scripts/browser-r03.py --stage editor
+# Em janela sem upload/salvamento em curso, reinicie somente serviços Edivo:
+docker compose restart db api worker
+python3 scripts/browser-r03.py --stage verify
+```
+
+As amostras de aproximadamente quatro segundos são geradas por FFmpeg no
+runtime da API: H.264/AAC horizontal, vertical sem áudio, quadrada, VFR, SAR,
+rotação e codec MPEG-4 Part 2 para testar incompatibilidade real do navegador.
+Arquivos ficam em `/tmp`; não use mídia pessoal e não versione MP4 gerado.
+O harness conserva seed entre etapas, registra respostas Range e eventos
+nativos de mídia e copia JSON/capturas para `docs/r03/evidence/`. Seus containers
+auxiliares não montam o socket Docker ou diretórios pessoais. Playwright é
+ferramenta de QA externa, sem mudança em `frontend/package-lock.json`.
 `acceptance-r02.py` exercita HTTP, integridade e persistência, reiniciando somente
 serviços Edivo; `acceptance-upload-limits.py` usa um processo isolado com limites
 menores e PostgreSQL/FFprobe reais. Eles criam projetos sintéticos, excluídos
@@ -402,6 +520,11 @@ Nenhum desses comandos remove volumes ou arquivos preexistentes.
 - **Upload interrompido ou sem confirmação:** recarregue a biblioteca antes de
   reenviar. A desconexão após o servidor receber o arquivo pode ocorrer quando
   ele já concluiu a importação; a R02 não implementa deduplicação automática.
+- **Player indisponível:** confira API e acesso ao projeto; codec MP4 não
+  suportado pelo navegador exige outra fonte compatível. A R03 não converte mídia.
+- **Conflito ao salvar:** outra revisão chegou primeiro. As alterações locais
+  continuam na tela; confirme o descarte ao recarregar a revisão atual. Não
+  envie cegamente um `expected_revision` novo para sobrescrever o outro plano.
 - **Downloads falham:** confira rede/proxy e acesso aos registries. Não copie
   tokens para manifestos, Dockerfiles ou variáveis do frontend.
 - **Watch lento no WSL2:** mantenha o repositório no filesystem Linux. O fluxo
@@ -409,14 +532,15 @@ Nenhum desses comandos remove volumes ou arquivos preexistentes.
 
 ## Limites atuais e próxima etapa
 
-Esta entrega possui projetos, upload MP4 e metadados, preservando a fundação R01.
-Não possui editor funcional, player/streaming, timeline, recortes, edição de áudio,
-previews, renderização do usuário, exportações, filas, IA, heditor, Higgsfield,
+Esta entrega possui projetos, upload MP4, metadados, streaming, player e uma
+timeline com marcações não destrutivas, presets e EditSpec versionado.
+Não possui edição de áudio, textos, previews codificados, renderização do
+usuário, exportações, filas, IA, heditor, Higgsfield,
 autenticação ou recursos SaaS. Não há monitoramento HTTP
 do worker. O servidor Vite e o Compose são destinados ao desenvolvimento local.
 
-A próxima etapa prevista é **R03 — player, cortes e presets de aspecto**, somente
-depois do aceite R02 e de nova autorização explícita. Nenhuma operação de
+A próxima etapa prevista é **R04**, somente
+depois do aceite R03 e de nova autorização explícita. Nenhuma operação de
 gerenciamento de Git é executada pelos scripts do projeto.
 
 Referências de compatibilidade: [Vite](https://vite.dev/guide/),

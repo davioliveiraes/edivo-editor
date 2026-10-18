@@ -1,0 +1,116 @@
+{
+  "status": "passed",
+  "recorded_at": "2026-10-18T21:49:41.022294+00:00",
+  "read_only": true,
+  "baseline_note": "Pre-implementation row hashes retained in session context; historical SHA-256 in R02 QA and read-only Git HEAD comparison. Lost temporary snapshot was not treated as evidence.",
+  "baseline_row_hashes": {
+    "projects": {
+      "29a9bb01-f60a-4ffe-a83e-7fc8a747686e": "a42190f6b662e1fd896c30485a4d3bc11bf9d03959d9b328028422ca83ba2412",
+      "41711b68-e111-4899-a67b-e48cdcec8f30": "c3759c9c42fbb321307e205e04950a5abe6e5f045d873342ecf228f979e484ee",
+      "497fe742-0593-4cec-b83d-2fb08ec7453b": "d21c26526927648153467c3889d18e4d4384b73d85ec1dc7023283021706a079",
+      "a03b9a1b-adb5-4d53-840b-0690d3579aac": "70b6714b21f8401594305ba324ee659453d65342d804ded7a4d33e2b5106d221",
+      "c722468e-a1ec-4f25-a053-cdbf7ab00405": "f54779dee817423023b3231a5eae4c43cba5079d9e90ba1d3112051e8cfefa0e",
+      "cbbf7cea-bd37-48f6-ba32-5ae1186da036": "79cab6e2c977de673733d01cefc0a321083c07542b53d94c3ff59961d8a2f386",
+      "d6fa0098-5b78-4e28-aa3c-7a617955f322": "cf50a748d3266696f409aaf313fdff70d80f8ec93832fe4bb269beb40f13aadd",
+      "f42ba39e-6f21-4256-af32-56b669724297": "c75e8f8ec218a64a47f7788c957474928c8136733ad99c6307e81f14dbe53490"
+    },
+    "media_assets": {
+      "3abacbfd-af44-4cf2-bb54-8695807f541b": "c110cd621481a17556693c20b73cd901eb6b28d2f75614de28d647f705abcf77",
+      "3f38dd86-4bf7-4be5-a54d-ddd1a42de982": "b436b400063eef70a8d02049b32c4032e0e79f0c09e57c4ef5322715c7227531",
+      "768f8507-0042-4081-af34-65dd25ae037c": "b468e564718228edb0d0d76e9efcabb8f8fe8c7ec7443aaef5c45fa7cddf7d93",
+      "884040ba-d327-4f89-8928-3b4e927fc49e": "f3ad914d17aec0af0aa3dc3eefbecebd39354642d349aa2abfdef2aa6854d127",
+      "91bd0c8b-b148-4a0f-902b-e6b993047fa6": "978ca94c0a6939b238f162a38e36abbd6bf46f7e5d6e44f368cd505d7261a82b",
+      "ae018ba7-a4a6-43e0-9d15-acb825f0709a": "5951b68c277ec41d713737a892becbfde12a3f380cb3e13dcb7e5babb16bc2f8",
+      "bb2f78ba-c514-422d-86df-082044a797ae": "efea2d8e1347ce334a43e407856083806c132b9ba2d4198d9d93b53efb5ba1c3",
+      "bf52ba98-0d1e-477e-9648-72d3b240d615": "06488ebf89c9a656852ffb94c1ff9c88985f87a3d6fe35a4976a1277c9114bd8",
+      "e9326e74-7f6e-48bb-8bcd-de1bbdf64f25": "a5ddd954f2d08f46a3de11f4768bab8bccaf11731430922d7e0932a801e8fac9",
+      "f21facd9-bd17-4426-94af-1d07782e1fd6": "664c133682493e9b65879f2ecd182129581a31d80c9232c46e60489386479d81",
+      "f7b214a8-f75b-41d6-82a6-7864803e1f4b": "c78a001c7007038a8afadaadbdcbf263fc594b3337b31ac0a8a2a8a4df06eb49",
+      "fc7f5fc4-aa20-4306-8b29-7a152a73b6b3": "85ffa4275ac6e16d8044abf0fd39eda916093abeceba9834b53b5d49377db48a",
+      "fe178f6c-585b-4cd4-bc9a-d4d40950b698": "3740ea1cf22f1a6a432152ea84ae7ecc93e85bf9f88f0a0ccb276ca81631865c"
+    }
+  },
+  "historical_document_sha256": {
+    "docs/EDIVO_INSTRUCOES_CHATGPT.md": "0ba57eb89ec4c2245035bca31aef6435d76f0a6b84b74fea14a0d59ba6cb6f98",
+    "docs/EDIVO_DOCUMENTACAO_PROJETO.md": "980d007419a968436db33dd57b4caf1837e9357ff612e256e05883a349aae823",
+    "docs/R00_EDIVO_PLANEJAMENTO_TECNICO.md": "325ce7c43648ee3445d5e7e9cd547204469eb8531ccaa8d2e0269de0bcdeb194",
+    "docs/R01_EDIVO_ESPECIFICACAO_OPERACIONAL.md": "cf569d7e4f695db2f43cc804dafe44229d10dc49dc459b65047d27672d6ded77",
+    "docs/R02_EDIVO_ESPECIFICACAO_OPERACIONAL.md": "6c4a1c05fbafa564268f7d25586e79942c47e7597c2ae928585e37517202ea3d",
+    "docs/r01/acceptance.md": "2b57c587a8e8784922b88e1518ad8c07c256bf52d03620b504ab46f6ed2e9c69",
+    "docs/r01/qa-results.json": "ccd1a10ce4152daa757e5f0ed6db9805f85e5335a77a5c8974bc3b3c1face683",
+    "backend/alembic/versions/0001_r01_baseline.py": "92853c0d3d39721e4ce46cc03900eaae37892f3f35e5b31d8ea2b2a7b99fea7a"
+  },
+  "checks": [
+    {
+      "check": "preexisting_projects_row_hashes",
+      "expected_count": 8,
+      "status": "passed",
+      "mismatched_ids": []
+    },
+    {
+      "check": "preexisting_media_assets_row_hashes",
+      "expected_count": 13,
+      "status": "passed",
+      "mismatched_ids": []
+    },
+    {
+      "check": "docs/EDIVO_INSTRUCOES_CHATGPT.md",
+      "status": "passed"
+    },
+    {
+      "check": "docs/EDIVO_DOCUMENTACAO_PROJETO.md",
+      "status": "passed"
+    },
+    {
+      "check": "docs/R00_EDIVO_PLANEJAMENTO_TECNICO.md",
+      "status": "passed"
+    },
+    {
+      "check": "docs/R01_EDIVO_ESPECIFICACAO_OPERACIONAL.md",
+      "status": "passed"
+    },
+    {
+      "check": "docs/R02_EDIVO_ESPECIFICACAO_OPERACIONAL.md",
+      "status": "passed"
+    },
+    {
+      "check": "docs/r01/acceptance.md",
+      "status": "passed"
+    },
+    {
+      "check": "docs/r01/qa-results.json",
+      "status": "passed"
+    },
+    {
+      "check": "backend/alembic/versions/0001_r01_baseline.py",
+      "status": "passed"
+    },
+    {
+      "check": "git_baseline_historical_and_locks",
+      "status": "passed",
+      "unchanged_files": [
+        "backend/alembic/versions/0001_r01_baseline.py",
+        "backend/alembic/versions/0002_r02_projects_media.py",
+        "backend/uv.lock",
+        "docs/EDIVO_DOCUMENTACAO_PROJETO.md",
+        "docs/EDIVO_INSTRUCOES_CHATGPT.md",
+        "docs/R00_EDIVO_PLANEJAMENTO_TECNICO.md",
+        "docs/R01_EDIVO_ESPECIFICACAO_OPERACIONAL.md",
+        "docs/R02_EDIVO_ESPECIFICACAO_OPERACIONAL.md",
+        "docs/adr/0001-r01-foundation.md",
+        "docs/r01/acceptance.md",
+        "docs/r01/qa-results.json",
+        "docs/r02/acceptance.md",
+        "docs/r02/evidence/browser-desktop-dark.png",
+        "docs/r02/evidence/browser-desktop-light.png",
+        "docs/r02/evidence/browser-functional.json",
+        "docs/r02/evidence/browser-mobile-375.png",
+        "docs/r02/evidence/browser-visual.json",
+        "docs/r02/evidence/browser-workspace-dark.png",
+        "docs/r02/evidence/browser-workspace-mobile-375.png",
+        "docs/r02/qa-results.json",
+        "frontend/package-lock.json"
+      ]
+    }
+  ]
+}

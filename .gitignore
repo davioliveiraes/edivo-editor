@@ -35,3 +35,6 @@ Thumbs.db
 *:Zone.Identifier
 .idea/
 *.swp
+
+# Codex
+codex_resume.txt

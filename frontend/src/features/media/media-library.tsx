@@ -224,9 +224,14 @@ export function MediaLibrary({
             <h3 id="library-title">Biblioteca de mídia</h3>
           </div>
           {data && (
-            <span className="asset-count">
-              {data.total} {data.total === 1 ? 'vídeo' : 'vídeos'}
-            </span>
+            <div className="library-actions">
+              <a className="text-link" href={`#/projects/${projectId}/editor`}>
+                Abrir editor
+              </a>
+              <span className="asset-count">
+                {data.total} {data.total === 1 ? 'vídeo' : 'vídeos'}
+              </span>
+            </div>
           )}
         </div>
         {loading ? (

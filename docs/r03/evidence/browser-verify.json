@@ -1,0 +1,81 @@
+{
+  "status": "passed",
+  "stage": "verify",
+  "run_id": "r03-verify-1792360125",
+  "browser": "145.0.7632.6",
+  "project_id": "063bc413-964b-470a-a573-27bec267f0a2",
+  "checks": [
+    {
+      "check": "saved_revision_and_editor_recovered_after_service_restart",
+      "status": "passed",
+      "detail": {
+        "revision_number": 8,
+        "source_media_id": "c9e554cd-cd97-4e44-8602-1dbd23d88331",
+        "trim": {
+          "start_ms": 1001,
+          "end_ms": 2600
+        },
+        "canvas": {
+          "preset": "9:16",
+          "fit": "cover",
+          "focal_x": 0.25,
+          "focal_y": 0.75
+        }
+      }
+    },
+    {
+      "check": "r02_original_inventory_sha256_and_size_unchanged",
+      "status": "passed"
+    },
+    {
+      "check": "saved_trim_real_playback_after_service_restart",
+      "status": "passed",
+      "detail": {
+        "advanced_seconds": 0.47698299999999993,
+        "decoded_frames": 49,
+        "audio_decoded_bytes": 15662,
+        "native_events": [
+          "",
+          "loadedmetadata",
+          "seeking",
+          "timeupdate",
+          "seeked",
+          "playing",
+          "timeupdate",
+          "timeupdate",
+          "pause"
+        ]
+      }
+    },
+    {
+      "check": "private_http_range_206_after_service_restart",
+      "status": "passed"
+    },
+    {
+      "check": "no_uncaught_browser_page_errors",
+      "status": "passed"
+    }
+  ],
+  "page_errors": [],
+  "stream_responses": [
+    {
+      "path": "/api/v1/projects/063bc413-964b-470a-a573-27bec267f0a2/media/c9e554cd-cd97-4e44-8602-1dbd23d88331/stream",
+      "status": 206,
+      "range": "bytes=0-",
+      "content_range": "bytes 0-748081/748082",
+      "content_length": "748082"
+    },
+    {
+      "path": "/api/v1/projects/063bc413-964b-470a-a573-27bec267f0a2/media/c9e554cd-cd97-4e44-8602-1dbd23d88331/stream",
+      "status": 206,
+      "range": "bytes=720896-",
+      "content_range": "bytes 720896-748081/748082",
+      "content_length": "27186"
+    }
+  ],
+  "dialogs": [],
+  "screenshots": [
+    "r03-verify-1792360125-persisted-editor.png"
+  ],
+  "data_policy": "Synthetic QA seed remains active between stages; imported originals are preserved."
+}

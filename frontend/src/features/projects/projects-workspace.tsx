@@ -5,13 +5,17 @@ import { projectsApi, publicError, type Page, type Project } from '@/lib/api/pro
 import { useResource } from '@/lib/api/use-resource';
 import { formatDate } from '@/lib/format';
 import { MediaLibrary } from '@/features/media/media-library';
+import { EditorWorkspace } from '@/features/editor/editor-workspace';
 import { ProjectActions } from './project-actions';
 import { ProjectForm } from './project-form';
 import { Pagination } from './pagination';
 
 const projectHash =
-  /^#\/projects\/([0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12})$/i;
-const currentProject = () => projectHash.exec(window.location.hash)?.[1] ?? null;
+  /^#\/projects\/([0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12})(\/editor)?$/i;
+const currentRoute = () => {
+  const match = projectHash.exec(window.location.hash);
+  return { projectId: match?.[1] ?? null, editor: !!match?.[2] };
+};
 
 function ProjectList({ onCreated }: { onCreated: (project: Project) => void }) {
   const [offset, setOffset] = useState(0);
@@ -198,17 +202,34 @@ function ProjectDetail({ id, onDeleted }: { id: string; onDeleted: () => void })
   );
 }
 
-export function ProjectsWorkspace() {
-  const [projectId, setProjectId] = useState(currentProject);
+export function ProjectsWorkspace({
+  onEditorModeChange,
+}: {
+  onEditorModeChange?: (active: boolean) => void;
+}) {
+  const [route, setRoute] = useState(currentRoute);
+  const { projectId, editor } = route;
   const [notice, setNotice] = useState('');
+  useEffect(() => onEditorModeChange?.(editor), [editor, onEditorModeChange]);
   useEffect(() => {
+    let acceptedHash = window.location.hash;
     const revealWorkspace = () => {
       if (window.location.hash.startsWith('#/projects'))
         document.getElementById('projects-workspace')?.scrollIntoView?.({ block: 'start' });
     };
     const navigate = () => {
-      const next = currentProject();
-      setProjectId(next);
+      if (!window.location.hash.startsWith('#/projects')) return;
+      const request = new Event('edivo:before-navigate', { cancelable: true });
+      if (!window.dispatchEvent(request)) {
+        window.history.replaceState(
+          null,
+          '',
+          `${window.location.pathname}${window.location.search}${acceptedHash}`,
+        );
+        return;
+      }
+      acceptedHash = window.location.hash;
+      setRoute(currentRoute());
       revealWorkspace();
     };
     revealWorkspace();
@@ -227,7 +248,9 @@ export function ProjectsWorkspace() {
           {notice}
         </p>
       )}
-      {projectId ? (
+      {projectId && editor ? (
+        <EditorWorkspace key={projectId} projectId={projectId} />
+      ) : projectId ? (
         <ProjectDetail
           key={projectId}
           id={projectId}

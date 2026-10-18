@@ -1,0 +1,176 @@
+{
+  "status": "passed",
+  "fixtures": {
+    "horizontal.mp4": {
+      "status": "existing_preserved",
+      "bytes": 748082,
+      "sha256": "e1504e9c63cc7d08fe137f533b09a0d03629adf089fad6059fdf7ac4ccd30709",
+      "probe": {
+        "programs": [],
+        "streams": [
+          {
+            "codec_name": "h264",
+            "codec_type": "video",
+            "width": 640,
+            "height": 360,
+            "sample_aspect_ratio": "1:1",
+            "r_frame_rate": "30000/1001",
+            "avg_frame_rate": "30000/1001"
+          },
+          {
+            "codec_name": "aac",
+            "codec_type": "audio",
+            "r_frame_rate": "0/0",
+            "avg_frame_rate": "0/0"
+          }
+        ],
+        "format": {
+          "duration": "4.004000"
+        }
+      }
+    },
+    "rotated.mp4": {
+      "status": "existing_preserved",
+      "bytes": 748082,
+      "sha256": "21f80a300605ada9efebe154efbd60ccb8aa2267c88d044f3b2421ec1adaf887",
+      "probe": {
+        "programs": [],
+        "streams": [
+          {
+            "codec_name": "h264",
+            "codec_type": "video",
+            "width": 640,
+            "height": 360,
+            "sample_aspect_ratio": "1:1",
+            "r_frame_rate": "30000/1001",
+            "avg_frame_rate": "30000/1001",
+            "side_data_list": [
+              {
+                "rotation": 90
+              }
+            ]
+          },
+          {
+            "codec_name": "aac",
+            "codec_type": "audio",
+            "r_frame_rate": "0/0",
+            "avg_frame_rate": "0/0"
+          }
+        ],
+        "format": {
+          "duration": "4.004000"
+        }
+      }
+    },
+    "sar.mp4": {
+      "status": "existing_preserved",
+      "bytes": 298726,
+      "sha256": "cd2ee31f6ff872ed2f48f885199cbbb8646700b1d01b07c3a8986a674fa5465f",
+      "probe": {
+        "programs": [],
+        "streams": [
+          {
+            "codec_name": "h264",
+            "codec_type": "video",
+            "width": 320,
+            "height": 240,
+            "sample_aspect_ratio": "2:1",
+            "r_frame_rate": "30000/1001",
+            "avg_frame_rate": "30000/1001"
+          }
+        ],
+        "format": {
+          "duration": "4.004000"
+        }
+      }
+    },
+    "silent_vertical.mp4": {
+      "status": "existing_preserved",
+      "bytes": 752213,
+      "sha256": "c24de55d74fedd3c029db193655b43c3f28be9419ef7c71688f67e8256be0b2b",
+      "probe": {
+        "programs": [],
+        "streams": [
+          {
+            "codec_name": "h264",
+            "codec_type": "video",
+            "width": 360,
+            "height": 640,
+            "sample_aspect_ratio": "1:1",
+            "r_frame_rate": "30000/1001",
+            "avg_frame_rate": "30000/1001"
+          }
+        ],
+        "format": {
+          "duration": "4.004000"
+        }
+      }
+    },
+    "square.mp4": {
+      "status": "existing_preserved",
+      "bytes": 451685,
+      "sha256": "63660e2f8e53374902d3afb3a4ce95dc9616e79fd8b4383c03937950716a94b1",
+      "probe": {
+        "programs": [],
+        "streams": [
+          {
+            "codec_name": "h264",
+            "codec_type": "video",
+            "width": 360,
+            "height": 360,
+            "sample_aspect_ratio": "1:1",
+            "r_frame_rate": "30000/1001",
+            "avg_frame_rate": "30000/1001"
+          }
+        ],
+        "format": {
+          "duration": "4.004000"
+        }
+      }
+    },
+    "unsupported.mp4": {
+      "status": "existing_preserved",
+      "bytes": 179262,
+      "sha256": "dd19889b2460e2cbbd28e0f629aaee3c4b557c6539a4337265d40b2f233fd7d8",
+      "probe": {
+        "programs": [],
+        "streams": [
+          {
+            "codec_name": "mpeg4",
+            "codec_type": "video",
+            "width": 320,
+            "height": 180,
+            "sample_aspect_ratio": "1:1",
+            "r_frame_rate": "30000/1001",
+            "avg_frame_rate": "30000/1001"
+          }
+        ],
+        "format": {
+          "duration": "4.004000"
+        }
+      }
+    },
+    "vfr.mp4": {
+      "status": "existing_preserved",
+      "bytes": 145785,
+      "sha256": "502265e2ad5bb7fb33e4d5c6c163f89a0e2d7b17c34680bebf7e4dd4e99b8557",
+      "probe": {
+        "programs": [],
+        "streams": [
+          {
+            "codec_name": "h264",
+            "codec_type": "video",
+            "width": 320,
+            "height": 180,
+            "sample_aspect_ratio": "1:1",
+            "r_frame_rate": "30000/1001",
+            "avg_frame_rate": "120000/8437"
+          }
+        ],
+        "format": {
+          "duration": "3.938000"
+        }
+      }
+    }
+  }
+}

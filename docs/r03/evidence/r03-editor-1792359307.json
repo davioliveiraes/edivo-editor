@@ -1,0 +1,745 @@
+{
+  "status": "passed",
+  "stage": "editor",
+  "run_id": "r03-editor-1792359307",
+  "browser": "145.0.7632.6",
+  "project_id": "063bc413-964b-470a-a573-27bec267f0a2",
+  "checks": [
+    {
+      "check": "synthetic_project_and_r02_imports_real",
+      "status": "passed",
+      "detail": {
+        "project_id": "063bc413-964b-470a-a573-27bec267f0a2",
+        "assets": [
+          {
+            "id": "d5f0483d-0090-476f-939e-2846e53dfdb6",
+            "filename": "silent_vertical.mp4",
+            "duration_ms": 4004,
+            "has_audio": false,
+            "codec": "h264"
+          },
+          {
+            "id": "c9e554cd-cd97-4e44-8602-1dbd23d88331",
+            "filename": "horizontal.mp4",
+            "duration_ms": 4004,
+            "has_audio": true,
+            "codec": "h264"
+          },
+          {
+            "id": "747faf9e-9f80-43eb-8ed7-f920e4a60d40",
+            "filename": "square.mp4",
+            "duration_ms": 4004,
+            "has_audio": false,
+            "codec": "h264"
+          },
+          {
+            "id": "0271f285-c835-4947-a216-16a4ebfc4757",
+            "filename": "rotated.mp4",
+            "duration_ms": 4004,
+            "has_audio": true,
+            "codec": "h264"
+          },
+          {
+            "id": "05ed36d3-04e5-495b-8c98-4a5953e98fb0",
+            "filename": "sar.mp4",
+            "duration_ms": 4004,
+            "has_audio": false,
+            "codec": "h264"
+          },
+          {
+            "id": "3882929e-2db7-4432-bec4-6b370086b074",
+            "filename": "vfr.mp4",
+            "duration_ms": 3938,
+            "has_audio": false,
+            "codec": "h264"
+          },
+          {
+            "id": "231cf0c1-47c8-426e-9dcb-daf19b84c79c",
+            "filename": "unsupported.mp4",
+            "duration_ms": 4004,
+            "has_audio": false,
+            "codec": "mpeg4"
+          }
+        ]
+      }
+    },
+    {
+      "check": "empty_project_has_import_navigation_and_no_fictitious_player",
+      "status": "passed"
+    },
+    {
+      "check": "real_playback_audio_silent_horizontal_square_rotated_sar_vfr",
+      "status": "passed",
+      "detail": [
+        {
+          "filename": "horizontal.mp4",
+          "native_metadata": {
+            "paused": true,
+            "current_time": 0,
+            "duration": 4.004,
+            "ready_state": 1,
+            "width": 640,
+            "height": 360,
+            "error": null,
+            "src": "/api/v1/projects/063bc413-964b-470a-a573-27bec267f0a2/media/c9e554cd-cd97-4e44-8602-1dbd23d88331/stream",
+            "preload": "metadata",
+            "native_events": [
+              "",
+              "loadedmetadata"
+            ],
+            "decoded_frames": 0,
+            "audio_decoded_bytes": 0
+          },
+          "playback": {
+            "advanced_seconds": 0.366629,
+            "decoded_frames": 16,
+            "audio_decoded_bytes": 6046,
+            "native_events": [
+              "",
+              "loadedmetadata",
+              "playing",
+              "timeupdate",
+              "timeupdate",
+              "pause"
+            ]
+          }
+        },
+        {
+          "filename": "silent_vertical.mp4",
+          "native_metadata": {
+            "paused": true,
+            "current_time": 0,
+            "duration": 4.004,
+            "ready_state": 4,
+            "width": 360,
+            "height": 640,
+            "error": null,
+            "src": "/api/v1/projects/063bc413-964b-470a-a573-27bec267f0a2/media/d5f0483d-0090-476f-939e-2846e53dfdb6/stream",
+            "preload": "metadata",
+            "native_events": [
+              "",
+              "loadedmetadata"
+            ],
+            "decoded_frames": 4,
+            "audio_decoded_bytes": 0
+          },
+          "playback": {
+            "advanced_seconds": 0.299246,
+            "decoded_frames": 13,
+            "audio_decoded_bytes": 0,
+            "native_events": [
+              "",
+              "loadedmetadata",
+              "playing",
+              "timeupdate",
+              "pause"
+            ]
+          }
+        },
+        {
+          "filename": "square.mp4",
+          "native_metadata": {
+            "paused": true,
+            "current_time": 0,
+            "duration": 4.004,
+            "ready_state": 4,
+            "width": 360,
+            "height": 360,
+            "error": null,
+            "src": "/api/v1/projects/063bc413-964b-470a-a573-27bec267f0a2/media/747faf9e-9f80-43eb-8ed7-f920e4a60d40/stream",
+            "preload": "metadata",
+            "native_events": [
+              "",
+              "loadedmetadata"
+            ],
+            "decoded_frames": 4,
+            "audio_decoded_bytes": 0
+          },
+          "playback": {
+            "advanced_seconds": 0.373574,
+            "decoded_frames": 16,
+            "audio_decoded_bytes": 0,
+            "native_events": [
+              "",
+              "loadedmetadata",
+              "playing",
+              "timeupdate",
+              "timeupdate",
+              "pause"
+            ]
+          }
+        },
+        {
+          "filename": "rotated.mp4",
+          "native_metadata": {
+            "paused": true,
+            "current_time": 0,
+            "duration": 4.004,
+            "ready_state": 4,
+            "width": 360,
+            "height": 640,
+            "error": null,
+            "src": "/api/v1/projects/063bc413-964b-470a-a573-27bec267f0a2/media/0271f285-c835-4947-a216-16a4ebfc4757/stream",
+            "preload": "metadata",
+            "native_events": [
+              "",
+              "loadedmetadata"
+            ],
+            "decoded_frames": 4,
+            "audio_decoded_bytes": 2166
+          },
+          "playback": {
+            "advanced_seconds": 0.250726,
+            "decoded_frames": 12,
+            "audio_decoded_bytes": 4877,
+            "native_events": [
+              "",
+              "loadedmetadata",
+              "playing",
+              "timeupdate",
+              "timeupdate",
+              "pause"
+            ]
+          }
+        },
+        {
+          "filename": "sar.mp4",
+          "native_metadata": {
+            "paused": true,
+            "current_time": 0,
+            "duration": 4.004,
+            "ready_state": 4,
+            "width": 640,
+            "height": 240,
+            "error": null,
+            "src": "/api/v1/projects/063bc413-964b-470a-a573-27bec267f0a2/media/05ed36d3-04e5-495b-8c98-4a5953e98fb0/stream",
+            "preload": "metadata",
+            "native_events": [
+              "",
+              "loadedmetadata"
+            ],
+            "decoded_frames": 4,
+            "audio_decoded_bytes": 0
+          },
+          "playback": {
+            "advanced_seconds": 0.337647,
+            "decoded_frames": 15,
+            "audio_decoded_bytes": 0,
+            "native_events": [
+              "",
+              "loadedmetadata",
+              "playing",
+              "timeupdate",
+              "timeupdate",
+              "pause"
+            ]
+          }
+        },
+        {
+          "filename": "vfr.mp4",
+          "native_metadata": {
+            "paused": true,
+            "current_time": 0,
+            "duration": 3.937267,
+            "ready_state": 4,
+            "width": 320,
+            "height": 180,
+            "error": null,
+            "src": "/api/v1/projects/063bc413-964b-470a-a573-27bec267f0a2/media/3882929e-2db7-4432-bec4-6b370086b074/stream",
+            "preload": "metadata",
+            "native_events": [
+              "",
+              "loadedmetadata"
+            ],
+            "decoded_frames": 4,
+            "audio_decoded_bytes": 0
+          },
+          "playback": {
+            "advanced_seconds": 0.222456,
+            "decoded_frames": 7,
+            "audio_decoded_bytes": 0,
+            "native_events": [
+              "",
+              "loadedmetadata",
+              "playing",
+              "timeupdate",
+              "pause"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "check": "real_mpeg4_part2_codec_failure_is_explained_without_transcoding",
+      "status": "passed",
+      "detail": {
+        "paused": true,
+        "current_time": 0,
+        "duration": null,
+        "ready_state": 0,
+        "width": 0,
+        "height": 0,
+        "error": 4,
+        "src": "/api/v1/projects/063bc413-964b-470a-a573-27bec267f0a2/media/231cf0c1-47c8-426e-9dcb-daf19b84c79c/stream",
+        "preload": "metadata",
+        "native_events": [],
+        "decoded_frames": 0,
+        "audio_decoded_bytes": 0
+      }
+    },
+    {
+      "check": "real_browser_offline_media_failure_sanitized",
+      "status": "passed",
+      "detail": [
+        "Não foi possível acessar o vídeo. Verifique a conexão e tente novamente."
+      ]
+    },
+    {
+      "check": "real_browser_media_recovers_after_network_restored",
+      "status": "passed"
+    },
+    {
+      "check": "timeline_marker_keyboard_arrows_shift_home_and_integer_ms",
+      "status": "passed"
+    },
+    {
+      "check": "timeline_real_pointer_capture_drag_changes_trim",
+      "status": "passed",
+      "detail": {
+        "start_ms": 801
+      }
+    },
+    {
+      "check": "timeline_click_seek_playhead_and_mark_in_out_from_native_time",
+      "status": "passed",
+      "detail": {
+        "start_ms": 1802,
+        "end_ms": 3300
+      }
+    },
+    {
+      "check": "native_playback_stops_at_selected_out_point",
+      "status": "passed",
+      "detail": {
+        "paused": true,
+        "current_time": 1.5,
+        "duration": 4.004,
+        "ready_state": 4,
+        "width": 640,
+        "height": 360,
+        "error": null,
+        "src": "/api/v1/projects/063bc413-964b-470a-a573-27bec267f0a2/media/c9e554cd-cd97-4e44-8602-1dbd23d88331/stream",
+        "preload": "metadata",
+        "native_events": [
+          "",
+          "loadedmetadata",
+          "seeking",
+          "timeupdate",
+          "seeked",
+          "seeking",
+          "timeupdate",
+          "seeked",
+          "seeking",
+          "timeupdate",
+          "seeked",
+          "playing",
+          "timeupdate",
+          "timeupdate",
+          "timeupdate",
+          "timeupdate",
+          "timeupdate",
+          "pause",
+          "seeking",
+          "timeupdate",
+          "seeked"
+        ],
+        "decoded_frames": 262,
+        "audio_decoded_bytes": 81615
+      }
+    },
+    {
+      "check": "seek_before_in_point_while_playing_clamps_to_selected_region",
+      "status": "passed"
+    },
+    {
+      "check": "all_four_presets_apply_real_css_aspect_ratios",
+      "status": "passed",
+      "detail": [
+        {
+          "preset": "9:16",
+          "width": 211.5,
+          "height": 376
+        },
+        {
+          "preset": "1:1",
+          "width": 376,
+          "height": 376
+        },
+        {
+          "preset": "4:5",
+          "width": 300.796875,
+          "height": 375.984375
+        },
+        {
+          "preset": "16:9",
+          "width": 668.4375,
+          "height": 375.984375
+        }
+      ]
+    },
+    {
+      "check": "cover_contain_and_normalized_focal_are_visual_and_preserved",
+      "status": "passed"
+    },
+    {
+      "check": "explicit_ui_save_real_postgresql_revision",
+      "status": "passed",
+      "detail": {
+        "http_status": 201,
+        "revision": {
+          "schema_version": 1,
+          "source_media_id": "c9e554cd-cd97-4e44-8602-1dbd23d88331",
+          "trim": {
+            "start_ms": 500,
+            "end_ms": 1500
+          },
+          "canvas": {
+            "preset": "9:16",
+            "fit": "cover",
+            "focal_x": 0.25,
+            "focal_y": 0.75
+          },
+          "id": "6d90b500-17d0-4aab-b82c-bc2ea5751882",
+          "project_id": "063bc413-964b-470a-a573-27bec267f0a2",
+          "revision_number": 1,
+          "created_at": "2026-10-18T21:35:21.541079Z"
+        }
+      }
+    },
+    {
+      "check": "playhead_changes_neither_dirty_state_nor_revision",
+      "status": "passed"
+    },
+    {
+      "check": "browser_reload_recovers_saved_trim_canvas_source_and_revision",
+      "status": "passed"
+    },
+    {
+      "check": "cancel_source_change_preserves_unsaved_draft",
+      "status": "passed"
+    },
+    {
+      "check": "cancel_hash_navigation_preserves_editor_and_local_changes",
+      "status": "passed"
+    },
+    {
+      "check": "native_beforeunload_cancel_keeps_unsaved_changes",
+      "status": "passed"
+    },
+    {
+      "check": "real_409_conflict_retains_draft_and_never_overwrites_external_revision",
+      "status": "passed"
+    },
+    {
+      "check": "conflict_reload_requires_explicit_discard_and_recovers_external_revision",
+      "status": "passed"
+    },
+    {
+      "check": "confirmed_navigation_discards_only_local_draft_and_reopens_saved_revision",
+      "status": "passed"
+    },
+    {
+      "check": "editor_dark_light_theme_and_local_persistence",
+      "status": "passed"
+    },
+    {
+      "check": "mobile_375_native_touch_marker_drag_and_no_horizontal_overflow",
+      "status": "passed",
+      "detail": {
+        "start_ms": 1001,
+        "pointer_type": "touch",
+        "viewport": "375x812"
+      }
+    },
+    {
+      "check": "mobile_landscape_layout_has_no_horizontal_overflow",
+      "status": "passed"
+    },
+    {
+      "check": "editor_native_video_requests_private_http_range_206",
+      "status": "passed",
+      "detail": 25
+    },
+    {
+      "check": "single_track_editor_desktop_has_no_horizontal_overflow",
+      "status": "passed"
+    },
+    {
+      "check": "no_uncaught_browser_page_errors",
+      "status": "passed"
+    }
+  ],
+  "page_errors": [],
+  "stream_responses": [
+    {
+      "path": "/api/v1/projects/063bc413-964b-470a-a573-27bec267f0a2/media/231cf0c1-47c8-426e-9dcb-daf19b84c79c/stream",
+      "status": 206,
+      "range": "bytes=0-",
+      "content_range": "bytes 0-179261/179262",
+      "content_length": "179262"
+    },
+    {
+      "path": "/api/v1/projects/063bc413-964b-470a-a573-27bec267f0a2/media/231cf0c1-47c8-426e-9dcb-daf19b84c79c/stream",
+      "status": 200,
+      "range": null,
+      "content_range": null,
+      "content_length": "179262"
+    },
+    {
+      "path": "/api/v1/projects/063bc413-964b-470a-a573-27bec267f0a2/media/c9e554cd-cd97-4e44-8602-1dbd23d88331/stream",
+      "status": 206,
+      "range": "bytes=0-",
+      "content_range": "bytes 0-748081/748082",
+      "content_length": "748082"
+    },
+    {
+      "path": "/api/v1/projects/063bc413-964b-470a-a573-27bec267f0a2/media/c9e554cd-cd97-4e44-8602-1dbd23d88331/stream",
+      "status": 206,
+      "range": "bytes=131072-",
+      "content_range": "bytes 131072-748081/748082",
+      "content_length": "617010"
+    },
+    {
+      "path": "/api/v1/projects/063bc413-964b-470a-a573-27bec267f0a2/media/c9e554cd-cd97-4e44-8602-1dbd23d88331/stream",
+      "status": 206,
+      "range": "bytes=327680-",
+      "content_range": "bytes 327680-748081/748082",
+      "content_length": "420402"
+    },
+    {
+      "path": "/api/v1/projects/063bc413-964b-470a-a573-27bec267f0a2/media/c9e554cd-cd97-4e44-8602-1dbd23d88331/stream",
+      "status": 206,
+      "range": "bytes=524288-",
+      "content_range": "bytes 524288-748081/748082",
+      "content_length": "223794"
+    },
+    {
+      "path": "/api/v1/projects/063bc413-964b-470a-a573-27bec267f0a2/media/d5f0483d-0090-476f-939e-2846e53dfdb6/stream",
+      "status": 206,
+      "range": "bytes=0-",
+      "content_range": "bytes 0-752212/752213",
+      "content_length": "752213"
+    },
+    {
+      "path": "/api/v1/projects/063bc413-964b-470a-a573-27bec267f0a2/media/d5f0483d-0090-476f-939e-2846e53dfdb6/stream",
+      "status": 206,
+      "range": "bytes=720896-",
+      "content_range": "bytes 720896-752212/752213",
+      "content_length": "31317"
+    },
+    {
+      "path": "/api/v1/projects/063bc413-964b-470a-a573-27bec267f0a2/media/747faf9e-9f80-43eb-8ed7-f920e4a60d40/stream",
+      "status": 206,
+      "range": "bytes=0-",
+      "content_range": "bytes 0-451684/451685",
+      "content_length": "451685"
+    },
+    {
+      "path": "/api/v1/projects/063bc413-964b-470a-a573-27bec267f0a2/media/747faf9e-9f80-43eb-8ed7-f920e4a60d40/stream",
+      "status": 206,
+      "range": "bytes=196608-",
+      "content_range": "bytes 196608-451684/451685",
+      "content_length": "255077"
+    },
+    {
+      "path": "/api/v1/projects/063bc413-964b-470a-a573-27bec267f0a2/media/747faf9e-9f80-43eb-8ed7-f920e4a60d40/stream",
+      "status": 206,
+      "range": "bytes=327680-",
+      "content_range": "bytes 327680-451684/451685",
+      "content_length": "124005"
+    },
+    {
+      "path": "/api/v1/projects/063bc413-964b-470a-a573-27bec267f0a2/media/0271f285-c835-4947-a216-16a4ebfc4757/stream",
+      "status": 206,
+      "range": "bytes=0-",
+      "content_range": "bytes 0-748081/748082",
+      "content_length": "748082"
+    },
+    {
+      "path": "/api/v1/projects/063bc413-964b-470a-a573-27bec267f0a2/media/0271f285-c835-4947-a216-16a4ebfc4757/stream",
+      "status": 206,
+      "range": "bytes=720896-",
+      "content_range": "bytes 720896-748081/748082",
+      "content_length": "27186"
+    },
+    {
+      "path": "/api/v1/projects/063bc413-964b-470a-a573-27bec267f0a2/media/0271f285-c835-4947-a216-16a4ebfc4757/stream",
+      "status": 206,
+      "range": "bytes=65536-",
+      "content_range": "bytes 65536-748081/748082",
+      "content_length": "682546"
+    },
+    {
+      "path": "/api/v1/projects/063bc413-964b-470a-a573-27bec267f0a2/media/0271f285-c835-4947-a216-16a4ebfc4757/stream",
+      "status": 206,
+      "range": "bytes=458752-",
+      "content_range": "bytes 458752-748081/748082",
+      "content_length": "289330"
+    },
+    {
+      "path": "/api/v1/projects/063bc413-964b-470a-a573-27bec267f0a2/media/0271f285-c835-4947-a216-16a4ebfc4757/stream",
+      "status": 206,
+      "range": "bytes=524288-",
+      "content_range": "bytes 524288-748081/748082",
+      "content_length": "223794"
+    },
+    {
+      "path": "/api/v1/projects/063bc413-964b-470a-a573-27bec267f0a2/media/05ed36d3-04e5-495b-8c98-4a5953e98fb0/stream",
+      "status": 206,
+      "range": "bytes=0-",
+      "content_range": "bytes 0-298725/298726",
+      "content_length": "298726"
+    },
+    {
+      "path": "/api/v1/projects/063bc413-964b-470a-a573-27bec267f0a2/media/05ed36d3-04e5-495b-8c98-4a5953e98fb0/stream",
+      "status": 206,
+      "range": "bytes=294912-",
+      "content_range": "bytes 294912-298725/298726",
+      "content_length": "3814"
+    },
+    {
+      "path": "/api/v1/projects/063bc413-964b-470a-a573-27bec267f0a2/media/3882929e-2db7-4432-bec4-6b370086b074/stream",
+      "status": 206,
+      "range": "bytes=0-",
+      "content_range": "bytes 0-145784/145785",
+      "content_length": "145785"
+    },
+    {
+      "path": "/api/v1/projects/063bc413-964b-470a-a573-27bec267f0a2/media/231cf0c1-47c8-426e-9dcb-daf19b84c79c/stream",
+      "status": 206,
+      "range": "bytes=0-",
+      "content_range": "bytes 0-179261/179262",
+      "content_length": "179262"
+    },
+    {
+      "path": "/api/v1/projects/063bc413-964b-470a-a573-27bec267f0a2/media/231cf0c1-47c8-426e-9dcb-daf19b84c79c/stream",
+      "status": 200,
+      "range": null,
+      "content_range": null,
+      "content_length": "179262"
+    },
+    {
+      "path": "/api/v1/projects/063bc413-964b-470a-a573-27bec267f0a2/media/c9e554cd-cd97-4e44-8602-1dbd23d88331/stream",
+      "status": 206,
+      "range": "bytes=0-",
+      "content_range": "bytes 0-748081/748082",
+      "content_length": "748082"
+    },
+    {
+      "path": "/api/v1/projects/063bc413-964b-470a-a573-27bec267f0a2/media/c9e554cd-cd97-4e44-8602-1dbd23d88331/stream",
+      "status": 206,
+      "range": "bytes=163840-",
+      "content_range": "bytes 163840-748081/748082",
+      "content_length": "584242"
+    },
+    {
+      "path": "/api/v1/projects/063bc413-964b-470a-a573-27bec267f0a2/media/c9e554cd-cd97-4e44-8602-1dbd23d88331/stream",
+      "status": 206,
+      "range": "bytes=294912-",
+      "content_range": "bytes 294912-748081/748082",
+      "content_length": "453170"
+    },
+    {
+      "path": "/api/v1/projects/063bc413-964b-470a-a573-27bec267f0a2/media/c9e554cd-cd97-4e44-8602-1dbd23d88331/stream",
+      "status": 206,
+      "range": "bytes=425984-",
+      "content_range": "bytes 425984-748081/748082",
+      "content_length": "322098"
+    },
+    {
+      "path": "/api/v1/projects/063bc413-964b-470a-a573-27bec267f0a2/media/c9e554cd-cd97-4e44-8602-1dbd23d88331/stream",
+      "status": 206,
+      "range": "bytes=491520-",
+      "content_range": "bytes 491520-748081/748082",
+      "content_length": "256562"
+    },
+    {
+      "path": "/api/v1/projects/063bc413-964b-470a-a573-27bec267f0a2/media/c9e554cd-cd97-4e44-8602-1dbd23d88331/stream",
+      "status": 206,
+      "range": "bytes=720896-",
+      "content_range": "bytes 720896-748081/748082",
+      "content_length": "27186"
+    }
+  ],
+  "dialogs": [
+    {
+      "type": "confirm",
+      "message": "Há alterações não salvas. Trocar o vídeo reiniciará o trecho e manterá o enquadramento. Deseja continuar?",
+      "accepted": true
+    },
+    {
+      "type": "confirm",
+      "message": "Há alterações não salvas. Trocar o vídeo reiniciará o trecho e manterá o enquadramento. Deseja continuar?",
+      "accepted": true
+    },
+    {
+      "type": "confirm",
+      "message": "Há alterações não salvas. Trocar o vídeo reiniciará o trecho e manterá o enquadramento. Deseja continuar?",
+      "accepted": true
+    },
+    {
+      "type": "confirm",
+      "message": "Há alterações não salvas. Trocar o vídeo reiniciará o trecho e manterá o enquadramento. Deseja continuar?",
+      "accepted": true
+    },
+    {
+      "type": "confirm",
+      "message": "Há alterações não salvas. Trocar o vídeo reiniciará o trecho e manterá o enquadramento. Deseja continuar?",
+      "accepted": true
+    },
+    {
+      "type": "confirm",
+      "message": "Há alterações não salvas. Trocar o vídeo reiniciará o trecho e manterá o enquadramento. Deseja continuar?",
+      "accepted": true
+    },
+    {
+      "type": "confirm",
+      "message": "Há alterações não salvas. Trocar o vídeo reiniciará o trecho e manterá o enquadramento. Deseja continuar?",
+      "accepted": false
+    },
+    {
+      "type": "confirm",
+      "message": "Há alterações não salvas. Deseja sair e descartá-las?",
+      "accepted": false
+    },
+    {
+      "type": "beforeunload",
+      "message": "",
+      "accepted": false
+    },
+    {
+      "type": "confirm",
+      "message": "Recarregar a revisão atual descartará suas alterações locais. Deseja continuar?",
+      "accepted": false
+    },
+    {
+      "type": "confirm",
+      "message": "Recarregar a revisão atual descartará suas alterações locais. Deseja continuar?",
+      "accepted": true
+    },
+    {
+      "type": "confirm",
+      "message": "Há alterações não salvas. Deseja sair e descartá-las?",
+      "accepted": true
+    }
+  ],
+  "screenshots": [
+    "r03-editor-1792359307-unsupported-codec.png",
+    "r03-editor-1792359307-desktop-contain.png",
+    "r03-editor-1792359307-desktop-dark.png",
+    "r03-editor-1792359307-desktop-light.png",
+    "r03-editor-1792359307-mobile-375.png",
+    "r03-editor-1792359307-mobile-landscape.png"
+  ],
+  "data_policy": "Synthetic QA seed remains active between stages; imported originals are preserved."
+}

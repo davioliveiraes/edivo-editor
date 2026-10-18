@@ -1,7 +1,7 @@
 name: edivo
 
 x-backend: &backend
-  image: edivo-backend:r02
+  image: edivo-backend:r03
   build:
     context: ./backend
     args:
@@ -105,7 +105,7 @@ services:
   frontend:
     build:
       context: ./frontend
-    image: edivo-frontend:r02
+    image: edivo-frontend:r03
     environment:
       API_PROXY_TARGET: http://api:8000
       VITE_UPLOAD_MAX_BYTES: ${EDIVO_UPLOAD_MAX_BYTES:-524288000}

@@ -23,7 +23,7 @@ describe('Edivo foundation interface', () => {
 
     expect(screen.getByRole('link', { name: 'Edivo — início' })).toBeVisible();
     expect(screen.getByRole('heading', { level: 1 })).toHaveTextContent('Boas histórias.');
-    expect(screen.getByText(/recursos do editor serão disponibilizados/)).toBeVisible();
+    expect(screen.getByText(/abra o editor para conhecer seus originais/)).toBeVisible();
     expect(screen.getByRole('heading', { name: 'Verificando conexão' })).toBeVisible();
     expect(screen.getByRole('button', { name: 'Verificando…' })).toBeDisabled();
   });

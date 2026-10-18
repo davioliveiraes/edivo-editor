@@ -5,12 +5,14 @@
 Leia integralmente `docs/EDIVO_DOCUMENTACAO_PROJETO.md`,
 `docs/EDIVO_INSTRUCOES_CHATGPT.md`, `docs/R00_EDIVO_PLANEJAMENTO_TECNICO.md`
 e `docs/R01_EDIVO_ESPECIFICACAO_OPERACIONAL.md` antes de implementar. Leia também
-`docs/R02_EDIVO_ESPECIFICACAO_OPERACIONAL.md`, README e evidências de `docs/r01/`.
-A especificação operacional R02 define o escopo atual autorizado; R00 define a
-arquitetura e R01 deve permanecer funcional. Preserve os documentos de origem,
+`docs/R02_EDIVO_ESPECIFICACAO_OPERACIONAL.md`,
+`docs/R03_EDIVO_ESPECIFICACAO_OPERACIONAL.md`, README, arquitetura e evidências
+históricas R01/R02. A especificação operacional R03 e a autorização expressa do
+usuário definem o escopo atual; R00 define a arquitetura e R01/R02 permanecem
+funcionais. Preserve os documentos de origem,
 as evidências históricas e alterações preexistentes.
 
-## Escopo atual: R02 — projetos, upload e metadados
+## Escopo atual: R03 — player, timeline, cortes e presets
 
 Preservar a fundação executável: React/TypeScript strict/Vite,
 FastAPI/Python 3.12, PostgreSQL 16/SQLAlchemy 2/psycopg 3/Alembic baseline,
@@ -20,9 +22,13 @@ CRUD de projetos, upload de um MP4 com validação segura e FFprobe, SHA-256,
 originais imutáveis e interface de projetos/biblioteca. Limites padrão: 500 MiB
 de arquivo e 600 segundos, com controle do corpo durante a entrada e parsing
 multipart limitado. Não expor caminhos privados ou storage como conteúdo estático.
-Não implementar player/streaming, timeline, cortes, edição de áudio, preview,
-render, jobs, exportações, autenticação, Redis, Celery, heditor, agentes de IA ou
-Higgsfield. R03 exige nova autorização.
+A R03 acrescenta streaming GET/HEAD privado com Range, player HTML5 real,
+timeline de uma faixa, trim não destrutivo, quatro presets e cover/contain com
+focal normalizado, EditSpec v1 com revisões imutáveis e conflitos 409. Salvar é
+explícito; playhead não gera revisão. Seguir os gates R03.0 a R03.5 e a matriz
+em `docs/r03/compatibility.md`. Não implementar edição de áudio, texto, preview
+codificado, render, jobs, exportações, autenticação, Redis, Celery, heditor,
+agentes de IA ou Higgsfield. R04 exige nova autorização. Não alterar ObraControl.
 Não criar abstrações ou módulos vazios para funcionalidades futuras.
 
 ## Implementação e qualidade
