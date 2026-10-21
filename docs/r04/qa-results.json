@@ -1,0 +1,486 @@
+{
+  "release": "R04",
+  "status": "passed",
+  "updated_at": "2026-10-21T02:21:45.241508+00:00",
+  "gates": {
+    "R04.0": "passed",
+    "R04.1": "passed",
+    "R04.2": "passed",
+    "R04.3": "passed",
+    "R04.4": "passed",
+    "R04.5": "passed"
+  },
+  "runtime": {
+    "status": "passed",
+    "docker_server": "29.8.0",
+    "compose": "5.5.1",
+    "backend": {
+      "python": "3.12.14",
+      "packages": {
+        "fastapi": "0.143.3",
+        "starlette": "1.8.0",
+        "pydantic": "2.14.1",
+        "pydantic-settings": "2.16.0",
+        "SQLAlchemy": "2.0.55",
+        "psycopg": "3.3.6",
+        "alembic": "1.20.0",
+        "uvicorn": "0.54.0",
+        "pytest": "9.1.1",
+        "httpx": "0.28.1",
+        "ruff": "0.17.1",
+        "python-multipart": "0.0.32"
+      },
+      "cached_bytecode": 0
+    },
+    "frontend": {
+      "node": "v24.14.0",
+      "packages": {
+        "react": "19.3.1",
+        "react-dom": "19.3.1",
+        "typescript": "6.0.3",
+        "vite": "8.3.4",
+        "tailwindcss": "4.3.3",
+        "vitest": "5.0.5",
+        "@testing-library/react": "16.3.3",
+        "eslint": "10.13.0",
+        "prettier": "3.9.10",
+        "lucide-react": "1.59.0"
+      }
+    }
+  },
+  "additional_runtime": {
+    "postgres": "16.13 (Debian 16.13-1.pgdg12+1)",
+    "ffmpeg": "5.1.9-0+deb12u1",
+    "ffprobe": "5.1.9-0+deb12u1",
+    "uv": "0.13.1",
+    "npm": "11.9.0",
+    "browser": "Chromium145.0.7632.6"
+  },
+  "counts": {
+    "backend_default_passed": 692,
+    "backend_default_skipped_opt_in": 8,
+    "backend_postgres_opt_in_passed": 8,
+    "backend_distinct_passed": 700,
+    "frontend_passed": 149,
+    "frontend_files": 7,
+    "operational_checks": 20,
+    "r02_http_checks": 13,
+    "mp4_limit_checks": 19,
+    "r03_edit_spec_checks": 14,
+    "r03_range_checks": 29,
+    "r04_preview_http_checks": 30,
+    "mp3_checks": 18,
+    "mp3_http_requests": 13,
+    "ffmpeg_previews": 25,
+    "ffmpeg_checks": 43,
+    "browser_composition_checks": 15,
+    "browser_preview_checks": 11,
+    "browser_verify_checks": 7,
+    "note": "Repeated runs are not added as distinct cases. HTTP/FFmpeg/browser counts have different scopes and may overlap."
+  },
+  "automated_checks": [
+    {
+      "command": "docker compose exec -T api pytest",
+      "status": "passed",
+      "passed": 692,
+      "skipped": 8,
+      "warning_count": 1,
+      "seconds": 71.63,
+      "skip_reason": "Eight explicit PostgreSQL operational cases are run separately below.",
+      "evidence": "evidence/final-regression-attempt-3.jsonl"
+    },
+    {
+      "command": "docker compose exec -T api sh -c 'EDIVO_QA_DATABASE_URL=\"$EDIVO_DATABASE_URL\" EDIVO_QA_QUEUE_POSTGRES=1 pytest -q tests/test_preview_queue_postgres.py'",
+      "status": "passed",
+      "passed": 8,
+      "warning_count": 1,
+      "seconds": 3.45,
+      "evidence": "evidence/queue-postgres-final-image.json"
+    },
+    {
+      "command": "docker compose exec -T api ruff check .",
+      "status": "passed",
+      "evidence": "evidence/final-regression-summary.json"
+    },
+    {
+      "command": "docker compose exec -T api ruff format --check .",
+      "status": "passed",
+      "files": 79,
+      "evidence": "evidence/final-regression-summary.json"
+    },
+    {
+      "command": "docker compose exec -T frontend npm run test -- --run",
+      "status": "passed",
+      "passed": 149,
+      "test_files": 7,
+      "seconds": 15.93,
+      "evidence": "evidence/frontend-final-qa.json"
+    },
+    {
+      "command": "docker compose exec -T frontend npm run lint",
+      "status": "passed",
+      "evidence": "evidence/frontend-final-qa.json"
+    },
+    {
+      "command": "docker compose exec -T frontend npm run format:check",
+      "status": "passed",
+      "evidence": "evidence/frontend-final-qa.json"
+    },
+    {
+      "command": "docker compose exec -T frontend npm run build",
+      "status": "passed",
+      "evidence": "evidence/frontend-final-qa.json"
+    },
+    {
+      "command": "backend/.venv/bin/ruff check --config backend/pyproject.toml [nine new R04 Python QA scripts]",
+      "status": "passed",
+      "files": 9
+    },
+    {
+      "command": "backend/.venv/bin/ruff format --check --config backend/pyproject.toml [nine new R04 Python QA scripts]",
+      "status": "passed",
+      "files": 9
+    }
+  ],
+  "integration_checks": [
+    {
+      "commands": [
+        "docker compose build api",
+        "docker compose build frontend",
+        "docker compose up -d --no-build --wait --wait-timeout 180 api worker",
+        "docker compose config --quiet"
+      ],
+      "status": "passed",
+      "scope": "Builds and startup executed incrementally; API/worker same backend image. Final sources differ only by documentation after these checks."
+    },
+    {
+      "command": "python3 scripts/acceptance-compose.py --skip-build",
+      "status": "recovered_by_separate_frontend_commands",
+      "passed_operational_checks": 20,
+      "passed_backend_and_ruff_checks": 3,
+      "harness_exit_code": 1,
+      "stopped_at": "Vitest; detailed initial diagnostic not retained",
+      "recovery": "Two subsequent unchanged-source Vitest invocations passed149. Final independent ESLint/Prettier/TypeScript/Vite passed. No passing exit is invented for the stopped harness.",
+      "evidence": "evidence/final-regression-summary.json"
+    },
+    {
+      "command": "python3 scripts/acceptance-r02.py",
+      "status": "passed",
+      "evidence": "evidence/r02-regression-final.jsonl",
+      "seconds": 29.22
+    },
+    {
+      "command": "python3 scripts/acceptance-upload-limits.py",
+      "status": "passed",
+      "evidence": "evidence/mp4-limits-final.json",
+      "seconds": 7.25
+    },
+    {
+      "command": "python3 scripts/acceptance-editspec.py --output docs/r04/evidence/r03-edit-spec-final.json",
+      "status": "passed",
+      "evidence": "evidence/r03-edit-spec-final.jsonl",
+      "seconds": 72.08
+    },
+    {
+      "command": "python3 scripts/acceptance-r03.py",
+      "status": "passed",
+      "evidence": "evidence/r03-range-final.jsonl",
+      "seconds": 9.02
+    },
+    {
+      "command": "python3 scripts/acceptance-r04-previews.py --restart",
+      "status": "passed",
+      "evidence": "evidence/preview-http-worker-final.jsonl",
+      "seconds": 26.54
+    },
+    {
+      "commands": [
+        "docker compose exec -T api alembic upgrade head",
+        "docker compose exec -T api alembic check"
+      ],
+      "status": "passed",
+      "migration": "0004_r04_text_audio_previews",
+      "evidence": "evidence/r03-edit-spec-final.json"
+    },
+    {
+      "command": "python3 scripts/acceptance-r04-audio.py",
+      "status": "passed",
+      "evidence": "evidence/edit-spec-audio.json"
+    },
+    {
+      "command": "python3 scripts/acceptance-r04-audio.py --inspect-storage",
+      "status": "passed",
+      "evidence": "evidence/audio-storage-database.json"
+    },
+    {
+      "command": "python3 scripts/acceptance-r04-mp3-security.py",
+      "status": "passed",
+      "checks": 18,
+      "http_requests": 13,
+      "evidence": "evidence/mp3-http-security.json"
+    },
+    {
+      "command": "Isolated API container python /qa/acceptance-r04-ffmpeg.py --fixtures /fixtures --output /evidence/ffmpeg-matrix-run-1/report.json; exact reproducible mount command in README",
+      "status": "passed",
+      "previews": 25,
+      "checks": 43,
+      "frames": 14,
+      "seconds": 32.682,
+      "evidence": "evidence/ffmpeg-matrix-run-1/report.json"
+    },
+    {
+      "command": "python3 scripts/acceptance-r04-process-control.py",
+      "status": "passed",
+      "checks": 2,
+      "scope": "Real FFmpeg timeout/SIGTERM in isolated harness; not an application job interruption. Application worker SIGTERM tested separately.",
+      "evidence": "evidence/ffmpeg-process-control.json"
+    },
+    {
+      "command": "python3 scripts/browser-r04.py --stage composition --project-id 09b152db-5ca2-4868-b23a-8a00e14cd96d",
+      "status": "passed",
+      "checks": 15,
+      "evidence": "evidence/browser-composition.json"
+    },
+    {
+      "command": "python3 scripts/browser-r04.py --stage preview --project-id 09b152db-5ca2-4868-b23a-8a00e14cd96d",
+      "status": "passed",
+      "checks": 11,
+      "evidence": "evidence/browser-preview.json"
+    },
+    {
+      "command": "python3 scripts/browser-r04.py --stage verify --project-id 09b152db-5ca2-4868-b23a-8a00e14cd96d",
+      "status": "passed",
+      "checks": 7,
+      "evidence": "evidence/browser-verify.json"
+    },
+    {
+      "command": "docker compose exec -T api python - < scripts/audit-storage-r04.py",
+      "status": "passed",
+      "evidence": "evidence/storage-final.json"
+    },
+    {
+      "command": "python3 scripts/r04-preservation.py",
+      "status": "passed",
+      "evidence": "evidence/preservation.json"
+    },
+    {
+      "command": "docker inspect with selected ObraControl ID/state/image/HostConfig.PortBindings fields only",
+      "status": "passed",
+      "containers": 5,
+      "evidence": "evidence/coexistence-final.json"
+    },
+    {
+      "command": "Read-only docker compose ps, selected docker inspect fields and local API/frontend HTTP",
+      "status": "passed",
+      "evidence": "evidence/services-final.json",
+      "scope": "After all QA: API/db/frontend healthy, worker running, migrate exit0, only8001/5174 loopback published; five ObraControl containers identical to baseline."
+    }
+  ],
+  "integrity": {
+    "storage": {
+      "read_only": true,
+      "inventories": {
+        "mp4": {
+          "registered": 83,
+          "files_on_disk": 83,
+          "invalid_ids": [],
+          "unregistered_ids": [],
+          "unsafe_entries": []
+        },
+        "mp3": {
+          "registered": 6,
+          "files_on_disk": 6,
+          "invalid_ids": [],
+          "unregistered_ids": [],
+          "unsafe_entries": []
+        },
+        "preview": {
+          "registered": 5,
+          "files_on_disk": 5,
+          "invalid_ids": [],
+          "unregistered_ids": [],
+          "unsafe_entries": []
+        }
+      },
+      "temporary_entries": 0,
+      "status": "consistent"
+    },
+    "preservation": {
+      "status": "passed",
+      "recorded_at": "2026-10-21T02:12:29.368800+00:00",
+      "read_only": true,
+      "changed_historical_files": [],
+      "changed_database_rows": {
+        "projects": [],
+        "media_assets": [],
+        "edit_spec_revisions": []
+      },
+      "changed_original_ids": [],
+      "baseline_original_count": 30
+    },
+    "baseline_historical_files": 66,
+    "baseline_database_rows": {
+      "projects": 24,
+      "media_assets": 30,
+      "edit_spec_revisions": 12
+    },
+    "coexistence_changed_containers": 0,
+    "private_host_ports": {
+      "frontend": "127.0.0.1:5174",
+      "api": "127.0.0.1:8001",
+      "db": null,
+      "worker": null
+    },
+    "postgres_volume": "edivo_postgres_data",
+    "application_lockfiles_unchanged": true,
+    "final_services_evidence": "evidence/services-final.json"
+  },
+  "browser_demo": {
+    "project_id": "09b152db-5ca2-4868-b23a-8a00e14cd96d",
+    "revision_number": 2,
+    "preview_id": "763490d8-dd20-4fbe-addf-048639761321",
+    "sha256": "2eaf6b90dc138988898f099b6147e94f3d70ce5d4ef8a8d5f6b5cbdf07cd2741",
+    "byte_size": 210935,
+    "duration_ms": 4000,
+    "window_ms": [
+      5000,
+      9000
+    ],
+    "width": 540,
+    "height": 960,
+    "post_restart_verify_issued_put_or_post": false,
+    "visual_review": "evidence/browser-preview-review.json"
+  },
+  "qa_attempts_and_repairs": [
+    {
+      "check": "Host TestClient sandbox attempt",
+      "result": "Blocked without test output; interrupted (130), rerun outside sandbox passed52."
+    },
+    {
+      "check": "Expanded root Ruff across backend+all historical scripts",
+      "result": "Failed due mixed configuration/first-party discovery and preexisting script style. No historical migrations/scripts were reformatted for that expanded check."
+    },
+    {
+      "check": "Canonical cd backend && .venv/bin/ruff check .",
+      "result": "Found one missing import separator in new compositor test; fixed. Rerun passed. Formatcheck79filespassed."
+    },
+    {
+      "check": "New R04 QA scripts with --config backend/pyproject.toml",
+      "result": "Eight new R04 scripts passed lint/format after formatting two root-authored harnesses and splitting one long embedded query."
+    },
+    {
+      "check": "Requested PostgreSQL JUnit XML",
+      "result": "Both requested copies reported file absent. Actual pytest console output records8passed for each run; no XML fabricated."
+    },
+    {
+      "check": "Full container pytest initial attempt",
+      "result": "530 passed then1failed in82.04s; processor mock fixture reservation exceeded available128MiB tmpfs. Fixture-only sizing repair and explicit disk-full guard added; production64+64MiB limits unchanged. Final692passed.",
+      "evidence": "evidence/processor-container-fixture.json"
+    },
+    {
+      "check": "Backend image bytecode",
+      "result": "25 cached test pyc files copied from host; recursive Docker exclusions added. Final image contains0pyc.",
+      "evidence": "evidence/runtime-final.json"
+    },
+    {
+      "check": "Runtime Ruff import ordering",
+      "result": "Host auto-discovery differed from image. Reordered one audio import and explicitly configured app as first-party; final lint/format passed79files. No dependency or lock changes.",
+      "evidence": "evidence/backend-regression-repairs.json"
+    },
+    {
+      "check": "Final harness Vitest invocation",
+      "result": "Exit1 without detailed diagnostic retained by sanitized harness. Cause remains unknown. Direct repeat149pass14.71s; independent logged repeat149pass15.93s and all quality checks passed, without source change.",
+      "evidence": "evidence/frontend-final-qa.json"
+    },
+    {
+      "check": "Chromium earlier composition driver attempts",
+      "result": "Pause-event wait and ambiguous label in harness corrected; failed attempts preserved, subsequent15composition+11preview+7verifychecks passed. Product playback was not simulated.",
+      "evidence": "evidence/browser-composition.json"
+    }
+  ],
+  "limitations": [
+    "No human auditory listening; objective synthetic tones/RMS/frequency/peaks and decoded browser audio only.",
+    "Chromium headless desktop and emulated mobile375/390 only; no Firefox/WebKit or physical device claim.",
+    "CFR24fps quantizes windows within one frame+1ms; absolute artifact maximum8.001s.",
+    "CSS and FreeType rasterization can differ; unsupported glyphs fail. White_plain may lose contrast over bright content; native controls can cover bottom text while visible.",
+    "MP3 import checks integral framing plus up to2s meaningful decoding; it does not fully decode a600s original. The generated short MP4 is fully decoded.",
+    "No retention/deletion automation; uncertain publication after crash preserves canonical bytes and requires explicit retry/review.",
+    "No500MiB/600s full-scale performance benchmark, exhaustive crash-point testing or subjective speech intelligibility study.",
+    "One upstream Starlette/TestClient-httpx deprecation warning; dependencies intentionally preserved.",
+    "The initial unlogged Vitest failure cause is unknown; two subsequent unchanged-source executions passed."
+  ],
+  "pending": [],
+  "r05_started": false,
+  "acceptance": [
+    {
+      "criterion": "Contratos R01–R03 intactos e regressões finais aprovadas.",
+      "status": "passed"
+    },
+    {
+      "criterion": "Migração 0004 aplicada/repetível; v1 preservado e v2 gravável.",
+      "status": "passed"
+    },
+    {
+      "criterion": "Conflito expected_revision, no-op 200 e histórico imutável preservados.",
+      "status": "passed"
+    },
+    {
+      "criterion": "Upload MP3 controlado, metadados reais e originais imutáveis nas provas executadas.",
+      "status": "passed"
+    },
+    {
+      "criterion": "Até três textos com tempos/posições/estilos validados e recuperáveis.",
+      "status": "passed"
+    },
+    {
+      "criterion": "Volume original, música opcional, loop/fades com comportamento medido.",
+      "status": "passed"
+    },
+    {
+      "criterion": "Overlay CSS coerente e acessível, identificado como referência de edição.",
+      "status": "passed"
+    },
+    {
+      "criterion": "Solicitação vinculada a revisão salva, sem renderizar draft dirty.",
+      "status": "passed"
+    },
+    {
+      "criterion": "Worker realmente separado, com lease, recuperação, fencing e timeout.",
+      "status": "passed"
+    },
+    {
+      "criterion": "MP4 curto H.264/AAC validado, com enquadramento/texto na janela escolhida.",
+      "status": "passed"
+    },
+    {
+      "criterion": "Status API/UI reais, sem percentual ou sucesso fictício.",
+      "status": "passed"
+    },
+    {
+      "criterion": "Prévia somente por rota privada GET/HEAD com Range.",
+      "status": "passed"
+    },
+    {
+      "criterion": "Erros sanitizados e tentativas finitas, preservando originais/revisões.",
+      "status": "passed"
+    },
+    {
+      "criterion": "QA completo backend/frontend/integração/FFmpeg/navegador e evidências finais.",
+      "status": "passed"
+    },
+    {
+      "criterion": "Auditoria final de portas locais, dados R01–R03, storage, locks e ObraControl.",
+      "status": "passed"
+    },
+    {
+      "criterion": "README, arquitetura, roadmap, AGENTS e QA finalizados consistentemente.",
+      "status": "passed"
+    },
+    {
+      "criterion": "Sem export final, heditor, agente, prompt ou Higgsfield antecipados.",
+      "status": "passed"
+    }
+  ],
+  "ready_for_r05": true,
+  "documentation_check": "evidence/documentation-check.json"
+}

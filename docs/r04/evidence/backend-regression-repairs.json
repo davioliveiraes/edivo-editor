@@ -1,0 +1,29 @@
+{
+  "status": "repaired",
+  "failed_harness": "final-regression-attempt-1.jsonl",
+  "first_failure_command": "docker compose exec -T api pytest -q --tb=short --maxfail=1",
+  "first_failure_result": "1 failed, 530 passed, 1 upstream warning in 82.04s",
+  "failed_test": "test_preview_processor.py::test_verified_artifact_published_only_after_validation",
+  "cause": "Mock processor fixture requested default 64MiB output reserve +64MiB free reserve inside a 128MiB /tmp tmpfs. Production renders use the persistent bind storage and already passed HTTP/Chromium.",
+  "repair": "Constrain only the small mock fixture; add an explicit disk-full guard test. Production defaults remain unchanged.",
+  "additional_build_finding": {
+    "copied_test_bytecode": 25,
+    "dont_write_bytecode": true,
+    "impact": "Host-generated pytest bytecode was copied into the backend image and caused tracebacks to refer to host source filenames.",
+    "repair": "Add recursive __pycache__ and py[cod] exclusions to backend/.dockerignore; validate zero cached test bytecode in rebuilt image."
+  },
+  "final_backend_result": "692 passed, 8 explicitly opt-in PostgreSQL cases skipped, 1 upstream warning",
+  "bytecode_after_rebuild": 0,
+  "ruff_runtime_repair": {
+    "cause": "Auto-discovery classified a new app.integrations import differently on host and image.",
+    "repair": "Move it into the application import group and set known-first-party=[app] explicitly in backend/pyproject.toml.",
+    "runtime_result": "Ruff check passed; 79 files already formatted.",
+    "dependency_or_lock_changes": false
+  },
+  "final_backend_evidence": "final-regression-attempt-3.jsonl",
+  "frontend_harness_attempt": {
+    "result": "exit 1, no detailed output retained by the sanitized harness",
+    "direct_rerun": "149 passed in 7 files, 14.71s",
+    "follow_up": "Independent final frontend run with complete evidence in progress."
+  }
+}

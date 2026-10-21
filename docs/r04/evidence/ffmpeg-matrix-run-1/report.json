@@ -1,0 +1,1100 @@
+{
+  "status": "passed",
+  "generated_at": "2026-10-20T20:15:58.733322+00:00",
+  "synthetic_only": true,
+  "database_or_http_used": false,
+  "manual_auditory_inspection_performed": false,
+  "font_sha256": "abdc775b21b1bc470d50c97e790d276f2054b7504e56e5bd3e64f48d68582322",
+  "limitations": [
+    "Tone/RMS analysis is objective signal validation, not subjective human listening.",
+    "CSS and FreeType rasterization can differ by pixels; unsupported font glyphs fail explicitly.",
+    "CFR windows quantize within one frame + 1ms; absolute output maximum is8.001s."
+  ],
+  "frames": [
+    "canvas-9-16-cover.png",
+    "canvas-9-16-contain.png",
+    "canvas-1-1-cover.png",
+    "canvas-1-1-contain.png",
+    "canvas-4-5-cover.png",
+    "canvas-4-5-contain.png",
+    "canvas-16-9-cover.png",
+    "canvas-16-9-contain.png",
+    "orientation-silent-vertical.png",
+    "orientation-square.png",
+    "orientation-sar.png",
+    "orientation-rotated.png",
+    "orientation-vfr.png",
+    "text-safe-area.png"
+  ],
+  "font_runtime_sha256": "abdc775b21b1bc470d50c97e790d276f2054b7504e56e5bd3e64f48d68582322",
+  "cases": [
+    {
+      "name": "canvas-9-16-cover",
+      "source": "horizontal.mp4",
+      "music": "music-long.mp3",
+      "source_window_ms": [
+        5000,
+        6000
+      ],
+      "schema_version": 2,
+      "preset": "9:16",
+      "fit": "cover",
+      "sha256": "c432fa2894c4b27c988e82ab29c9062c1b11072edda69c5b785d93b458c83f6b",
+      "bytes": 79696,
+      "metadata": {
+        "duration_ms": 1000,
+        "requested_duration_ms": 1000,
+        "width": 540,
+        "height": 960,
+        "fps_num": 24,
+        "fps_den": 1,
+        "video_codec": "h264",
+        "pixel_format": "yuv420p",
+        "sample_aspect_ratio": "1:1",
+        "has_audio": true,
+        "audio_codec": "aac",
+        "frame_count": 24,
+        "decoded_frames": 24
+      },
+      "stages": [
+        "encoding",
+        "validating"
+      ],
+      "seconds": 0.7614
+    },
+    {
+      "name": "canvas-9-16-contain",
+      "source": "horizontal.mp4",
+      "music": "music-long.mp3",
+      "source_window_ms": [
+        5000,
+        6000
+      ],
+      "schema_version": 2,
+      "preset": "9:16",
+      "fit": "contain",
+      "sha256": "2716168f586a376033823e90ef9653b6c3b4fe96d0856e2b986e80a90a9e48a9",
+      "bytes": 67712,
+      "metadata": {
+        "duration_ms": 1000,
+        "requested_duration_ms": 1000,
+        "width": 540,
+        "height": 960,
+        "fps_num": 24,
+        "fps_den": 1,
+        "video_codec": "h264",
+        "pixel_format": "yuv420p",
+        "sample_aspect_ratio": "1:1",
+        "has_audio": true,
+        "audio_codec": "aac",
+        "frame_count": 24,
+        "decoded_frames": 24
+      },
+      "stages": [
+        "encoding",
+        "validating"
+      ],
+      "seconds": 0.7841
+    },
+    {
+      "name": "canvas-1-1-cover",
+      "source": "horizontal.mp4",
+      "music": "music-long.mp3",
+      "source_window_ms": [
+        5000,
+        6000
+      ],
+      "schema_version": 2,
+      "preset": "1:1",
+      "fit": "cover",
+      "sha256": "f3654ad115f64cb0a37df69aa108aa9c1c8fe8ad4a99d7fc5a16eb32c149f7d3",
+      "bytes": 77109,
+      "metadata": {
+        "duration_ms": 1000,
+        "requested_duration_ms": 1000,
+        "width": 540,
+        "height": 540,
+        "fps_num": 24,
+        "fps_den": 1,
+        "video_codec": "h264",
+        "pixel_format": "yuv420p",
+        "sample_aspect_ratio": "1:1",
+        "has_audio": true,
+        "audio_codec": "aac",
+        "frame_count": 24,
+        "decoded_frames": 24
+      },
+      "stages": [
+        "encoding",
+        "validating"
+      ],
+      "seconds": 0.9599
+    },
+    {
+      "name": "canvas-1-1-contain",
+      "source": "horizontal.mp4",
+      "music": "music-long.mp3",
+      "source_window_ms": [
+        5000,
+        6000
+      ],
+      "schema_version": 2,
+      "preset": "1:1",
+      "fit": "contain",
+      "sha256": "644b0378cdf9614202944fa17fd518f0636feb0a528e6efdd5a9f6a8ace5fd04",
+      "bytes": 58863,
+      "metadata": {
+        "duration_ms": 1000,
+        "requested_duration_ms": 1000,
+        "width": 540,
+        "height": 540,
+        "fps_num": 24,
+        "fps_den": 1,
+        "video_codec": "h264",
+        "pixel_format": "yuv420p",
+        "sample_aspect_ratio": "1:1",
+        "has_audio": true,
+        "audio_codec": "aac",
+        "frame_count": 24,
+        "decoded_frames": 24
+      },
+      "stages": [
+        "encoding",
+        "validating"
+      ],
+      "seconds": 3.0394
+    },
+    {
+      "name": "canvas-4-5-cover",
+      "source": "horizontal.mp4",
+      "music": "music-long.mp3",
+      "source_window_ms": [
+        5000,
+        6000
+      ],
+      "schema_version": 2,
+      "preset": "4:5",
+      "fit": "cover",
+      "sha256": "febd36c9c45a3648aba1872674122ae9da7992890fe9badc34aaf2ef1914a954",
+      "bytes": 73234,
+      "metadata": {
+        "duration_ms": 1000,
+        "requested_duration_ms": 1000,
+        "width": 544,
+        "height": 680,
+        "fps_num": 24,
+        "fps_den": 1,
+        "video_codec": "h264",
+        "pixel_format": "yuv420p",
+        "sample_aspect_ratio": "1:1",
+        "has_audio": true,
+        "audio_codec": "aac",
+        "frame_count": 24,
+        "decoded_frames": 24
+      },
+      "stages": [
+        "encoding",
+        "validating"
+      ],
+      "seconds": 1.1117
+    },
+    {
+      "name": "canvas-4-5-contain",
+      "source": "horizontal.mp4",
+      "music": "music-long.mp3",
+      "source_window_ms": [
+        5000,
+        6000
+      ],
+      "schema_version": 2,
+      "preset": "4:5",
+      "fit": "contain",
+      "sha256": "d4d05509bb1f71451f61540d2455bfb6bbe4391bc13d4c66de586f7acb98b8ec",
+      "bytes": 61771,
+      "metadata": {
+        "duration_ms": 1000,
+        "requested_duration_ms": 1000,
+        "width": 544,
+        "height": 680,
+        "fps_num": 24,
+        "fps_den": 1,
+        "video_codec": "h264",
+        "pixel_format": "yuv420p",
+        "sample_aspect_ratio": "1:1",
+        "has_audio": true,
+        "audio_codec": "aac",
+        "frame_count": 24,
+        "decoded_frames": 24
+      },
+      "stages": [
+        "encoding",
+        "validating"
+      ],
+      "seconds": 0.9155
+    },
+    {
+      "name": "canvas-16-9-cover",
+      "source": "horizontal.mp4",
+      "music": "music-long.mp3",
+      "source_window_ms": [
+        5000,
+        6000
+      ],
+      "schema_version": 2,
+      "preset": "16:9",
+      "fit": "cover",
+      "sha256": "50ee1805c4735954314dc364c3e3ad837f7d8e9f74037856f1df8553e2819669",
+      "bytes": 114348,
+      "metadata": {
+        "duration_ms": 1000,
+        "requested_duration_ms": 1000,
+        "width": 960,
+        "height": 540,
+        "fps_num": 24,
+        "fps_den": 1,
+        "video_codec": "h264",
+        "pixel_format": "yuv420p",
+        "sample_aspect_ratio": "1:1",
+        "has_audio": true,
+        "audio_codec": "aac",
+        "frame_count": 24,
+        "decoded_frames": 24
+      },
+      "stages": [
+        "encoding",
+        "validating"
+      ],
+      "seconds": 1.9867
+    },
+    {
+      "name": "canvas-16-9-contain",
+      "source": "horizontal.mp4",
+      "music": "music-long.mp3",
+      "source_window_ms": [
+        5000,
+        6000
+      ],
+      "schema_version": 2,
+      "preset": "16:9",
+      "fit": "contain",
+      "sha256": "50ee1805c4735954314dc364c3e3ad837f7d8e9f74037856f1df8553e2819669",
+      "bytes": 114348,
+      "metadata": {
+        "duration_ms": 1000,
+        "requested_duration_ms": 1000,
+        "width": 960,
+        "height": 540,
+        "fps_num": 24,
+        "fps_den": 1,
+        "video_codec": "h264",
+        "pixel_format": "yuv420p",
+        "sample_aspect_ratio": "1:1",
+        "has_audio": true,
+        "audio_codec": "aac",
+        "frame_count": 24,
+        "decoded_frames": 24
+      },
+      "stages": [
+        "encoding",
+        "validating"
+      ],
+      "seconds": 1.9063
+    },
+    {
+      "name": "orientation-silent-vertical",
+      "source": "silent-vertical.mp4",
+      "music": null,
+      "source_window_ms": [
+        5000,
+        6000
+      ],
+      "schema_version": 2,
+      "preset": "9:16",
+      "fit": "contain",
+      "sha256": "d8f5f440aaddb44a4430b740a4c7526a5cbe27ce92adaf083e96c2b6c696912d",
+      "bytes": 80085,
+      "metadata": {
+        "duration_ms": 1000,
+        "requested_duration_ms": 1000,
+        "width": 540,
+        "height": 960,
+        "fps_num": 24,
+        "fps_den": 1,
+        "video_codec": "h264",
+        "pixel_format": "yuv420p",
+        "sample_aspect_ratio": "1:1",
+        "has_audio": false,
+        "audio_codec": null,
+        "frame_count": 24,
+        "decoded_frames": 24
+      },
+      "stages": [
+        "encoding",
+        "validating"
+      ],
+      "seconds": 1.6994
+    },
+    {
+      "name": "orientation-square",
+      "source": "square.mp4",
+      "music": null,
+      "source_window_ms": [
+        5000,
+        6000
+      ],
+      "schema_version": 2,
+      "preset": "9:16",
+      "fit": "contain",
+      "sha256": "79780077ac5483f52f3baab1f940caba863cc4a81bb3fd789ca77edb2687a502",
+      "bytes": 51599,
+      "metadata": {
+        "duration_ms": 1000,
+        "requested_duration_ms": 1000,
+        "width": 540,
+        "height": 960,
+        "fps_num": 24,
+        "fps_den": 1,
+        "video_codec": "h264",
+        "pixel_format": "yuv420p",
+        "sample_aspect_ratio": "1:1",
+        "has_audio": false,
+        "audio_codec": null,
+        "frame_count": 24,
+        "decoded_frames": 24
+      },
+      "stages": [
+        "encoding",
+        "validating"
+      ],
+      "seconds": 1.1275
+    },
+    {
+      "name": "orientation-sar",
+      "source": "sar.mp4",
+      "music": null,
+      "source_window_ms": [
+        5000,
+        6000
+      ],
+      "schema_version": 2,
+      "preset": "9:16",
+      "fit": "contain",
+      "sha256": "cda06f0b5cd10f25cdbbafc92606515f3b9f4727125f482e9b1fe1195229d4ba",
+      "bytes": 30063,
+      "metadata": {
+        "duration_ms": 1000,
+        "requested_duration_ms": 1000,
+        "width": 540,
+        "height": 960,
+        "fps_num": 24,
+        "fps_den": 1,
+        "video_codec": "h264",
+        "pixel_format": "yuv420p",
+        "sample_aspect_ratio": "1:1",
+        "has_audio": false,
+        "audio_codec": null,
+        "frame_count": 24,
+        "decoded_frames": 24
+      },
+      "stages": [
+        "encoding",
+        "validating"
+      ],
+      "seconds": 0.842
+    },
+    {
+      "name": "orientation-rotated",
+      "source": "rotated.mp4",
+      "music": null,
+      "source_window_ms": [
+        5000,
+        6000
+      ],
+      "schema_version": 2,
+      "preset": "9:16",
+      "fit": "contain",
+      "sha256": "9ee4f1516d67651a55e9428f21a1125118daa51e27c40fa2ac0922d19a29c0dd",
+      "bytes": 91787,
+      "metadata": {
+        "duration_ms": 1000,
+        "requested_duration_ms": 1000,
+        "width": 540,
+        "height": 960,
+        "fps_num": 24,
+        "fps_den": 1,
+        "video_codec": "h264",
+        "pixel_format": "yuv420p",
+        "sample_aspect_ratio": "1:1",
+        "has_audio": true,
+        "audio_codec": "aac",
+        "frame_count": 24,
+        "decoded_frames": 24
+      },
+      "stages": [
+        "encoding",
+        "validating"
+      ],
+      "seconds": 1.3299
+    },
+    {
+      "name": "orientation-vfr",
+      "source": "vfr.mp4",
+      "music": null,
+      "source_window_ms": [
+        5000,
+        6000
+      ],
+      "schema_version": 2,
+      "preset": "9:16",
+      "fit": "contain",
+      "sha256": "3a8d4995d30c1c15f111ec911f6d8fe3e6dce4cedef576c48e66e2792e6373fb",
+      "bytes": 29609,
+      "metadata": {
+        "duration_ms": 1000,
+        "requested_duration_ms": 1000,
+        "width": 540,
+        "height": 960,
+        "fps_num": 24,
+        "fps_den": 1,
+        "video_codec": "h264",
+        "pixel_format": "yuv420p",
+        "sample_aspect_ratio": "1:1",
+        "has_audio": false,
+        "audio_codec": null,
+        "frame_count": 24,
+        "decoded_frames": 24
+      },
+      "stages": [
+        "encoding",
+        "validating"
+      ],
+      "seconds": 0.9779
+    },
+    {
+      "name": "source-volume-1",
+      "source": "horizontal.mp4",
+      "music": null,
+      "source_window_ms": [
+        5000,
+        6000
+      ],
+      "schema_version": 2,
+      "preset": "9:16",
+      "fit": "cover",
+      "sha256": "7b9e8df33075e23be1744ffe03c2a60cb144bf766a0e473761a0d4df7e8dccba",
+      "bytes": 37791,
+      "metadata": {
+        "duration_ms": 1000,
+        "requested_duration_ms": 1000,
+        "width": 540,
+        "height": 960,
+        "fps_num": 24,
+        "fps_den": 1,
+        "video_codec": "h264",
+        "pixel_format": "yuv420p",
+        "sample_aspect_ratio": "1:1",
+        "has_audio": true,
+        "audio_codec": "aac",
+        "frame_count": 24,
+        "decoded_frames": 24
+      },
+      "stages": [
+        "encoding",
+        "validating"
+      ],
+      "seconds": 0.6434
+    },
+    {
+      "name": "source-volume-0.25",
+      "source": "horizontal.mp4",
+      "music": null,
+      "source_window_ms": [
+        5000,
+        6000
+      ],
+      "schema_version": 2,
+      "preset": "9:16",
+      "fit": "cover",
+      "sha256": "04dbfee36dcbace4c5d05a94c32f2024aafb9cfe421767e4eca313668e7bf3e9",
+      "bytes": 32691,
+      "metadata": {
+        "duration_ms": 1000,
+        "requested_duration_ms": 1000,
+        "width": 540,
+        "height": 960,
+        "fps_num": 24,
+        "fps_den": 1,
+        "video_codec": "h264",
+        "pixel_format": "yuv420p",
+        "sample_aspect_ratio": "1:1",
+        "has_audio": true,
+        "audio_codec": "aac",
+        "frame_count": 24,
+        "decoded_frames": 24
+      },
+      "stages": [
+        "encoding",
+        "validating"
+      ],
+      "seconds": 0.6649
+    },
+    {
+      "name": "source-volume-2",
+      "source": "horizontal.mp4",
+      "music": null,
+      "source_window_ms": [
+        5000,
+        6000
+      ],
+      "schema_version": 2,
+      "preset": "9:16",
+      "fit": "cover",
+      "sha256": "09cce27cb19d6d9ad9a77a24410fd632df1865f0c89d5e60dce1da94ebee08f2",
+      "bytes": 38853,
+      "metadata": {
+        "duration_ms": 1000,
+        "requested_duration_ms": 1000,
+        "width": 540,
+        "height": 960,
+        "fps_num": 24,
+        "fps_den": 1,
+        "video_codec": "h264",
+        "pixel_format": "yuv420p",
+        "sample_aspect_ratio": "1:1",
+        "has_audio": true,
+        "audio_codec": "aac",
+        "frame_count": 24,
+        "decoded_frames": 24
+      },
+      "stages": [
+        "encoding",
+        "validating"
+      ],
+      "seconds": 0.5119
+    },
+    {
+      "name": "fades-middle",
+      "source": "horizontal.mp4",
+      "music": null,
+      "source_window_ms": [
+        5000,
+        6000
+      ],
+      "schema_version": 2,
+      "preset": "9:16",
+      "fit": "cover",
+      "sha256": "7b9e8df33075e23be1744ffe03c2a60cb144bf766a0e473761a0d4df7e8dccba",
+      "bytes": 37791,
+      "metadata": {
+        "duration_ms": 1000,
+        "requested_duration_ms": 1000,
+        "width": 540,
+        "height": 960,
+        "fps_num": 24,
+        "fps_den": 1,
+        "video_codec": "h264",
+        "pixel_format": "yuv420p",
+        "sample_aspect_ratio": "1:1",
+        "has_audio": true,
+        "audio_codec": "aac",
+        "frame_count": 24,
+        "decoded_frames": 24
+      },
+      "stages": [
+        "encoding",
+        "validating"
+      ],
+      "seconds": 0.7833
+    },
+    {
+      "name": "fade-in",
+      "source": "horizontal.mp4",
+      "music": null,
+      "source_window_ms": [
+        2000,
+        3000
+      ],
+      "schema_version": 2,
+      "preset": "9:16",
+      "fit": "cover",
+      "sha256": "ad1b742d360251cac4384ddcb3b73965a7c8e56e9f843c8eb66f8c0d587b489d",
+      "bytes": 34613,
+      "metadata": {
+        "duration_ms": 1000,
+        "requested_duration_ms": 1000,
+        "width": 540,
+        "height": 960,
+        "fps_num": 24,
+        "fps_den": 1,
+        "video_codec": "h264",
+        "pixel_format": "yuv420p",
+        "sample_aspect_ratio": "1:1",
+        "has_audio": true,
+        "audio_codec": "aac",
+        "frame_count": 24,
+        "decoded_frames": 24
+      },
+      "stages": [
+        "encoding",
+        "validating"
+      ],
+      "seconds": 0.6397
+    },
+    {
+      "name": "fade-out",
+      "source": "horizontal.mp4",
+      "music": null,
+      "source_window_ms": [
+        10000,
+        11000
+      ],
+      "schema_version": 2,
+      "preset": "9:16",
+      "fit": "cover",
+      "sha256": "f958808472389e6fe85919c528aec26de168c0d340978340f85eb66572f1c06d",
+      "bytes": 33948,
+      "metadata": {
+        "duration_ms": 1000,
+        "requested_duration_ms": 1000,
+        "width": 540,
+        "height": 960,
+        "fps_num": 24,
+        "fps_den": 1,
+        "video_codec": "h264",
+        "pixel_format": "yuv420p",
+        "sample_aspect_ratio": "1:1",
+        "has_audio": true,
+        "audio_codec": "aac",
+        "frame_count": 24,
+        "decoded_frames": 24
+      },
+      "stages": [
+        "encoding",
+        "validating"
+      ],
+      "seconds": 0.7253
+    },
+    {
+      "name": "music-offset-middle",
+      "source": "horizontal.mp4",
+      "music": "music-long.mp3",
+      "source_window_ms": [
+        5000,
+        6000
+      ],
+      "schema_version": 2,
+      "preset": "9:16",
+      "fit": "cover",
+      "sha256": "57cb3223d7f9251c64d590c83d25372c82fc9416e0fb14594e8ed1b7182f1963",
+      "bytes": 38866,
+      "metadata": {
+        "duration_ms": 1000,
+        "requested_duration_ms": 1000,
+        "width": 540,
+        "height": 960,
+        "fps_num": 24,
+        "fps_den": 1,
+        "video_codec": "h264",
+        "pixel_format": "yuv420p",
+        "sample_aspect_ratio": "1:1",
+        "has_audio": true,
+        "audio_codec": "aac",
+        "frame_count": 24,
+        "decoded_frames": 24
+      },
+      "stages": [
+        "encoding",
+        "validating"
+      ],
+      "seconds": 0.6346
+    },
+    {
+      "name": "short-music-loop-False",
+      "source": "silent-vertical.mp4",
+      "music": "music-short.mp3",
+      "source_window_ms": [
+        5000,
+        6000
+      ],
+      "schema_version": 2,
+      "preset": "9:16",
+      "fit": "cover",
+      "sha256": "6fde076fe1d19c024849f5930dd6ecbebeaf2a5b1c6ab5da0225884eca9bdf6e",
+      "bytes": 81363,
+      "metadata": {
+        "duration_ms": 1000,
+        "requested_duration_ms": 1000,
+        "width": 540,
+        "height": 960,
+        "fps_num": 24,
+        "fps_den": 1,
+        "video_codec": "h264",
+        "pixel_format": "yuv420p",
+        "sample_aspect_ratio": "1:1",
+        "has_audio": true,
+        "audio_codec": "aac",
+        "frame_count": 24,
+        "decoded_frames": 24
+      },
+      "stages": [
+        "encoding",
+        "validating"
+      ],
+      "seconds": 0.571
+    },
+    {
+      "name": "short-music-loop-True",
+      "source": "silent-vertical.mp4",
+      "music": "music-short.mp3",
+      "source_window_ms": [
+        5000,
+        6000
+      ],
+      "schema_version": 2,
+      "preset": "9:16",
+      "fit": "cover",
+      "sha256": "6f6972ecfcc4bffd1af84718b13a5d0b068b07bf640426113874ddeddbfd9f93",
+      "bytes": 97022,
+      "metadata": {
+        "duration_ms": 1000,
+        "requested_duration_ms": 1000,
+        "width": 540,
+        "height": 960,
+        "fps_num": 24,
+        "fps_den": 1,
+        "video_codec": "h264",
+        "pixel_format": "yuv420p",
+        "sample_aspect_ratio": "1:1",
+        "has_audio": true,
+        "audio_codec": "aac",
+        "frame_count": 24,
+        "decoded_frames": 24
+      },
+      "stages": [
+        "encoding",
+        "validating"
+      ],
+      "seconds": 1.1522
+    },
+    {
+      "name": "voice-and-music",
+      "source": "horizontal.mp4",
+      "music": "music-long.mp3",
+      "source_window_ms": [
+        5000,
+        6000
+      ],
+      "schema_version": 2,
+      "preset": "9:16",
+      "fit": "cover",
+      "sha256": "f12f752abc18c16cbc0f5ce6ada3f88fcea4a7a0467d00077dad26aaf41f4741",
+      "bytes": 38190,
+      "metadata": {
+        "duration_ms": 1000,
+        "requested_duration_ms": 1000,
+        "width": 540,
+        "height": 960,
+        "fps_num": 24,
+        "fps_den": 1,
+        "video_codec": "h264",
+        "pixel_format": "yuv420p",
+        "sample_aspect_ratio": "1:1",
+        "has_audio": true,
+        "audio_codec": "aac",
+        "frame_count": 24,
+        "decoded_frames": 24
+      },
+      "stages": [
+        "encoding",
+        "validating"
+      ],
+      "seconds": 0.5533
+    },
+    {
+      "name": "text-safe-area",
+      "source": "flat.mp4",
+      "music": null,
+      "source_window_ms": [
+        5000,
+        6000
+      ],
+      "schema_version": 2,
+      "preset": "9:16",
+      "fit": "cover",
+      "sha256": "ce01f4f2e5da272fd7500f59405cca374d463abfb1d07dd63d2dde13fdfb246e",
+      "bytes": 15547,
+      "metadata": {
+        "duration_ms": 1000,
+        "requested_duration_ms": 1000,
+        "width": 540,
+        "height": 960,
+        "fps_num": 24,
+        "fps_den": 1,
+        "video_codec": "h264",
+        "pixel_format": "yuv420p",
+        "sample_aspect_ratio": "1:1",
+        "has_audio": false,
+        "audio_codec": null,
+        "frame_count": 24,
+        "decoded_frames": 24
+      },
+      "stages": [
+        "encoding",
+        "validating"
+      ],
+      "seconds": 0.5752
+    },
+    {
+      "name": "text-time-window",
+      "source": "flat.mp4",
+      "music": null,
+      "source_window_ms": [
+        4500,
+        6500
+      ],
+      "schema_version": 2,
+      "preset": "9:16",
+      "fit": "cover",
+      "sha256": "c9f355d948475424627bb5c831711bc4168b32d7535544d8e901c4f84caa7fe5",
+      "bytes": 7627,
+      "metadata": {
+        "duration_ms": 2000,
+        "requested_duration_ms": 2000,
+        "width": 540,
+        "height": 960,
+        "fps_num": 24,
+        "fps_den": 1,
+        "video_codec": "h264",
+        "pixel_format": "yuv420p",
+        "sample_aspect_ratio": "1:1",
+        "has_audio": false,
+        "audio_codec": null,
+        "frame_count": 48,
+        "decoded_frames": 48
+      },
+      "stages": [
+        "encoding",
+        "validating"
+      ],
+      "seconds": 0.6397
+    }
+  ],
+  "checks": [
+    {
+      "name": "canvas-9-16-cover_fully_validated",
+      "passed": true
+    },
+    {
+      "name": "canvas-9-16-contain_fully_validated",
+      "passed": true
+    },
+    {
+      "name": "canvas-1-1-cover_fully_validated",
+      "passed": true
+    },
+    {
+      "name": "canvas-1-1-contain_fully_validated",
+      "passed": true
+    },
+    {
+      "name": "canvas-4-5-cover_fully_validated",
+      "passed": true
+    },
+    {
+      "name": "canvas-4-5-contain_fully_validated",
+      "passed": true
+    },
+    {
+      "name": "canvas-16-9-cover_fully_validated",
+      "passed": true
+    },
+    {
+      "name": "canvas-16-9-contain_fully_validated",
+      "passed": true
+    },
+    {
+      "name": "orientation-silent-vertical_fully_validated",
+      "passed": true
+    },
+    {
+      "name": "orientation-square_fully_validated",
+      "passed": true
+    },
+    {
+      "name": "orientation-sar_fully_validated",
+      "passed": true
+    },
+    {
+      "name": "orientation-rotated_fully_validated",
+      "passed": true
+    },
+    {
+      "name": "orientation-vfr_fully_validated",
+      "passed": true
+    },
+    {
+      "name": "source-volume-1_fully_validated",
+      "passed": true
+    },
+    {
+      "name": "source-volume-0.25_fully_validated",
+      "passed": true
+    },
+    {
+      "name": "source_gain_0.25",
+      "passed": true
+    },
+    {
+      "name": "source-volume-2_fully_validated",
+      "passed": true
+    },
+    {
+      "name": "source_gain_2",
+      "passed": true
+    },
+    {
+      "name": "fades-middle_fully_validated",
+      "passed": true
+    },
+    {
+      "name": "middle_preview_does_not_restart_fades",
+      "passed": true
+    },
+    {
+      "name": "fade-in_fully_validated",
+      "passed": true
+    },
+    {
+      "name": "fade-out_fully_validated",
+      "passed": true
+    },
+    {
+      "name": "fade-in_full_trim_clock",
+      "passed": true
+    },
+    {
+      "name": "fade-out_full_trim_clock",
+      "passed": true
+    },
+    {
+      "name": "music-offset-middle_fully_validated",
+      "passed": true
+    },
+    {
+      "name": "music_uses_offset_from_trim_zero",
+      "passed": true
+    },
+    {
+      "name": "short-music-loop-False_fully_validated",
+      "passed": true
+    },
+    {
+      "name": "short_music_loop_False",
+      "passed": true
+    },
+    {
+      "name": "short-music-loop-True_fully_validated",
+      "passed": true
+    },
+    {
+      "name": "short_music_loop_True",
+      "passed": true
+    },
+    {
+      "name": "music_tone_really_decoded",
+      "passed": true
+    },
+    {
+      "name": "voice-and-music_fully_validated",
+      "passed": true
+    },
+    {
+      "name": "default_mix_keeps_source_tone_dominant",
+      "passed": true
+    },
+    {
+      "name": "synthetic_mix_no_gross_clipping",
+      "passed": true
+    },
+    {
+      "name": "text-safe-area_fully_validated",
+      "passed": true
+    },
+    {
+      "name": "rgb_frame_0.25_complete",
+      "passed": true
+    },
+    {
+      "name": "burned_text_within_safe_area",
+      "passed": true
+    },
+    {
+      "name": "text-time-window_fully_validated",
+      "passed": true
+    },
+    {
+      "name": "rgb_frame_0.1_complete",
+      "passed": true
+    },
+    {
+      "name": "rgb_frame_0.8_complete",
+      "passed": true
+    },
+    {
+      "name": "rgb_frame_1.8_complete",
+      "passed": true
+    },
+    {
+      "name": "text_appears_only_during_absolute_interval",
+      "passed": true
+    },
+    {
+      "name": "all_fixture_hashes_and_modes_unchanged",
+      "passed": true,
+      "count": 13
+    }
+  ],
+  "audio_and_text_metrics": {
+    "source_gain_0.25": 0.25044457485873,
+    "source_gain_2": 2.0015985711615474,
+    "middle_fade_rms_ratio": 1.0,
+    "fade-in": {
+      "first_100ms_rms": 0.0005094365682322523,
+      "last_100ms_rms": 0.008398682385518092
+    },
+    "fade-out": {
+      "first_100ms_rms": 0.008434556666143567,
+      "last_100ms_rms": 0.0005093404619405552
+    },
+    "music_offset": {
+      "expected_offset_ms": 3000,
+      "actual_rms": 0.02303659906890812,
+      "expected_rms": 0.022969977180575054
+    },
+    "short_music_loop_False": 0.0,
+    "short_music_loop_True": 0.02893570810978565,
+    "default_mix": {
+      "source_1000hz": 0.018713898870653785,
+      "music_880hz": 0.004875503364167116,
+      "peak_abs": 0.04844383895397186
+    },
+    "text_safe_area": {
+      "scaled_resolution": [
+        135,
+        240
+      ],
+      "bbox": [
+        11,
+        19,
+        123,
+        221
+      ]
+    },
+    "text_absolute_timing_pixels": [
+      0,
+      217,
+      0
+    ]
+  },
+  "elapsed_seconds": 32.682
+}

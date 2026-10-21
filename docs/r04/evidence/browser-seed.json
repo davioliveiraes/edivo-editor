@@ -1,0 +1,155 @@
+{
+  "project": {
+    "id": "09b152db-5ca2-4868-b23a-8a00e14cd96d",
+    "name": "QA R04 r04-composition-1792458229312522477",
+    "purpose": "Mídia sintética própria para QA R04",
+    "target_preset": "16:9",
+    "created_at": "2026-10-20T01:03:51.746650Z",
+    "updated_at": "2026-10-20T01:03:51.746655Z"
+  },
+  "recovered_by": "r04-composition-1792503279321811304",
+  "assets": {
+    "horizontal.mp4": {
+      "id": "3ef66425-7b0d-4305-b652-80649cc4dccc",
+      "project_id": "09b152db-5ca2-4868-b23a-8a00e14cd96d",
+      "kind": "source_video",
+      "original_filename": "horizontal.mp4",
+      "checksum_sha256": "2a3618f20e5dc152a3a6b3417d4b0ab628bf6d4bbc970fdf2faf2c2eeecc9ea7",
+      "byte_size": 2272529,
+      "mime_detected": "video/mp4",
+      "duration_ms": 12012,
+      "width": 640,
+      "height": 360,
+      "fps_num": 30000,
+      "fps_den": 1001,
+      "video_codec": "h264",
+      "has_audio": true,
+      "audio_codec": "aac",
+      "created_at": "2026-10-20T01:03:51.902799Z"
+    }
+  },
+  "legacy_revision": {
+    "id": "7643bc46-f0f4-484a-9b6e-f135b1d1837a",
+    "project_id": "09b152db-5ca2-4868-b23a-8a00e14cd96d",
+    "revision_number": 1,
+    "created_at": "2026-10-20T01:03:51.930149Z",
+    "source_media_id": "3ef66425-7b0d-4305-b652-80649cc4dccc",
+    "trim": {
+      "start_ms": 2000,
+      "end_ms": 11000
+    },
+    "canvas": {
+      "preset": "16:9",
+      "fit": "cover",
+      "focal_x": 0.5,
+      "focal_y": 0.5
+    },
+    "schema_version": 1
+  },
+  "music": {
+    "id": "963eaef5-513a-41a0-8d56-0b3989631310",
+    "project_id": "09b152db-5ca2-4868-b23a-8a00e14cd96d",
+    "original_filename": "music-short.mp3",
+    "checksum_sha256": "6bfc6c3ce72a59b9271b77a442d0eccb1e31add851755a888a677802d25809dd",
+    "byte_size": 33069,
+    "mime_detected": "audio/mpeg",
+    "duration_ms": 2040,
+    "codec": "mp3",
+    "sample_rate": 48000,
+    "channels": 1,
+    "created_at": "2026-10-20T13:36:16.942483Z"
+  },
+  "saved_revision": {
+    "id": "aa5a9c4d-6273-40a0-a36c-29fbe5f1fa74",
+    "project_id": "09b152db-5ca2-4868-b23a-8a00e14cd96d",
+    "revision_number": 2,
+    "created_at": "2026-10-20T13:36:20.345230Z",
+    "source_media_id": "3ef66425-7b0d-4305-b652-80649cc4dccc",
+    "trim": {
+      "start_ms": 2000,
+      "end_ms": 11000
+    },
+    "canvas": {
+      "preset": "9:16",
+      "fit": "contain",
+      "focal_x": 0.5,
+      "focal_y": 0.5
+    },
+    "schema_version": 2,
+    "text_overlays": [
+      {
+        "id": "3fc43462-3df5-485e-8271-acbc0b56c625",
+        "text": "Edição: 50% 'á' \\ Ω\nAção, çã — teste",
+        "start_ms": 2000,
+        "end_ms": 10000,
+        "position": "top",
+        "style": "blue_outline",
+        "size": "medium"
+      },
+      {
+        "id": "c70eb2bd-f991-4dea-b6a2-e9cd754f4b08",
+        "text": "Centro — texto 2",
+        "start_ms": 3000,
+        "end_ms": 9000,
+        "position": "center",
+        "style": "white_outline",
+        "size": "small"
+      },
+      {
+        "id": "95f4b8af-4930-432a-986c-0e0cb49e4af4",
+        "text": "Base — texto 3",
+        "start_ms": 4000,
+        "end_ms": 8000,
+        "position": "bottom",
+        "style": "white_plain",
+        "size": "large"
+      }
+    ],
+    "audio": {
+      "source_volume": 1.25,
+      "background_audio_id": "963eaef5-513a-41a0-8d56-0b3989631310",
+      "background_volume": 0.15,
+      "background_loop": true,
+      "fade_in_ms": 500,
+      "fade_out_ms": 500
+    }
+  },
+  "preview": {
+    "id": "763490d8-dd20-4fbe-addf-048639761321",
+    "project_id": "09b152db-5ca2-4868-b23a-8a00e14cd96d",
+    "revision_id": "aa5a9c4d-6273-40a0-a36c-29fbe5f1fa74",
+    "revision_number": 2,
+    "preview_start_ms": 5000,
+    "duration_ms": 4000,
+    "status": "completed",
+    "stage": "completed",
+    "attempts": 1,
+    "created_at": "2026-10-20T20:49:05.073441Z",
+    "started_at": "2026-10-20T20:49:05.251817Z",
+    "finished_at": "2026-10-20T20:49:07.374348Z",
+    "error_code": null,
+    "artifact_available": true,
+    "checksum_sha256": "2eaf6b90dc138988898f099b6147e94f3d70ce5d4ef8a8d5f6b5cbdf07cd2741",
+    "byte_size": 210935,
+    "status_url": "/api/v1/projects/09b152db-5ca2-4868-b23a-8a00e14cd96d/previews/763490d8-dd20-4fbe-addf-048639761321",
+    "file_url": "/api/v1/projects/09b152db-5ca2-4868-b23a-8a00e14cd96d/previews/763490d8-dd20-4fbe-addf-048639761321/file"
+  },
+  "storage_state": {
+    "cookies": [],
+    "origins": [
+      {
+        "origin": "http://127.0.0.1:5173",
+        "localStorage": [
+          {
+            "name": "edivo:preview:09b152db-5ca2-4868-b23a-8a00e14cd96d",
+            "value": "763490d8-dd20-4fbe-addf-048639761321"
+          },
+          {
+            "name": "edivo-theme",
+            "value": "light"
+          }
+        ]
+      }
+    ]
+  }
+}

@@ -1,0 +1,6 @@
+{
+  "status": "passed",
+  "command": "docker compose exec -T api sh -c 'EDIVO_QA_DATABASE_URL=\"$EDIVO_DATABASE_URL\" EDIVO_QA_QUEUE_POSTGRES=1 pytest -q tests/test_preview_queue_postgres.py'",
+  "result": "8 passed, 1 upstream warning in 2.71s",
+  "scope": "Final frozen backend image after reduced-attempt-limit recovery fix. Production worker stopped for isolation. Eight distinct real PostgreSQL/HTTP cases; repeated runs are not additional cases."
+}

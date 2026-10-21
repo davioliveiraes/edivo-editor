@@ -3,9 +3,10 @@ import { ArrowLeft, FileVideo, LoaderCircle, Save, ShieldCheck } from 'lucide-re
 import { Button } from '@/components/ui/button';
 import {
   editSpecApi,
+  editSpecError,
   initialSpec,
   revisionSpec,
-  type EditSpec,
+  type EditSpecV2,
   type EditSpecRevision,
 } from '@/lib/api/edit-spec';
 import type { MediaAsset } from '@/lib/api/media';
@@ -13,6 +14,9 @@ import { ApiError, projectRequest, publicError, type Page, type Project } from '
 import { formatDuration, formatFps } from '@/lib/format';
 import { VideoPlayer, type PlayerHandle } from './video-player';
 import { Timeline } from './timeline';
+import { TextPanel } from './text-panel';
+import { AudioPanel } from './audio-panel';
+import { PreviewPanel } from './preview-panel';
 
 interface EditorData {
   project: Project;
@@ -25,11 +29,13 @@ function EditorSession({ data }: { data: EditorData }) {
   const [revision, setRevision] = useState(data.revision);
   const [assets, setAssets] = useState(data.media.items);
   const [selectedId, setSelectedId] = useState(revision?.source_media_id ?? assets[0]?.id ?? '');
-  const [draft, setDraft] = useState<EditSpec | null>(() =>
+  const [draft, setDraft] = useState<EditSpecV2 | null>(() =>
     revision ? revisionSpec(revision) : assets[0] ? initialSpec(project, assets[0]) : null,
   );
   const [baseline, setBaseline] = useState(draft);
   const [busy, setBusy] = useState(false);
+  const [audioBusy, setAudioBusy] = useState(false);
+  const [trimError, setTrimError] = useState('');
   const [reloading, setReloading] = useState(false);
   const [saveError, setSaveError] = useState('');
   const [conflict, setConflict] = useState(false);
@@ -42,17 +48,19 @@ function EditorSession({ data }: { data: EditorData }) {
   const [moreBusy, setMoreBusy] = useState(false);
   const [moreError, setMoreError] = useState('');
   const asset = assets.find((item) => item.id === selectedId);
+  const locked = busy || audioBusy;
+  const validationError = draft ? editSpecError(draft) : '';
 
   useEffect(() => {
     const protect = (event: Event) => {
       if (
-        busy ||
+        locked ||
         (dirty && !window.confirm('Há alterações não salvas. Deseja sair e descartá-las?'))
       )
         event.preventDefault();
     };
     const unload = (event: BeforeUnloadEvent) => {
-      if (dirty || busy) {
+      if (dirty || locked) {
         event.preventDefault();
         event.returnValue = '';
       }
@@ -63,35 +71,64 @@ function EditorSession({ data }: { data: EditorData }) {
       window.removeEventListener('edivo:before-navigate', protect);
       window.removeEventListener('beforeunload', unload);
     };
-  }, [dirty, busy]);
+  }, [dirty, locked]);
   useEffect(() => () => operation.current?.abort(), []);
 
-  function updateDraft(next: EditSpec) {
+  function updateDraft(next: EditSpecV2) {
     setDraft(next);
+    setTrimError('');
     setNotice('');
     if (!conflict) setSaveError('');
   }
   function selectSource(id: string) {
-    if (busy || id === selectedId) return;
+    if (locked || id === selectedId) return;
+    const next = assets.find((item) => item.id === id);
+    if (!next) return;
+    const removeTexts = !!draft?.text_overlays.length;
+    const resetFades =
+      !!draft && draft.audio.fade_in_ms + draft.audio.fade_out_ms > next.duration_ms;
     if (
-      dirty &&
+      (dirty || removeTexts || resetFades) &&
       !window.confirm(
-        'Há alterações não salvas. Trocar o vídeo reiniciará o trecho e manterá o enquadramento. Deseja continuar?',
+        'Trocar o vídeo reiniciará o trecho e manterá o enquadramento e a música.' +
+          (removeTexts ? ' Os textos serão descartados, inclusive os da edição salva.' : '') +
+          (resetFades ? ' Os fades incompatíveis serão zerados.' : '') +
+          (dirty ? ' Há alterações não salvas.' : '') +
+          ' Deseja continuar?',
       )
     )
       return;
-    const next = assets.find((item) => item.id === id);
-    if (!next) return;
+    const current = draft ?? initialSpec(project, next);
     setSelectedId(id);
     updateDraft({
-      ...(draft ?? initialSpec(project, next)),
+      ...current,
       source_media_id: next.id,
       trim: { start_ms: 0, end_ms: next.duration_ms },
+      text_overlays: [],
+      audio: resetFades ? { ...current.audio, fade_in_ms: 0, fade_out_ms: 0 } : current.audio,
     });
     setPlayhead(0);
   }
+  function updateTrim(trim: EditSpecV2['trim']) {
+    if (!draft || locked) return;
+    if (
+      draft.text_overlays.some((text) => text.start_ms < trim.start_ms || text.end_ms > trim.end_ms)
+    ) {
+      setTrimError(
+        'O novo trecho deixaria textos fora do intervalo. Ajuste os tempos dos textos ou remova-os antes de alterar o corte.',
+      );
+      return;
+    }
+    if (draft.audio.fade_in_ms + draft.audio.fade_out_ms > trim.end_ms - trim.start_ms) {
+      setTrimError(
+        'O novo trecho seria menor que a soma dos fades. Reduza os fades antes de alterar o corte.',
+      );
+      return;
+    }
+    updateDraft({ ...draft, trim });
+  }
   async function save() {
-    if (!draft || busy || conflict) return;
+    if (!draft || locked || conflict || validationError) return;
     const controller = new AbortController();
     operation.current = controller;
     const timeout = window.setTimeout(() => controller.abort(), 15_000);
@@ -123,7 +160,7 @@ function EditorSession({ data }: { data: EditorData }) {
     }
   }
   async function reloadRevision() {
-    if (busy) return;
+    if (locked) return;
     if (
       dirty &&
       !window.confirm(
@@ -214,7 +251,7 @@ function EditorSession({ data }: { data: EditorData }) {
           </span>
           {draft && (
             <Button
-              disabled={busy || conflict || (!!revision && !dirty)}
+              disabled={locked || conflict || !!validationError || (!!revision && !dirty)}
               onClick={() => void save()}
             >
               <Save size={15} aria-hidden="true" />
@@ -242,6 +279,16 @@ function EditorSession({ data }: { data: EditorData }) {
           {notice}
         </p>
       )}
+      {validationError && (
+        <p className="feedback error" role="alert">
+          {validationError}
+        </p>
+      )}
+      {trimError && (
+        <p className="feedback error" role="alert">
+          {trimError}
+        </p>
+      )}
       {!asset ? (
         <div className="workspace-state empty-state">
           <FileVideo size={34} aria-hidden="true" />
@@ -252,159 +299,192 @@ function EditorSession({ data }: { data: EditorData }) {
           </a>
         </div>
       ) : (
-        <div className="editor-main">
-          <div className="editor-preview-column">
-            <VideoPlayer
-              key={asset.id}
-              ref={player}
-              projectId={project.id}
-              asset={asset}
-              trim={draft?.trim ?? { start_ms: 0, end_ms: asset.duration_ms }}
-              canvas={draft?.canvas}
-              onTimeChange={setPlayhead}
-            />
-            {draft && (
-              <Timeline
-                duration={asset.duration_ms}
-                trim={draft.trim}
-                playhead={playhead}
-                filename={asset.original_filename}
-                disabled={busy}
-                onTrim={(trim) => updateDraft({ ...draft, trim })}
-                onSeek={(milliseconds) => player.current?.seek(milliseconds)}
+        <>
+          <div className="editor-main">
+            <div className="editor-preview-column">
+              <VideoPlayer
+                key={asset.id}
+                ref={player}
+                projectId={project.id}
+                asset={asset}
+                trim={draft?.trim ?? { start_ms: 0, end_ms: asset.duration_ms }}
+                canvas={draft?.canvas}
+                texts={draft?.text_overlays}
+                sourceVolume={draft?.audio.source_volume}
+                onTimeChange={setPlayhead}
               />
-            )}
-          </div>
-          <aside className="editor-inspector" aria-label="Configuração da fonte">
-            <p className="section-kicker">01 / FONTE</p>
-            <h2>O ponto de partida.</h2>
-            <label htmlFor="editor-source">Vídeo de origem</label>
-            <select
-              id="editor-source"
-              value={selectedId}
-              disabled={busy}
-              onChange={(event) => selectSource(event.target.value)}
-            >
-              {assets.map((item) => (
-                <option key={item.id} value={item.id}>
-                  {item.original_filename}
-                </option>
-              ))}
-            </select>
-            {offset < data.media.total && (
-              <Button variant="outline" disabled={moreBusy} onClick={() => void moreSources()}>
-                {moreBusy ? 'Carregando fontes…' : 'Carregar mais fontes'}
-              </Button>
-            )}
-            {moreError && (
-              <p role="alert" className="feedback error">
-                {moreError}
+              {draft && (
+                <Timeline
+                  duration={asset.duration_ms}
+                  trim={draft.trim}
+                  playhead={playhead}
+                  filename={asset.original_filename}
+                  disabled={locked}
+                  onTrim={updateTrim}
+                  onSeek={(milliseconds) => player.current?.seek(milliseconds)}
+                />
+              )}
+            </div>
+            <aside className="editor-inspector" aria-label="Configuração da fonte">
+              <p className="section-kicker">01 / FONTE</p>
+              <h2>O ponto de partida.</h2>
+              <label htmlFor="editor-source">Vídeo de origem</label>
+              <select
+                id="editor-source"
+                value={selectedId}
+                disabled={locked}
+                onChange={(event) => selectSource(event.target.value)}
+              >
+                {assets.map((item) => (
+                  <option key={item.id} value={item.id}>
+                    {item.original_filename}
+                  </option>
+                ))}
+              </select>
+              {offset < data.media.total && (
+                <Button variant="outline" disabled={moreBusy} onClick={() => void moreSources()}>
+                  {moreBusy ? 'Carregando fontes…' : 'Carregar mais fontes'}
+                </Button>
+              )}
+              {moreError && (
+                <p role="alert" className="feedback error">
+                  {moreError}
+                </p>
+              )}
+              <dl className="source-details">
+                <div>
+                  <dt>Duração</dt>
+                  <dd>{formatDuration(asset.duration_ms)}</dd>
+                </div>
+                <div>
+                  <dt>Resolução codificada</dt>
+                  <dd>
+                    {asset.width} × {asset.height}
+                  </dd>
+                </div>
+                <div>
+                  <dt>Quadros</dt>
+                  <dd>{formatFps(asset.fps_num, asset.fps_den)}</dd>
+                </div>
+                <div>
+                  <dt>Codecs</dt>
+                  <dd>
+                    {asset.video_codec?.toUpperCase() ?? 'Não informado'} ·{' '}
+                    {asset.has_audio
+                      ? (asset.audio_codec?.toUpperCase() ?? 'Áudio presente')
+                      : 'Sem áudio'}
+                  </dd>
+                </div>
+              </dl>
+              <p className="field-help">
+                A orientação de exibição é interpretada pelo navegador. Nem todo codec MP4 é
+                compatível com reprodução HTML5.
               </p>
-            )}
-            <dl className="source-details">
-              <div>
-                <dt>Duração</dt>
-                <dd>{formatDuration(asset.duration_ms)}</dd>
-              </div>
-              <div>
-                <dt>Resolução codificada</dt>
-                <dd>
-                  {asset.width} × {asset.height}
-                </dd>
-              </div>
-              <div>
-                <dt>Quadros</dt>
-                <dd>{formatFps(asset.fps_num, asset.fps_den)}</dd>
-              </div>
-              <div>
-                <dt>Codecs</dt>
-                <dd>
-                  {asset.video_codec?.toUpperCase() ?? 'Não informado'} ·{' '}
-                  {asset.has_audio
-                    ? (asset.audio_codec?.toUpperCase() ?? 'Áudio presente')
-                    : 'Sem áudio'}
-                </dd>
-              </div>
-            </dl>
-            <p className="field-help">
-              A orientação de exibição é interpretada pelo navegador. Nem todo codec MP4 é
-              compatível com reprodução HTML5.
-            </p>
-            {draft && (
-              <fieldset className="canvas-controls" disabled={busy}>
-                <legend>03 / COMPOSIÇÃO</legend>
-                <p className="inspector-subtitle">Um formato para sua ideia.</p>
-                <div className="preset-options" aria-label="Proporção da composição">
-                  {(['9:16', '1:1', '4:5', '16:9'] as const).map((preset) => (
-                    <button
-                      type="button"
-                      key={preset}
-                      aria-pressed={draft.canvas.preset === preset}
-                      onClick={() => updateDraft({ ...draft, canvas: { ...draft.canvas, preset } })}
-                    >
-                      <span
-                        className="preset-shape"
-                        style={{ aspectRatio: preset.replace(':', '/') }}
-                        aria-hidden="true"
-                      />
-                      {preset}
-                    </button>
-                  ))}
-                </div>
-                <p className="field-help">
-                  Referências de formato: 1080 × 1920, 1080 × 1080, 1080 × 1350 e 1920 × 1080.
-                  Nenhum vídeo é gerado.
-                </p>
-                <fieldset className="fit-options">
-                  <legend>Enquadramento</legend>
-                  {(['cover', 'contain'] as const).map((fit) => (
-                    <label key={fit}>
-                      <input
-                        type="radio"
-                        name="canvas-fit"
-                        checked={draft.canvas.fit === fit}
-                        onChange={() => updateDraft({ ...draft, canvas: { ...draft.canvas, fit } })}
-                      />
-                      {fit === 'cover' ? 'Preencher (cover)' : 'Ajustar (contain)'}
-                    </label>
-                  ))}
-                </fieldset>
-                <div className="focal-controls">
-                  {(['focal_x', 'focal_y'] as const).map((axis) => (
-                    <div key={axis} className="focal-field">
-                      <label htmlFor={`editor-${axis}`}>
-                        {axis === 'focal_x' ? 'Ponto focal horizontal' : 'Ponto focal vertical'}
+              {draft && (
+                <fieldset className="canvas-controls" disabled={locked}>
+                  <legend>03 / COMPOSIÇÃO</legend>
+                  <p className="inspector-subtitle">Um formato para sua ideia.</p>
+                  <div className="preset-options" aria-label="Proporção da composição">
+                    {(['9:16', '1:1', '4:5', '16:9'] as const).map((preset) => (
+                      <button
+                        type="button"
+                        key={preset}
+                        aria-pressed={draft.canvas.preset === preset}
+                        onClick={() =>
+                          updateDraft({ ...draft, canvas: { ...draft.canvas, preset } })
+                        }
+                      >
+                        <span
+                          className="preset-shape"
+                          style={{ aspectRatio: preset.replace(':', '/') }}
+                          aria-hidden="true"
+                        />
+                        {preset}
+                      </button>
+                    ))}
+                  </div>
+                  <p className="field-help">
+                    Referências de formato: 1080 × 1920, 1080 × 1080, 1080 × 1350 e 1920 × 1080. A
+                    visualização mantém o original intacto.
+                  </p>
+                  <fieldset className="fit-options">
+                    <legend>Enquadramento</legend>
+                    {(['cover', 'contain'] as const).map((fit) => (
+                      <label key={fit}>
+                        <input
+                          type="radio"
+                          name="canvas-fit"
+                          checked={draft.canvas.fit === fit}
+                          onChange={() =>
+                            updateDraft({ ...draft, canvas: { ...draft.canvas, fit } })
+                          }
+                        />
+                        {fit === 'cover' ? 'Preencher (cover)' : 'Ajustar (contain)'}
                       </label>
-                      <output>{Math.round(draft.canvas[axis] * 100)}%</output>
-                      <input
-                        id={`editor-${axis}`}
-                        type="range"
-                        aria-label={
-                          axis === 'focal_x' ? 'Ponto focal horizontal' : 'Ponto focal vertical'
-                        }
-                        min={0}
-                        max={1}
-                        step={0.01}
-                        value={draft.canvas[axis]}
-                        disabled={busy || draft.canvas.fit === 'contain'}
-                        onChange={(event) =>
-                          updateDraft({
-                            ...draft,
-                            canvas: { ...draft.canvas, [axis]: Number(event.target.value) },
-                          })
-                        }
-                      />
-                    </div>
-                  ))}
-                </div>
-                <p className="field-help">
-                  Cover recorta bordas na visualização. Contain mostra o vídeo inteiro e mantém o
-                  ponto focal salvo, sem aplicá-lo. A composição é apenas visual no navegador.
-                </p>
-              </fieldset>
-            )}
-          </aside>
-        </div>
+                    ))}
+                  </fieldset>
+                  <div className="focal-controls">
+                    {(['focal_x', 'focal_y'] as const).map((axis) => (
+                      <div key={axis} className="focal-field">
+                        <label htmlFor={`editor-${axis}`}>
+                          {axis === 'focal_x' ? 'Ponto focal horizontal' : 'Ponto focal vertical'}
+                        </label>
+                        <output>{Math.round(draft.canvas[axis] * 100)}%</output>
+                        <input
+                          id={`editor-${axis}`}
+                          type="range"
+                          aria-label={
+                            axis === 'focal_x' ? 'Ponto focal horizontal' : 'Ponto focal vertical'
+                          }
+                          min={0}
+                          max={1}
+                          step={0.01}
+                          value={draft.canvas[axis]}
+                          disabled={locked || draft.canvas.fit === 'contain'}
+                          onChange={(event) =>
+                            updateDraft({
+                              ...draft,
+                              canvas: { ...draft.canvas, [axis]: Number(event.target.value) },
+                            })
+                          }
+                        />
+                      </div>
+                    ))}
+                  </div>
+                  <p className="field-help">
+                    Cover recorta bordas na visualização. Contain mostra o vídeo inteiro e mantém o
+                    ponto focal salvo, sem aplicá-lo. A composição é apenas visual no navegador.
+                  </p>
+                </fieldset>
+              )}
+            </aside>
+          </div>
+          {draft && (
+            <div className="editor-composition-panels">
+              <TextPanel
+                spec={draft}
+                disabled={locked}
+                onChange={(texts) => updateDraft({ ...draft, text_overlays: texts })}
+              />
+              <div className="editor-audio-preview-column">
+                <AudioPanel
+                  projectId={project.id}
+                  audio={draft.audio}
+                  hasSourceAudio={asset.has_audio}
+                  disabled={busy}
+                  onChange={(audio) => updateDraft({ ...draft, audio })}
+                  onBusyChange={setAudioBusy}
+                />
+                <PreviewPanel
+                  projectId={project.id}
+                  revision={revision}
+                  dirty={dirty}
+                  busy={locked || conflict}
+                />
+              </div>
+            </div>
+          )}
+        </>
       )}
     </div>
   );

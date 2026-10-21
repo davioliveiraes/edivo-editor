@@ -1,0 +1,69 @@
+{
+  "status": "passed",
+  "recorded_at": "2026-10-21T02:14:44.007622+00:00",
+  "scope": "Final validation assembled from actual default backend/operational run and separately executed PostgreSQL/frontend checks. The stopped harness is not relabelled as a passing invocation.",
+  "source_harness": {
+    "evidence": "final-regression.jsonl",
+    "exit_code": 1,
+    "completed_checks": 23,
+    "stopped_at": "Vitest exited1 without detailed output retained by the sanitized harness",
+    "subsequent_frontend_passes": 2,
+    "source_changed_between_vitest_runs": false
+  },
+  "operational_checks": {
+    "passed": 20,
+    "names": [
+      "compose_config",
+      "compose_startup",
+      "backend_runtime_versions",
+      "frontend_runtime_versions",
+      "api_health_200",
+      "api_ready_200",
+      "api_capabilities_200",
+      "frontend_vite_proxy_200",
+      "alembic_baseline_and_repeatability",
+      "postgres_volume_persistence",
+      "shared_storage_persistence_after_restart",
+      "ffmpeg_synthetic_smoke_api",
+      "ffmpeg_synthetic_smoke_worker",
+      "only_loopback_api_and_frontend_ports",
+      "persistent_volume_shared_bind_mount_and_images",
+      "database_offline_health_200_ready_503",
+      "database_recovery_ready_200",
+      "storage_inaccessible_ready_503",
+      "worker_idle",
+      "worker_sigterm_exit_0"
+    ]
+  },
+  "backend": {
+    "command": "docker compose exec -T api pytest",
+    "passed": 692,
+    "skipped": 8,
+    "skip_reason": "Explicitly enabled PostgreSQL operational QA only",
+    "warning_count": 1,
+    "seconds": 71.63
+  },
+  "postgres_opt_in": {
+    "passed": 8,
+    "distinct_cases": 8,
+    "seconds": 3.45,
+    "evidence": "queue-postgres-final-image.json"
+  },
+  "backend_distinct_passed_cases": 700,
+  "ruff": {
+    "check": "passed",
+    "format": "passed",
+    "files": 79
+  },
+  "frontend": {
+    "passed": 149,
+    "test_files": 7,
+    "vitest_seconds": 15.93,
+    "eslint": "passed",
+    "prettier": "passed",
+    "typescript": "passed",
+    "vite_build": "passed",
+    "evidence": "frontend-final-qa.json"
+  },
+  "runtime": "runtime-final.json"
+}

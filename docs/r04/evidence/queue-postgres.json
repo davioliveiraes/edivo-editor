@@ -1,0 +1,51 @@
+{
+  "recorded_at": "2026-10-20 18:59:39 UTC",
+  "status": "passed",
+  "scope": "Eight real PostgreSQL and HTTP operational tests, restricted to newly created synthetic QA projects. No unrelated job was claimed.",
+  "command": "docker compose exec -T api sh -c 'EDIVO_QA_DATABASE_URL=\"$EDIVO_DATABASE_URL\" EDIVO_QA_QUEUE_POSTGRES=1 pytest -q tests/test_preview_queue_postgres.py --junitxml=/tmp/edivo-r04-queue-postgres.xml'",
+  "exit_code": 0,
+  "result": "8 passed, 1 warning in 3.90s",
+  "passed_cases": 8,
+  "warning_count": 1,
+  "cases": [
+    "two concurrent candidates claim one job only",
+    "SKIP LOCKED skips another transaction's locked job",
+    "heartbeat and stage/failure/publication fencing reject stale tokens",
+    "expired lease retries once with new token then fails at two attempts",
+    "deleted projects cannot claim or renew",
+    "clock_timestamp rejects expired lease inside an existing transaction",
+    "claim committed before subprocess and timeout persisted",
+    "failed equivalent request permits a distinct explicit retry"
+  ],
+  "isolation": "claim_next/recover_expired project_id scope was explicitly set for every operational test; production defaults remain global.",
+  "final_read_only_audit": {
+    "qa_projects": 8,
+    "all_qa_projects_soft_deleted": true,
+    "qa_jobs": 11,
+    "all_qa_jobs_failed": true,
+    "active_qa_jobs": 0,
+    "fake_completed_artifacts": 0,
+    "attempt_counts": [
+      0,
+      0,
+      0,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      2
+    ]
+  },
+  "junit": {
+    "status": "unavailable",
+    "requested_path": "/tmp/edivo-r04-queue-postgres.xml",
+    "copy_command": "docker compose cp api:/tmp/edivo-r04-queue-postgres.xml docs/r04/evidence/queue-postgres.junit.xml",
+    "copy_exit_code": 1,
+    "reason": "Docker reported the requested file absent in the current API container. The successful pytest stdout is recorded above; XML was not recreated or fabricated."
+  },
+  "worker_runtime_limits": "worker-runtime-limits.json",
+  "production_entrypoint": "Idle main was preserved during the R04.3 queue proof. Real compositor integration belongs to R04.4."
+}

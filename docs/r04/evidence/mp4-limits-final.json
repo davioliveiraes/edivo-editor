@@ -1,0 +1,88 @@
+{
+  "status": "passed",
+  "checks": [
+    {
+      "check": "real_ffmpeg_fixtures_below_file_limit",
+      "status": "passed"
+    },
+    {
+      "check": "postgres_project_created",
+      "status": "passed"
+    },
+    {
+      "check": "real_mp4_without_audio_accepted",
+      "status": "passed"
+    },
+    {
+      "check": "real_mp4_with_audio_accepted",
+      "status": "passed"
+    },
+    {
+      "check": "sha256_and_actual_bytes_match",
+      "status": "passed"
+    },
+    {
+      "check": "real_ffprobe_duration_limit_422",
+      "status": "passed"
+    },
+    {
+      "check": "file_limit_without_content_length_413",
+      "status": "passed"
+    },
+    {
+      "check": "ingress_limit_with_content_length_413",
+      "status": "passed"
+    },
+    {
+      "check": "ingress_limit_without_content_length_413",
+      "status": "passed"
+    },
+    {
+      "check": "missing_ffprobe_503",
+      "status": "passed"
+    },
+    {
+      "check": "real_ffprobe_artificial_deadline_503",
+      "status": "passed"
+    },
+    {
+      "check": "storage_unavailable_503",
+      "status": "passed"
+    },
+    {
+      "check": "extension_rejected_mp4evil",
+      "status": "passed"
+    },
+    {
+      "check": "extension_rejected_mov",
+      "status": "passed"
+    },
+    {
+      "check": "corrupt_real_mp4_422",
+      "status": "passed"
+    },
+    {
+      "check": "rejections_created_no_database_assets",
+      "status": "passed"
+    },
+    {
+      "check": "staging_clean_after_all_failures",
+      "status": "passed"
+    },
+    {
+      "check": "original_immutable_after_failures",
+      "status": "passed"
+    },
+    {
+      "check": "qa_project_soft_deleted_originals_preserved",
+      "status": "passed"
+    }
+  ],
+  "configuration": {
+    "upload_max_bytes": 65536,
+    "multipart_overhead_bytes": 1024,
+    "duration_seconds": 1
+  },
+  "data_policy": "QA projects are soft-deleted; imported originals are preserved.",
+  "timeout_note": "Real FFprobe, deliberately artificial 1 microsecond deadline."
+}

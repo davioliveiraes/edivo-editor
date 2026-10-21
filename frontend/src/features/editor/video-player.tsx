@@ -9,9 +9,11 @@ import {
 } from 'react';
 import { LoaderCircle, Pause, Play, RotateCcw, VideoOff } from 'lucide-react';
 import { Button } from '@/components/ui/button';
-import type { EditSpec } from '@/lib/api/edit-spec';
+import type { EditSpec, TextOverlay } from '@/lib/api/edit-spec';
 import type { MediaAsset } from '@/lib/api/media';
 import { formatDuration } from '@/lib/format';
+import { TextOverlays } from './text-overlays';
+import { pauseOtherVideos } from './playback';
 
 export interface PlayerHandle {
   seek: (milliseconds: number) => void;
@@ -22,13 +24,15 @@ interface PlayerProps {
   asset: MediaAsset;
   trim: EditSpec['trim'];
   canvas?: EditSpec['canvas'];
+  texts?: TextOverlay[];
+  sourceVolume?: number;
   onTimeChange?: (milliseconds: number) => void;
 }
 
 const ratios = { '9:16': 9 / 16, '1:1': 1, '4:5': 4 / 5, '16:9': 16 / 9 };
 
 export const VideoPlayer = forwardRef<PlayerHandle, PlayerProps>(function VideoPlayer(
-  { projectId, asset, trim, canvas, onTimeChange },
+  { projectId, asset, trim, canvas, texts = [], sourceVolume = 1, onTimeChange },
   ref,
 ) {
   const videoRef = useRef<HTMLVideoElement>(null);
@@ -85,6 +89,10 @@ export const VideoPlayer = forwardRef<PlayerHandle, PlayerProps>(function VideoP
     frame = window.requestAnimationFrame(tick);
     return () => window.cancelAnimationFrame(frame);
   }, [playing, reportTime]);
+
+  useEffect(() => {
+    if (videoRef.current) videoRef.current.volume = Math.max(0, Math.min(1, sourceVolume));
+  }, [sourceVolume]);
 
   useEffect(() => {
     const video = videoRef.current;
@@ -186,7 +194,10 @@ export const VideoPlayer = forwardRef<PlayerHandle, PlayerProps>(function VideoP
               setLoading(false);
               reportTime();
             }}
-            onPlay={() => setPlaying(true)}
+            onPlay={(event) => {
+              pauseOtherVideos(event.currentTarget);
+              setPlaying(true);
+            }}
             onPlaying={() => {
               setPlaying(true);
               setLoading(false);
@@ -209,6 +220,7 @@ export const VideoPlayer = forwardRef<PlayerHandle, PlayerProps>(function VideoP
               }
             }}
           />
+          <TextOverlays texts={texts} currentMs={currentMs} />
           {loading && !error && (
             <div className="player-overlay" role="status">
               <LoaderCircle className="animate-spin" aria-hidden="true" />

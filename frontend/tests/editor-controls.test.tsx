@@ -266,10 +266,20 @@ describe('Explicit saving and conflicts', () => {
     await userEvent.click(screen.getByRole('button', { name: 'Salvar edição' }));
     expect(await screen.findByText('Edição salva · Revisão 1')).toBeVisible();
     expect(api.puts[0]).toEqual({
-      schema_version: 1,
+      // New explicit saves use v2; the fixtures and GET assertions above retain legacy v1.
+      schema_version: 2,
       source_media_id: source.id,
       trim: { start_ms: 1_000, end_ms: 10_000 },
       canvas: { preset: '9:16', fit: 'cover', focal_x: 0.5, focal_y: 0.5 },
+      text_overlays: [],
+      audio: {
+        source_volume: 1,
+        background_audio_id: null,
+        background_volume: 0.15,
+        background_loop: false,
+        fade_in_ms: 0,
+        fade_out_ms: 0,
+      },
       expected_revision: 0,
     });
     setNumber('Saída (ms)', 9_000);

@@ -107,7 +107,7 @@ try:
         ('project_fk',{{'project':uuid4()}}),
         ('media_fk',{{'media':uuid4()}}),
         ('positive_revision',{{'revision':0}}),
-        ('schema_v1',{{'schema':2}}),
+        ('schema_unsupported',{{'schema':3}}),
     ):
         probe(name,insert,{{**base,**changes,'id':uuid4()}})
     print(json.dumps(result))
@@ -203,7 +203,13 @@ def main() -> int:
     try:
         foundation.wait_ready()
         revision = foundation.compose("exec", "-T", "api", "alembic", "current")
-        require("0003_r03_edit_spec_revisions" in revision, "Migration R03 não está aplicada.")
+        require(
+            any(
+                head in revision
+                for head in ("0003_r03_edit_spec_revisions", "0004_r04_text_audio_previews")
+            ),
+            "Migration R03 ou evolução R04 não está aplicada.",
+        )
         foundation.compose("exec", "-T", "api", "alembic", "upgrade", "head")
         foundation.compose("exec", "-T", "api", "alembic", "check")
         passed("r03_migration_current_repeat_and_model_check")
@@ -312,7 +318,7 @@ def main() -> int:
             {"trim": {"start_ms": 0.0, "end_ms": 500}},
             {"trim": {"start_ms": True, "end_ms": 500}},
             {"trim": {"start_ms": "0", "end_ms": 500}},
-            {"schema_version": 2},
+            {"schema_version": 3},
             {"schema_version": True},
             {"schema_version": "1"},
             {"canvas": {**spec["canvas"], "preset": "2:3"}},
@@ -411,7 +417,7 @@ def main() -> int:
             ("project_fk", "23503"),
             ("media_fk", "23503"),
             ("positive_revision", "23514"),
-            ("schema_v1", "23514"),
+            ("schema_unsupported", "23514"),
         ):
             require(
                 probes[name]["sqlstate"] == code, f"Constraint {name} retornou código inesperado."

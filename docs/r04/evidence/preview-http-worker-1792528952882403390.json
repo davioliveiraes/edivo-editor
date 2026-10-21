@@ -1,0 +1,228 @@
+{
+  "status": "passed",
+  "checks": [
+    {
+      "check": "safe_empty_queue_before_worker_stop",
+      "status": "passed",
+      "detail": null
+    },
+    {
+      "check": "create_project",
+      "status": "passed",
+      "detail": null
+    },
+    {
+      "check": "real_r02_video_upload",
+      "status": "passed",
+      "detail": null
+    },
+    {
+      "check": "real_r04_mp3_upload",
+      "status": "passed",
+      "detail": null
+    },
+    {
+      "check": "saved_v2_revision",
+      "status": "passed",
+      "detail": null
+    },
+    {
+      "check": "three_concurrent_equivalent_requests_one_job",
+      "status": "passed",
+      "detail": null
+    },
+    {
+      "check": "second_active_job_window_truncated",
+      "status": "passed",
+      "detail": null
+    },
+    {
+      "check": "third_active_job_rejected_409",
+      "status": "passed",
+      "detail": null
+    },
+    {
+      "check": "queued_artifact_not_readable",
+      "status": "passed",
+      "detail": null
+    },
+    {
+      "check": "worker_completed_valid_artifact",
+      "status": "passed",
+      "detail": {
+        "id": "c89cce70-62af-4772-83c4-e47e28e5c959",
+        "observed_stages": [
+          "queued",
+          "encoding",
+          "validating",
+          "completed"
+        ]
+      }
+    },
+    {
+      "check": "worker_completed_valid_artifact",
+      "status": "passed",
+      "detail": {
+        "id": "61d5a31c-9d9c-45df-93b3-b25a6c09b4b8",
+        "observed_stages": [
+          "encoding",
+          "validating",
+          "completed"
+        ]
+      }
+    },
+    {
+      "check": "completed_equivalent_reused_200",
+      "status": "passed",
+      "detail": null
+    },
+    {
+      "check": "full_mp4_checksum_headers",
+      "status": "passed",
+      "detail": null
+    },
+    {
+      "check": "range_bytes=0-15",
+      "status": "passed",
+      "detail": null
+    },
+    {
+      "check": "range_bytes=1024-2047",
+      "status": "passed",
+      "detail": null
+    },
+    {
+      "check": "range_bytes=2048-",
+      "status": "passed",
+      "detail": null
+    },
+    {
+      "check": "range_bytes=-31",
+      "status": "passed",
+      "detail": null
+    },
+    {
+      "check": "range_bytes=7-7",
+      "status": "passed",
+      "detail": null
+    },
+    {
+      "check": "invalid_range_bytes=0-1,5-6",
+      "status": "passed",
+      "detail": null
+    },
+    {
+      "check": "invalid_range_bytes=-0",
+      "status": "passed",
+      "detail": null
+    },
+    {
+      "check": "invalid_range_bytes=189463-",
+      "status": "passed",
+      "detail": null
+    },
+    {
+      "check": "head_full_no_body",
+      "status": "passed",
+      "detail": null
+    },
+    {
+      "check": "new_revision_keeps_old_preview",
+      "status": "passed",
+      "detail": null
+    },
+    {
+      "check": "explicit_old_revision_reused",
+      "status": "passed",
+      "detail": null
+    },
+    {
+      "check": "job_and_revision_persist_after_restart",
+      "status": "passed",
+      "detail": null
+    },
+    {
+      "check": "range_after_restart",
+      "status": "passed",
+      "detail": null
+    },
+    {
+      "check": "mp4_mp3_originals_sha_permissions_mtime_unchanged",
+      "status": "passed",
+      "detail": {
+        "0eb4cafa-3a7e-436a-92cd-bad8fc791be2": {
+          "sha256": "2a3618f20e5dc152a3a6b3417d4b0ab628bf6d4bbc970fdf2faf2c2eeecc9ea7",
+          "bytes": 2272529,
+          "mode": "0400",
+          "mtime_ns": 1792528921799801865
+        },
+        "69d10112-33cb-4841-8911-a7074f127f0c": {
+          "sha256": "6bfc6c3ce72a59b9271b77a442d0eccb1e31add851755a888a677802d25809dd",
+          "bytes": 33069,
+          "mode": "0400",
+          "mtime_ns": 1792528922227421750
+        }
+      }
+    },
+    {
+      "check": "cross_project_denied",
+      "status": "passed",
+      "detail": null
+    },
+    {
+      "check": "soft_delete_blocks_jobs_and_files",
+      "status": "passed",
+      "detail": null
+    },
+    {
+      "check": "soft_delete_preserves_originals",
+      "status": "passed",
+      "detail": null
+    }
+  ],
+  "jobs": [
+    {
+      "id": "c89cce70-62af-4772-83c4-e47e28e5c959",
+      "project_id": "e50f5d5b-f4ce-4a3f-aaa0-22e7b778d0c0",
+      "revision_id": "95e63d66-336d-4564-ab7f-0c546258add2",
+      "revision_number": 1,
+      "preview_start_ms": 5000,
+      "duration_ms": 4000,
+      "status": "completed",
+      "stage": "completed",
+      "attempts": 1,
+      "created_at": "2026-10-20T20:42:06.354720Z",
+      "started_at": "2026-10-20T20:42:17.517551Z",
+      "finished_at": "2026-10-20T20:42:18.576533Z",
+      "error_code": null,
+      "artifact_available": true,
+      "checksum_sha256": "4a95a54b486774a5fb3b27319461ba86c5140f28f30b2445e4968c09fb89e67f",
+      "byte_size": 189463,
+      "status_url": "/api/v1/projects/e50f5d5b-f4ce-4a3f-aaa0-22e7b778d0c0/previews/c89cce70-62af-4772-83c4-e47e28e5c959",
+      "file_url": "/api/v1/projects/e50f5d5b-f4ce-4a3f-aaa0-22e7b778d0c0/previews/c89cce70-62af-4772-83c4-e47e28e5c959/file"
+    },
+    {
+      "id": "61d5a31c-9d9c-45df-93b3-b25a6c09b4b8",
+      "project_id": "e50f5d5b-f4ce-4a3f-aaa0-22e7b778d0c0",
+      "revision_id": "95e63d66-336d-4564-ab7f-0c546258add2",
+      "revision_number": 1,
+      "preview_start_ms": 10000,
+      "duration_ms": 1000,
+      "status": "completed",
+      "stage": "completed",
+      "attempts": 1,
+      "created_at": "2026-10-20T20:42:06.439957Z",
+      "started_at": "2026-10-20T20:42:18.600231Z",
+      "finished_at": "2026-10-20T20:42:19.309014Z",
+      "error_code": null,
+      "artifact_available": true,
+      "checksum_sha256": "cb6f2944d2d66a0d51747b34b35cc41bb4f333fff8c58564d735409219ba195e",
+      "byte_size": 46029,
+      "status_url": "/api/v1/projects/e50f5d5b-f4ce-4a3f-aaa0-22e7b778d0c0/previews/61d5a31c-9d9c-45df-93b3-b25a6c09b4b8",
+      "file_url": "/api/v1/projects/e50f5d5b-f4ce-4a3f-aaa0-22e7b778d0c0/previews/61d5a31c-9d9c-45df-93b3-b25a6c09b4b8/file"
+    }
+  ],
+  "restart_requested": true,
+  "project_id": "e50f5d5b-f4ce-4a3f-aaa0-22e7b778d0c0",
+  "attempt_evidence": "preview-http-worker-1792528952882403390.json"
+}

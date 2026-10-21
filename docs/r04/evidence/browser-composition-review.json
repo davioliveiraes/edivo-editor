@@ -1,0 +1,70 @@
+{
+  "stage": "R04.2",
+  "status": "passed",
+  "reviewed_at": "2026-10-20T10:37:21-03:00",
+  "command": "python3 scripts/browser-r04.py --stage composition --project-id 09b152db-5ca2-4868-b23a-8a00e14cd96d",
+  "successful_run_id": "r04-composition-1792503369422908397",
+  "checks_passed": 15,
+  "browser": "Chromium 145.0.7632.6",
+  "helper": "Official mcr.microsoft.com/playwright:v1.58.2-noble; isolated Playwright npm 1.58.2",
+  "api_or_media_mocked": false,
+  "originals_uploaded": {
+    "new_mp4_this_resume": 0,
+    "new_mp3_this_resume": 1,
+    "mp3_id": "963eaef5-513a-41a0-8d56-0b3989631310",
+    "mp3_bytes": 33069,
+    "mp3_sha256": "6bfc6c3ce72a59b9271b77a442d0eccb1e31add851755a888a677802d25809dd"
+  },
+  "persistence": {
+    "legacy_revision_id": "7643bc46-f0f4-484a-9b6e-f135b1d1837a",
+    "legacy_schema_on_open": 1,
+    "automatic_saves": 0,
+    "explicit_ui_saves": 1,
+    "saved_revision_id": "aa5a9c4d-6273-40a0-a36c-29fbe5f1fa74",
+    "saved_revision_number": 2,
+    "saved_schema_version": 2,
+    "recovered_after_page_reload": true,
+    "services_restarted_in_this_browser_gate": false
+  },
+  "visual_inspection": {
+    "performed": true,
+    "method": "Codex inspected all five saved PNGs through the local image viewer, including the isolated composition frame.",
+    "observed": [
+      "Three literal UTF-8 text overlays are visible at top, center and bottom inside the composition.",
+      "The blue, outlined white and plain white text presets are visually distinguishable.",
+      "The horizontal source is contained inside a 9:16 frame with neutral empty areas and no stretching.",
+      "Desktop dark/light layouts retain player, timeline and text/audio panels.",
+      "Mobile 375/390 viewport captures show the panels stacked vertically; DOM measurements found no horizontal overflow."
+    ],
+    "screenshots": [
+      "r04-composition-1792503369422908397-native-frame-texts.png",
+      "r04-composition-1792503369422908397-desktop-dark.png",
+      "r04-composition-1792503369422908397-desktop-light.png",
+      "r04-composition-1792503369422908397-mobile-375.png",
+      "r04-composition-1792503369422908397-mobile-390.png"
+    ]
+  },
+  "resolved_driver_issues": [
+    {
+      "retained_attempt": "r04-composition-1792458229312522477.json",
+      "issue": "The paused property became true before asynchronous native pause dispatch was recorded.",
+      "resolution": "Wait for a new native pause event as well as paused=true; no fabricated media event."
+    },
+    {
+      "retained_attempt": "r04-composition-1792503279321811304.json",
+      "issue": "An exact implicit label lookup failed for a visible select whose label includes option text.",
+      "resolution": "Use its combobox role and the accessible label prefix; all selected values are checked again against the persisted snapshot. No application change."
+    }
+  ],
+  "qa_dependency_installation": {
+    "sandbox_attempt": "Failed with EAI_AGAIN resolving registry.npmjs.org; no product dependency changed.",
+    "approved_retry": "Installed two packages in the temporary isolated QA directory; exit 0."
+  },
+  "limitations": [
+    "This gate proves source playback, CSS composition, MP3 import and v2 persistence; it does not prove an encoded preview or the audible mix yet.",
+    "No human manual listening, physical mobile device or other browser was tested.",
+    "125% source gain, music mixing, loop and fades were configured and persisted; their audible behavior requires the later FFmpeg gate.",
+    "Mobile responsiveness was checked with emulated viewports; no new physical touch interaction claim is made.",
+    "The synthetic project, immutable revisions and uploaded originals remain active for the next R04 gates."
+  ]
+}

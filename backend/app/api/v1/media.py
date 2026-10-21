@@ -33,9 +33,14 @@ SettingsDependency = Annotated[Settings, Depends(get_settings)]
 class SingleFileParser(MultiPartParser):
     """Starlette parser constrained before untrusted headers or file data accumulate."""
 
-    def __init__(self, request: Request, settings: Settings) -> None:
+    def __init__(
+        self, request: Request, settings: Settings, *, max_file_bytes: int | None = None
+    ) -> None:
         super().__init__(request.headers, request.stream(), max_files=1, max_fields=0)
         self.settings = settings
+        self.max_file_bytes = (
+            settings.upload_max_bytes if max_file_bytes is None else max_file_bytes
+        )
         self.storage = LocalStorage(settings)
         self.temp_directory = self.storage.prepare_temp()
         self.header_bytes = 0
@@ -75,7 +80,7 @@ class SingleFileParser(MultiPartParser):
 
     def on_part_data(self, data: bytes, start: int, end: int) -> None:
         self.file_bytes += end - start
-        if self.file_bytes > self.settings.upload_max_bytes:
+        if self.file_bytes > self.max_file_bytes:
             raise UploadBodyExceeded
         self.storage.ensure_space(end - start)
         super().on_part_data(data, start, end)

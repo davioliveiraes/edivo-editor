@@ -1,0 +1,118 @@
+{
+  "release": "R04",
+  "scope": "FFmpeg compositor, font metrics and synthetic media checks only",
+  "status": "passed",
+  "database_or_http_used": false,
+  "product_dependencies_added": false,
+  "production_files": [
+    "backend/app/integrations/ffmpeg/preview.py",
+    "backend/app/integrations/ffmpeg/font_metrics.py"
+  ],
+  "tests_file": "backend/tests/test_preview_compositor.py",
+  "distinct_cases_current_file": 69,
+  "unit_cases": 40,
+  "real_ffmpeg_cases": 29,
+  "count_policy": "The final complete compositor run passed68 cases. One subsequent A/V-delay test passed separately. The root final regression executes all69 together. Repeated runs are not additional distinct tests.",
+  "commands": [
+    {
+      "command": "backend/.venv/bin/pytest -q backend/tests/test_preview_compositor.py",
+      "environment": "host virtual environment",
+      "exit_code": 0,
+      "result": "40 passed,25 explicitly skipped because FFmpeg/FFprobe are absent on this host,1 historical upstream Starlette warning,0.35s",
+      "implementation_point": "initial65 cases"
+    },
+    {
+      "command": "docker compose run --rm --no-deps -v /home/davi/edivo-editor/backend:/validation:ro -e PYTHONPATH=/validation -e PYTHONDONTWRITEBYTECODE=1 -w /validation api pytest -q -p no:cacheprovider tests/test_preview_compositor.py",
+      "environment": "isolated backend container, code mounted read-only, private temporary synthetic media",
+      "exit_code": 0,
+      "result": "65 passed,1 historical upstream warning,14.94s",
+      "implementation_point": "initial matrix before final1ms boundary cases"
+    },
+    {
+      "command": "docker compose run --rm --no-deps -v /home/davi/edivo-editor/backend:/validation:ro -e PYTHONPATH=/validation -e PYTHONDONTWRITEBYTECODE=1 -w /validation api pytest -q -p no:cacheprovider tests/test_preview_compositor.py --tb=short",
+      "environment": "isolated backend container with actual FFmpeg/FFprobe, FreeType and resource-limited ProcessRunner",
+      "exit_code": 0,
+      "result": "68 passed,0 skipped,1 historical upstream warning,26.79s",
+      "implementation_point": "final compositor implementation including final1ms-window correction"
+    },
+    {
+      "command": "docker compose run --rm --no-deps -v /home/davi/edivo-editor/backend:/validation:ro -e PYTHONPATH=/validation -e PYTHONDONTWRITEBYTECODE=1 -w /validation api pytest -q -p no:cacheprovider tests/test_preview_compositor.py -k source_audio_delay --tb=short",
+      "exit_code": 0,
+      "result": "1 passed,68 deselected,1 historical upstream warning,3.12s",
+      "implementation_point": "additional source A/V-delay regression; production implementation unchanged"
+    },
+    {
+      "command": "docker compose run --rm --no-deps -v /home/davi/edivo-editor/backend:/validation:ro -v /home/davi/edivo-editor/scripts/acceptance-r04-ffmpeg.py:/qa/acceptance-r04-ffmpeg.py:ro -v /tmp/edivo-r04/fixtures:/fixtures:ro -v /home/davi/edivo-editor/docs/r04/evidence:/evidence -e PYTHONPATH=/validation -e PYTHONDONTWRITEBYTECODE=1 -w /validation api python /qa/acceptance-r04-ffmpeg.py --fixtures /fixtures --output /evidence/ffmpeg-matrix-run-1/report.json",
+      "exit_code": 0,
+      "result": "25 real short preview compositions,43 checks passed,14 PNG frames,32.682s",
+      "evidence": "ffmpeg-matrix-run-1/report.json"
+    },
+    {
+      "command": "backend/.venv/bin/ruff check --config backend/pyproject.toml backend/app/integrations/ffmpeg/preview.py backend/app/integrations/ffmpeg/font_metrics.py backend/tests/test_preview_compositor.py scripts/acceptance-r04-ffmpeg.py",
+      "exit_code": 0,
+      "result": "All checks passed"
+    },
+    {
+      "command": "backend/.venv/bin/ruff format --check --config backend/pyproject.toml backend/app/integrations/ffmpeg/preview.py backend/app/integrations/ffmpeg/font_metrics.py backend/tests/test_preview_compositor.py scripts/acceptance-r04-ffmpeg.py",
+      "exit_code": 0,
+      "result": "4 files already formatted"
+    }
+  ],
+  "resolved_real_failures": [
+    {
+      "case": "final1ms of a12-second source",
+      "initial_result": "1 failed,2 passed: precise demuxer seek discarded the covering video frame, creating an audio-only temporary result; artifact validation rejected it",
+      "intermediate_result": "5 targeted failures while preserving preroll with an input-t limit; no invalid artifact was published",
+      "cause": "Input duration interacted with retained negative preroll timestamps",
+      "correction": "Retain demuxer preroll with noaccurate_seek; fps24 start_time0/roundup/eof_actionpass selects the covering video frame before trim; only output-t limits the final video window. Source audio independently preserves alignment through aresample:first_pts0",
+      "final_result": "Five targeted cases passed in5.52s, then the entire68-case suite passed. The final1ms, unaligned1ms,1ms aligned and8s windows are covered"
+    },
+    {
+      "case": "preimplementation source-audio delay diagnostic",
+      "initial_result": "An RMS assertion expected above0.08 but measured0.0759987 because AAC priming affects the first100ms",
+      "correction": "Assert real tone presence above0.07 and separately assert preserved initial silence; final diagnostic exited0",
+      "product_change_required": false
+    }
+  ],
+  "validated_behavior": [
+    "Pinned MOV/MP3 descriptors with pass_fds, specific demuxers, file/pipe-only protocols and external MOV references disabled",
+    "H264/libx264,yuv420p,24fps,AAC when expected,faststart,output dimensions540x960/540x540/544x680/960x540",
+    "Four aspect presets with cover/contain, focal positioning, autorotation, SAR normalization and VFR sources",
+    "Literal UTF8 textfiles, Unicode accents, quotes, colon, backslash and percent sign; no raw text in executable filters",
+    "Independent centering of two text lines, style/size/position tokens and fitted width without truncation",
+    "Text intervals in absolute source milliseconds and7percent safe-area checks on burned pixels",
+    "Original and music volume, short-MP3 exhaustion/looping, intermediate music offset and fades referenced to full trim",
+    "Original source-audio delay preserved across seek and negative preroll",
+    "Real ffprobe inspection plus full decode with positive frame count, controlled metadata and SHA256 before returning an artifact",
+    "Exclusive output/textfile creation, corrupt-output rejection, symlink rejection and unchanged synthetic source hashes/modes"
+  ],
+  "duration_policy": {
+    "requested_ms": [1, 8000],
+    "deviation_tolerance_seconds": "one frame at24fps plus1ms MP4 rounding",
+    "absolute_artifact_maximum_seconds": 8.001,
+    "one_ms_example": "one video frame: stream0.041667s,container0.042s"
+  },
+  "font": {
+    "name": "DejaVu Sans",
+    "runtime_sha256": "abdc775b21b1bc470d50c97e790d276f2054b7504e56e5bd3e64f48d68582322",
+    "frontend_asset": "frontend/public/fonts/DejaVuSans.ttf",
+    "license": "frontend/public/fonts/DejaVuSans-LICENSE.txt",
+    "unsupported_glyph_policy": "Explicit preview_text_unsupported failure; no silent missing-glyph replacement",
+    "host_font_note": "The Ubuntu system font has different bytes; local metric tests explicitly select the identical bundled frontend asset rather than claiming runtime parity with a different font"
+  },
+  "inspection": {
+    "visual_inspection_by_assistant": true,
+    "reviewed_frames": [
+      "ffmpeg-matrix-run-1/text-safe-area.png",
+      "ffmpeg-matrix-run-1/canvas-9-16-cover.png",
+      "ffmpeg-matrix-run-1/canvas-16-9-contain.png",
+      "ffmpeg-matrix-run-1/orientation-rotated.png",
+      "ffmpeg-matrix-run-1/orientation-sar.png"
+    ],
+    "observations": "Text is centered per line, inside safe margins and visible at top/center/bottom; accents and special characters are rendered literally. Cover, neutral contain borders, rotation and SAR are consistent with the synthetic patterns",
+    "objective_audio_analysis_performed": true,
+    "manual_auditory_inspection_performed": false,
+    "audio_limit": "RMS,frequency and peak measurements on synthetic tones verify gains,offset,fades and gross clipping. They do not claim subjective listening or intelligibility validation with human speech"
+  },
+  "essential_compositor_failures_remaining": []
+}

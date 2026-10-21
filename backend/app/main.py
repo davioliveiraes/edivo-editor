@@ -12,8 +12,10 @@ from starlette.exceptions import HTTPException
 from starlette.responses import JSONResponse
 
 from app import __version__
+from app.api.v1.audio import router as audio_router
 from app.api.v1.edit_specs import router as edit_specs_router
 from app.api.v1.media import router as media_router
+from app.api.v1.previews import router as previews_router
 from app.api.v1.projects import router as projects_router
 from app.api.v1.system import router as system_router
 from app.core.config import Settings, get_settings
@@ -57,6 +59,8 @@ def create_app(settings: Settings | None = None) -> FastAPI:
     application.add_middleware(
         UploadBodyLimitMiddleware,
         max_body_bytes=settings.upload_max_bytes + settings.upload_multipart_overhead_bytes,
+        audio_max_body_bytes=settings.audio_upload_max_bytes
+        + settings.upload_multipart_overhead_bytes,
     )
 
     @application.middleware("http")
@@ -127,7 +131,9 @@ def create_app(settings: Settings | None = None) -> FastAPI:
     application.include_router(system_router)
     application.include_router(projects_router)
     application.include_router(media_router)
+    application.include_router(audio_router)
     application.include_router(edit_specs_router)
+    application.include_router(previews_router)
     return application
 
 

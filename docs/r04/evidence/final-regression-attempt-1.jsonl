@@ -1,0 +1,22 @@
+Validando a fundação local Edivo e sua regressão R01...
+{"check": "compose_config", "status": "passed", "detail": null}
+{"check": "compose_startup", "status": "passed", "detail": null}
+{"check": "backend_runtime_versions", "status": "passed", "detail": {"python": "3.12.14", "packages": {"fastapi": "0.143.3", "pydantic": "2.14.1", "pydantic-settings": "2.16.0", "SQLAlchemy": "2.0.55", "psycopg": "3.3.6", "alembic": "1.20.0", "uvicorn": "0.54.0", "pytest": "9.1.1", "httpx": "0.28.1", "ruff": "0.17.1"}, "uv": "uv 0.13.1 (x86_64-unknown-linux-gnu)"}}
+{"check": "frontend_runtime_versions", "status": "passed", "detail": {"node": "v24.14.0", "npm": "11.9.0"}}
+{"check": "api_health_200", "status": "passed", "detail": {"status": "ok", "service": "edivo-api", "version": "0.1.0"}}
+{"check": "api_ready_200", "status": "passed", "detail": {"status": "ready", "checks": {"database": "ok", "storage": "ok"}}}
+{"check": "api_capabilities_200", "status": "passed", "detail": {"status": "available", "runtime": "api", "ffmpeg": {"available": true, "reason": null, "version": "5.1.9-0+deb12u1"}, "ffprobe": {"available": true, "reason": null, "version": "5.1.9-0+deb12u1"}, "encoders": {"h264": {"available": true, "reason": null}, "aac": {"available": true, "reason": null}, "h264_encoder": "libx264"}, "filters": {"scale": {"available": true, "reason": null}, "crop": {"available": true, "reason": null}, "pad": {"available": true, "reason": null}, "drawtext": {"available": true, "reason": null}}}}
+{"check": "frontend_vite_proxy_200", "status": "passed", "detail": null}
+{"check": "alembic_baseline_and_repeatability", "status": "passed", "detail": {"revision": "0004_r04_text_audio_previews", "postgres": "16.13 (Debian 16.13-1.pgdg12+1)", "tables": ["alembic_version", "audio_assets", "edit_spec_revisions", "media_assets", "preview_jobs", "projects"]}}
+{"check": "postgres_volume_persistence", "status": "passed", "detail": null}
+{"check": "shared_storage_persistence_after_restart", "status": "passed", "detail": null}
+{"check": "ffmpeg_synthetic_smoke_api", "status": "passed", "detail": {"status": "ok", "ffmpeg": "5.1.9-0+deb12u1", "ffprobe": "5.1.9-0+deb12u1", "video_codec": "h264", "audio_codec": "aac", "resolution": [320, 180], "duration_seconds": 1.0, "filters_exercised": ["scale", "crop", "pad", "drawtext"], "decode": "ok"}}
+{"check": "ffmpeg_synthetic_smoke_worker", "status": "passed", "detail": {"status": "ok", "ffmpeg": "5.1.9-0+deb12u1", "ffprobe": "5.1.9-0+deb12u1", "video_codec": "h264", "audio_codec": "aac", "resolution": [320, 180], "duration_seconds": 1.0, "filters_exercised": ["scale", "crop", "pad", "drawtext"], "decode": "ok"}}
+{"check": "only_loopback_api_and_frontend_ports", "status": "passed", "detail": null}
+{"check": "persistent_volume_shared_bind_mount_and_images", "status": "passed", "detail": {"db": {"tag": "postgres:16.13-bookworm", "image_id": "sha256:472efd9a66f2b2f1a5aeb18b28de74332e6ef88c2b93a1a5d812fb6db67a5f60"}, "migrate": {"tag": "edivo-backend:r04", "image_id": "sha256:39fe74d6f2376c429819cd8878b73f200f8184775590de3bd3e87fd89e3bba82"}, "api": {"tag": "edivo-backend:r04", "image_id": "sha256:39fe74d6f2376c429819cd8878b73f200f8184775590de3bd3e87fd89e3bba82"}, "worker": {"tag": "edivo-backend:r04", "image_id": "sha256:39fe74d6f2376c429819cd8878b73f200f8184775590de3bd3e87fd89e3bba82"}, "frontend": {"tag": "edivo-frontend:r04", "image_id": "sha256:cba435e9c8003d1a4cfb8d1ceb06d078c21e68e14c31dcace342c50ea970d04a"}}}
+{"check": "database_offline_health_200_ready_503", "status": "passed", "detail": {"status": "not_ready", "checks": {"database": "unavailable", "storage": "ok"}}}
+{"check": "database_recovery_ready_200", "status": "passed", "detail": null}
+{"check": "storage_inaccessible_ready_503", "status": "passed", "detail": {"http_status": 503, "response": {"status": "not_ready", "checks": {"database": "ok", "storage": "unavailable"}}}}
+{"check": "worker_idle", "status": "passed", "detail": {"cpu_percent_sample": 1.26}}
+{"check": "worker_sigterm_exit_0", "status": "passed", "detail": null}
+{"status": "failed", "completed_checks": 20, "message": "Comando falhou (exit 1): docker compose exec -T api pytest"}

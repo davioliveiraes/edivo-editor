@@ -1,0 +1,91 @@
+{
+  "recorded_at": "2026-10-21 02:09:35 UTC",
+  "status": "passed",
+  "scope": "Final rerun of the same eight opt-in real PostgreSQL cases against the current API image, after the Ruff import correction. This is not eight additional distinct cases.",
+  "image": "edivo-backend:r04",
+  "command": "docker compose exec -T api sh -c 'EDIVO_QA_DATABASE_URL=\"$EDIVO_DATABASE_URL\" EDIVO_QA_QUEUE_POSTGRES=1 pytest -q tests/test_preview_queue_postgres.py'",
+  "exit_code": 0,
+  "console": "........                                                                 [100%]\n=============================== warnings summary ===============================\n../opt/venv/lib/python3.12/site-packages/fastapi/testclient.py:1\n  /opt/venv/lib/python3.12/site-packages/fastapi/testclient.py:1: StarletteDeprecationWarning: Using `httpx` with `starlette.testclient` is deprecated; install `httpx2` instead.\n    from starlette.testclient import TestClient as TestClient  # noqa\n\n-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html\n8 passed, 1 warning in 3.45s\n",
+  "passed_cases": 8,
+  "distinct_cases": 8,
+  "cases": [
+    "test_atomic_claim_two_candidates_only_one_wins",
+    "test_skip_locked_does_not_wait_for_first_job",
+    "test_heartbeat_and_all_stale_token_transitions_are_fenced",
+    "test_expired_claim_retries_once_with_new_token_then_fails",
+    "test_deleted_project_jobs_cannot_claim_or_renew",
+    "test_wall_clock_rejects_lease_after_wait_in_same_transaction",
+    "test_worker_commits_before_process_and_timeout_is_persisted",
+    "test_equivalent_failed_job_allows_new_explicit_request"
+  ],
+  "duration_seconds": 3.45,
+  "warning_count": 1,
+  "warning": "Upstream Starlette TestClient/httpx deprecation; no test failure.",
+  "queue_before": {
+    "active_jobs": 0
+  },
+  "queue_after": {
+    "active_jobs": 0
+  },
+  "procedure": {
+    "sequence": [
+      "read-only active queue count",
+      "stop Edivo worker",
+      "run project-scoped PostgreSQL tests",
+      "read-only active queue count",
+      "restore Edivo worker in finally",
+      "read-only worker state inspection"
+    ],
+    "stopped": {
+      "command": "docker compose stop worker",
+      "exit_code": 0,
+      "output": " Container edivo-worker-1 Stopping \n Container edivo-worker-1 Stopped \n"
+    },
+    "restored": {
+      "command": "docker compose start worker",
+      "exit_code": 0,
+      "output": " Container edivo-db-1 Waiting \n Container edivo-db-1 Healthy \n Container edivo-migrate-1 Starting \n Container edivo-migrate-1 Started \n Container edivo-migrate-1 Waiting \n Container edivo-db-1 Waiting \n Container edivo-db-1 Healthy \n Container edivo-migrate-1 Exited \n Container edivo-worker-1 Starting \n Container edivo-worker-1 Started \n"
+    },
+    "restoration_inspection": {
+      "command": "docker inspect --format '{\"running\":{{json .State.Running}},\"status\":{{json .State.Status}},\"exit_code\":{{json .State.ExitCode}},\"image\":{{json .Config.Image}}}' edivo-worker-1",
+      "exit_code": 0,
+      "result": {
+        "running": true,
+        "status": "running",
+        "exit_code": 0,
+        "image": "edivo-backend:r04"
+      }
+    },
+    "worker_restored": true,
+    "healthcheck_claim": "Only running state was verified; the worker has no Docker healthcheck."
+  },
+  "isolation": "Every claim/recovery test uses its own synthetic project_id scope. The worker was stopped while the queue had zero queued/running jobs. Fixtures soft-delete their own projects and terminate their own test jobs. No unrelated jobs, services, data or originals were modified.",
+  "junit": {
+    "status": "not_requested",
+    "reason": "The prior optional JUnit export was unavailable and remains documented in queue-postgres.json. This final rerun records the actual console; no XML was fabricated."
+  },
+  "secrets": "EDIVO_QA_DATABASE_URL references the existing EDIVO_DATABASE_URL inside the container; no DSN value or container environment was inspected or printed.",
+  "source_changes": false,
+  "transcript": [
+    {
+      "command": "docker compose stop worker",
+      "exit_code": 0,
+      "output": " Container edivo-worker-1 Stopping \n Container edivo-worker-1 Stopped \n"
+    },
+    {
+      "command": "docker compose exec -T api sh -c 'EDIVO_QA_DATABASE_URL=\"$EDIVO_DATABASE_URL\" EDIVO_QA_QUEUE_POSTGRES=1 pytest -q tests/test_preview_queue_postgres.py'",
+      "exit_code": 0,
+      "output": "........                                                                 [100%]\n=============================== warnings summary ===============================\n../opt/venv/lib/python3.12/site-packages/fastapi/testclient.py:1\n  /opt/venv/lib/python3.12/site-packages/fastapi/testclient.py:1: StarletteDeprecationWarning: Using `httpx` with `starlette.testclient` is deprecated; install `httpx2` instead.\n    from starlette.testclient import TestClient as TestClient  # noqa\n\n-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html\n8 passed, 1 warning in 3.45s\n"
+    },
+    {
+      "command": "docker compose exec -T api python -c 'import json; from sqlalchemy import select,func; from app.core.config import Settings; from app.db.session import Database; from app.models.preview_job import PreviewJob; database=Database(Settings()); session=database.sessions(); count=session.scalar(select(func.count()).select_from(PreviewJob).where(PreviewJob.status.in_((\"queued\",\"running\")))); session.close(); database.close(); print(json.dumps({\"active_jobs\":count}))'",
+      "exit_code": 0,
+      "output": "{\"active_jobs\": 0}\n"
+    },
+    {
+      "command": "docker compose start worker",
+      "exit_code": 0,
+      "output": " Container edivo-db-1 Waiting \n Container edivo-db-1 Healthy \n Container edivo-migrate-1 Starting \n Container edivo-migrate-1 Started \n Container edivo-migrate-1 Waiting \n Container edivo-db-1 Waiting \n Container edivo-db-1 Healthy \n Container edivo-migrate-1 Exited \n Container edivo-worker-1 Starting \n Container edivo-worker-1 Started \n"
+    }
+  ]
+}

@@ -8,7 +8,19 @@ from datetime import UTC, datetime
 _URL = re.compile(r"\b[a-zA-Z][a-zA-Z0-9+.-]*://[^\s]+")
 _PATH = re.compile(r"(?<!\w)/(?:[^\s/,;:]+/)*[^\s,;:]*")
 _SECRET = re.compile(r"(?i)(password|token|secret|authorization)\s*[=:]\s*[^\s,;]+")
-_SAFE_FIELDS = ("request_id", "method", "status_code", "duration_ms", "diagnostic", "signal")
+_SAFE_FIELDS = (
+    "request_id",
+    "method",
+    "status_code",
+    "duration_ms",
+    "diagnostic",
+    "signal",
+    "job_id",
+    "project_id",
+    "stage",
+    "attempts",
+    "error_code",
+)
 
 
 def sanitize(message: str) -> str:

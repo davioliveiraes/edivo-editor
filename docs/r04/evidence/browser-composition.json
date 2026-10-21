@@ -1,0 +1,352 @@
+{
+  "status": "passed",
+  "stage": "composition",
+  "run_id": "r04-composition-1792503369422908397",
+  "browser": "145.0.7632.6",
+  "project_id": "09b152db-5ca2-4868-b23a-8a00e14cd96d",
+  "checks": [
+    {
+      "check": "localhost_browser_context_supports_secure_random_uuid",
+      "status": "passed",
+      "detail": {
+        "origin": "http://127.0.0.1:5173",
+        "is_secure_context": true,
+        "random_uuid_available": true
+      }
+    },
+    {
+      "check": "synthetic_source_import_and_v1_revision_saved_before_opening_ui",
+      "status": "passed",
+      "detail": {
+        "project_id": "09b152db-5ca2-4868-b23a-8a00e14cd96d",
+        "revision_id": "7643bc46-f0f4-484a-9b6e-f135b1d1837a",
+        "source_sha256": "2a3618f20e5dc152a3a6b3417d4b0ab628bf6d4bbc970fdf2faf2c2eeecc9ea7"
+      }
+    },
+    {
+      "check": "opening_v1_normalizes_only_in_memory_without_dirty_state_or_automatic_save",
+      "status": "passed"
+    },
+    {
+      "check": "real_mp4_play_pause_uses_native_media_events",
+      "status": "passed",
+      "detail": {
+        "advanced_seconds": 0.2634210000000001,
+        "current_time": 2.263421,
+        "paused": true,
+        "duration": 12.012,
+        "ready_state": 4,
+        "width": 640,
+        "height": 360,
+        "src": "/api/v1/projects/09b152db-5ca2-4868-b23a-8a00e14cd96d/media/3ef66425-7b0d-4305-b652-80649cc4dccc/stream",
+        "volume": 1,
+        "decoded_frames": 68,
+        "audio_decoded_bytes": 30701,
+        "events": [
+          {
+            "name": "loadedmetadata",
+            "time": 0
+          },
+          {
+            "name": "seeking",
+            "time": 2
+          },
+          {
+            "name": "timeupdate",
+            "time": 2
+          },
+          {
+            "name": "seeked",
+            "time": 2
+          },
+          {
+            "name": "playing",
+            "time": 2.014963
+          },
+          {
+            "name": "timeupdate",
+            "time": 2.194624
+          },
+          {
+            "name": "timeupdate",
+            "time": 2.263421
+          },
+          {
+            "name": "pause",
+            "time": 2.263421
+          }
+        ]
+      }
+    },
+    {
+      "check": "native_seek_changes_neither_dirty_state_nor_v1_revision",
+      "status": "passed"
+    },
+    {
+      "check": "three_texts_limit_positions_styles_unicode_and_invalid_three_lines_block_save",
+      "status": "passed"
+    },
+    {
+      "check": "overlays_follow_native_current_time_and_fit_seven_percent_safe_area",
+      "status": "passed",
+      "detail": {
+        "observations": [
+          {
+            "native_time": 1,
+            "visible_positions": []
+          },
+          {
+            "native_time": 2.5,
+            "visible_positions": [
+              "top"
+            ]
+          },
+          {
+            "native_time": 3.5,
+            "visible_positions": [
+              "top",
+              "center"
+            ]
+          },
+          {
+            "native_time": 5,
+            "visible_positions": [
+              "top",
+              "center",
+              "bottom"
+            ]
+          },
+          {
+            "native_time": 9.5,
+            "visible_positions": [
+              "top"
+            ]
+          },
+          {
+            "native_time": 10.5,
+            "visible_positions": []
+          }
+        ],
+        "measurements": [
+          {
+            "position": "top",
+            "box": {
+              "x": 467.046875,
+              "y": 393.8125,
+              "width": 181.875,
+              "height": 45.65625
+            },
+            "computed": {
+              "color": "rgb(59, 130, 246)",
+              "font_family": "\"Edivo Overlay\", sans-serif",
+              "font_size": "19.034px",
+              "text_shadow": "none"
+            }
+          },
+          {
+            "position": "center",
+            "box": {
+              "x": 467.046875,
+              "y": 546.0234375,
+              "width": 181.875,
+              "height": 18.953125
+            },
+            "computed": {
+              "color": "rgb(255, 255, 255)",
+              "font_family": "\"Edivo Overlay\", sans-serif",
+              "font_size": "15.792px",
+              "text_shadow": "none"
+            }
+          },
+          {
+            "position": "bottom",
+            "box": {
+              "x": 467.046875,
+              "y": 689.390625,
+              "width": 181.875,
+              "height": 27.796875
+            },
+            "computed": {
+              "color": "rgb(255, 255, 255)",
+              "font_family": "\"Edivo Overlay\", sans-serif",
+              "font_size": "23.169px",
+              "text_shadow": "none"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "check": "mp3_import_uses_real_ui_xhr_and_matches_api_inventory_sha256",
+      "status": "passed",
+      "detail": {
+        "audio_id": "963eaef5-513a-41a0-8d56-0b3989631310",
+        "bytes": 33069,
+        "sha256": "6bfc6c3ce72a59b9271b77a442d0eccb1e31add851755a888a677802d25809dd",
+        "transport": "xhr"
+      }
+    },
+    {
+      "check": "audio_controls_set_125_percent_source_15_percent_music_loop_and_full_trim_fades",
+      "status": "passed",
+      "detail": {
+        "audible_mix_validation": "deferred to the actual encoded preview; no manual listening claimed"
+      }
+    },
+    {
+      "check": "explicit_save_creates_revision_two_v2_and_deep_get_matches_all_text_audio_values",
+      "status": "passed",
+      "detail": {
+        "revision_id": "aa5a9c4d-6273-40a0-a36c-29fbe5f1fa74",
+        "revision_number": 2,
+        "schema_version": 2
+      }
+    },
+    {
+      "check": "reload_persists_v2_playhead_stays_clean_and_cancel_navigation_retains_only_local_draft",
+      "status": "passed"
+    },
+    {
+      "check": "dark_and_light_themes_persist_without_changing_the_saved_plan",
+      "status": "passed"
+    },
+    {
+      "check": "mobile_375_and_390_recover_three_texts_audio_controls_and_have_no_horizontal_overflow",
+      "status": "passed"
+    },
+    {
+      "check": "native_private_video_range_206_observed",
+      "status": "passed",
+      "detail": [
+        {
+          "path": "/api/v1/projects/09b152db-5ca2-4868-b23a-8a00e14cd96d/media/3ef66425-7b0d-4305-b652-80649cc4dccc/stream",
+          "status": 206,
+          "range": "bytes=0-",
+          "content_range": "bytes 0-2272528/2272529"
+        },
+        {
+          "path": "/api/v1/projects/09b152db-5ca2-4868-b23a-8a00e14cd96d/media/3ef66425-7b0d-4305-b652-80649cc4dccc/stream",
+          "status": 206,
+          "range": "bytes=1310720-",
+          "content_range": "bytes 1310720-2272528/2272529"
+        },
+        {
+          "path": "/api/v1/projects/09b152db-5ca2-4868-b23a-8a00e14cd96d/media/3ef66425-7b0d-4305-b652-80649cc4dccc/stream",
+          "status": 206,
+          "range": "bytes=0-",
+          "content_range": "bytes 0-2272528/2272529"
+        },
+        {
+          "path": "/api/v1/projects/09b152db-5ca2-4868-b23a-8a00e14cd96d/media/3ef66425-7b0d-4305-b652-80649cc4dccc/stream",
+          "status": 206,
+          "range": "bytes=1310720-",
+          "content_range": "bytes 1310720-2272528/2272529"
+        }
+      ]
+    },
+    {
+      "check": "no_uncaught_browser_page_errors",
+      "status": "passed"
+    }
+  ],
+  "page_errors": [],
+  "stream_responses": [
+    {
+      "path": "/api/v1/projects/09b152db-5ca2-4868-b23a-8a00e14cd96d/media/3ef66425-7b0d-4305-b652-80649cc4dccc/stream",
+      "status": 206,
+      "range": "bytes=0-",
+      "content_range": "bytes 0-2272528/2272529"
+    },
+    {
+      "path": "/api/v1/projects/09b152db-5ca2-4868-b23a-8a00e14cd96d/media/3ef66425-7b0d-4305-b652-80649cc4dccc/stream",
+      "status": 206,
+      "range": "bytes=1310720-",
+      "content_range": "bytes 1310720-2272528/2272529"
+    },
+    {
+      "path": "/api/v1/projects/09b152db-5ca2-4868-b23a-8a00e14cd96d/media/3ef66425-7b0d-4305-b652-80649cc4dccc/stream",
+      "status": 206,
+      "range": "bytes=0-",
+      "content_range": "bytes 0-2272528/2272529"
+    },
+    {
+      "path": "/api/v1/projects/09b152db-5ca2-4868-b23a-8a00e14cd96d/media/3ef66425-7b0d-4305-b652-80649cc4dccc/stream",
+      "status": 206,
+      "range": "bytes=1310720-",
+      "content_range": "bytes 1310720-2272528/2272529"
+    }
+  ],
+  "ui_save_requests": [
+    {
+      "path": "/api/v1/projects/09b152db-5ca2-4868-b23a-8a00e14cd96d/edit-spec",
+      "body": {
+        "schema_version": 2,
+        "source_media_id": "3ef66425-7b0d-4305-b652-80649cc4dccc",
+        "trim": {
+          "start_ms": 2000,
+          "end_ms": 11000
+        },
+        "canvas": {
+          "preset": "9:16",
+          "fit": "contain",
+          "focal_x": 0.5,
+          "focal_y": 0.5
+        },
+        "text_overlays": [
+          {
+            "id": "3fc43462-3df5-485e-8271-acbc0b56c625",
+            "text": "Edição: 50% 'á' \\ Ω\nAção, çã — teste",
+            "start_ms": 2000,
+            "end_ms": 10000,
+            "position": "top",
+            "style": "blue_outline",
+            "size": "medium"
+          },
+          {
+            "id": "c70eb2bd-f991-4dea-b6a2-e9cd754f4b08",
+            "text": "Centro — texto 2",
+            "start_ms": 3000,
+            "end_ms": 9000,
+            "position": "center",
+            "style": "white_outline",
+            "size": "small"
+          },
+          {
+            "id": "95f4b8af-4930-432a-986c-0e0cb49e4af4",
+            "text": "Base — texto 3",
+            "start_ms": 4000,
+            "end_ms": 8000,
+            "position": "bottom",
+            "style": "white_plain",
+            "size": "large"
+          }
+        ],
+        "audio": {
+          "source_volume": 1.25,
+          "background_audio_id": "963eaef5-513a-41a0-8d56-0b3989631310",
+          "background_volume": 0.15,
+          "background_loop": true,
+          "fade_in_ms": 500,
+          "fade_out_ms": 500
+        },
+        "expected_revision": 1
+      }
+    }
+  ],
+  "dialogs": [
+    {
+      "type": "confirm",
+      "message": "Há alterações não salvas. Deseja sair e descartá-las?",
+      "accepted": false
+    }
+  ],
+  "screenshots": [
+    "r04-composition-1792503369422908397-native-frame-texts.png",
+    "r04-composition-1792503369422908397-desktop-dark.png",
+    "r04-composition-1792503369422908397-desktop-light.png",
+    "r04-composition-1792503369422908397-mobile-375.png",
+    "r04-composition-1792503369422908397-mobile-390.png"
+  ],
+  "scope": "R04 composition UI, native video and persisted contracts; no encoded-preview or manual listening claim",
+  "data_policy": "Synthetic QA project, revisions and uploaded originals remain active for later stages."
+}

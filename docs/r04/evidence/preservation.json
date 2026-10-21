@@ -1,0 +1,13 @@
+{
+  "status": "passed",
+  "recorded_at": "2026-10-21T02:12:29.368800+00:00",
+  "read_only": true,
+  "changed_historical_files": [],
+  "changed_database_rows": {
+    "projects": [],
+    "media_assets": [],
+    "edit_spec_revisions": []
+  },
+  "changed_original_ids": [],
+  "baseline_original_count": 30
+}

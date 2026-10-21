@@ -1,0 +1,21 @@
+{
+  "service": "worker",
+  "status": "observed",
+  "inspected_fields_only": true,
+  "environment_printed": false,
+  "limits": {
+    "NanoCpus": 2000000000,
+    "Memory": 1610612736,
+    "MemorySwap": 1610612736,
+    "PidsLimit": 128,
+    "Init": true,
+    "ReadonlyRootfs": true,
+    "CapDrop": [
+      "ALL"
+    ],
+    "SecurityOpt": [
+      "no-new-privileges:true"
+    ],
+    "User": "1000:1000"
+  }
+}

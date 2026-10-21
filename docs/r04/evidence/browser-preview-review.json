@@ -1,0 +1,241 @@
+{
+  "stage": "R04.4 real browser preview and R04.5 restart verification",
+  "status": "passed",
+  "reviewed_at": "2026-10-21T02:13:29.792042+00:00",
+  "browser": "145.0.7632.6",
+  "api_or_media_mocked": false,
+  "commands": [
+    {
+      "command": "python3 scripts/browser-r04.py --stage preview --project-id 09b152db-5ca2-4868-b23a-8a00e14cd96d",
+      "exit_code": 0,
+      "run_id": "r04-preview-1792529337950253425",
+      "checks_passed": 11,
+      "report": "browser-preview.json"
+    },
+    {
+      "command": "python3 scripts/browser-r04.py --stage verify --project-id 09b152db-5ca2-4868-b23a-8a00e14cd96d",
+      "exit_code": 0,
+      "run_id": "r04-verify-1792548733318237090",
+      "checks_passed": 7,
+      "report": "browser-verify.json"
+    }
+  ],
+  "persisted_artifact": {
+    "project_id": "09b152db-5ca2-4868-b23a-8a00e14cd96d",
+    "revision_id": "aa5a9c4d-6273-40a0-a36c-29fbe5f1fa74",
+    "revision_number": 2,
+    "schema_version": 2,
+    "preview_id": "763490d8-dd20-4fbe-addf-048639761321",
+    "absolute_window_ms": [
+      5000,
+      9000
+    ],
+    "duration_ms": 4000,
+    "width": 540,
+    "height": 960,
+    "byte_size": 210935,
+    "sha256": "2eaf6b90dc138988898f099b6147e94f3d70ce5d4ef8a8d5f6b5cbdf07cd2741",
+    "recovered_after_service_restart": true,
+    "post_requests_during_verify": 0,
+    "put_requests_during_verify": 0
+  },
+  "native_playback": {
+    "preview": {
+      "duration": 4,
+      "width": 540,
+      "height": 960,
+      "current_time": 0.262522,
+      "decoded_frames": 11,
+      "audio_decoded_bytes": 9375,
+      "events": [
+        {
+          "name": "loadedmetadata",
+          "time": 0,
+          "label": "Prévia gerada"
+        },
+        {
+          "name": "seeking",
+          "time": 0,
+          "label": "Prévia gerada"
+        },
+        {
+          "name": "timeupdate",
+          "time": 0,
+          "label": "Prévia gerada"
+        },
+        {
+          "name": "seeked",
+          "time": 0,
+          "label": "Prévia gerada"
+        },
+        {
+          "name": "playing",
+          "time": 0.002614,
+          "label": "Prévia gerada"
+        },
+        {
+          "name": "timeupdate",
+          "time": 0.192034,
+          "label": "Prévia gerada"
+        },
+        {
+          "name": "timeupdate",
+          "time": 0.262522,
+          "label": "Prévia gerada"
+        },
+        {
+          "name": "pause",
+          "time": 0.262522,
+          "label": "Prévia gerada"
+        }
+      ]
+    },
+    "after_restart": {
+      "duration": 4,
+      "width": 540,
+      "height": 960,
+      "current_time": 0.219754,
+      "decoded_frames": 9,
+      "audio_decoded_bytes": 8727,
+      "events": [
+        {
+          "name": "loadedmetadata",
+          "time": 0,
+          "label": "Prévia gerada"
+        },
+        {
+          "name": "seeking",
+          "time": 0,
+          "label": "Prévia gerada"
+        },
+        {
+          "name": "timeupdate",
+          "time": 0,
+          "label": "Prévia gerada"
+        },
+        {
+          "name": "seeked",
+          "time": 0,
+          "label": "Prévia gerada"
+        },
+        {
+          "name": "playing",
+          "time": 0.000137,
+          "label": "Prévia gerada"
+        },
+        {
+          "name": "timeupdate",
+          "time": 0.180365,
+          "label": "Prévia gerada"
+        },
+        {
+          "name": "timeupdate",
+          "time": 0.219754,
+          "label": "Prévia gerada"
+        },
+        {
+          "name": "pause",
+          "time": 0.219754,
+          "label": "Prévia gerada"
+        }
+      ]
+    },
+    "mobile_after_restart": [
+      {
+        "viewport_width": 375,
+        "current_time": 2.5,
+        "width": 540,
+        "height": 960,
+        "decoded_frames": 64
+      },
+      {
+        "viewport_width": 390,
+        "current_time": 2.5,
+        "width": 540,
+        "height": 960,
+        "decoded_frames": 64
+      }
+    ]
+  },
+  "visual_inspection": {
+    "performed": true,
+    "method": "Codex viewed all five preview-run and all five verify-run PNGs using the local image viewer.",
+    "observations": [
+      "Encoded video displays the literal accented text, quotes, colon, percent sign, backslash and Omega at the top; outlined center text and plain bottom text are visible.",
+      "The horizontal source is contained without stretching inside the encoded 9:16 composition; neutral empty areas and three text anchors agree with the intended composition.",
+      "The paused native browser controls and their gradient temporarily obscure part of the bottom text. The technical final frame hides only that control overlay and restores controls immediately afterward, confirming all text remains in the actual video image.",
+      "Desktop dark/light panels retain the same saved revision and distinguish source playback from the encoded result.",
+      "Initial mobile screenshots displayed a black metadata-preload frame before a seek/play request. The final mobile screenshots are taken only after real native seeking to 2.5 seconds, readyState >= 2 and 64 decoded frames; the encoded content is visible at both 375 and 390 pixels.",
+      "After reload, generation controls return to their default window while the existing result retains its explicit original 5000–9000 ms window and revision 2 label."
+    ],
+    "technical_capture_policy": "Only controls visibility changes during paused frame captures. No encoded frame, bytes, checksum, media event or playback clock is fabricated or edited.",
+    "additional_reviewer": {
+      "reviewer": "Root Codex agent",
+      "reported_method": "Local image viewer inspection of final encoded-frame and persisted-preview-mobile-375",
+      "confirmed": [
+        "Three readable text overlays and correct contain bars",
+        "Bottom text visible in technical capture with native controls hidden and restored afterward",
+        "Mobile panels stacked without horizontal clipping"
+      ],
+      "human_audio_listening_claimed": false
+    }
+  },
+  "limitations": [
+    "Chromium 145 headless in the official Playwright image only; no physical mobile device, Firefox or Safari was tested.",
+    "Audio decoding was observed, but no human manual listening or subjective voice/music intelligibility evaluation is claimed.",
+    "Mobile seek/decoded-frame and layout checks use emulated viewports. Native keyboard playback was exercised on desktop; no new physical touch claim is made.",
+    "CSS source playback and encoded-preview playback have separate native clocks; screenshots are not a frame-by-frame pixel parity comparison."
+  ],
+  "screenshots": [
+    {
+      "path": "r04-preview-1792529337950253425-encoded-frame.png",
+      "bytes": 46964,
+      "sha256": "6dec9159c308beecf9675d8dc4e8bbf122ded3b220db370fd1b3f21f26716362"
+    },
+    {
+      "path": "r04-preview-1792529337950253425-preview-desktop-dark.png",
+      "bytes": 329306,
+      "sha256": "2171dce368d0a1cbe39028752dcf659f1130ae4c16bd7f352f19b47ba53dee7a"
+    },
+    {
+      "path": "r04-preview-1792529337950253425-preview-desktop-light.png",
+      "bytes": 325786,
+      "sha256": "d13a87b176963ab93ea23f8a612178c0b9fff8499c71992e25db617077b58ac9"
+    },
+    {
+      "path": "r04-preview-1792529337950253425-preview-mobile-375.png",
+      "bytes": 259061,
+      "sha256": "5fdd5931b8d0e0b81d0026e27ecd48a020967498bc34bc006477cb78f5d0ea91"
+    },
+    {
+      "path": "r04-preview-1792529337950253425-preview-mobile-390.png",
+      "bytes": 259352,
+      "sha256": "da9f032d80307aa73c8fbc519e18cbf846165451fb09dfc9418aa479993491c6"
+    },
+    {
+      "path": "r04-verify-1792548733318237090-encoded-frame.png",
+      "bytes": 45199,
+      "sha256": "5055b01e768c0382fb27aa03414db1353d5704014bc71e40a004bdd9aeb2eacc"
+    },
+    {
+      "path": "r04-verify-1792548733318237090-persisted-preview.png",
+      "bytes": 323160,
+      "sha256": "92b8cdbf08c8a001b2ef2a0b312b044ec17408d8eb492f016a2162a9e0cdc96f"
+    },
+    {
+      "path": "r04-verify-1792548733318237090-persisted-preview-mobile-375.png",
+      "bytes": 300564,
+      "sha256": "1e159be5124854830721b4f70c673eaeda7d7d7c670530db1617572c08fd22c6"
+    },
+    {
+      "path": "r04-verify-1792548733318237090-mobile-encoded-frame.png",
+      "bytes": 43494,
+      "sha256": "b44def38eb8756481304e49e64486b20e81114fc125a2f398a98d3ff1fd75a8e"
+    },
+    {
+      "path": "r04-verify-1792548733318237090-persisted-preview-mobile-390.png",
+      "bytes": 300586,
+      "sha256": "c82293bfc899aba27cdda98ef4232ec5939c620163faa74c7d73e56174a93f1b"
+    }
+  ]
+}

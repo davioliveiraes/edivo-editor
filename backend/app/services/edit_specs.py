@@ -6,19 +6,27 @@ from sqlalchemy.orm import Session
 
 from app.core.errors import AppError
 from app.models.edit_spec_revision import EditSpecRevision
+from app.repositories.audio import AudioRepository
 from app.repositories.edit_specs import EditSpecRepository
 from app.repositories.media import MediaRepository
-from app.schemas.edit_spec import EditSpecPut, EditSpecResponse
+from app.schemas.edit_spec import (
+    EditSpecPut,
+    EditSpecResponse,
+    EditSpecV2Put,
+    edit_spec_response_adapter,
+)
 from app.services.projects import ProjectService
 
 
 def revision_response(revision: EditSpecRevision) -> EditSpecResponse:
-    return EditSpecResponse(
-        **revision.spec_json,
-        id=revision.id,
-        project_id=revision.project_id,
-        revision_number=revision.revision_number,
-        created_at=revision.created_at,
+    return edit_spec_response_adapter.validate_python(
+        {
+            **revision.spec_json,
+            "id": revision.id,
+            "project_id": revision.project_id,
+            "revision_number": revision.revision_number,
+            "created_at": revision.created_at,
+        }
     )
 
 
@@ -64,6 +72,13 @@ class EditSpecService:
                 "invalid_edit_spec",
                 "O trecho deve respeitar a duração da fonte e o intervalo mínimo permitido.",
             )
+
+        if isinstance(data, EditSpecV2Put) and data.audio.background_audio_id is not None:
+            audio = AudioRepository(self.session).get_for_project(
+                project_id, data.audio.background_audio_id
+            )
+            if audio is None:
+                raise AppError(404, "audio_not_found", "Áudio não encontrado neste projeto.")
 
         plan = data.plan().model_dump(mode="json")
         if current is not None and current.spec_json == plan:

@@ -1,0 +1,221 @@
+{
+  "recorded_at": "2026-10-21 01:47:50 UTC",
+  "status": "passed",
+  "scope": "Final read-only comparison of the five ObraControl containers recorded before R04 worker resource rollout.",
+  "baseline": "coexistence-before.json",
+  "fields_inspected": [
+    "Id",
+    "Name",
+    "State.Status",
+    "Config.Image",
+    "HostConfig.PortBindings"
+  ],
+  "environment_inspected": false,
+  "environment_printed": false,
+  "container_mutations_performed": false,
+  "containers_checked": 5,
+  "changed_containers": 0,
+  "comparisons": [
+    {
+      "name": "/obra-control-backend-1",
+      "status": "passed",
+      "fields": {
+        "id": {
+          "before": "bc11ea210a9ca3f961e4eccc9ec7a809d11c76667f82aea87397f41e6354219b",
+          "after": "bc11ea210a9ca3f961e4eccc9ec7a809d11c76667f82aea87397f41e6354219b",
+          "unchanged": true
+        },
+        "state": {
+          "before": "exited",
+          "after": "exited",
+          "unchanged": true
+        },
+        "image": {
+          "before": "obra-control-backend:f4-dev",
+          "after": "obra-control-backend:f4-dev",
+          "unchanged": true
+        },
+        "ports": {
+          "before": {
+            "8000/tcp": [
+              {
+                "HostIp": "127.0.0.1",
+                "HostPort": "8000"
+              }
+            ]
+          },
+          "after": {
+            "8000/tcp": [
+              {
+                "HostIp": "127.0.0.1",
+                "HostPort": "8000"
+              }
+            ]
+          },
+          "unchanged": true
+        }
+      }
+    },
+    {
+      "name": "/obra-control-db-1",
+      "status": "passed",
+      "fields": {
+        "id": {
+          "before": "d90a8cddb8dc409b59555d69c3eee89c8d69ffba5d0b72d8c11b50463c0dd324",
+          "after": "d90a8cddb8dc409b59555d69c3eee89c8d69ffba5d0b72d8c11b50463c0dd324",
+          "unchanged": true
+        },
+        "state": {
+          "before": "exited",
+          "after": "exited",
+          "unchanged": true
+        },
+        "image": {
+          "before": "postgres:18-bookworm",
+          "after": "postgres:18-bookworm",
+          "unchanged": true
+        },
+        "ports": {
+          "before": {
+            "5432/tcp": [
+              {
+                "HostIp": "",
+                "HostPort": "5433"
+              }
+            ]
+          },
+          "after": {
+            "5432/tcp": [
+              {
+                "HostIp": "",
+                "HostPort": "5433"
+              }
+            ]
+          },
+          "unchanged": true
+        }
+      }
+    },
+    {
+      "name": "/obra-control-frontend-1",
+      "status": "passed",
+      "fields": {
+        "id": {
+          "before": "1a35ac4adf07cc4f4e356b68b6dcea6dd838bf99d16a5e6490b649604748a2d5",
+          "after": "1a35ac4adf07cc4f4e356b68b6dcea6dd838bf99d16a5e6490b649604748a2d5",
+          "unchanged": true
+        },
+        "state": {
+          "before": "exited",
+          "after": "exited",
+          "unchanged": true
+        },
+        "image": {
+          "before": "obra-control-frontend:f4-dev",
+          "after": "obra-control-frontend:f4-dev",
+          "unchanged": true
+        },
+        "ports": {
+          "before": {
+            "5173/tcp": [
+              {
+                "HostIp": "127.0.0.1",
+                "HostPort": "5173"
+              }
+            ]
+          },
+          "after": {
+            "5173/tcp": [
+              {
+                "HostIp": "127.0.0.1",
+                "HostPort": "5173"
+              }
+            ]
+          },
+          "unchanged": true
+        }
+      }
+    },
+    {
+      "name": "/obra-control-step6-registration-dev",
+      "status": "passed",
+      "fields": {
+        "id": {
+          "before": "3b2018678bc574ccd6e2517553fb3f56bc29d668219afe07921fec3f4f929969",
+          "after": "3b2018678bc574ccd6e2517553fb3f56bc29d668219afe07921fec3f4f929969",
+          "unchanged": true
+        },
+        "state": {
+          "before": "exited",
+          "after": "exited",
+          "unchanged": true
+        },
+        "image": {
+          "before": "obra-control-frontend:f4-dev",
+          "after": "obra-control-frontend:f4-dev",
+          "unchanged": true
+        },
+        "ports": {
+          "before": {
+            "5173/tcp": [
+              {
+                "HostIp": "127.0.0.1",
+                "HostPort": "5174"
+              }
+            ]
+          },
+          "after": {
+            "5173/tcp": [
+              {
+                "HostIp": "127.0.0.1",
+                "HostPort": "5174"
+              }
+            ]
+          },
+          "unchanged": true
+        }
+      }
+    },
+    {
+      "name": "/obra-control-step6-registration-preview",
+      "status": "passed",
+      "fields": {
+        "id": {
+          "before": "ba2fc422f3b0cb982fb5a3ce3ae6a87eab289d2046d6195d8f250f5afb904611",
+          "after": "ba2fc422f3b0cb982fb5a3ce3ae6a87eab289d2046d6195d8f250f5afb904611",
+          "unchanged": true
+        },
+        "state": {
+          "before": "exited",
+          "after": "exited",
+          "unchanged": true
+        },
+        "image": {
+          "before": "obra-control-frontend:f4-dev",
+          "after": "obra-control-frontend:f4-dev",
+          "unchanged": true
+        },
+        "ports": {
+          "before": {
+            "4173/tcp": [
+              {
+                "HostIp": "127.0.0.1",
+                "HostPort": "4174"
+              }
+            ]
+          },
+          "after": {
+            "4173/tcp": [
+              {
+                "HostIp": "127.0.0.1",
+                "HostPort": "4174"
+              }
+            ]
+          },
+          "unchanged": true
+        }
+      }
+    }
+  ],
+  "limitation": "Snapshot comparison proves these recorded final values match the baseline; no lifecycle action was performed by this audit."
+}

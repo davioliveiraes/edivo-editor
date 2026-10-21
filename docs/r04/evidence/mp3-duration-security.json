@@ -1,0 +1,94 @@
+{
+  "recorded_at": "2026-10-20T00:13:45.544062+00:00",
+  "scope": "Production inspector in final API image; real FFprobe. Inputs used Linux memfd only. No HTTP request, database mutation or persistent input file.",
+  "runtime": {
+    "python": "3.12.14",
+    "ffprobe": "ffprobe version 5.1.9-0+deb12u1 Copyright (c) 2007-2026 the FFmpeg developers"
+  },
+  "configuration": {
+    "audio_upload_max_bytes": 31457280,
+    "audio_max_duration_seconds": 600,
+    "ffprobe_timeout_seconds": 15.0,
+    "ffprobe_max_output_bytes": 1048576,
+    "framing_tolerance_max_frames": 2
+  },
+  "source_sha256": "e56596e9e65e11af509013430ca0eab90bbbf0362bfe60e85198e845a696d131",
+  "results": [
+    {
+      "case": "legitimate_synthetic_mp3",
+      "byte_size": 192813,
+      "sha256": "d13ea613fcfa748e7799d69228a12118f30fbe100b8f1a7211fa316c7309470a",
+      "structural_duration_seconds": 12.048,
+      "structural_duration_exact": "1506/125",
+      "declared_header_duration_seconds": 12.024,
+      "max_frame_duration_seconds": 0.024,
+      "sample_rates": [
+        48000
+      ],
+      "channels": [
+        1
+      ],
+      "accepted": true,
+      "metadata": {
+        "duration_ms": 12024,
+        "codec": "mp3",
+        "sample_rate": 48000,
+        "channels": 1
+      }
+    },
+    {
+      "case": "forged_long_info",
+      "byte_size": 10581549,
+      "sha256": "973c72cdbd226dcbd099fc3196d5d67055e12da0b83491889300a5cb3942f97b",
+      "structural_duration_seconds": 661.344,
+      "structural_duration_exact": "82668/125",
+      "declared_header_duration_seconds": 12.024,
+      "max_frame_duration_seconds": 0.024,
+      "sample_rates": [
+        48000
+      ],
+      "channels": [
+        1
+      ],
+      "accepted": false,
+      "status_code": 422,
+      "error_code": "audio_duration_exceeded"
+    },
+    {
+      "case": "forged_long_xing",
+      "byte_size": 10581549,
+      "sha256": "d2a8788496bd49b6a4434029cbcf50a3f20217eaeb8780b1ecd6d4d9b343c3ac",
+      "structural_duration_seconds": 661.344,
+      "structural_duration_exact": "82668/125",
+      "declared_header_duration_seconds": 12.024,
+      "max_frame_duration_seconds": 0.024,
+      "sample_rates": [
+        48000
+      ],
+      "channels": [
+        1
+      ],
+      "accepted": false,
+      "status_code": 422,
+      "error_code": "audio_duration_exceeded"
+    },
+    {
+      "case": "forged_short_info",
+      "byte_size": 192813,
+      "sha256": "6f7389977eae26f93edc55bd5e231469431651462f8eb07cb34c9b84b85f82f7",
+      "structural_duration_seconds": 12.048,
+      "structural_duration_exact": "1506/125",
+      "declared_header_duration_seconds": 0.96,
+      "max_frame_duration_seconds": 0.024,
+      "sample_rates": [
+        48000
+      ],
+      "channels": [
+        1
+      ],
+      "accepted": false,
+      "status_code": 422,
+      "error_code": "invalid_audio"
+    }
+  ]
+}

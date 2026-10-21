@@ -1,0 +1,61 @@
+{
+  "recorded_at": "2026-10-21 01:36:25 UTC",
+  "status": "passed",
+  "scope": "Fix of processor unit-test fixture sizing inside the existing 128 MiB container tmpfs; no production limit or runtime service was changed.",
+  "reported_final_suite_failure": {
+    "source": "root agent final container QA",
+    "failed_case": "test_preview_processor.test_verified_artifact_published_only_after_validation",
+    "passed_before_failure": 530,
+    "failed": 1,
+    "duration_seconds": 82.04,
+    "error_code": "preview_storage_unavailable",
+    "diagnosis": "The unit fixture requested the production 64 MiB reserve plus 64 MiB maximum output inside a tmpfs whose entire capacity is 128 MiB. Existing temporary files make that reservation impossible."
+  },
+  "test_only_changes": {
+    "file": "backend/tests/test_preview_processor.py",
+    "storage_min_free_bytes": 0,
+    "preview_max_bytes": 1048576,
+    "new_guard_case": "test_no_free_disk_blocks_renderer_and_preserves_source"
+  },
+  "container_inspection": {
+    "tmp_total_bytes": 134217728,
+    "backend_bind_read_only": true,
+    "production_storage_min_free_bytes": 67108864,
+    "production_preview_max_bytes": 67108864
+  },
+  "guard_assertions": {
+    "free_bytes_simulated": 0,
+    "renderer_called": false,
+    "temporary_entries_after": 0,
+    "source_bytes_unchanged": true,
+    "source_mode": "0400",
+    "canonical_created": false
+  },
+  "commands": [
+    {
+      "command": "docker compose run --rm --no-deps --volume /home/davi/edivo-editor/backend:/app:ro api pytest -q tests/test_preview_processor.py",
+      "exit_code": 0,
+      "result": "12 passed, 1 warning in 0.93s",
+      "passed": 12,
+      "warning_count": 1
+    },
+    {
+      "command": "docker compose run --rm --no-deps --volume /home/davi/edivo-editor/backend:/app:ro api python -c 'import json,os; from app.core.config import Settings; info=os.statvfs(\"/tmp\"); result={\"tmp_total_bytes\":info.f_blocks*info.f_frsize,\"backend_bind_read_only\":bool(os.statvfs(\"/app\").f_flag&os.ST_RDONLY),\"production_storage_min_free_bytes\":Settings.model_fields[\"storage_min_free_bytes\"].default,\"production_preview_max_bytes\":Settings.model_fields[\"preview_max_bytes\"].default}; assert result[\"tmp_total_bytes\"]==134217728; assert result[\"backend_bind_read_only\"]; print(json.dumps(result))'",
+      "exit_code": 0
+    },
+    {
+      "command": ".venv/bin/ruff format tests/test_preview_processor.py",
+      "cwd": "backend",
+      "exit_code": 0,
+      "result": "1 file left unchanged"
+    },
+    {
+      "command": ".venv/bin/ruff check tests/test_preview_processor.py",
+      "cwd": "backend",
+      "exit_code": 0,
+      "result": "All checks passed!"
+    }
+  ],
+  "final_full_regression": "To be repeated by root after rebuilding the backend; this isolated result does not claim the remaining final suite passed.",
+  "data_policy": "Only temporary unit data was created inside disposable QA containers. No PostgreSQL job, active API/worker/frontend, existing original or ObraControl service was changed."
+}

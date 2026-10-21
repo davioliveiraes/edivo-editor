@@ -1,0 +1,82 @@
+{
+  "audio": [
+    {
+      "id": "44257017-64e9-4542-a3e7-0bc9ee72cdd0",
+      "sha256": "6bfc6c3ce72a59b9271b77a442d0eccb1e31add851755a888a677802d25809dd",
+      "sha256_matches": true,
+      "bytes": 33069,
+      "mode": "0o400"
+    },
+    {
+      "id": "f58625e1-1519-4fbd-8cf8-500b58119825",
+      "sha256": "6bfc6c3ce72a59b9271b77a442d0eccb1e31add851755a888a677802d25809dd",
+      "sha256_matches": true,
+      "bytes": 33069,
+      "mode": "0o400"
+    }
+  ],
+  "immutability": {
+    "update": "55000",
+    "delete": "55000"
+  },
+  "revisions": [
+    {
+      "id": "b59e06d4-d490-4679-8449-d047f9824f55",
+      "schema_version": 1,
+      "spec_json": {
+        "trim": {
+          "end_ms": 1001,
+          "start_ms": 0
+        },
+        "canvas": {
+          "fit": "cover",
+          "preset": "16:9",
+          "focal_x": 0.5,
+          "focal_y": 0.5
+        },
+        "schema_version": 1,
+        "source_media_id": "dd988d53-7987-4586-aacd-d4487c4a8854"
+      }
+    },
+    {
+      "id": "c9a2d7b6-e3f1-4f23-ba89-88aab5202716",
+      "schema_version": 2,
+      "spec_json": {
+        "trim": {
+          "end_ms": 1001,
+          "start_ms": 0
+        },
+        "audio": {
+          "fade_in_ms": 100,
+          "fade_out_ms": 100,
+          "source_volume": 1.25,
+          "background_loop": true,
+          "background_volume": 0.15,
+          "background_audio_id": "f58625e1-1519-4fbd-8cf8-500b58119825"
+        },
+        "canvas": {
+          "fit": "cover",
+          "preset": "16:9",
+          "focal_x": 0.5,
+          "focal_y": 0.5
+        },
+        "text_overlays": [
+          {
+            "id": "39a4225f-3d1c-4442-ba48-3c6c6c932cad",
+            "size": "medium",
+            "text": "Edivo: ação \"real\" \\ teste",
+            "style": "white_outline",
+            "end_ms": 900,
+            "position": "top",
+            "start_ms": 0
+          }
+        ],
+        "schema_version": 2,
+        "source_media_id": "dd988d53-7987-4586-aacd-d4487c4a8854"
+      }
+    }
+  ],
+  "staging_files": 0,
+  "status": "passed",
+  "generated_at": "2026-10-19T23:57:00.223438+00:00"
+}

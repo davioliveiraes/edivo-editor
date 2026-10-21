@@ -110,4 +110,9 @@ def test_no_future_api_routes(application):
         "/api/v1/projects/{project_id}/media/{media_id}",
         "/api/v1/projects/{project_id}/media/{media_id}/stream",
         "/api/v1/projects/{project_id}/edit-spec",
+        "/api/v1/projects/{project_id}/audio",
+        "/api/v1/projects/{project_id}/audio/{audio_id}",
+        "/api/v1/projects/{project_id}/previews",
+        "/api/v1/projects/{project_id}/previews/{preview_id}",
+        "/api/v1/projects/{project_id}/previews/{preview_id}/file",
     }

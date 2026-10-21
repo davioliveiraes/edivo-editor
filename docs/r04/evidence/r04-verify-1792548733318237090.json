@@ -1,0 +1,234 @@
+{
+  "status": "passed",
+  "stage": "verify",
+  "run_id": "r04-verify-1792548733318237090",
+  "browser": "145.0.7632.6",
+  "project_id": "09b152db-5ca2-4868-b23a-8a00e14cd96d",
+  "checks": [
+    {
+      "check": "localhost_browser_context_supports_secure_random_uuid",
+      "status": "passed",
+      "detail": {
+        "origin": "http://127.0.0.1:5173",
+        "is_secure_context": true,
+        "random_uuid_available": true
+      }
+    },
+    {
+      "check": "retained_v2_and_mp3_inventory_recover_after_the_requested_runtime_transition",
+      "status": "passed"
+    },
+    {
+      "check": "completed_job_and_same_checksum_recover_by_get_after_restart_without_a_new_render",
+      "status": "passed",
+      "detail": {
+        "preview_id": "763490d8-dd20-4fbe-addf-048639761321",
+        "revision_id": "aa5a9c4d-6273-40a0-a36c-29fbe5f1fa74",
+        "sha256": "2eaf6b90dc138988898f099b6147e94f3d70ce5d4ef8a8d5f6b5cbdf07cd2741",
+        "bytes": 210935
+      }
+    },
+    {
+      "check": "encoded_preview_has_real_play_pause_native_decoding_audio_and_stops_the_source_player",
+      "status": "passed",
+      "detail": {
+        "duration": 4,
+        "width": 540,
+        "height": 960,
+        "current_time": 0.219754,
+        "decoded_frames": 9,
+        "audio_decoded_bytes": 8727,
+        "events": [
+          {
+            "name": "loadedmetadata",
+            "time": 0,
+            "label": "Prévia gerada"
+          },
+          {
+            "name": "seeking",
+            "time": 0,
+            "label": "Prévia gerada"
+          },
+          {
+            "name": "timeupdate",
+            "time": 0,
+            "label": "Prévia gerada"
+          },
+          {
+            "name": "seeked",
+            "time": 0,
+            "label": "Prévia gerada"
+          },
+          {
+            "name": "playing",
+            "time": 0.000137,
+            "label": "Prévia gerada"
+          },
+          {
+            "name": "timeupdate",
+            "time": 0.180365,
+            "label": "Prévia gerada"
+          },
+          {
+            "name": "timeupdate",
+            "time": 0.219754,
+            "label": "Prévia gerada"
+          },
+          {
+            "name": "pause",
+            "time": 0.219754,
+            "label": "Prévia gerada"
+          }
+        ]
+      }
+    },
+    {
+      "check": "encoded_preview_seek_head_and_private_range_206_are_real",
+      "status": "passed",
+      "detail": {
+        "native_range": [
+          {
+            "path": "/api/v1/projects/09b152db-5ca2-4868-b23a-8a00e14cd96d/previews/763490d8-dd20-4fbe-addf-048639761321/file",
+            "status": 206,
+            "range": "bytes=0-",
+            "content_range": "bytes 0-210934/210935"
+          },
+          {
+            "path": "/api/v1/projects/09b152db-5ca2-4868-b23a-8a00e14cd96d/previews/763490d8-dd20-4fbe-addf-048639761321/file",
+            "status": 206,
+            "range": "bytes=196608-",
+            "content_range": "bytes 196608-210934/210935"
+          },
+          {
+            "path": "/api/v1/projects/09b152db-5ca2-4868-b23a-8a00e14cd96d/previews/763490d8-dd20-4fbe-addf-048639761321/file",
+            "status": 206,
+            "range": "bytes=0-",
+            "content_range": "bytes 0-210934/210935"
+          },
+          {
+            "path": "/api/v1/projects/09b152db-5ca2-4868-b23a-8a00e14cd96d/previews/763490d8-dd20-4fbe-addf-048639761321/file",
+            "status": 206,
+            "range": "bytes=196608-",
+            "content_range": "bytes 196608-210934/210935"
+          }
+        ],
+        "checked_range": "bytes 0-15/210935"
+      }
+    },
+    {
+      "check": "persisted_preview_decodes_a_real_seek_frame_in_mobile_375_and_390_without_overflow",
+      "status": "passed",
+      "detail": [
+        {
+          "viewport_width": 375,
+          "current_time": 2.5,
+          "width": 540,
+          "height": 960,
+          "decoded_frames": 64
+        },
+        {
+          "viewport_width": 390,
+          "current_time": 2.5,
+          "width": 540,
+          "height": 960,
+          "decoded_frames": 64
+        }
+      ]
+    },
+    {
+      "check": "no_uncaught_browser_page_errors",
+      "status": "passed"
+    }
+  ],
+  "page_errors": [],
+  "stream_responses": [
+    {
+      "path": "/api/v1/projects/09b152db-5ca2-4868-b23a-8a00e14cd96d/media/3ef66425-7b0d-4305-b652-80649cc4dccc/stream",
+      "status": 206,
+      "range": "bytes=0-",
+      "content_range": "bytes 0-2272528/2272529"
+    },
+    {
+      "path": "/api/v1/projects/09b152db-5ca2-4868-b23a-8a00e14cd96d/media/3ef66425-7b0d-4305-b652-80649cc4dccc/stream",
+      "status": 206,
+      "range": "bytes=1048576-",
+      "content_range": "bytes 1048576-2272528/2272529"
+    },
+    {
+      "path": "/api/v1/projects/09b152db-5ca2-4868-b23a-8a00e14cd96d/media/3ef66425-7b0d-4305-b652-80649cc4dccc/stream",
+      "status": 206,
+      "range": "bytes=0-",
+      "content_range": "bytes 0-2272528/2272529"
+    }
+  ],
+  "preview_file_responses": [
+    {
+      "path": "/api/v1/projects/09b152db-5ca2-4868-b23a-8a00e14cd96d/previews/763490d8-dd20-4fbe-addf-048639761321/file",
+      "status": 206,
+      "range": "bytes=0-",
+      "content_range": "bytes 0-210934/210935"
+    },
+    {
+      "path": "/api/v1/projects/09b152db-5ca2-4868-b23a-8a00e14cd96d/previews/763490d8-dd20-4fbe-addf-048639761321/file",
+      "status": 206,
+      "range": "bytes=196608-",
+      "content_range": "bytes 196608-210934/210935"
+    },
+    {
+      "path": "/api/v1/projects/09b152db-5ca2-4868-b23a-8a00e14cd96d/previews/763490d8-dd20-4fbe-addf-048639761321/file",
+      "status": 206,
+      "range": "bytes=0-",
+      "content_range": "bytes 0-210934/210935"
+    },
+    {
+      "path": "/api/v1/projects/09b152db-5ca2-4868-b23a-8a00e14cd96d/previews/763490d8-dd20-4fbe-addf-048639761321/file",
+      "status": 206,
+      "range": "bytes=196608-",
+      "content_range": "bytes 196608-210934/210935"
+    },
+    {
+      "path": "/api/v1/projects/09b152db-5ca2-4868-b23a-8a00e14cd96d/previews/763490d8-dd20-4fbe-addf-048639761321/file",
+      "status": 206,
+      "range": "bytes=0-",
+      "content_range": "bytes 0-210934/210935"
+    },
+    {
+      "path": "/api/v1/projects/09b152db-5ca2-4868-b23a-8a00e14cd96d/previews/763490d8-dd20-4fbe-addf-048639761321/file",
+      "status": 206,
+      "range": "bytes=131072-",
+      "content_range": "bytes 131072-210934/210935"
+    },
+    {
+      "path": "/api/v1/projects/09b152db-5ca2-4868-b23a-8a00e14cd96d/previews/763490d8-dd20-4fbe-addf-048639761321/file",
+      "status": 206,
+      "range": "bytes=196608-",
+      "content_range": "bytes 196608-210934/210935"
+    }
+  ],
+  "preview_statuses": [
+    {
+      "id": "763490d8-dd20-4fbe-addf-048639761321",
+      "status": "completed",
+      "stage": "completed",
+      "attempts": 1
+    },
+    {
+      "id": "763490d8-dd20-4fbe-addf-048639761321",
+      "status": "completed",
+      "stage": "completed",
+      "attempts": 1
+    }
+  ],
+  "ui_preview_requests": [],
+  "ui_save_requests": [],
+  "dialogs": [],
+  "screenshots": [
+    "r04-verify-1792548733318237090-encoded-frame.png",
+    "r04-verify-1792548733318237090-persisted-preview.png",
+    "r04-verify-1792548733318237090-persisted-preview-mobile-375.png",
+    "r04-verify-1792548733318237090-mobile-encoded-frame.png",
+    "r04-verify-1792548733318237090-persisted-preview-mobile-390.png"
+  ],
+  "scope": "R04 saved composition and real worker-encoded preview playback with native media and private Range; no manual listening claim",
+  "data_policy": "Synthetic QA project, revisions and uploaded originals remain active for later stages."
+}

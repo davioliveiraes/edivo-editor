@@ -14,20 +14,31 @@ class UploadBodyExceeded(MultiPartException):
 
 
 class UploadBodyLimitMiddleware:
-    def __init__(self, app: ASGIApp, max_body_bytes: int) -> None:
+    def __init__(
+        self,
+        app: ASGIApp,
+        max_body_bytes: int,
+        audio_max_body_bytes: int = 30 * 1024 * 1024 + 65536,
+    ) -> None:
         self.app = app
         self.max_body_bytes = max_body_bytes
+        self.audio_max_body_bytes = audio_max_body_bytes
 
     async def __call__(self, scope: Scope, receive: Receive, send: Send) -> None:
         is_upload = (
             scope["type"] == "http"
             and scope["method"] == "POST"
-            and re.fullmatch(r"/api/v1/projects/[^/]+/media/?", scope["path"]) is not None
+            and re.fullmatch(r"/api/v1/projects/[^/]+/(?:media|audio)/?", scope["path"]) is not None
         )
         if not is_upload:
             await self.app(scope, receive, send)
             return
 
+        max_body_bytes = (
+            self.audio_max_body_bytes
+            if scope["path"].rstrip("/").endswith("/audio")
+            else self.max_body_bytes
+        )
         lengths = [value for name, value in scope["headers"] if name.lower() == b"content-length"]
         if lengths:
             try:
@@ -38,7 +49,7 @@ class UploadBodyLimitMiddleware:
             except (ValueError, OverflowError):
                 await self._reject(scope, receive, send, 400)
                 return
-            if declared_length > self.max_body_bytes:
+            if declared_length > max_body_bytes:
                 await self._reject(scope, receive, send, 413)
                 return
 
@@ -49,7 +60,7 @@ class UploadBodyLimitMiddleware:
             message = await receive()
             if message["type"] == "http.request":
                 received += len(message.get("body", b""))
-                if received > self.max_body_bytes:
+                if received > max_body_bytes:
                     # The parser closes every spool for any exception in parse().
                     raise UploadBodyExceeded
             return message

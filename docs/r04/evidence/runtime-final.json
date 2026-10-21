@@ -1,0 +1,38 @@
+{
+  "status": "passed",
+  "docker_server": "29.8.0",
+  "compose": "5.5.1",
+  "backend": {
+    "python": "3.12.14",
+    "packages": {
+      "fastapi": "0.143.3",
+      "starlette": "1.8.0",
+      "pydantic": "2.14.1",
+      "pydantic-settings": "2.16.0",
+      "SQLAlchemy": "2.0.55",
+      "psycopg": "3.3.6",
+      "alembic": "1.20.0",
+      "uvicorn": "0.54.0",
+      "pytest": "9.1.1",
+      "httpx": "0.28.1",
+      "ruff": "0.17.1",
+      "python-multipart": "0.0.32"
+    },
+    "cached_bytecode": 0
+  },
+  "frontend": {
+    "node": "v24.14.0",
+    "packages": {
+      "react": "19.3.1",
+      "react-dom": "19.3.1",
+      "typescript": "6.0.3",
+      "vite": "8.3.4",
+      "tailwindcss": "4.3.3",
+      "vitest": "5.0.5",
+      "@testing-library/react": "16.3.3",
+      "eslint": "10.13.0",
+      "prettier": "3.9.10",
+      "lucide-react": "1.59.0"
+    }
+  }
+}

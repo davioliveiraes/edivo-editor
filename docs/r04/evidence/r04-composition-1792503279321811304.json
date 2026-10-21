@@ -1,0 +1,121 @@
+{
+  "status": "failed",
+  "stage": "composition",
+  "run_id": "r04-composition-1792503279321811304",
+  "browser": "145.0.7632.6",
+  "project_id": "09b152db-5ca2-4868-b23a-8a00e14cd96d",
+  "checks": [
+    {
+      "check": "localhost_browser_context_supports_secure_random_uuid",
+      "status": "passed",
+      "detail": {
+        "origin": "http://127.0.0.1:5173",
+        "is_secure_context": true,
+        "random_uuid_available": true
+      }
+    },
+    {
+      "check": "retained_synthetic_project_recovered_by_read_only_get_requests",
+      "status": "passed",
+      "detail": {
+        "project_id": "09b152db-5ca2-4868-b23a-8a00e14cd96d",
+        "revision_id": "7643bc46-f0f4-484a-9b6e-f135b1d1837a",
+        "revision_number": 1,
+        "schema_version": 1
+      }
+    },
+    {
+      "check": "synthetic_source_import_and_v1_revision_saved_before_opening_ui",
+      "status": "passed",
+      "detail": {
+        "project_id": "09b152db-5ca2-4868-b23a-8a00e14cd96d",
+        "revision_id": "7643bc46-f0f4-484a-9b6e-f135b1d1837a",
+        "source_sha256": "2a3618f20e5dc152a3a6b3417d4b0ab628bf6d4bbc970fdf2faf2c2eeecc9ea7"
+      }
+    },
+    {
+      "check": "opening_v1_normalizes_only_in_memory_without_dirty_state_or_automatic_save",
+      "status": "passed"
+    },
+    {
+      "check": "real_mp4_play_pause_uses_native_media_events",
+      "status": "passed",
+      "detail": {
+        "advanced_seconds": 0.48607699999999987,
+        "current_time": 2.486077,
+        "paused": true,
+        "duration": 12.012,
+        "ready_state": 4,
+        "width": 640,
+        "height": 360,
+        "src": "/api/v1/projects/09b152db-5ca2-4868-b23a-8a00e14cd96d/media/3ef66425-7b0d-4305-b652-80649cc4dccc/stream",
+        "volume": 1,
+        "decoded_frames": 79,
+        "audio_decoded_bytes": 33275,
+        "events": [
+          {
+            "name": "loadedmetadata",
+            "time": 0
+          },
+          {
+            "name": "seeking",
+            "time": 2
+          },
+          {
+            "name": "timeupdate",
+            "time": 2
+          },
+          {
+            "name": "seeked",
+            "time": 2
+          },
+          {
+            "name": "playing",
+            "time": 2
+          },
+          {
+            "name": "timeupdate",
+            "time": 2.242734
+          },
+          {
+            "name": "timeupdate",
+            "time": 2.486077
+          },
+          {
+            "name": "pause",
+            "time": 2.486077
+          }
+        ]
+      }
+    },
+    {
+      "check": "native_seek_changes_neither_dirty_state_nor_v1_revision",
+      "status": "passed"
+    }
+  ],
+  "page_errors": [],
+  "stream_responses": [
+    {
+      "path": "/api/v1/projects/09b152db-5ca2-4868-b23a-8a00e14cd96d/media/3ef66425-7b0d-4305-b652-80649cc4dccc/stream",
+      "status": 206,
+      "range": "bytes=0-",
+      "content_range": "bytes 0-2272528/2272529"
+    },
+    {
+      "path": "/api/v1/projects/09b152db-5ca2-4868-b23a-8a00e14cd96d/media/3ef66425-7b0d-4305-b652-80649cc4dccc/stream",
+      "status": 206,
+      "range": "bytes=1114112-",
+      "content_range": "bytes 1114112-2272528/2272529"
+    }
+  ],
+  "ui_save_requests": [],
+  "dialogs": [],
+  "screenshots": [
+    "r04-composition-1792503279321811304-failure.png"
+  ],
+  "scope": "R04 composition UI, native video and persisted contracts; no encoded-preview or manual listening claim",
+  "data_policy": "Synthetic QA project, revisions and uploaded originals remain active for later stages.",
+  "failure": {
+    "message": "locator.selectOption: Timeout 15000ms exceeded.\nCall log:\n  - waiting for getByLabel('Posição do texto 1', { exact: true })\n"
+  }
+}

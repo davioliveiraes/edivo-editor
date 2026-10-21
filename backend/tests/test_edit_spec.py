@@ -190,7 +190,7 @@ def test_four_presets_fit_and_focal_boundaries(domain_client, edit_context, pres
         ("schema_version", "1"),
         ("schema_version", 1.0),
         ("schema_version", 0),
-        ("schema_version", 2),
+        ("schema_version", 3),
         ("source_media_id", False),
         ("source_media_id", "not-a-uuid"),
         ("source_media_id", None),
@@ -350,7 +350,7 @@ def test_revision_database_constraints(domain_client, domain_sessions, edit_cont
             revision_number=0
             if invalid == "zero_revision"
             else (1 if invalid == "duplicate" else 2),
-            schema_version=2 if invalid == "schema" else 1,
+            schema_version=3 if invalid == "schema" else 1,
             spec_json={
                 key: value for key, value in plan(source_id).items() if key != "expected_revision"
             },

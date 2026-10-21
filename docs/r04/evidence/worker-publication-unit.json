@@ -1,0 +1,34 @@
+{
+  "recorded_at": "2026-10-20 19:57:06 UTC",
+  "status": "passed",
+  "scope": "Worker orchestration and real private filesystem compensation with an injected renderer only in processor unit tests. This is not evidence of an encoded preview.",
+  "command": ".venv/bin/pytest -q tests/test_preview_processor.py tests/test_worker.py tests/test_preview_queue.py tests/test_preview_supervisor.py",
+  "cwd": "backend",
+  "exit_code": 0,
+  "result": "47 passed, 1 warning in 7.21s",
+  "case_counts": {
+    "processor": 11,
+    "main_regression": 4,
+    "queue": 14,
+    "supervisor": 18
+  },
+  "quality": {
+    "ruff_check": "passed",
+    "ruff_format_check": "11 files already formatted"
+  },
+  "publication_coverage": [
+    "verified output promoted exclusively with mode 0400 and stored checksum/size",
+    "existing canonical preserved without adoption or overwrite",
+    "invalid source hash, permissions or absence stops processing",
+    "invalid output hash, escaped path or symlink cannot publish",
+    "encoding failure cleans only the current workspace",
+    "lease lost after link leaves canonical intact and does not complete",
+    "uncertain commit reply preserves the canonical even when the database committed"
+  ],
+  "test_isolation_fixes": [
+    "Historical worker test restores root logging handlers/level after configure_logging so a closed pytest capture stream cannot affect a later test.",
+    "The descendant test treats disappearance of /proc stat as successful observed termination instead of an assertion race."
+  ],
+  "production_wiring": "main retains startup diagnostics and signal handlers, then explicitly constructs PreviewProcessor and PreviewWorker. The processor defaults to the actual FFmpeg renderer; no dummy production processor.",
+  "real_preview_integration": "Not executed by this agent; coordinated root HTTP/Chromium acceptance is the separate real-media proof."
+}

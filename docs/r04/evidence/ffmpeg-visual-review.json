@@ -1,0 +1,22 @@
+{
+  "status": "reviewed",
+  "method": "Images inspected with view_image; no claim of human audio listening.",
+  "reviewed_frames": [
+    "ffmpeg-matrix-run-1/text-safe-area.png",
+    "ffmpeg-matrix-run-1/canvas-9-16-cover.png",
+    "ffmpeg-matrix-run-1/canvas-16-9-contain.png",
+    "ffmpeg-matrix-run-1/orientation-rotated.png",
+    "ffmpeg-matrix-run-1/orientation-sar.png"
+  ],
+  "observations": [
+    "Top/center/bottom text blocks stay within the composition and show distinct sizes/styles.",
+    "Multiline text is horizontally centered per line; accents, quote, percent and backslash are rendered literally.",
+    "Cover fills the portrait frame; SAR contain preserves the wider display ratio with neutral bands.",
+    "Rotation metadata produces a portrait-oriented image in the inspected rotated fixture."
+  ],
+  "limitations": [
+    "white_plain has no outline and can lose contrast over bright content; choose an outlined style for those scenes.",
+    "Visual review covers synthetic representative frames, not every possible font glyph or source.",
+    "No subjective human auditory inspection was performed; signal checks are documented in the matrix report."
+  ]
+}

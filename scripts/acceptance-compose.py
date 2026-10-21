@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Execute a regressão operacional R01 nas evoluções autorizadas R02/R03.
+"""Execute a regressão operacional R01 nas evoluções autorizadas R02–R04.
 
 Requer Docker operacional e .env preparado. Durante os casos negativos, o banco
 e o worker desta stack param brevemente e são restaurados mesmo em falhas.
@@ -194,6 +194,14 @@ def main() -> int:
                 "alembic_version",
                 "edit_spec_revisions",
                 "media_assets",
+                "projects",
+            ],
+            "0004_r04_text_audio_previews": [
+                "alembic_version",
+                "audio_assets",
+                "edit_spec_revisions",
+                "media_assets",
+                "preview_jobs",
                 "projects",
             ],
         }

@@ -1,0 +1,11 @@
+{
+  "status": "passed",
+  "command": "docker compose exec -T api sh -c 'EDIVO_QA_DATABASE_URL=\"$EDIVO_DATABASE_URL\" EDIVO_QA_QUEUE_POSTGRES=1 pytest -q tests/test_preview_queue_postgres.py --junitxml=/tmp/edivo-r04-queue-final.xml'",
+  "result": "8 passed, 1 upstream warning in 5.11s",
+  "scope": "Real PostgreSQL queue regression in updated API image; production worker was stopped for isolation. Tests retain own originals and logically delete their own projects.",
+  "junit": {
+    "status": "unavailable",
+    "copy_exit_code": 1,
+    "detail": "Requested XML not found in current API container; successful actual pytest console output is recorded, no XML fabricated."
+  }
+}

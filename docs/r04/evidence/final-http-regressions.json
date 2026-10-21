@@ -1,0 +1,63 @@
+{
+  "status": "passed",
+  "checks": [
+    {
+      "check": "r02",
+      "command": [
+        "python3",
+        "scripts/acceptance-r02.py"
+      ],
+      "exit_code": 0,
+      "status": "passed",
+      "seconds": 29.22,
+      "evidence": "r02-regression-final.jsonl"
+    },
+    {
+      "check": "mp4_limits",
+      "command": [
+        "python3",
+        "scripts/acceptance-upload-limits.py"
+      ],
+      "exit_code": 0,
+      "status": "passed",
+      "seconds": 7.25,
+      "evidence": "mp4-limits-final.json"
+    },
+    {
+      "check": "r03_edit_spec",
+      "command": [
+        "python3",
+        "scripts/acceptance-editspec.py",
+        "--output",
+        "docs/r04/evidence/r03-edit-spec-final.json"
+      ],
+      "exit_code": 0,
+      "status": "passed",
+      "seconds": 72.08,
+      "evidence": "r03-edit-spec-final.jsonl"
+    },
+    {
+      "check": "r03_range",
+      "command": [
+        "python3",
+        "scripts/acceptance-r03.py"
+      ],
+      "exit_code": 0,
+      "status": "passed",
+      "seconds": 9.02,
+      "evidence": "r03-range-final.jsonl"
+    },
+    {
+      "check": "r04_previews",
+      "command": [
+        "python3",
+        "scripts/acceptance-r04-previews.py",
+        "--restart"
+      ],
+      "exit_code": 0,
+      "status": "passed",
+      "seconds": 26.54,
+      "evidence": "preview-http-worker-final.jsonl"
+    }
+  ]
+}

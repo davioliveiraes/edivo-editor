@@ -58,7 +58,7 @@ export function App() {
             <div className="hero-grid">
               <section className="hero-copy" aria-labelledby="welcome-title">
                 <p className="release-badge">
-                  <span>R03</span> Player, cortes e formatos
+                  <span>R04</span> Textos, áudio e prévias locais
                 </p>
                 <h1 id="welcome-title">
                   Boas histórias.
@@ -143,7 +143,7 @@ export function App() {
         <p>
           Edivo<span aria-hidden="true"> / </span>Feito para suas próximas histórias.
         </p>
-        <span>R03 · Desenvolvimento local</span>
+        <span>R04 · Desenvolvimento local</span>
       </footer>
     </div>
   );

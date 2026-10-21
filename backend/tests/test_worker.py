@@ -1,3 +1,4 @@
+import logging
 import signal
 from types import SimpleNamespace
 
@@ -5,6 +6,17 @@ import pytest
 from pydantic_settings import SettingsError
 
 from app.worker import main as worker
+
+
+@pytest.fixture(autouse=True)
+def restore_worker_logging_configuration():
+    # configure_logging intentionally replaces root handlers. A pytest capture
+    # stream must not survive this test and leak into a later test after closing.
+    root = logging.getLogger()
+    handlers, level = list(root.handlers), root.level
+    yield
+    root.handlers = handlers
+    root.setLevel(level)
 
 
 @pytest.mark.parametrize(
@@ -19,7 +31,7 @@ def test_worker_idle_lifecycle_and_dependency_failures(
 
     class Database:
         def __init__(self, _settings):
-            pass
+            self.sessions = lambda: None
 
         def check(self):
             return dependencies_ok
@@ -46,6 +58,16 @@ def test_worker_idle_lifecycle_and_dependency_failures(
     monkeypatch.setattr(worker, "Database", Database)
     monkeypatch.setattr(worker, "Event", Event)
     monkeypatch.setattr(worker.signal, "signal", signal_handler)
+    monkeypatch.setattr(worker, "PreviewProcessor", lambda *_args: object())
+
+    class PreviewWorker:
+        def __init__(self, _settings, _sessions, stopped, _processor):
+            self.stopped = stopped
+
+        def run(self):
+            self.stopped.wait()
+
+    monkeypatch.setattr(worker, "PreviewWorker", PreviewWorker)
     monkeypatch.setattr(worker.CapabilityDetector, "get", lambda _self: report)
     assert worker.run() == expected
     assert "closed" in events

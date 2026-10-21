@@ -1,0 +1,43 @@
+{
+  "recorded_at": "2026-10-20 20:32:18 UTC",
+  "status": "passed",
+  "scope": "Sanitized preview lifecycle log fields and transaction-order assertions; no real queue job was created or processed for these checks.",
+  "allowlist_additions": [
+    "job_id",
+    "project_id",
+    "stage",
+    "attempts",
+    "error_code"
+  ],
+  "events": {
+    "preview_job_claimed": "after claim transaction commits",
+    "preview_job_stage_changed": "after a true fenced update commits",
+    "preview_job_failed": "after the owned failure transition commits",
+    "preview_job_requeued": "after the owned requeue transition commits",
+    "preview_job_completed": "after publication transaction commits with known success"
+  },
+  "excluded": [
+    "raw exception details",
+    "EditSpec snapshots",
+    "overlay text",
+    "filesystem paths",
+    "subprocess argv"
+  ],
+  "commands": [
+    {
+      "command": ".venv/bin/pytest -q tests/test_logging.py tests/test_preview_processor.py tests/test_worker.py tests/test_preview_queue.py tests/test_preview_supervisor.py",
+      "cwd": "backend",
+      "exit_code": 0,
+      "result": "51 passed, 1 warning in 8.27s"
+    },
+    {
+      "command": ".venv/bin/pytest -q tests/test_logging.py tests/test_preview_processor.py",
+      "cwd": "backend",
+      "exit_code": 0,
+      "result": "13 passed, 1 warning in 0.72s",
+      "purpose": "Final added assertions: fields sanitized, completed visible through another session before log, no completed event for uncertain commit reply."
+    }
+  ],
+  "ruff": "check passed for production logging/worker modules and changed tests; formatting applied with project config",
+  "count_policy": "The final 13 tests are a repeated subset of the 51 combined cases, not additional distinct cases."
+}

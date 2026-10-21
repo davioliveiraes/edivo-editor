@@ -1,0 +1,81 @@
+{
+  "generated_at": "2026-10-19T23:41:04.312500+00:00",
+  "created_before_migration": "0004_r04_text_audio_previews",
+  "project_id": "ae2a620a-cc1b-40fe-bb80-4ce9e1ce3bf4",
+  "media": {
+    "id": "dd988d53-7987-4586-aacd-d4487c4a8854",
+    "project_id": "ae2a620a-cc1b-40fe-bb80-4ce9e1ce3bf4",
+    "kind": "source_video",
+    "original_filename": "sample.mp4",
+    "checksum_sha256": "2d5cb14557fb8983a2dd2585725882d879519469db5e37719fc2b1c62c1841f6",
+    "byte_size": 12721,
+    "mime_detected": "video/mp4",
+    "duration_ms": 1001,
+    "width": 320,
+    "height": 180,
+    "fps_num": 30000,
+    "fps_den": 1001,
+    "video_codec": "h264",
+    "has_audio": true,
+    "audio_codec": "aac",
+    "created_at": "2026-10-19T23:41:04.261242Z"
+  },
+  "revision": {
+    "schema_version": 1,
+    "source_media_id": "dd988d53-7987-4586-aacd-d4487c4a8854",
+    "trim": {
+      "start_ms": 0,
+      "end_ms": 1001
+    },
+    "canvas": {
+      "preset": "16:9",
+      "fit": "cover",
+      "focal_x": 0.5,
+      "focal_y": 0.5
+    },
+    "id": "b59e06d4-d490-4679-8449-d047f9824f55",
+    "project_id": "ae2a620a-cc1b-40fe-bb80-4ce9e1ce3bf4",
+    "revision_number": 1,
+    "created_at": "2026-10-19T23:41:04.307288Z"
+  },
+  "plan": {
+    "schema_version": 1,
+    "source_media_id": "dd988d53-7987-4586-aacd-d4487c4a8854",
+    "trim": {
+      "start_ms": 0,
+      "end_ms": 1001
+    },
+    "canvas": {
+      "preset": "16:9",
+      "fit": "cover",
+      "focal_x": 0.5,
+      "focal_y": 0.5
+    }
+  },
+  "original_sha256": "2d5cb14557fb8983a2dd2585725882d879519469db5e37719fc2b1c62c1841f6",
+  "storage": {
+    "assets": [
+      {
+        "id": "dd988d53-7987-4586-aacd-d4487c4a8854",
+        "checksum": "2d5cb14557fb8983a2dd2585725882d879519469db5e37719fc2b1c62c1841f6",
+        "size": 12721,
+        "permissions": "0o400",
+        "key": "originals/ae2a620a-cc1b-40fe-bb80-4ce9e1ce3bf4/dd988d53-7987-4586-aacd-d4487c4a8854/source.mp4",
+        "probe_metadata": {
+          "width": 320,
+          "format": "mp4",
+          "height": 180,
+          "fps_den": 1001,
+          "fps_num": 30000,
+          "has_audio": true,
+          "audio_codec": "aac",
+          "duration_ms": 1001,
+          "video_codec": "h264",
+          "stream_count": 2,
+          "video_stream_index": 0
+        }
+      }
+    ],
+    "temp_count": 0
+  }
+}

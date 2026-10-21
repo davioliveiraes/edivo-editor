@@ -1,3 +1,10 @@
+@font-face {
+  font-family: 'Edivo Overlay';
+  src: url('/fonts/DejaVuSans.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
 .editor-shell {
   max-width: 1440px;
   padding: 0 48px;
@@ -513,6 +520,286 @@ fieldset:disabled {
 .library-actions .text-link {
   font-size: 11px;
 }
+.editor-composition-panels {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 24px;
+  margin-top: 24px;
+  align-items: start;
+}
+.editor-audio-preview-column {
+  display: grid;
+  gap: 24px;
+  min-width: 0;
+}
+.preview-window {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  min-width: 0;
+}
+.preview-revision {
+  font-size: 11px;
+  font-weight: 500;
+  line-height: 1.8;
+}
+.preview-save-hint {
+  padding: 12px 14px;
+  border-left: 2px solid var(--accent);
+  background: color-mix(in srgb, var(--accent) 7%, transparent);
+  color: var(--foreground);
+  font-size: 11px;
+  line-height: 1.8;
+}
+.preview-panel > button {
+  margin-top: 10px;
+}
+.preview-result {
+  border-top: 1px solid var(--border);
+  padding-top: 22px;
+  margin-top: 24px;
+}
+.preview-status {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  font-size: 12px;
+  color: var(--foreground);
+}
+.preview-status svg {
+  flex-shrink: 0;
+  color: var(--accent);
+}
+.preview-result-player {
+  margin-top: 18px;
+  min-width: 0;
+}
+.preview-result-player video {
+  display: block;
+  width: 100%;
+  max-height: 390px;
+  object-fit: contain;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: #101410;
+}
+.preview-result-player > p {
+  margin: 12px 0;
+  font-size: 11px;
+}
+.composition-panel {
+  min-width: 0;
+  padding: 26px;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  background: var(--surface);
+}
+.composition-panel-heading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 18px;
+}
+.composition-panel-heading .section-kicker {
+  margin: 0 0 12px;
+}
+.composition-panel-heading h2 {
+  margin: 0;
+  font-family: 'Manrope', sans-serif;
+  font-weight: 500;
+  font-size: 22px;
+  letter-spacing: -0.8px;
+}
+.composition-panel-heading > svg {
+  flex-shrink: 0;
+  color: var(--accent);
+}
+.composition-panel .panel-description {
+  margin: 16px 0 22px;
+}
+.composition-empty {
+  padding: 22px;
+  border: 1px dashed var(--border);
+  border-radius: 8px;
+  margin: 0 0 20px;
+  color: var(--muted-foreground);
+  font-size: 12px;
+  line-height: 1.8;
+}
+.text-card {
+  position: relative;
+  margin: 0 0 22px;
+  padding: 18px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  min-width: 0;
+}
+.text-card > legend {
+  padding: 0 8px;
+  font-size: 11px;
+  color: var(--muted-foreground);
+}
+.text-remove {
+  position: absolute;
+  right: 10px;
+  top: -26px;
+  height: 32px;
+  width: 32px;
+  background: var(--surface);
+}
+.composition-panel label {
+  display: block;
+  margin-bottom: 9px;
+  font-size: 11px;
+  line-height: 1.6;
+}
+.composition-panel input:not([type='range'], [type='checkbox']),
+.composition-panel textarea,
+.composition-panel select {
+  display: block;
+  box-sizing: border-box;
+  width: 100%;
+  min-width: 0;
+  padding: 10px 11px;
+  margin-top: 8px;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  background: var(--background);
+  color: var(--foreground);
+  font: inherit;
+  font-size: 12px;
+}
+.composition-panel textarea {
+  resize: vertical;
+  line-height: 1.8;
+}
+.composition-panel textarea[aria-invalid='true'] {
+  border-color: #c45d4c;
+}
+.composition-panel input:focus-visible,
+.composition-panel select:focus-visible,
+.composition-panel textarea:focus-visible {
+  outline: 2px solid var(--ring);
+  outline-offset: 4px;
+}
+.text-character-count {
+  margin: 8px 0 20px;
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+.composition-form-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px;
+}
+.composition-full-width {
+  grid-column: 1 / -1;
+}
+.audio-controls {
+  min-width: 0;
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+.composition-panel .composition-slider {
+  margin: 20px 0;
+}
+.composition-slider > span {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+.composition-slider > span > span {
+  font-variant-numeric: tabular-nums;
+  color: var(--muted-foreground);
+}
+.composition-slider input[type='range'] {
+  display: block;
+  width: 100%;
+  height: 24px;
+  margin: 10px 0 0;
+  accent-color: var(--accent);
+}
+.composition-panel .composition-checkbox {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin: 0 0 24px;
+}
+.composition-checkbox input {
+  accent-color: var(--accent);
+}
+.audio-details {
+  margin: 18px 0;
+  max-width: 100%;
+}
+.audio-details p,
+.audio-details code {
+  display: block;
+  overflow-wrap: anywhere;
+  font-size: 10px;
+  line-height: 1.8;
+}
+.audio-upload {
+  border-top: 1px solid var(--border);
+  margin-top: 24px;
+  padding-top: 24px;
+}
+.composition-panel .audio-upload input[type='file'] {
+  padding: 12px;
+  font-size: 10px;
+}
+.audio-upload input::file-selector-button {
+  margin-right: 12px;
+  padding: 8px;
+  border: 1px solid var(--border);
+  border-radius: 5px;
+  color: var(--foreground);
+  background: var(--surface);
+  cursor: pointer;
+}
+.audio-selected-file {
+  overflow-wrap: anywhere;
+  font-size: 11px;
+}
+.composition-text-layer {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  overflow: hidden;
+}
+.composition-text {
+  position: absolute;
+  left: 7%;
+  width: 86%;
+  margin: 0;
+  text-align: center;
+  font-family: 'Edivo Overlay', sans-serif;
+  font-size: var(--text-size);
+  font-weight: 400;
+  line-height: 1.2;
+  white-space: pre;
+  color: #fff;
+  paint-order: stroke fill;
+  -webkit-text-stroke: var(--text-outline) #101410;
+}
+.composition-text.text-position-top {
+  top: 7%;
+}
+.composition-text.text-position-center {
+  top: 50%;
+  transform: translateY(-50%);
+}
+.composition-text.text-position-bottom {
+  bottom: 7%;
+}
+.composition-text.text-style-blue_outline {
+  color: #3b82f6;
+}
+.composition-text.text-style-white_plain {
+  -webkit-text-stroke: 0;
+}
 @media (max-width: 1000px) {
   .trim-controls {
     grid-template-columns: minmax(0, 1fr) auto;
@@ -535,6 +822,13 @@ fieldset:disabled {
   }
 }
 @media (max-width: 760px) {
+  .editor-composition-panels {
+    grid-template-columns: 1fr;
+    gap: 18px;
+  }
+  .composition-panel {
+    padding: 20px;
+  }
   .editor-save-actions {
     width: 100%;
     max-width: none;

@@ -25,17 +25,18 @@ export type UploadProgress =
 export const listMedia = (projectId: string, offset: number, signal: AbortSignal) =>
   projectRequest<Page<MediaAsset>>(`/${projectId}/media?limit=20&offset=${offset}`, { signal });
 
-export function uploadMedia(
+export function uploadAsset<T>(
   projectId: string,
+  kind: 'media' | 'audio',
   file: File,
   signal: AbortSignal,
   onProgress: (progress: UploadProgress) => void,
-): Promise<MediaAsset> {
+): Promise<T> {
   return new Promise((resolve, reject) => {
     const xhr = new XMLHttpRequest();
     const abort = () => xhr.abort();
     const finish = () => signal.removeEventListener('abort', abort);
-    xhr.open('POST', `/api/v1/projects/${projectId}/media`);
+    xhr.open('POST', `/api/v1/projects/${projectId}/${kind}`);
     xhr.setRequestHeader('Accept', 'application/json');
     // A single request includes transfer and bounded server-side inspection.
     xhr.timeout = 30 * 60 * 1_000;
@@ -65,7 +66,7 @@ export function uploadMedia(
       if (xhr.status !== 201) {
         reject(errorFromBody(xhr.status, body));
       } else if (typeof body === 'object' && body !== null && 'id' in body) {
-        resolve(body as MediaAsset);
+        resolve(body as T);
       } else reject(new Error('INVALID_UPLOAD_RESPONSE'));
     };
     xhr.onerror = () => {
@@ -91,3 +92,10 @@ export function uploadMedia(
     xhr.send(body);
   });
 }
+
+export const uploadMedia = (
+  projectId: string,
+  file: File,
+  signal: AbortSignal,
+  onProgress: (progress: UploadProgress) => void,
+) => uploadAsset<MediaAsset>(projectId, 'media', file, signal, onProgress);

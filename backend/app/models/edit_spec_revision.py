@@ -29,7 +29,7 @@ class EditSpecRevision(Base):
     __tablename__ = "edit_spec_revisions"
     __table_args__ = (
         CheckConstraint("revision_number >= 1", name="ck_edit_spec_revisions_number"),
-        CheckConstraint("schema_version = 1", name="ck_edit_spec_revisions_schema_version"),
+        CheckConstraint("schema_version IN (1, 2)", name="ck_edit_spec_revisions_schema_version"),
         UniqueConstraint(
             "project_id", "revision_number", name="uq_edit_spec_revisions_project_number"
         ),

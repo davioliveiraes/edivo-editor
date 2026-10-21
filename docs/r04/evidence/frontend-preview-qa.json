@@ -1,0 +1,77 @@
+{
+  "stage": "R04.4 frontend preview implementation",
+  "status": "passed_automated_frontend_checks",
+  "runtime_browser_preview_validated_by_this_report": false,
+  "node": "v24.14.0",
+  "npm": "11.9.0",
+  "product_dependencies_changed": false,
+  "commands": [
+    {
+      "command": "npm run test -- --run",
+      "cwd": "frontend",
+      "exit_code": 0,
+      "result": "149 passed across 7 files; final host run duration 17.96 seconds",
+      "unique_cases": 149,
+      "retained_r01_r03_and_r04_composition_cases": 120,
+      "preview_cases": 29
+    },
+    {
+      "command": "npm run lint",
+      "cwd": "frontend",
+      "exit_code": 0,
+      "result": "ESLint completed with max-warnings 0"
+    },
+    {
+      "command": "npm run format:check",
+      "cwd": "frontend",
+      "exit_code": 0,
+      "result": "All matched files use Prettier code style"
+    },
+    {
+      "command": "npm run build",
+      "cwd": "frontend",
+      "exit_code": 0,
+      "result": "TypeScript strict build and Vite 8.3.4 production build completed; 1957 modules; JS 337.10 kB / gzip 103.63 kB"
+    },
+    {
+      "command": "node --check scripts/browser-r04.mjs",
+      "exit_code": 0
+    },
+    {
+      "command": "frontend/node_modules/.bin/prettier --config frontend/.prettierrc.json --check scripts/browser-r04.mjs",
+      "exit_code": 0
+    },
+    {
+      "command": "backend/.venv/bin/ruff check --config backend/pyproject.toml scripts/browser-r04.py",
+      "exit_code": 0
+    },
+    {
+      "command": "backend/.venv/bin/ruff format --check --config backend/pyproject.toml scripts/browser-r04.py",
+      "exit_code": 0
+    },
+    {
+      "command": "git diff --check",
+      "exit_code": 0,
+      "read_only": true
+    }
+  ],
+  "coverage": [
+    "Saved revision required; dirty draft blocks preview without implicit PUT",
+    "Absolute integer preview window, 1..8000 ms duration and clamp to saved trim end",
+    "Immutable revision ID and exact request/result window checked",
+    "Private same-project relative file and status URLs; no external artifact navigation",
+    "Recursive 2-second polling, no overlapping requests, abort on unmount, stop after terminal status",
+    "Persist only job ID per project; restore by real API lookup before showing artifact",
+    "404 clears inaccessible reference; 503 allows explicit query retry; failed jobs need an explicit POST retry",
+    "Active project job limit and unknown errors use sanitized messages",
+    "Completed result keeps its original revision/window when a newer draft/revision appears",
+    "Native video controls and metadata preload; codec/network failures and explicit native reload",
+    "Native source and encoded-preview play events pause the other video",
+    "Unsupported glyphs or a missing local overlay font fail clearly; no artifact is shown with silently omitted text"
+  ],
+  "limitations": [
+    "Unit tests use HTTP/media mocks to exercise interface behavior. They do not prove real encoding, playback or audio mixing.",
+    "Real Chromium worker-preview and restart verification are separate gates and will be recorded only after execution.",
+    "Repeated runs were not summed as additional test cases."
+  ]
+}

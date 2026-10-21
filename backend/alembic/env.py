@@ -9,8 +9,10 @@ from app.core.config import get_settings
 from app.core.logging import configure_logging
 from app.db.base import Base
 from app.db.session import Database
+from app.models.audio_asset import AudioAsset  # noqa: F401
 from app.models.edit_spec_revision import EditSpecRevision  # noqa: F401
 from app.models.media_asset import MediaAsset  # noqa: F401
+from app.models.preview_job import PreviewJob  # noqa: F401
 from app.models.project import Project  # noqa: F401
 
 logger = logging.getLogger("edivo.migrations")

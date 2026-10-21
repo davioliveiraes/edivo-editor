@@ -1,0 +1,25 @@
+{
+  "status": "passed",
+  "runtime": "worker",
+  "synthetic_only": true,
+  "application_worker_signalled": false,
+  "database_or_storage_mutated": false,
+  "checks": [
+    {
+      "check": "timeout",
+      "status": "passed",
+      "error_code": "preview_timeout",
+      "real_ffmpeg_observed": true,
+      "child_waited": true,
+      "process_group_closed": true
+    },
+    {
+      "check": "sigterm",
+      "status": "passed",
+      "error_code": "preview_worker_interrupted",
+      "real_ffmpeg_observed": true,
+      "child_waited": true,
+      "process_group_closed": true
+    }
+  ]
+}

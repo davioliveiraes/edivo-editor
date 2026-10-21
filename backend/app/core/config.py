@@ -5,7 +5,7 @@ from pathlib import Path
 from typing import Literal
 from urllib.parse import urlsplit
 
-from pydantic import Field, SecretStr, field_validator
+from pydantic import Field, SecretStr, field_validator, model_validator
 from pydantic_settings import BaseSettings, SettingsConfigDict
 from sqlalchemy.engine import make_url
 
@@ -29,10 +29,29 @@ class Settings(BaseSettings):
     capabilities_cache_seconds: float = Field(default=300, ge=1, le=3600)
     upload_max_bytes: int = Field(default=500 * 1024 * 1024, ge=1, le=2 * 1024**3)
     upload_multipart_overhead_bytes: int = Field(default=64 * 1024, ge=1024, le=1024 * 1024)
+    audio_upload_max_bytes: int = Field(default=30 * 1024 * 1024, ge=1, le=30 * 1024 * 1024)
+    audio_max_duration_seconds: int = Field(default=600, ge=1, le=600)
     media_max_duration_seconds: int = Field(default=600, ge=1, le=86400)
     ffprobe_timeout_seconds: float = Field(default=15, gt=0, le=120)
     ffprobe_max_output_bytes: int = Field(default=1024 * 1024, ge=1024, le=8 * 1024 * 1024)
     storage_min_free_bytes: int = Field(default=64 * 1024 * 1024, ge=0, le=10 * 1024**3)
+    preview_ffmpeg_timeout_seconds: float = Field(default=120, gt=0, le=120, allow_inf_nan=False)
+    preview_max_bytes: int = Field(default=64 * 1024 * 1024, ge=1024, le=256 * 1024 * 1024)
+    preview_threads: int = Field(default=2, ge=1, le=4)
+    preview_memory_bytes: int = Field(default=1024**3, ge=64 * 1024 * 1024, le=4 * 1024**3)
+    preview_cpu_seconds: int = Field(default=120, ge=1, le=120)
+    preview_worker_poll_seconds: float = Field(default=1.5, ge=0.2, le=30, allow_inf_nan=False)
+    preview_lease_seconds: float = Field(default=30, ge=2, le=300, allow_inf_nan=False)
+    preview_heartbeat_seconds: float = Field(default=5, ge=0.1, le=30, allow_inf_nan=False)
+    preview_max_active_per_project: int = Field(default=2, ge=1, le=2)
+    preview_max_attempts: int = Field(default=2, ge=1, le=2)
+    preview_process_output_bytes: int = Field(default=256 * 1024, ge=1024, le=8 * 1024 * 1024)
+
+    @model_validator(mode="after")
+    def preview_lease_has_heartbeat_margin(self) -> "Settings":
+        if self.preview_heartbeat_seconds >= self.preview_lease_seconds / 2:
+            raise ValueError("O heartbeat deve ser menor que metade do lease da prévia.")
+        return self
 
     @field_validator("database_url")
     @classmethod

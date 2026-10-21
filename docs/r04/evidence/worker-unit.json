@@ -1,0 +1,57 @@
+{
+  "recorded_at": "2026-10-20 14:07:05 UTC",
+  "release": "R04.3",
+  "status": "unit_passed_postgresql_pending",
+  "scope": "Real POSIX subprocess supervision and isolated orchestration units; PostgreSQL locking is not inferred from mocks or compilation.",
+  "commands": [
+    {
+      "command": ".venv/bin/pytest -q tests/test_preview_queue.py tests/test_preview_supervisor.py tests/test_preview_queue_postgres.py",
+      "cwd": "backend",
+      "exit_code": 0,
+      "result": "32 passed, 8 skipped, 1 warning in 4.24s",
+      "passed": 32,
+      "skipped": 8,
+      "warning_count": 1
+    },
+    {
+      "command": ".venv/bin/ruff check app/repositories/preview_jobs.py app/worker/resource_exec.py app/worker/supervisor.py app/worker/preview_worker.py tests/test_preview_queue.py tests/test_preview_supervisor.py tests/test_preview_queue_postgres.py",
+      "cwd": "backend",
+      "exit_code": 0,
+      "result": "All checks passed!"
+    },
+    {
+      "command": ".venv/bin/ruff format --check app/repositories/preview_jobs.py app/worker/resource_exec.py app/worker/supervisor.py app/worker/preview_worker.py tests/test_preview_queue.py tests/test_preview_supervisor.py tests/test_preview_queue_postgres.py",
+      "cwd": "backend",
+      "exit_code": 0,
+      "result": "7 files already formatted"
+    }
+  ],
+  "unit_case_counts": {
+    "test_preview_queue.py": 14,
+    "test_preview_supervisor.py": 18
+  },
+  "real_process_coverage": [
+    "bounded stdout and stderr",
+    "shared whole-job timeout",
+    "heartbeat throttling and lease loss",
+    "SIGTERM and stop events",
+    "parent exited zero while descendant retained pipes",
+    "inherited pinned descriptor",
+    "CPU/AS/FSIZE/NOFILE limits",
+    "private output umask 077",
+    "child environment excludes EDIVO_DATABASE_URL",
+    "nonzero exit propagation"
+  ],
+  "orchestration_coverage": [
+    "explicit processor required",
+    "claim committed and session closed before processor",
+    "sanitized failures",
+    "lost lease does not update successor",
+    "finite idle polling",
+    "database heartbeat failure"
+  ],
+  "resolved_test_occurrence": "The first descendant-exit assertion raced asynchronous SIGKILL delivery (29 passed, 1 failed). The test now waits for the observed terminal state; final 32 cases passed.",
+  "pending": "8 explicitly skipped real PostgreSQL cases require the rebuilt API image and EDIVO_QA_QUEUE_POSTGRES=1 with its existing DSN in EDIVO_QA_DATABASE_URL.",
+  "production_worker_entrypoint": "Unchanged idle main until the real R04.4 compositor is wired; no default/dummy processor was introduced.",
+  "data_policy": "No user job was claimed and no database mutation occurred in these unit checks."
+}

@@ -1,0 +1,290 @@
+{
+  "status": "passed",
+  "stage": "preview",
+  "run_id": "r04-preview-1792529337950253425",
+  "browser": "145.0.7632.6",
+  "project_id": "09b152db-5ca2-4868-b23a-8a00e14cd96d",
+  "checks": [
+    {
+      "check": "localhost_browser_context_supports_secure_random_uuid",
+      "status": "passed",
+      "detail": {
+        "origin": "http://127.0.0.1:5173",
+        "is_secure_context": true,
+        "random_uuid_available": true
+      }
+    },
+    {
+      "check": "retained_v2_and_mp3_inventory_recover_after_the_requested_runtime_transition",
+      "status": "passed"
+    },
+    {
+      "check": "dirty_composition_blocks_preview_and_never_implicitly_saves",
+      "status": "passed"
+    },
+    {
+      "check": "ui_preview_post_references_saved_immutable_revision_and_intermediate_absolute_window",
+      "status": "passed",
+      "detail": {
+        "status": 202,
+        "job_id": "763490d8-dd20-4fbe-addf-048639761321",
+        "state": "queued"
+      }
+    },
+    {
+      "check": "worker_completion_is_observed_by_real_status_polling_without_fake_progress",
+      "status": "passed",
+      "detail": {
+        "statuses": [
+          {
+            "id": "763490d8-dd20-4fbe-addf-048639761321",
+            "status": "queued",
+            "stage": "queued",
+            "attempts": 0
+          },
+          {
+            "id": "763490d8-dd20-4fbe-addf-048639761321",
+            "status": "running",
+            "stage": "validating",
+            "attempts": 1
+          },
+          {
+            "id": "763490d8-dd20-4fbe-addf-048639761321",
+            "status": "completed",
+            "stage": "completed",
+            "attempts": 1
+          },
+          {
+            "id": "763490d8-dd20-4fbe-addf-048639761321",
+            "status": "completed",
+            "stage": "completed",
+            "attempts": 1
+          },
+          {
+            "id": "763490d8-dd20-4fbe-addf-048639761321",
+            "status": "completed",
+            "stage": "completed",
+            "attempts": 1
+          }
+        ],
+        "sha256": "2eaf6b90dc138988898f099b6147e94f3d70ce5d4ef8a8d5f6b5cbdf07cd2741",
+        "bytes": 210935
+      }
+    },
+    {
+      "check": "encoded_preview_has_real_play_pause_native_decoding_audio_and_stops_the_source_player",
+      "status": "passed",
+      "detail": {
+        "duration": 4,
+        "width": 540,
+        "height": 960,
+        "current_time": 0.262522,
+        "decoded_frames": 11,
+        "audio_decoded_bytes": 9375,
+        "events": [
+          {
+            "name": "loadedmetadata",
+            "time": 0,
+            "label": "Prévia gerada"
+          },
+          {
+            "name": "seeking",
+            "time": 0,
+            "label": "Prévia gerada"
+          },
+          {
+            "name": "timeupdate",
+            "time": 0,
+            "label": "Prévia gerada"
+          },
+          {
+            "name": "seeked",
+            "time": 0,
+            "label": "Prévia gerada"
+          },
+          {
+            "name": "playing",
+            "time": 0.002614,
+            "label": "Prévia gerada"
+          },
+          {
+            "name": "timeupdate",
+            "time": 0.192034,
+            "label": "Prévia gerada"
+          },
+          {
+            "name": "timeupdate",
+            "time": 0.262522,
+            "label": "Prévia gerada"
+          },
+          {
+            "name": "pause",
+            "time": 0.262522,
+            "label": "Prévia gerada"
+          }
+        ]
+      }
+    },
+    {
+      "check": "encoded_preview_seek_head_and_private_range_206_are_real",
+      "status": "passed",
+      "detail": {
+        "native_range": [
+          {
+            "path": "/api/v1/projects/09b152db-5ca2-4868-b23a-8a00e14cd96d/previews/763490d8-dd20-4fbe-addf-048639761321/file",
+            "status": 206,
+            "range": "bytes=0-",
+            "content_range": "bytes 0-210934/210935"
+          },
+          {
+            "path": "/api/v1/projects/09b152db-5ca2-4868-b23a-8a00e14cd96d/previews/763490d8-dd20-4fbe-addf-048639761321/file",
+            "status": 206,
+            "range": "bytes=163840-",
+            "content_range": "bytes 163840-210934/210935"
+          },
+          {
+            "path": "/api/v1/projects/09b152db-5ca2-4868-b23a-8a00e14cd96d/previews/763490d8-dd20-4fbe-addf-048639761321/file",
+            "status": 206,
+            "range": "bytes=0-",
+            "content_range": "bytes 0-210934/210935"
+          },
+          {
+            "path": "/api/v1/projects/09b152db-5ca2-4868-b23a-8a00e14cd96d/previews/763490d8-dd20-4fbe-addf-048639761321/file",
+            "status": 206,
+            "range": "bytes=196608-",
+            "content_range": "bytes 196608-210934/210935"
+          },
+          {
+            "path": "/api/v1/projects/09b152db-5ca2-4868-b23a-8a00e14cd96d/previews/763490d8-dd20-4fbe-addf-048639761321/file",
+            "status": 206,
+            "range": "bytes=0-",
+            "content_range": "bytes 0-210934/210935"
+          }
+        ],
+        "checked_range": "bytes 0-15/210935"
+      }
+    },
+    {
+      "check": "completed_result_keeps_its_revision_when_the_local_draft_changes",
+      "status": "passed"
+    },
+    {
+      "check": "page_reload_restores_completed_preview_by_persisted_job_id_without_creating_a_new_job",
+      "status": "passed"
+    },
+    {
+      "check": "preview_result_and_saved_composition_recover_in_mobile_375_and_390_without_overflow",
+      "status": "passed"
+    },
+    {
+      "check": "no_uncaught_browser_page_errors",
+      "status": "passed"
+    }
+  ],
+  "page_errors": [],
+  "stream_responses": [
+    {
+      "path": "/api/v1/projects/09b152db-5ca2-4868-b23a-8a00e14cd96d/media/3ef66425-7b0d-4305-b652-80649cc4dccc/stream",
+      "status": 206,
+      "range": "bytes=0-",
+      "content_range": "bytes 0-2272528/2272529"
+    },
+    {
+      "path": "/api/v1/projects/09b152db-5ca2-4868-b23a-8a00e14cd96d/media/3ef66425-7b0d-4305-b652-80649cc4dccc/stream",
+      "status": 206,
+      "range": "bytes=1114112-",
+      "content_range": "bytes 1114112-2272528/2272529"
+    },
+    {
+      "path": "/api/v1/projects/09b152db-5ca2-4868-b23a-8a00e14cd96d/media/3ef66425-7b0d-4305-b652-80649cc4dccc/stream",
+      "status": 206,
+      "range": "bytes=0-",
+      "content_range": "bytes 0-2272528/2272529"
+    }
+  ],
+  "preview_file_responses": [
+    {
+      "path": "/api/v1/projects/09b152db-5ca2-4868-b23a-8a00e14cd96d/previews/763490d8-dd20-4fbe-addf-048639761321/file",
+      "status": 206,
+      "range": "bytes=0-",
+      "content_range": "bytes 0-210934/210935"
+    },
+    {
+      "path": "/api/v1/projects/09b152db-5ca2-4868-b23a-8a00e14cd96d/previews/763490d8-dd20-4fbe-addf-048639761321/file",
+      "status": 206,
+      "range": "bytes=163840-",
+      "content_range": "bytes 163840-210934/210935"
+    },
+    {
+      "path": "/api/v1/projects/09b152db-5ca2-4868-b23a-8a00e14cd96d/previews/763490d8-dd20-4fbe-addf-048639761321/file",
+      "status": 206,
+      "range": "bytes=0-",
+      "content_range": "bytes 0-210934/210935"
+    },
+    {
+      "path": "/api/v1/projects/09b152db-5ca2-4868-b23a-8a00e14cd96d/previews/763490d8-dd20-4fbe-addf-048639761321/file",
+      "status": 206,
+      "range": "bytes=196608-",
+      "content_range": "bytes 196608-210934/210935"
+    },
+    {
+      "path": "/api/v1/projects/09b152db-5ca2-4868-b23a-8a00e14cd96d/previews/763490d8-dd20-4fbe-addf-048639761321/file",
+      "status": 206,
+      "range": "bytes=0-",
+      "content_range": "bytes 0-210934/210935"
+    }
+  ],
+  "preview_statuses": [
+    {
+      "id": "763490d8-dd20-4fbe-addf-048639761321",
+      "status": "queued",
+      "stage": "queued",
+      "attempts": 0
+    },
+    {
+      "id": "763490d8-dd20-4fbe-addf-048639761321",
+      "status": "running",
+      "stage": "validating",
+      "attempts": 1
+    },
+    {
+      "id": "763490d8-dd20-4fbe-addf-048639761321",
+      "status": "completed",
+      "stage": "completed",
+      "attempts": 1
+    },
+    {
+      "id": "763490d8-dd20-4fbe-addf-048639761321",
+      "status": "completed",
+      "stage": "completed",
+      "attempts": 1
+    },
+    {
+      "id": "763490d8-dd20-4fbe-addf-048639761321",
+      "status": "completed",
+      "stage": "completed",
+      "attempts": 1
+    }
+  ],
+  "ui_preview_requests": [
+    {
+      "path": "/api/v1/projects/09b152db-5ca2-4868-b23a-8a00e14cd96d/previews",
+      "body": {
+        "edit_spec_revision_id": "aa5a9c4d-6273-40a0-a36c-29fbe5f1fa74",
+        "preview_start_ms": 5000,
+        "duration_ms": 4000
+      }
+    }
+  ],
+  "ui_save_requests": [],
+  "dialogs": [],
+  "screenshots": [
+    "r04-preview-1792529337950253425-encoded-frame.png",
+    "r04-preview-1792529337950253425-preview-desktop-dark.png",
+    "r04-preview-1792529337950253425-preview-desktop-light.png",
+    "r04-preview-1792529337950253425-preview-mobile-375.png",
+    "r04-preview-1792529337950253425-preview-mobile-390.png"
+  ],
+  "scope": "R04 saved composition and real worker-encoded preview playback with native media and private Range; no manual listening claim",
+  "data_policy": "Synthetic QA project, revisions and uploaded originals remain active for later stages."
+}

@@ -80,17 +80,23 @@ class LocalStorage:
             ) from None
 
     def stage(self, source: BinaryIO) -> StagedFile:
+        return self._stage(source, self.settings.upload_max_bytes, ".mp4")
+
+    def stage_audio(self, source: BinaryIO) -> StagedFile:
+        return self._stage(source, self.settings.audio_upload_max_bytes, ".mp3")
+
+    def _stage(self, source: BinaryIO, max_bytes: int, suffix: str) -> StagedFile:
         path: Path | None = None
         try:
             directory = self.prepare_temp()
-            fd, name = tempfile.mkstemp(prefix="upload-", suffix=".mp4", dir=directory)
+            fd, name = tempfile.mkstemp(prefix="upload-", suffix=suffix, dir=directory)
             path = Path(name)
             byte_size = 0
             checksum = hashlib.sha256()
             with os.fdopen(fd, "wb") as target:
                 while chunk := source.read(CHUNK_BYTES):
                     byte_size += len(chunk)
-                    if byte_size > self.settings.upload_max_bytes:
+                    if byte_size > max_bytes:
                         raise AppError(
                             413, "upload_too_large", "O arquivo excede o limite permitido."
                         )
@@ -112,15 +118,28 @@ class LocalStorage:
             raise
 
     def promote(self, staged: StagedFile, project_id: UUID, asset_id: UUID) -> str:
+        return self._promote(staged, project_id, asset_id, "originals", "source.mp4")
+
+    def promote_audio(self, staged: StagedFile, project_id: UUID, asset_id: UUID) -> str:
+        return self._promote(staged, project_id, asset_id, "originals-audio", "source.mp3")
+
+    def _promote(
+        self,
+        staged: StagedFile,
+        project_id: UUID,
+        asset_id: UUID,
+        namespace: str,
+        source_name: str,
+    ) -> str:
         destination: Path | None = None
         created_directory = False
         try:
-            parent = self._directory(self.root / "originals" / str(project_id))
+            parent = self._directory(self.root / namespace / str(project_id))
             destination = parent / str(asset_id)
             # Atomic exclusive mkdir prevents accidentally adopting another asset directory.
             destination.mkdir(mode=0o700, exist_ok=False)
             created_directory = True
-            target = destination / "source.mp4"
+            target = destination / source_name
             os.chmod(staged.path, stat.S_IRUSR)
             # link() is atomic and fails with EEXIST; never rename/replace over an original.
             os.link(staged.path, target, follow_symlinks=False)
@@ -133,7 +152,7 @@ class LocalStorage:
             return target.relative_to(self.root).as_posix()
         except OSError:
             if created_directory and destination is not None:
-                self.discard_original(destination / "source.mp4")
+                self.discard_original(destination / source_name)
             raise AppError(
                 503, "storage_unavailable", "Não foi possível preservar o arquivo original."
             ) from None
@@ -141,6 +160,67 @@ class LocalStorage:
     def open_original(
         self, storage_key: str, project_id: UUID, asset_id: UUID, byte_size: int
     ) -> OpenedOriginal:
+        expected_key = f"originals/{project_id}/{asset_id}/source.mp4"
+        return self._open_managed(storage_key, expected_key, byte_size)
+
+    def open_audio(
+        self, storage_key: str, project_id: UUID, asset_id: UUID, byte_size: int
+    ) -> OpenedOriginal:
+        expected_key = f"originals-audio/{project_id}/{asset_id}/source.mp3"
+        return self._open_managed(storage_key, expected_key, byte_size)
+
+    def open_preview(
+        self, storage_key: str, project_id: UUID, job_id: UUID, byte_size: int
+    ) -> OpenedOriginal:
+        return self._open_managed(
+            storage_key, f"previews/{project_id}/{job_id}/preview.mp4", byte_size
+        )
+
+    def promote_preview(self, staged: StagedFile, project_id: UUID, job_id: UUID) -> str:
+        """Publish exclusively; an ambiguous publication is preserved for reconciliation.
+
+        The worker holds the project/job locks and checks its lease before and
+        after this operation. Unlike upload compensation, no failure here may
+        remove a canonical artifact that another transaction could have committed.
+        """
+        try:
+            if not self.root.is_dir():
+                raise OSError("storage_missing")
+            self.ensure_space(staged.byte_size)
+            parent = self._directory(self.root / "previews" / str(project_id))
+            destination = parent / str(job_id)
+            try:
+                destination.mkdir(mode=0o700, exist_ok=False)
+            except FileExistsError:
+                raise AppError(
+                    503, "preview_publication_interrupted", "Não foi possível publicar a prévia."
+                ) from None
+            target = destination / "preview.mp4"
+            source_fd = os.open(staged.path, os.O_RDONLY | os.O_NOFOLLOW | os.O_CLOEXEC)
+            with os.fdopen(source_fd, "rb") as source:
+                metadata = os.fstat(source.fileno())
+                if not stat.S_ISREG(metadata.st_mode) or metadata.st_size != staged.byte_size:
+                    raise OSError("invalid_preview_staging")
+                os.fchmod(source.fileno(), stat.S_IRUSR)
+                os.fsync(source.fileno())
+                os.link(staged.path, target, follow_symlinks=False)
+                published = target.stat(follow_symlinks=False)
+                if (published.st_dev, published.st_ino) != (metadata.st_dev, metadata.st_ino):
+                    raise OSError("preview_staging_changed")
+            for directory in (destination, parent):
+                directory_fd = os.open(directory, os.O_RDONLY | os.O_DIRECTORY | os.O_NOFOLLOW)
+                try:
+                    os.fsync(directory_fd)
+                finally:
+                    os.close(directory_fd)
+            self.discard_staging(staged.path)
+            return target.relative_to(self.root).as_posix()
+        except OSError:
+            raise AppError(
+                503, "storage_unavailable", "Não foi possível publicar a prévia."
+            ) from None
+
+    def _open_managed(self, storage_key: str, expected_key: str, byte_size: int) -> OpenedOriginal:
         """Open only the authorized original, without following any path symlink.
 
         Directory-relative opens pin every parent inode, including root ancestors.
@@ -150,7 +230,6 @@ class LocalStorage:
         directory_fd = None
         file_fd = None
         try:
-            expected_key = f"originals/{project_id}/{asset_id}/source.mp4"
             if storage_key != expected_key or byte_size <= 0:
                 raise OSError("invalid_original_key")
             root_parts = self.root.parts
@@ -163,7 +242,7 @@ class LocalStorage:
                 os.close(directory_fd)
                 directory_fd = next_fd
             file_fd = os.open(
-                "source.mp4",
+                expected_key.rsplit("/", 1)[-1],
                 os.O_RDONLY | os.O_NOFOLLOW | os.O_CLOEXEC | os.O_NONBLOCK,
                 dir_fd=directory_fd,
             )
@@ -176,7 +255,7 @@ class LocalStorage:
         except (OSError, ValueError):
             logger.warning("original_read_unavailable")
             raise AppError(
-                503, "storage_unavailable", "Vídeo temporariamente indisponível."
+                503, "storage_unavailable", "Arquivo temporariamente indisponível."
             ) from None
         finally:
             if file_fd is not None:

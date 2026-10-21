@@ -1,0 +1,56 @@
+{
+  "status": "passed",
+  "services": {
+    "api": {
+      "state": "running",
+      "health": "healthy",
+      "exit_code": 0,
+      "published_ports": [
+        {
+          "URL": "127.0.0.1",
+          "TargetPort": 8000,
+          "PublishedPort": 8001,
+          "Protocol": "tcp"
+        }
+      ]
+    },
+    "db": {
+      "state": "running",
+      "health": "healthy",
+      "exit_code": 0,
+      "published_ports": []
+    },
+    "frontend": {
+      "state": "running",
+      "health": "healthy",
+      "exit_code": 0,
+      "published_ports": [
+        {
+          "URL": "127.0.0.1",
+          "TargetPort": 5173,
+          "PublishedPort": 5174,
+          "Protocol": "tcp"
+        }
+      ]
+    },
+    "migrate": {
+      "state": "exited",
+      "health": "",
+      "exit_code": 0,
+      "published_ports": []
+    },
+    "worker": {
+      "state": "running",
+      "health": "",
+      "exit_code": 0,
+      "published_ports": []
+    }
+  },
+  "http": {
+    "api_ready": 200,
+    "frontend": 200
+  },
+  "obra_control_containers_unchanged": 5,
+  "obra_control_env_inspected": false,
+  "mutations": false
+}

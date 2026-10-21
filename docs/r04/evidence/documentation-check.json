@@ -1,0 +1,11 @@
+{
+  "status": "passed",
+  "checked_at": "2026-10-21T02:21:45.245873+00:00",
+  "documents": 6,
+  "local_links_checked": 72,
+  "missing_links": [],
+  "strict_json_files_validated": 53,
+  "acceptance_criteria_passed": 17,
+  "unresolved_essential_checks": [],
+  "r05_started": false
+}

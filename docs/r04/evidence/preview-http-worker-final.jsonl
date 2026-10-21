@@ -1,0 +1,30 @@
+{"check": "safe_empty_queue_before_worker_stop", "status": "passed", "detail": null}
+{"check": "create_project", "status": "passed", "detail": null}
+{"check": "real_r02_video_upload", "status": "passed", "detail": null}
+{"check": "real_r04_mp3_upload", "status": "passed", "detail": null}
+{"check": "saved_v2_revision", "status": "passed", "detail": null}
+{"check": "three_concurrent_equivalent_requests_one_job", "status": "passed", "detail": null}
+{"check": "second_active_job_window_truncated", "status": "passed", "detail": null}
+{"check": "third_active_job_rejected_409", "status": "passed", "detail": null}
+{"check": "queued_artifact_not_readable", "status": "passed", "detail": null}
+{"check": "worker_completed_valid_artifact", "status": "passed", "detail": {"id": "6e3bb1a2-d521-4866-9a4a-68071608c88a", "observed_stages": ["queued", "encoding", "validating", "completed"]}}
+{"check": "worker_completed_valid_artifact", "status": "passed", "detail": {"id": "cc349b57-351d-4198-a88d-d7eab40f900b", "observed_stages": ["encoding", "validating", "completed"]}}
+{"check": "completed_equivalent_reused_200", "status": "passed", "detail": null}
+{"check": "full_mp4_checksum_headers", "status": "passed", "detail": null}
+{"check": "range_bytes=0-15", "status": "passed", "detail": null}
+{"check": "range_bytes=1024-2047", "status": "passed", "detail": null}
+{"check": "range_bytes=2048-", "status": "passed", "detail": null}
+{"check": "range_bytes=-31", "status": "passed", "detail": null}
+{"check": "range_bytes=7-7", "status": "passed", "detail": null}
+{"check": "invalid_range_bytes=0-1,5-6", "status": "passed", "detail": null}
+{"check": "invalid_range_bytes=-0", "status": "passed", "detail": null}
+{"check": "invalid_range_bytes=189463-", "status": "passed", "detail": null}
+{"check": "head_full_no_body", "status": "passed", "detail": null}
+{"check": "new_revision_keeps_old_preview", "status": "passed", "detail": null}
+{"check": "explicit_old_revision_reused", "status": "passed", "detail": null}
+{"check": "job_and_revision_persist_after_restart", "status": "passed", "detail": null}
+{"check": "range_after_restart", "status": "passed", "detail": null}
+{"check": "mp4_mp3_originals_sha_permissions_mtime_unchanged", "status": "passed", "detail": {"07b0ebc0-9461-424f-9799-bfd180a03c0b": {"sha256": "2a3618f20e5dc152a3a6b3417d4b0ab628bf6d4bbc970fdf2faf2c2eeecc9ea7", "bytes": 2272529, "mode": "0400", "mtime_ns": 1792548683804151763}, "3312526b-ae63-40b2-b296-881c46f6c98e": {"sha256": "6bfc6c3ce72a59b9271b77a442d0eccb1e31add851755a888a677802d25809dd", "bytes": 33069, "mode": "0400", "mtime_ns": 1792548683976895819}}}
+{"check": "cross_project_denied", "status": "passed", "detail": null}
+{"check": "soft_delete_blocks_jobs_and_files", "status": "passed", "detail": null}
+{"check": "soft_delete_preserves_originals", "status": "passed", "detail": null}
