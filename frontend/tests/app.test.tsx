@@ -22,6 +22,10 @@ describe('Edivo foundation interface', () => {
     render(<App />);
 
     expect(screen.getByRole('link', { name: 'Edivo — início' })).toBeVisible();
+    expect(screen.getByRole('img', { name: 'Edivo' })).toHaveAttribute(
+      'src',
+      '/brand/edivo-logo-dark-transparent.png',
+    );
     expect(screen.getByRole('heading', { level: 1 })).toHaveTextContent('Boas histórias.');
     expect(screen.getByText(/abra o editor para conhecer seus originais/)).toBeVisible();
     expect(screen.getByRole('heading', { name: 'Verificando conexão' })).toBeVisible();
@@ -113,21 +117,62 @@ describe('Edivo foundation interface', () => {
     render(<App />);
     await screen.findByRole('heading', { name: 'API disponível' });
 
-    await userEvent.click(screen.getByRole('button', { name: 'Ativar tema escuro' }));
-    expect(document.documentElement).toHaveAttribute('data-theme', 'dark');
-    expect(localStorage.getItem('edivo-theme')).toBe('dark');
     await userEvent.click(screen.getByRole('button', { name: 'Ativar tema claro' }));
     expect(document.documentElement).toHaveAttribute('data-theme', 'light');
     expect(localStorage.getItem('edivo-theme')).toBe('light');
+    expect(screen.getByRole('img', { name: 'Edivo' })).toHaveAttribute(
+      'src',
+      '/brand/edivo-logo-light-transparent.png',
+    );
+    await userEvent.click(screen.getByRole('button', { name: 'Ativar tema escuro' }));
+    expect(document.documentElement).toHaveAttribute('data-theme', 'dark');
+    expect(localStorage.getItem('edivo-theme')).toBe('dark');
+    expect(screen.getByRole('img', { name: 'Edivo' })).toHaveAttribute(
+      'src',
+      '/brand/edivo-logo-dark-transparent.png',
+    );
   });
 
-  it('restores the saved theme at startup', async () => {
-    localStorage.setItem('edivo-theme', 'dark');
+  it.each(['light', 'dark'] as const)('restores the saved %s theme at startup', async (theme) => {
+    localStorage.setItem('edivo-theme', theme);
     vi.stubGlobal('fetch', vi.fn().mockResolvedValue(healthy()));
     render(<App />);
 
-    await waitFor(() => expect(document.documentElement).toHaveAttribute('data-theme', 'dark'));
+    await waitFor(() => expect(document.documentElement).toHaveAttribute('data-theme', theme));
+    expect(screen.getByRole('img', { name: 'Edivo' })).toHaveAttribute(
+      'src',
+      `/brand/edivo-logo-${theme}-transparent.png`,
+    );
+    expect(
+      screen.getByRole('button', {
+        name: theme === 'dark' ? 'Ativar tema claro' : 'Ativar tema escuro',
+      }),
+    ).toBeVisible();
+    await screen.findByRole('heading', { name: 'API disponível' });
+  });
+
+  it('starts dark on a first visit even when the operating system prefers light', async () => {
+    vi.stubGlobal('fetch', vi.fn().mockResolvedValue(healthy()));
+    render(<App />);
+
+    expect(document.documentElement).toHaveAttribute('data-theme', 'dark');
     expect(screen.getByRole('button', { name: 'Ativar tema claro' })).toBeVisible();
     await screen.findByRole('heading', { name: 'API disponível' });
+  });
+
+  it('keeps theme switching available when saved preferences cannot be read', async () => {
+    const storageRead = vi.spyOn(Storage.prototype, 'getItem').mockImplementation(() => {
+      throw new DOMException('Storage unavailable', 'SecurityError');
+    });
+    try {
+      vi.stubGlobal('fetch', vi.fn().mockResolvedValue(healthy()));
+      render(<App />);
+      expect(document.documentElement).toHaveAttribute('data-theme', 'dark');
+      await userEvent.click(screen.getByRole('button', { name: 'Ativar tema claro' }));
+      expect(document.documentElement).toHaveAttribute('data-theme', 'light');
+      await screen.findByRole('heading', { name: 'API disponível' });
+    } finally {
+      storageRead.mockRestore();
+    }
   });
 });

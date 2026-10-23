@@ -1,0 +1,110 @@
+{
+  "delivery": "VIS-01 transparent header followup",
+  "completed_at": "2026-10-23T19:00:35.389993+00:00",
+  "status": "passed_with_documented_default_parallelism_timeouts",
+  "scope": "Frontend header branding only; no R06, backend, application-data or ObraControl changes",
+  "changes": [
+    "frontend/src/app/app.tsx",
+    "frontend/src/app/styles.css",
+    "frontend/tests/app.test.tsx",
+    "frontend/scripts/brand-transparent.mjs",
+    "frontend/public/brand/edivo-logo-dark-transparent.png",
+    "frontend/public/brand/edivo-logo-light-transparent.png"
+  ],
+  "tests": {
+    "command": "npm run test -- --run --maxWorkers=2",
+    "passed": 316,
+    "distinct_tests": 316,
+    "files": 9,
+    "duration_seconds": 44.27,
+    "default_timeout_unchanged": true,
+    "log": "vitest-two-workers.log",
+    "focused_header_tests": 12,
+    "focused_investigation_tests": 74,
+    "subset_counts_not_added": true,
+    "default_parallelism_attempts": [
+      {
+        "log": "vitest.log",
+        "passed": 314,
+        "failed": 2
+      },
+      {
+        "log": "vitest-without-build.log",
+        "passed": 314,
+        "failed": 2
+      }
+    ],
+    "cause_root_resolved": false
+  },
+  "quality": {
+    "eslint": "passed",
+    "prettier": "passed",
+    "typescript_and_vite_build": "passed",
+    "node_check": "passed",
+    "git_diff_check": "passed"
+  },
+  "browser": {
+    "status": "passed",
+    "browser": "145.0.7632.6",
+    "checks": 63,
+    "screenshots": 6,
+    "widths": [1366, 375, 390],
+    "themes": ["dark", "light"],
+    "all_six_header_screenshots_actually_viewed": true,
+    "visual_finding": "No background rectangle/border; green symbol and dot preserved; white wordmark dark theme, dark wordmark light theme. Proportions, labels and theme action readable with no overflow.",
+    "report": "browser-2/report.json",
+    "first_helper_assertion_retained": "browser/report.json",
+    "read_only_get_head_only": true,
+    "external_requests": [],
+    "page_errors": [],
+    "blocked_mutations": []
+  },
+  "assets": {
+    "source": "frontend/public/brand/edivo-logo.png",
+    "source_sha256": "0e3217809425fe162caba2007fa51df884f7bc32c2ae586b48c799812beaacf8",
+    "method": "Deterministic raster alpha from existing Canvas asset. No wordmark reconstruction.",
+    "dimensions": [960, 326],
+    "transparent_pixels": 233860,
+    "green_pixels": 36795,
+    "wordmark_pixels": 42305,
+    "assets": {
+      "dark": {
+        "path": "frontend/public/brand/edivo-logo-dark-transparent.png",
+        "bytes": 112608,
+        "sha256": "8c05f5b5905955bc91ee4745bf05a4a35968e1e8375713eb2584db1fd1cb1d73"
+      },
+      "light": {
+        "path": "frontend/public/brand/edivo-logo-light-transparent.png",
+        "bytes": 80454,
+        "sha256": "c7c9a27250a02a23959fef676b789c9475420901486d9c3ee8056dbdbd599b8a"
+      }
+    }
+  },
+  "previous_assets_unchanged": {
+    "frontend/public/brand/edivo-logo.png": true,
+    "frontend/public/brand/edivo-logo.webp": true,
+    "frontend/public/favicon-16x16.png": true,
+    "frontend/public/favicon-32x32.png": true,
+    "frontend/public/favicon-48x48.png": true,
+    "frontend/public/apple-touch-icon.png": true,
+    "frontend/public/icon-192.png": true,
+    "frontend/public/icon-512.png": true,
+    "frontend/public/brand/edivo-icon.png": true,
+    "frontend/public/favicon.ico": true
+  },
+  "deployment": {
+    "frontend_only": true,
+    "build_log": "docker-build.log",
+    "deploy_log": "docker-deploy.log",
+    "backend_restarted": false,
+    "compose_changed": false,
+    "ports_changed": false,
+    "obra_control_changed": false
+  },
+  "negative_attempts": "attempts.json",
+  "limitations": [
+    "Default Vitest file parallelism exceeded existing5s timeouts in two runs; suite passed with2workers without changing tests/timeouts. Root cause not conclusively identified.",
+    "No physical mobile devices, other browser engines or backend test rerun for this narrow visual change.",
+    "AI generated cutouts rejected due visible residue; final assets use existing deterministic Canvas recipe; raster conversion, no vector fidelity claim."
+  ]
+}

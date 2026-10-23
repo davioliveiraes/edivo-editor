@@ -1,0 +1,695 @@
+{
+  "status": "passed",
+  "started_at": "2026-10-23T18:58:54.164Z",
+  "real_api": true,
+  "read_only_http": true,
+  "browser": "145.0.7632.6",
+  "checks": [
+    {
+      "name": "1366-dark_correct_theme_asset",
+      "passed": true
+    },
+    {
+      "name": "1366-dark_image_loaded",
+      "passed": true
+    },
+    {
+      "name": "1366-dark_png_background_is_alpha",
+      "passed": true,
+      "detail": {
+        "corners": [
+          [
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            0
+          ]
+        ],
+        "transparent_fraction": 0.747252044989775,
+        "wordmark": [
+          240,
+          240,
+          240,
+          255
+        ],
+        "green_symbol": [
+          31,
+          191,
+          95,
+          255
+        ]
+      }
+    },
+    {
+      "name": "1366-dark_wordmark_color_matches_theme",
+      "passed": true,
+      "detail": [
+        240,
+        240,
+        240,
+        255
+      ]
+    },
+    {
+      "name": "1366-dark_no_brand_background",
+      "passed": true
+    },
+    {
+      "name": "1366-dark_no_brand_border",
+      "passed": true
+    },
+    {
+      "name": "1366-dark_proportions_preserved",
+      "passed": true
+    },
+    {
+      "name": "1366-dark_no_horizontal_overflow",
+      "passed": true
+    },
+    {
+      "name": "1366-dark_institutional_link_preserved",
+      "passed": true
+    },
+    {
+      "name": "1366-dark_toggle_updates_asset_and_persists",
+      "passed": true
+    },
+    {
+      "name": "1366-light_correct_theme_asset",
+      "passed": true
+    },
+    {
+      "name": "1366-light_image_loaded",
+      "passed": true
+    },
+    {
+      "name": "1366-light_png_background_is_alpha",
+      "passed": true,
+      "detail": {
+        "corners": [
+          [
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            0
+          ]
+        ],
+        "transparent_fraction": 0.747252044989775,
+        "wordmark": [
+          15,
+          23,
+          32,
+          255
+        ],
+        "green_symbol": [
+          31,
+          191,
+          95,
+          255
+        ]
+      }
+    },
+    {
+      "name": "1366-light_wordmark_color_matches_theme",
+      "passed": true,
+      "detail": [
+        15,
+        23,
+        32,
+        255
+      ]
+    },
+    {
+      "name": "1366-light_no_brand_background",
+      "passed": true
+    },
+    {
+      "name": "1366-light_no_brand_border",
+      "passed": true
+    },
+    {
+      "name": "1366-light_proportions_preserved",
+      "passed": true
+    },
+    {
+      "name": "1366-light_no_horizontal_overflow",
+      "passed": true
+    },
+    {
+      "name": "1366-light_institutional_link_preserved",
+      "passed": true
+    },
+    {
+      "name": "1366-light_toggle_updates_asset_and_persists",
+      "passed": true
+    },
+    {
+      "name": "375-dark_correct_theme_asset",
+      "passed": true
+    },
+    {
+      "name": "375-dark_image_loaded",
+      "passed": true
+    },
+    {
+      "name": "375-dark_png_background_is_alpha",
+      "passed": true,
+      "detail": {
+        "corners": [
+          [
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            0
+          ]
+        ],
+        "transparent_fraction": 0.747252044989775,
+        "wordmark": [
+          240,
+          240,
+          240,
+          255
+        ],
+        "green_symbol": [
+          31,
+          191,
+          95,
+          255
+        ]
+      }
+    },
+    {
+      "name": "375-dark_wordmark_color_matches_theme",
+      "passed": true,
+      "detail": [
+        240,
+        240,
+        240,
+        255
+      ]
+    },
+    {
+      "name": "375-dark_no_brand_background",
+      "passed": true
+    },
+    {
+      "name": "375-dark_no_brand_border",
+      "passed": true
+    },
+    {
+      "name": "375-dark_proportions_preserved",
+      "passed": true
+    },
+    {
+      "name": "375-dark_no_horizontal_overflow",
+      "passed": true
+    },
+    {
+      "name": "375-dark_institutional_link_preserved",
+      "passed": true
+    },
+    {
+      "name": "375-dark_toggle_updates_asset_and_persists",
+      "passed": true
+    },
+    {
+      "name": "375-light_correct_theme_asset",
+      "passed": true
+    },
+    {
+      "name": "375-light_image_loaded",
+      "passed": true
+    },
+    {
+      "name": "375-light_png_background_is_alpha",
+      "passed": true,
+      "detail": {
+        "corners": [
+          [
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            0
+          ]
+        ],
+        "transparent_fraction": 0.747252044989775,
+        "wordmark": [
+          15,
+          23,
+          32,
+          255
+        ],
+        "green_symbol": [
+          31,
+          191,
+          95,
+          255
+        ]
+      }
+    },
+    {
+      "name": "375-light_wordmark_color_matches_theme",
+      "passed": true,
+      "detail": [
+        15,
+        23,
+        32,
+        255
+      ]
+    },
+    {
+      "name": "375-light_no_brand_background",
+      "passed": true
+    },
+    {
+      "name": "375-light_no_brand_border",
+      "passed": true
+    },
+    {
+      "name": "375-light_proportions_preserved",
+      "passed": true
+    },
+    {
+      "name": "375-light_no_horizontal_overflow",
+      "passed": true
+    },
+    {
+      "name": "375-light_institutional_link_preserved",
+      "passed": true
+    },
+    {
+      "name": "375-light_toggle_updates_asset_and_persists",
+      "passed": true
+    },
+    {
+      "name": "390-dark_correct_theme_asset",
+      "passed": true
+    },
+    {
+      "name": "390-dark_image_loaded",
+      "passed": true
+    },
+    {
+      "name": "390-dark_png_background_is_alpha",
+      "passed": true,
+      "detail": {
+        "corners": [
+          [
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            0
+          ]
+        ],
+        "transparent_fraction": 0.747252044989775,
+        "wordmark": [
+          240,
+          240,
+          240,
+          255
+        ],
+        "green_symbol": [
+          31,
+          191,
+          95,
+          255
+        ]
+      }
+    },
+    {
+      "name": "390-dark_wordmark_color_matches_theme",
+      "passed": true,
+      "detail": [
+        240,
+        240,
+        240,
+        255
+      ]
+    },
+    {
+      "name": "390-dark_no_brand_background",
+      "passed": true
+    },
+    {
+      "name": "390-dark_no_brand_border",
+      "passed": true
+    },
+    {
+      "name": "390-dark_proportions_preserved",
+      "passed": true
+    },
+    {
+      "name": "390-dark_no_horizontal_overflow",
+      "passed": true
+    },
+    {
+      "name": "390-dark_institutional_link_preserved",
+      "passed": true
+    },
+    {
+      "name": "390-dark_toggle_updates_asset_and_persists",
+      "passed": true
+    },
+    {
+      "name": "390-light_correct_theme_asset",
+      "passed": true
+    },
+    {
+      "name": "390-light_image_loaded",
+      "passed": true
+    },
+    {
+      "name": "390-light_png_background_is_alpha",
+      "passed": true,
+      "detail": {
+        "corners": [
+          [
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            0
+          ]
+        ],
+        "transparent_fraction": 0.747252044989775,
+        "wordmark": [
+          15,
+          23,
+          32,
+          255
+        ],
+        "green_symbol": [
+          31,
+          191,
+          95,
+          255
+        ]
+      }
+    },
+    {
+      "name": "390-light_wordmark_color_matches_theme",
+      "passed": true,
+      "detail": [
+        15,
+        23,
+        32,
+        255
+      ]
+    },
+    {
+      "name": "390-light_no_brand_background",
+      "passed": true
+    },
+    {
+      "name": "390-light_no_brand_border",
+      "passed": true
+    },
+    {
+      "name": "390-light_proportions_preserved",
+      "passed": true
+    },
+    {
+      "name": "390-light_no_horizontal_overflow",
+      "passed": true
+    },
+    {
+      "name": "390-light_institutional_link_preserved",
+      "passed": true
+    },
+    {
+      "name": "390-light_toggle_updates_asset_and_persists",
+      "passed": true
+    },
+    {
+      "name": "no_mutating_http_attempts",
+      "passed": true
+    },
+    {
+      "name": "no_external_requests",
+      "passed": true
+    },
+    {
+      "name": "no_uncaught_page_errors",
+      "passed": true
+    }
+  ],
+  "screenshots": [
+    {
+      "path": "1366-dark-header.png",
+      "sha256": "52bdaad2f2e02e7cff7daee13c2e323707888d3b558fac0aa7a57a16941c23d8"
+    },
+    {
+      "path": "1366-light-header.png",
+      "sha256": "890612db5b807461d176800e301e0803c92104008ddbb1ee07a389378f96a40e"
+    },
+    {
+      "path": "375-dark-header.png",
+      "sha256": "3b5cc832bdc814e4425d28b67fac0af8a0b71b943d6fa7e85582ad722231ba83"
+    },
+    {
+      "path": "375-light-header.png",
+      "sha256": "9cb877e76e51d61425a29032a636155eca0fe21c1cf6a3cb139d91d25d3e411c"
+    },
+    {
+      "path": "390-dark-header.png",
+      "sha256": "49f83ecd834a4760de857ecaca080fc757767c5f2b6a8bd677dfa9d167627767"
+    },
+    {
+      "path": "390-light-header.png",
+      "sha256": "ec4a5513cf8b555216fc90c9592dd30955fe9297ae502ba0208bb5a45b04b15f"
+    }
+  ],
+  "observations": [
+    {
+      "key": "1366-dark",
+      "theme": "dark",
+      "source": "/brand/edivo-logo-dark-transparent.png",
+      "natural_width": 960,
+      "natural_height": 326,
+      "width": 117.78125,
+      "height": 39.984375,
+      "background": "rgba(0, 0, 0, 0)",
+      "border": [
+        "0px",
+        "0px",
+        "0px",
+        "0px"
+      ],
+      "overflow_width": 1366,
+      "viewport_width": 1366,
+      "href": "#main-content",
+      "accessible_name": "Edivo — início"
+    },
+    {
+      "key": "1366-light",
+      "theme": "light",
+      "source": "/brand/edivo-logo-light-transparent.png",
+      "natural_width": 960,
+      "natural_height": 326,
+      "width": 117.78125,
+      "height": 39.984375,
+      "background": "rgba(0, 0, 0, 0)",
+      "border": [
+        "0px",
+        "0px",
+        "0px",
+        "0px"
+      ],
+      "overflow_width": 1366,
+      "viewport_width": 1366,
+      "href": "#main-content",
+      "accessible_name": "Edivo — início"
+    },
+    {
+      "key": "375-dark",
+      "theme": "dark",
+      "source": "/brand/edivo-logo-dark-transparent.png",
+      "natural_width": 960,
+      "natural_height": 326,
+      "width": 117.78125,
+      "height": 39.984375,
+      "background": "rgba(0, 0, 0, 0)",
+      "border": [
+        "0px",
+        "0px",
+        "0px",
+        "0px"
+      ],
+      "overflow_width": 375,
+      "viewport_width": 375,
+      "href": "#main-content",
+      "accessible_name": "Edivo — início"
+    },
+    {
+      "key": "375-light",
+      "theme": "light",
+      "source": "/brand/edivo-logo-light-transparent.png",
+      "natural_width": 960,
+      "natural_height": 326,
+      "width": 117.78125,
+      "height": 39.984375,
+      "background": "rgba(0, 0, 0, 0)",
+      "border": [
+        "0px",
+        "0px",
+        "0px",
+        "0px"
+      ],
+      "overflow_width": 375,
+      "viewport_width": 375,
+      "href": "#main-content",
+      "accessible_name": "Edivo — início"
+    },
+    {
+      "key": "390-dark",
+      "theme": "dark",
+      "source": "/brand/edivo-logo-dark-transparent.png",
+      "natural_width": 960,
+      "natural_height": 326,
+      "width": 117.78125,
+      "height": 39.984375,
+      "background": "rgba(0, 0, 0, 0)",
+      "border": [
+        "0px",
+        "0px",
+        "0px",
+        "0px"
+      ],
+      "overflow_width": 390,
+      "viewport_width": 390,
+      "href": "#main-content",
+      "accessible_name": "Edivo — início"
+    },
+    {
+      "key": "390-light",
+      "theme": "light",
+      "source": "/brand/edivo-logo-light-transparent.png",
+      "natural_width": 960,
+      "natural_height": 326,
+      "width": 117.78125,
+      "height": 39.984375,
+      "background": "rgba(0, 0, 0, 0)",
+      "border": [
+        "0px",
+        "0px",
+        "0px",
+        "0px"
+      ],
+      "overflow_width": 390,
+      "viewport_width": 390,
+      "href": "#main-content",
+      "accessible_name": "Edivo — início"
+    }
+  ],
+  "page_errors": [],
+  "blocked_mutations": [],
+  "external_requests": [],
+  "finished_at": "2026-10-23T18:59:21.016Z"
+}

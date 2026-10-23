@@ -1,0 +1,46 @@
+{
+  "recorded_at": "2026-10-23T18:53:44.252984+00:00",
+  "imagegen": {
+    "selected": false,
+    "reason": "Both generated cutouts left visible matte residue/speckles and were rejected before application. Final variants extend the existing local Canvas asset recipe; no generated bitmap is used by the app.",
+    "generated_paths": [
+      "/home/davi/.codex/generated_images/01a149cf-6d87-7363-a3e6-ee6831dcea49/exec-3c420e24-a7a8-4a18-8b7f-c70a4a3a3690.png",
+      "/home/davi/.codex/generated_images/01a149cf-6d87-7363-a3e6-ee6831dcea49/exec-ca85cd51-2c71-450a-a26b-f470f09e247d.png"
+    ],
+    "prompt_summary": "Extract official Edivo logo to true alpha preserving exact green symbol/gradient/dot and white custom wordmark; second variant recolors only wordmark to #0F1720 for light theme. No border/shadow/badge."
+  },
+  "generator_initial_attempt": {
+    "exit_code": 1,
+    "docker_child_exit_code": 127,
+    "error": "OCI runtime create failed: headless_shell path chrome-linux/headless_shell not found.",
+    "effect": "No assets written. Temporary task workspace cleaned.",
+    "correction": "Discover the installed chromium_headless_shell executable using the same candidates as the existing generator."
+  },
+  "test_initial_attempt": {
+    "log": "vitest.log",
+    "passed": 314,
+    "failed": 2,
+    "distinct_total": 316,
+    "errors": [
+      "composition.test.tsx:170 test timed out in 5000ms",
+      "previews.test.tsx:223 test timed out in 5000ms"
+    ],
+    "context": "Full suite ran concurrently with host TypeScript/Vite build, Docker frontend build and lint/format checks. Resource contention is plausible; no metrics were retained to prove causation. Test timeouts/configuration were not changed."
+  },
+  "test_without_build_attempt": {
+    "log": "vitest-without-build.log",
+    "passed": 314,
+    "failed": 2,
+    "distinct_total": 316,
+    "errors": [
+      "composition.test.tsx:170 test timed out in 5000ms",
+      "editor-controls.test.tsx:108 test timed out in 5000ms"
+    ],
+    "context": "Default Vitest file parallelism, no build/browser running concurrently. Two-file investigation passed all74tests. Default full-suite timeouts persisted, so build contention alone is not established as the cause. Next investigation caps worker count without changing tests or timeout."
+  },
+  "browser_initial_attempt": {
+    "evidence": "browser/report.json",
+    "status": "failed_helper_assertion",
+    "reason": "Hardcoded wordmark sample x600,y150 was in a transparent gap between letters; actual asset and CSS alpha checks passed. Helper now finds a solid pixel in the wordmark region instead."
+  }
+}

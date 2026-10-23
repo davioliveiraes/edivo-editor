@@ -1,0 +1,13 @@
+{
+  "status": "qa_command_path_error_corrected",
+  "command": "node --check frontend/scripts/brand-assets.mjs",
+  "cwd": "frontend",
+  "observed_error_code": "MODULE_NOT_FOUND",
+  "cause": "Incorrect relative path resolved frontend/frontend/scripts; application code was not the cause.",
+  "raw_output_location": "Original tool transcript; not redirected in that invocation.",
+  "corrected_command": "node --check scripts/brand-assets.mjs",
+  "corrected_exit_code": 0,
+  "corrected_log": "asset-generator-node-check.log",
+  "focused_theme_suite": "theme-brand-unit-attempt-1.log",
+  "focused_theme_passed": 12
+}

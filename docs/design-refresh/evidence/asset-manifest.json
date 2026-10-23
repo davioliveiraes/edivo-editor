@@ -1,0 +1,151 @@
+{
+  "release": "VIS-01",
+  "status": "passed",
+  "generator": "frontend/scripts/brand-assets.mjs",
+  "renderer": {
+    "mode": "isolated_docker_canvas",
+    "image": "mcr.microsoft.com/playwright:v1.58.2-noble",
+    "network": "none"
+  },
+  "browser": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/145.0.7632.6 Safari/537.36",
+  "fidelity": "Official JPEG pixels, cropped/resampled raster derivatives; no vector reconstruction or generative redraw.",
+  "sources": {
+    "design/source/logo-edivo.jpg": {
+      "bytes": 107042,
+      "sha256": "ef3d2bc80d809fbec7dd6ccc7ef8d237fb516f85f87f3d16ff1961e68f61ea33"
+    },
+    "design/source/icone-edivo.jpg": {
+      "bytes": 187756,
+      "sha256": "ae832a0f7f7722b26bba29ec5443cbd3f8c396b28f1e207a893a8bf219fa0c1f"
+    }
+  },
+  "logo": {
+    "source": [
+      2048,
+      1143
+    ],
+    "bright_bounds": {
+      "left": 259,
+      "top": 334,
+      "right": 1804,
+      "bottom": 784
+    },
+    "threshold": 80,
+    "clearspace_pixels": 55,
+    "crop": {
+      "x": 204,
+      "y": 279,
+      "width": 1656,
+      "height": 561
+    },
+    "scale": 0.5797101449275363,
+    "scaled_content_height": 325.2173913043478,
+    "width": 960,
+    "height": 326,
+    "webp_quality": 0.92,
+    "uniform_scaling": true,
+    "geometry_recreated": false
+  },
+  "icon": {
+    "source": [
+      2048,
+      2048
+    ],
+    "corner_band_fraction": 0.125,
+    "neutral_minimum": 32,
+    "neutral_maximum_channel_difference": 24,
+    "white_matte_cutoff": 244,
+    "edge_matte_rgb": [
+      16,
+      16,
+      16
+    ],
+    "connected_corner_pixels": 18801,
+    "fully_transparent_pixels": 17850,
+    "partial_alpha_pixels": 951,
+    "original_green_pixels_preserved": 1124534,
+    "symbol_recreated": false
+  },
+  "outputs": {
+    "frontend/public/brand/edivo-logo.png": {
+      "width": 960,
+      "height": 326,
+      "bytes": 237242,
+      "sha256": "0e3217809425fe162caba2007fa51df884f7bc32c2ae586b48c799812beaacf8"
+    },
+    "frontend/public/brand/edivo-logo.webp": {
+      "width": 960,
+      "height": 326,
+      "bytes": 11096,
+      "sha256": "41f1108f74d972c4a76bdff12687c6461d979ad5c8a694dcf82346faf426c3d9"
+    },
+    "frontend/public/favicon-16x16.png": {
+      "width": 16,
+      "height": 16,
+      "bytes": 598,
+      "sha256": "f0ff037e6ced7803a0c8b241a2a5c539e9c4a151428c6d0f6a35af374b14385a"
+    },
+    "frontend/public/favicon-32x32.png": {
+      "width": 32,
+      "height": 32,
+      "bytes": 1568,
+      "sha256": "3cb92019069159887d717f5e16dfe70eb1081680f07477d50b5ae1075fb2e3a8"
+    },
+    "frontend/public/favicon-48x48.png": {
+      "width": 48,
+      "height": 48,
+      "bytes": 2871,
+      "sha256": "77b817ec73a3f91d7c530a96ceeacb031fe6021bcb1bc20e66d4bde0b9c49b51"
+    },
+    "frontend/public/apple-touch-icon.png": {
+      "width": 180,
+      "height": 180,
+      "bytes": 32280,
+      "sha256": "7475f09253365e988a128e627afccae9d93d4c16277bdfc0b6586c1d64bb0b20"
+    },
+    "frontend/public/icon-192.png": {
+      "width": 192,
+      "height": 192,
+      "bytes": 36198,
+      "sha256": "8aba019d8b25f84bbe01056a56704285c545f6191a17f2e2c63a69db5beb9fe5"
+    },
+    "frontend/public/icon-512.png": {
+      "width": 512,
+      "height": 512,
+      "bytes": 217106,
+      "sha256": "66d278a98cda53f0bb4af51dc01924f26c592a52909913ae6c6099f54c6551f0"
+    },
+    "frontend/public/brand/edivo-icon.png": {
+      "width": 512,
+      "height": 512,
+      "bytes": 217106,
+      "sha256": "66d278a98cda53f0bb4af51dc01924f26c592a52909913ae6c6099f54c6551f0"
+    },
+    "frontend/public/favicon.ico": {
+      "sizes": [
+        [
+          16,
+          16
+        ],
+        [
+          32,
+          32
+        ],
+        [
+          48,
+          48
+        ]
+      ],
+      "encoding": "ICO with 32-bit PNG frames",
+      "bytes": 5091,
+      "sha256": "2648eacf67dd0f2c9b3c247553505e8fd376e21958c3b5f6d88a926c63fedd2e"
+    }
+  },
+  "contact_sheet": {
+    "path": "docs/design-refresh/evidence/assets-contact-sheet.png",
+    "width": 1080,
+    "height": 760,
+    "bytes": 259155,
+    "sha256": "b31b708a9bd2b6e8d6447daf28155af109e769e18fc3f1a66c8dec94d6492985"
+  }
+}

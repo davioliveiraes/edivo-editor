@@ -1,0 +1,122 @@
+{
+  "delivery": "VIS-01",
+  "reviewed_at": "2026-10-23T18:03:07.869815+00:00",
+  "status": "reviewed_no_new_layout_blocker_observed",
+  "method": "Visual inspection of retained before/after PNGs using view_image; no new browser launch or product/data mutation by this reviewer.",
+  "inspected_images": [
+    {
+      "path": "browser-after-1/tablet-light-editor.png",
+      "kind": "after",
+      "inspection": "Actually viewed through view_image by final audit agent",
+      "pixel_dimensions": [768, 6109],
+      "sha256": "98774aa7e240e053f7ea0ec1d337131cd4c7120527086ff650ae3a9806c7b5f9",
+      "finding": "Tablet light editor: dark logo badge preserves white official wordmark; player/timeline and inspector use two columns; text/audio panels retain labels and controls; previews/exports/history are visible lower on page. No horizontal clipping or overlapping labels observed. Native paused preview/render controls show loading spinners in this captured moment."
+    },
+    {
+      "path": "browser-after-1/desktop-dark-modal.png",
+      "kind": "after",
+      "inspection": "Actually viewed through view_image by final audit agent",
+      "pixel_dimensions": [1366, 2828],
+      "sha256": "4bb4605203d12f657ae952adc7d62a933eb500d66a5349c5e4c47dd22c15b9f8",
+      "finding": "Dark new-project dialog: clear focused name field, readable labels/select/textarea, distinct cancel and green primary action. Dialog remains at the same upper-left viewport placement seen in the baseline; this visual refresh did not reposition its behavior."
+    },
+    {
+      "path": "browser-after-1/mobile-390-light-exports.png",
+      "kind": "after",
+      "inspection": "Actually viewed through view_image by final audit agent",
+      "pixel_dimensions": [342, 3336],
+      "sha256": "0d27e9e8b53ae2a3ce9e00b861009b7983115fa55676d6ac01ae2d490a5807d8",
+      "finding": "390px light export/history: settings and result stack vertically; long project identifiers and SHA wrap; prior-revision warning, completed/failed/canceled text, download and retry/view actions remain readable. Colored history borders supplement text. Skip-link overlay in this locator screenshot is a documented capture artifact, also present before refresh."
+    },
+    {
+      "path": "browser-after-1/desktop-dark-editor.png",
+      "kind": "after",
+      "inspection": "Actually viewed through view_image by final audit agent",
+      "pixel_dimensions": [1366, 5788],
+      "sha256": "4b9f2157a45324bf8592a5c436521d8c2b639c2f597db764c1f2165de908fdd2",
+      "finding": "Dark full editor: official logo is legible on a dark badge, central video retains composition proportions and synthetic frame, timeline is distinct, source/canvas/focal controls remain visible, and text/audio/preview/export/history form coherent surface groups. Full-page image contains no unexpected skip-link overlay. Preview/render native spinners are visible while paused; this static frame is not a playback failure verdict."
+    },
+    {
+      "path": "browser-after-1/mobile-375-light-projects.png",
+      "kind": "after",
+      "inspection": "Actually viewed through view_image by final audit agent",
+      "pixel_dimensions": [375, 4084],
+      "sha256": "8c051e5b154cbb17ec696f406d38e3e1556c701aeda25084f26d5bf597ed74be",
+      "finding": "375px light projects: header logo fits beside local/theme controls; hero/API card/list/actions stack without observed horizontal clipping. QA project names and metadata remain present, with long identifiers wrapping. Primary action is prominent and project cards retain separate action icons."
+    },
+    {
+      "path": "browser-before-2/desktop-dark-modal.png",
+      "kind": "before",
+      "inspection": "Actually viewed through view_image by final audit agent",
+      "pixel_dimensions": [1366, 2684],
+      "sha256": "cc43a19553a232b61291003cb43d2d8482e2e553e97b6cdcbcc45d7b31000c5e",
+      "finding": "Compared with after dark modal: baseline uses olive/green surfaces, smaller captions and pale-green action; upper-left placement and field/action organization remain consistent."
+    },
+    {
+      "path": "browser-before-2/tablet-light-editor.png",
+      "kind": "before",
+      "inspection": "Actually viewed through view_image by final audit agent",
+      "pixel_dimensions": [768, 5608],
+      "sha256": "ca4415013300dd4eb156ba4eced593781629dfb421ef2b25bae83e00fea6950b",
+      "finding": "Compared with after tablet editor: original panel order, two-column player/inspector and text/audio grouping are preserved. New typography and control areas increase total page height. Baseline paused preview/render spinners are also visible."
+    },
+    {
+      "path": "browser-before-2/mobile-390-light-exports.png",
+      "kind": "before",
+      "inspection": "Actually viewed through view_image by final audit agent",
+      "pixel_dimensions": [342, 3191],
+      "sha256": "dbe923cabd31f51bf72f72062ca35cf59c8b037e06ac0bdf6877882eb8ad3f15",
+      "finding": "Compared with after mobile exports: same project/revision/result/history/action organization. Baseline locator screenshot also shows skip-link over video and paused native spinner; neither is new evidence of a VIS-01 functional regression."
+    },
+    {
+      "path": "browser-before-2/mobile-375-light-projects.png",
+      "kind": "before",
+      "inspection": "Actually viewed through view_image by final audit agent",
+      "pixel_dimensions": [375, 3734],
+      "sha256": "f7c0773fa49e82ce31d0014ccaf2904520331b1738197b9d83a6a81e51b34fb7",
+      "finding": "Compared with after375 projects: same QA project list and actions, with refreshed logo, blue-neutral surfaces, brighter primary action, readable larger captions and card boundary."
+    },
+    {
+      "path": "capture-diagnostic/locator-section.png",
+      "kind": "diagnostic_fixture",
+      "inspection": "Actually viewed through view_image by final audit agent",
+      "pixel_dimensions": [1194, 2350],
+      "sha256": "cbc59912042a2d5ce7f41c213aad187b9333db7c5a649636737a44d254c2d049",
+      "finding": "Isolated Chromium fixture reproduces displaced skip-link only in the locator-section capture despite no focus; this is screenshot tooling evidence, not application integration."
+    },
+    {
+      "path": "capture-diagnostic/viewport-after-scroll.png",
+      "kind": "diagnostic_fixture",
+      "inspection": "Actually viewed through view_image by final audit agent",
+      "pixel_dimensions": [1366, 900],
+      "sha256": "1d0c4146ad0f0524846b4691480657aa3cb254ce961ba2f8760aa6f56f701509",
+      "finding": "Ordinary viewport capture after scrolling has no visible skip-link overlay."
+    },
+    {
+      "path": "capture-diagnostic/focus-visible.png",
+      "kind": "diagnostic_fixture",
+      "inspection": "Actually viewed through view_image by final audit agent",
+      "pixel_dimensions": [1366, 900],
+      "sha256": "7a6e5cada5037f2eee57d8cbcdff5e1a77647e3e0be7139f79e32e5e37385f97",
+      "finding": "Explicit keyboard focus makes skip-link visible at viewport top-left with a strong outline, as intended."
+    }
+  ],
+  "count": 12,
+  "skip_link_diagnostic": {
+    "evidence": "capture-diagnostic/report.json",
+    "fixture_only": true,
+    "application_services_used": false,
+    "hidden_during_ordinary_viewport": true,
+    "focused_link_visible": true,
+    "unfocused_bottom_px": -11.1953125,
+    "interpretation": "Locator-section screenshot artifact reproduced by isolated actual skip-link CSS fixture; ordinary viewport hides unfocused link. Original captures are retained, not cosmetically altered."
+  },
+  "limitations": [
+    "Static screenshots do not prove playback or audio; real playback and Range checks are in browser-after-1/report.json.",
+    "Paused native preview/render spinners occur in both baseline and after captures; they limit frame-level visual assessment of those particular paused screenshots.",
+    "Dialog placement is inherited from baseline; no behavioral redesign was performed.",
+    "This reviewer inspected five after images, four before images and three diagnostic fixture images, not every image in the evidence directory.",
+    "No human auditory evaluation, physical-device test or complete WCAG certification is claimed.",
+    "Images document the earlier live browser run; runtime status on the resumed turn is separately recorded by primary agent."
+  ]
+}

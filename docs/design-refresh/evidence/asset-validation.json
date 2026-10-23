@@ -1,0 +1,124 @@
+{
+  "status": "passed",
+  "checked_at": "2026-10-23T12:59:03.242011+00:00",
+  "checks": [
+    {
+      "check": "source_original_sha_unchanged",
+      "path": "design/source/logo-edivo.jpg",
+      "passed": true
+    },
+    {
+      "check": "source_original_sha_unchanged",
+      "path": "design/source/icone-edivo.jpg",
+      "passed": true
+    },
+    {
+      "check": "derivative_bytes_sha_and_dimensions",
+      "path": "frontend/public/brand/edivo-logo.png",
+      "passed": true
+    },
+    {
+      "check": "derivative_bytes_sha_and_dimensions",
+      "path": "frontend/public/brand/edivo-logo.webp",
+      "passed": true
+    },
+    {
+      "check": "derivative_bytes_sha_and_dimensions",
+      "path": "frontend/public/favicon-16x16.png",
+      "passed": true
+    },
+    {
+      "check": "derivative_bytes_sha_and_dimensions",
+      "path": "frontend/public/favicon-32x32.png",
+      "passed": true
+    },
+    {
+      "check": "derivative_bytes_sha_and_dimensions",
+      "path": "frontend/public/favicon-48x48.png",
+      "passed": true
+    },
+    {
+      "check": "derivative_bytes_sha_and_dimensions",
+      "path": "frontend/public/apple-touch-icon.png",
+      "passed": true
+    },
+    {
+      "check": "derivative_bytes_sha_and_dimensions",
+      "path": "frontend/public/icon-192.png",
+      "passed": true
+    },
+    {
+      "check": "derivative_bytes_sha_and_dimensions",
+      "path": "frontend/public/icon-512.png",
+      "passed": true
+    },
+    {
+      "check": "derivative_bytes_sha_and_dimensions",
+      "path": "frontend/public/brand/edivo-icon.png",
+      "passed": true
+    },
+    {
+      "check": "derivative_bytes_sha_and_dimensions",
+      "path": "frontend/public/favicon.ico",
+      "passed": true
+    },
+    {
+      "check": "ico_three_frames_match_exact_png_derivatives",
+      "sizes": [
+        16,
+        32,
+        48
+      ],
+      "passed": true
+    },
+    {
+      "check": "final_generator_reproduces_existing_assets_without_overwrite",
+      "exit_code": 0,
+      "passed": true
+    }
+  ],
+  "source_images_modified": false,
+  "vector_fidelity_claimed": false,
+  "assets_generated": 10,
+  "logo_dimensions": [
+    960,
+    326
+  ],
+  "webp_quality": 0.92,
+  "webp_bytes": 11096,
+  "webp_sha256": "41f1108f74d972c4a76bdff12687c6461d979ad5c8a694dcf82346faf426c3d9",
+  "visual_inspection": {
+    "performed_by_agent": true,
+    "files": [
+      "assets-contact-sheet.png",
+      "frontend/public/favicon-16x16.png",
+      "frontend/public/favicon-32x32.png",
+      "frontend/public/brand/edivo-logo.png",
+      "frontend/public/brand/edivo-logo.webp",
+      "frontend/public/brand/edivo-icon.png"
+    ],
+    "observations": [
+      "Official geometry, white wordmark and green full stop remain visibly intact.",
+      "Native16px is necessarily raster-sized; the geometric E remains identifiable;32px is clearer.",
+      "Enlarged nearest-neighbour16/32px views inspected in the contact sheet.",
+      "External white corners removed on512px/light background; antialiased rounded dark tile preserved.",
+      "Optimized WebP inspected at960x326; no visible geometric distortion or missing gradient/mark parts."
+    ],
+    "human_approval_claimed": false
+  },
+  "quality": {
+    "node_syntax": "passed",
+    "eslint_targeted": "passed",
+    "prettier_targeted": "passed",
+    "reproducibility_logs": [
+      "asset-generation-final.stdout.log",
+      "asset-generation-final.stderr.log"
+    ]
+  },
+  "negative_evidence": "asset-generation-attempt-1.json",
+  "optimization_evidence": "asset-webp-optimization.json",
+  "limitations": [
+    "Raster conversion and controlled lossy WebP, not vector reconstruction.",
+    "16px antialiasing limits detail; actual favicon selection/cache is verified by browser QA separately."
+  ]
+}

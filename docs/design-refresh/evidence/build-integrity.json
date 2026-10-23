@@ -1,0 +1,84 @@
+{
+  "kind": "static_build_integrity",
+  "status": "passed",
+  "title_present": true,
+  "index_sha256": "9e7d3c4b22efdb107ca9cf989dd5db2140f7655fefdd75a78df00add11ce6fe0",
+  "checks": [
+    {
+      "path": "/favicon.ico?v=vis01",
+      "exists": true
+    },
+    {
+      "path": "/favicon-16x16.png?v=vis01",
+      "exists": true
+    },
+    {
+      "path": "/favicon-32x32.png?v=vis01",
+      "exists": true
+    },
+    {
+      "path": "/favicon-48x48.png?v=vis01",
+      "exists": true
+    },
+    {
+      "path": "/apple-touch-icon.png?v=vis01",
+      "exists": true
+    },
+    {
+      "path": "/assets/index-BVdnDaqk.js",
+      "exists": true
+    },
+    {
+      "path": "/assets/index-B6jJEI49.css",
+      "exists": true
+    },
+    {
+      "asset": "public/icon-192.png",
+      "bytes_identical_in_dist": true
+    },
+    {
+      "asset": "public/apple-touch-icon.png",
+      "bytes_identical_in_dist": true
+    },
+    {
+      "asset": "public/icon-512.png",
+      "bytes_identical_in_dist": true
+    },
+    {
+      "asset": "public/favicon.ico",
+      "bytes_identical_in_dist": true
+    },
+    {
+      "asset": "public/favicon-32x32.png",
+      "bytes_identical_in_dist": true
+    },
+    {
+      "asset": "public/favicon-16x16.png",
+      "bytes_identical_in_dist": true
+    },
+    {
+      "asset": "public/favicon-48x48.png",
+      "bytes_identical_in_dist": true
+    },
+    {
+      "asset": "public/brand/edivo-logo.png",
+      "bytes_identical_in_dist": true
+    },
+    {
+      "asset": "public/brand/edivo-icon.png",
+      "bytes_identical_in_dist": true
+    },
+    {
+      "asset": "public/brand/edivo-logo.webp",
+      "bytes_identical_in_dist": true
+    },
+    {
+      "asset": "public/fonts/DejaVuSans.ttf",
+      "bytes_identical_in_dist": true
+    },
+    {
+      "asset": "public/fonts/DejaVuSans-LICENSE.txt",
+      "bytes_identical_in_dist": true
+    }
+  ]
+}

@@ -1,0 +1,341 @@
+{
+  "delivery": "VIS-01",
+  "consolidated_at": "2026-10-23T18:01:36.408880+00:00",
+  "status": "passed_with_documented_capture_and_environment_limitations",
+  "scope": "Frontend visual identity only; R06 not started. Results below are retained executions, not new runs during consolidation.",
+  "primary_report": "acceptance.md",
+  "counting_policy": "316 distinct frontend unit tests. Focused rerun is a subset; browser checks, contrast arithmetic and asset/scope checks are separate categories and must not be summed into a unit-test total.",
+  "commands": [
+    {
+      "command": "npm run test -- --run",
+      "cwd": "frontend",
+      "status": "passed",
+      "distinct_tests": 316,
+      "files": 9,
+      "duration_seconds": 22.18,
+      "log": "evidence/vitest-attempt-1.log"
+    },
+    {
+      "command": "npm run test -- --run tests/app.test.tsx",
+      "cwd": "frontend",
+      "status": "passed",
+      "tests": 12,
+      "files": 1,
+      "included_in_full_suite": true,
+      "add_to_distinct_total": false,
+      "duration_seconds": 1.95,
+      "log": "evidence/theme-brand-unit-attempt-1.log"
+    },
+    {
+      "command": "npm run lint",
+      "cwd": "frontend",
+      "status": "passed",
+      "log": "evidence/eslint-attempt-1.log"
+    },
+    {
+      "command": "npm run format:check",
+      "cwd": "frontend",
+      "status": "passed",
+      "log": "evidence/prettier-attempt-1.log"
+    },
+    {
+      "command": "npm run build",
+      "cwd": "frontend",
+      "status": "passed",
+      "includes": ["TypeScript tsc -b", "Vite production build"],
+      "vite_version": "8.3.4",
+      "log": "evidence/build-attempt-1.log"
+    },
+    {
+      "command": "node --check scripts/brand-assets.mjs",
+      "cwd": "frontend",
+      "status": "passed",
+      "log": "evidence/asset-generator-node-check.log"
+    },
+    {
+      "command": "node frontend/scripts/brand-assets.mjs --docker",
+      "cwd": ".",
+      "status": "passed_after_documented_initial_failure",
+      "behavior": "Final generator rerun produced identical output assets; source images preserved.",
+      "stdout": "evidence/asset-generation-final.stdout.log",
+      "stderr": "evidence/asset-generation-final.stderr.log"
+    },
+    {
+      "command": "docker compose build frontend",
+      "cwd": ".",
+      "status": "passed",
+      "scope": "frontend image only; existing Dockerfile/Compose and dependency locks unchanged",
+      "log": "evidence/frontend-build-image.log"
+    },
+    {
+      "command": "docker compose up -d --no-deps frontend",
+      "cwd": ".",
+      "status": "passed_when_executed",
+      "scope": "frontend only; no backend/worker/database/ObraControl restart",
+      "log": "evidence/frontend-deploy.log"
+    }
+  ],
+  "browser": {
+    "status": "passed",
+    "evidence": "evidence/browser-after-1/report.json",
+    "checks_passed": 98,
+    "screenshots": 48,
+    "browser": "Chromium 145.0.7632.6",
+    "playwright_driver_version": "1.50.1",
+    "viewports": [
+      {
+        "name": "desktop",
+        "theme": "dark",
+        "viewport": 1366,
+        "width": 1366,
+        "height": 5788
+      },
+      {
+        "name": "desktop",
+        "theme": "light",
+        "viewport": 1366,
+        "width": 1366,
+        "height": 5788
+      },
+      {
+        "name": "tablet",
+        "theme": "dark",
+        "viewport": 768,
+        "width": 768,
+        "height": 6109
+      },
+      {
+        "name": "tablet",
+        "theme": "light",
+        "viewport": 768,
+        "width": 768,
+        "height": 6109
+      },
+      {
+        "name": "mobile-375",
+        "theme": "dark",
+        "viewport": 375,
+        "width": 375,
+        "height": 9329
+      },
+      {
+        "name": "mobile-375",
+        "theme": "light",
+        "viewport": 375,
+        "width": 375,
+        "height": 9329
+      },
+      {
+        "name": "mobile-390",
+        "theme": "dark",
+        "viewport": 390,
+        "width": 390,
+        "height": 9272
+      },
+      {
+        "name": "mobile-390",
+        "theme": "light",
+        "viewport": 390,
+        "width": 390,
+        "height": 9272
+      }
+    ],
+    "themes": ["dark", "light"],
+    "real_api_read_only": true,
+    "database_storage_mutations_performed": false,
+    "external_requests": [],
+    "page_errors": [],
+    "blocked_mutations": [],
+    "coverage": [
+      "Projects and library",
+      "Existing R05 editor including text, MP3, preview, export and history",
+      "Native source/preview/render playback, seek and HTTP Range",
+      "Theme persistence and first-visit dark default",
+      "Keyboard focus and modal interactions",
+      "No horizontal overflow at tested viewports",
+      "Reduced motion",
+      "Local logo/icon metadata and downloads/cache-busting",
+      "Computed rendered contrast samples"
+    ],
+    "mocked_states": {
+      "count": 6,
+      "scenes": ["loading", "error", "empty"],
+      "themes": ["dark", "light"],
+      "transport": "Mocked GET responses in separate browser contexts; not real backend dependency failures"
+    },
+    "before_comparison": {
+      "evidence": "evidence/browser-before-2/report.json",
+      "checks_passed": 47,
+      "screenshots": 42,
+      "earlier_capture_retained": "evidence/browser-before-1/report.json",
+      "duplicate_checks_not_added_to_total": true
+    },
+    "visual_diagnostic": {
+      "status": "investigated_capture_artifact",
+      "evidence": "evidence/capture-diagnostic/report.json",
+      "actual_css_fixture": true,
+      "application_services_used": false,
+      "hidden_link_unfocused_bottom_px": -11.1953125,
+      "normal_viewport_link_hidden": true,
+      "focused_link_visible_at_top_px": 12,
+      "product_css_changed_to_hide_artifact": false,
+      "visual_review": "evidence/visual-review.json"
+    }
+  },
+  "assets": {
+    "status": "passed",
+    "checks_passed": 14,
+    "evidence": "evidence/asset-validation.json",
+    "manifest": "evidence/asset-manifest.json",
+    "outputs": 10,
+    "source_images_preserved": true,
+    "vector_fidelity_claimed": false
+  },
+  "contrast": {
+    "status": "passed",
+    "pairs": 24,
+    "evidence": "evidence/token-contrast.json",
+    "minimum_normal_text_ratio": 4.54967,
+    "minimum_control_boundary_ratio": 3.394034,
+    "full_wcag_certification_claimed": false
+  },
+  "preservation": {
+    "status": "passed",
+    "evidence": "evidence/preservation-after.json",
+    "baseline": "evidence/preservation-before.json",
+    "row_counts": {
+      "projects": 196,
+      "media_assets": 197,
+      "audio_assets": 10,
+      "edit_spec_revisions": 174,
+      "preview_jobs": 97,
+      "render_jobs": 92
+    },
+    "artifact_counts": {
+      "mp4": 197,
+      "mp3": 10,
+      "preview": 8,
+      "render": 14
+    },
+    "comparison": {
+      "rows": {
+        "projects": {
+          "added": [],
+          "removed": [],
+          "changed": []
+        },
+        "media_assets": {
+          "added": [],
+          "removed": [],
+          "changed": []
+        },
+        "audio_assets": {
+          "added": [],
+          "removed": [],
+          "changed": []
+        },
+        "edit_spec_revisions": {
+          "added": [],
+          "removed": [],
+          "changed": []
+        },
+        "preview_jobs": {
+          "added": [],
+          "removed": [],
+          "changed": []
+        },
+        "render_jobs": {
+          "added": [],
+          "removed": [],
+          "changed": []
+        }
+      },
+      "artifacts": {
+        "mp4": {
+          "added": [],
+          "removed": [],
+          "changed": []
+        },
+        "mp3": {
+          "added": [],
+          "removed": [],
+          "changed": []
+        },
+        "preview": {
+          "added": [],
+          "removed": [],
+          "changed": []
+        },
+        "render": {
+          "added": [],
+          "removed": [],
+          "changed": []
+        }
+      },
+      "trigger_unchanged": true,
+      "alembic_unchanged": true,
+      "env_unchanged": true,
+      "git_head_unchanged": true,
+      "obra_containers_unchanged": true,
+      "backend_containers_unchanged": true,
+      "frontend_ports_unchanged": true
+    },
+    "authorized_document_change": ["DESIGN.md"]
+  },
+  "scope_audit": {
+    "status": "passed",
+    "checks_passed": 12,
+    "evidence": "evidence/final-scope-audit.json",
+    "protected_baseline_files": 1337
+  },
+  "negative_attempts_retained": [
+    {
+      "evidence": "evidence/qa-command-path-negative.json",
+      "issue": "Wrong relative path in node --check while cwd was frontend; corrected command passed. Not application failure."
+    },
+    {
+      "evidence": "evidence/asset-generation-attempt-1.json",
+      "issue": "Initial full Chromium CLI --dump-dom timed out; no assets or source images written. Raw tool output was truncated and that limitation is retained. Final headless-shell generation succeeded."
+    },
+    {
+      "evidence": "evidence/preservation-helper-quality.log",
+      "issue": "Audit helper lint finding was corrected; retained log documents the helper quality check."
+    },
+    {
+      "evidence": "evidence/final-scope-audit.json",
+      "issue": "Read-only audit scratch command initially assumed manifest.outputs was a list; actual dictionary inspection corrected it without product mutation."
+    }
+  ],
+  "vitest_instability": {
+    "current_full_suite": "Passed first recorded full VIS-01 execution; no new Vitest failure in retained VIS-01 test log.",
+    "historical_r04": "Historical intermittent R04 occurrence remains documented in its original report; current pass does not erase it."
+  },
+  "runtime_note": {
+    "evidence": "evidence/runtime-resume-observation.json",
+    "latest_observation": "Application containers found stopped on resume; no application lifecycle was performed in this resume. Cause not established.",
+    "interpretation": "Earlier build/deploy/browser/preservation results are timestamped evidence and do not imply services are currently running."
+  },
+  "not_claimed": [
+    "Full backend suite rerun for a frontend-only visual change",
+    "New upload, render, cancellation or database-write integration execution",
+    "Human auditory inspection",
+    "Physical mobile-device validation",
+    "Safari or Firefox validation",
+    "Full WCAG certification",
+    "Visual inspection of browser chrome/tab favicon in headed browser",
+    "R06 implementation"
+  ],
+  "limitations": [
+    "Raster brand derivatives preserve supplied artwork; no perfect vector reconstruction claim.",
+    "Mobile and tablet results are Chromium viewport emulation.",
+    "Loading/error/empty scenes are explicit frontend simulations.",
+    "Locator section screenshots may contain a reproduced fixed-element capture artifact; original screenshots retained. Ordinary viewport diagnostic and explicit focus check passed. Some paused native players show spinners; playback approval uses real decoded frames and time advancement."
+  ],
+  "completed_at": "2026-10-23T18:05:05.521548+00:00",
+  "static_build_integrity": {
+    "status": "passed",
+    "checks": 19,
+    "evidence": "evidence/build-integrity.json"
+  },
+  "execution_log_archive": "evidence/execution-logs.json"
+}

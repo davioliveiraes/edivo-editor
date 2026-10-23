@@ -5,15 +5,6 @@ import { ApiStatus } from '@/features/system/api-status';
 import { ProjectsWorkspace } from '@/features/projects/projects-workspace';
 import { useTheme } from './use-theme';
 
-function EdivoMark() {
-  return (
-    <svg viewBox="0 0 32 32" fill="none" aria-hidden="true" className="edivo-mark">
-      <path d="M8 8h18l-4 5H8V8Zm0 8h14l-4 5H8v-5Zm0 8h10l-4 5H8v-5Z" fill="currentColor" />
-      <path d="M3 3h5v26H3V3Z" fill="currentColor" />
-    </svg>
-  );
-}
-
 export function App() {
   const { theme, toggleTheme } = useTheme();
   const [editorMode, setEditorMode] = useState(false);
@@ -25,10 +16,15 @@ export function App() {
       </a>
       <header className="site-header">
         <a className="brand" href="#main-content" aria-label="Edivo — início">
-          <EdivoMark />
-          <span>
-            edivo<span className="brand-dot">.</span>
-          </span>
+          <img
+            className="brand-logo"
+            src={`/brand/edivo-logo-${theme}-transparent.png`}
+            alt="Edivo"
+            width={960}
+            height={326}
+            fetchPriority="high"
+            decoding="async"
+          />
         </a>
         <div className="header-tools">
           <span className="workspace-label">

@@ -1,0 +1,100 @@
+{
+  "status": "failed",
+  "started_at": "2026-10-23T18:56:30.819Z",
+  "real_api": true,
+  "read_only_http": true,
+  "browser": "145.0.7632.6",
+  "checks": [
+    {
+      "name": "1366-dark_correct_theme_asset",
+      "passed": true
+    },
+    {
+      "name": "1366-dark_image_loaded",
+      "passed": true
+    },
+    {
+      "name": "1366-dark_png_background_is_alpha",
+      "passed": true,
+      "detail": {
+        "corners": [
+          [
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            0
+          ]
+        ],
+        "transparent_fraction": 0.747252044989775,
+        "wordmark": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "green_symbol": [
+          31,
+          191,
+          95,
+          255
+        ]
+      }
+    },
+    {
+      "name": "1366-dark_wordmark_color_matches_theme",
+      "passed": false,
+      "detail": [
+        0,
+        0,
+        0,
+        0
+      ]
+    }
+  ],
+  "screenshots": [],
+  "observations": [
+    {
+      "key": "1366-dark",
+      "theme": "dark",
+      "source": "/brand/edivo-logo-dark-transparent.png",
+      "natural_width": 960,
+      "natural_height": 326,
+      "width": 117.78125,
+      "height": 39.984375,
+      "background": "rgba(0, 0, 0, 0)",
+      "border": [
+        "0px",
+        "0px",
+        "0px",
+        "0px"
+      ],
+      "overflow_width": 1366,
+      "viewport_width": 1366,
+      "href": "#main-content",
+      "accessible_name": "Edivo — início"
+    }
+  ],
+  "page_errors": [],
+  "blocked_mutations": [],
+  "external_requests": [],
+  "failure": "1366-dark_wordmark_color_matches_theme",
+  "finished_at": "2026-10-23T18:56:38.696Z"
+}

@@ -6,9 +6,9 @@ function initialTheme(): Theme {
   try {
     const saved = localStorage.getItem('edivo-theme');
     if (saved === 'light' || saved === 'dark') return saved;
-    return window.matchMedia?.('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+    return 'dark';
   } catch {
-    return 'light';
+    return 'dark';
   }
 }
 

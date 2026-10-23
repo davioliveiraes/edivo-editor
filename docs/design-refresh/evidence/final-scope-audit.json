@@ -1,0 +1,201 @@
+{
+  "release": "VIS-01",
+  "checked_at": "2026-10-23T17:47:51.809924+00:00",
+  "status": "passed",
+  "scope": "Read-only file inspection; no Docker lifecycle, application/database/storage mutations or Git writes",
+  "checks": [
+    {
+      "name": "protected_source_baseline",
+      "passed": true,
+      "detail": {
+        "protected_count": 1337,
+        "changed": ["DESIGN.md"],
+        "authorized_exception": "DESIGN.md section 11 records justified VIS-01 implementation decisions"
+      }
+    },
+    {
+      "name": "functional_frontend_sources_preserved",
+      "passed": true,
+      "detail": {
+        "source_count": 33,
+        "changed": [
+          "frontend/src/app/app.tsx",
+          "frontend/src/app/styles.css",
+          "frontend/src/app/use-theme.ts",
+          "frontend/src/features/editor/editor.css",
+          "frontend/src/features/editor/export.css"
+        ]
+      }
+    },
+    {
+      "name": "tracked_scope_frontend_only",
+      "passed": true,
+      "detail": [
+        "frontend/index.html",
+        "frontend/src/app/app.tsx",
+        "frontend/src/app/styles.css",
+        "frontend/src/app/use-theme.ts",
+        "frontend/src/features/editor/editor.css",
+        "frontend/src/features/editor/export.css",
+        "frontend/tests/app.test.tsx"
+      ]
+    },
+    {
+      "name": "git_head_unchanged",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "dependency_manifests_and_locks_unchanged",
+      "passed": true,
+      "detail": [
+        "frontend/package.json",
+        "frontend/package-lock.json",
+        "backend/pyproject.toml",
+        "backend/uv.lock"
+      ]
+    },
+    {
+      "name": "original_reference_images_preserved",
+      "passed": true,
+      "detail": {
+        "design/source/logo-edivo.jpg": {
+          "bytes": 107042,
+          "sha256": "ef3d2bc80d809fbec7dd6ccc7ef8d237fb516f85f87f3d16ff1961e68f61ea33"
+        },
+        "design/source/icone-edivo.jpg": {
+          "bytes": 187756,
+          "sha256": "ae832a0f7f7722b26bba29ec5443cbd3f8c396b28f1e207a893a8bf219fa0c1f"
+        }
+      }
+    },
+    {
+      "name": "generated_asset_bytes_match_manifest",
+      "passed": true,
+      "detail": {
+        "count": 10
+      }
+    },
+    {
+      "name": "reference_html_and_permanent_docs_preserved",
+      "passed": true,
+      "detail": [
+        "design/references/design-system-dark.html",
+        "README.md",
+        "AGENTS.md",
+        "docs/architecture.md",
+        "docs/roadmap.md"
+      ]
+    },
+    {
+      "name": "historical_docs_and_evidence_preserved",
+      "passed": true,
+      "detail": {
+        "count": 1218
+      }
+    },
+    {
+      "name": "no_absolute_remote_runtime_reference",
+      "passed": true,
+      "detail": []
+    },
+    {
+      "name": "institutional_link_contract_preserved",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "data_container_and_ports_preservation_snapshot_passed",
+      "passed": true,
+      "detail": {
+        "snapshot": "preservation-after.json",
+        "comparison": {
+          "rows": {
+            "projects": {
+              "added": [],
+              "removed": [],
+              "changed": []
+            },
+            "media_assets": {
+              "added": [],
+              "removed": [],
+              "changed": []
+            },
+            "audio_assets": {
+              "added": [],
+              "removed": [],
+              "changed": []
+            },
+            "edit_spec_revisions": {
+              "added": [],
+              "removed": [],
+              "changed": []
+            },
+            "preview_jobs": {
+              "added": [],
+              "removed": [],
+              "changed": []
+            },
+            "render_jobs": {
+              "added": [],
+              "removed": [],
+              "changed": []
+            }
+          },
+          "artifacts": {
+            "mp4": {
+              "added": [],
+              "removed": [],
+              "changed": []
+            },
+            "mp3": {
+              "added": [],
+              "removed": [],
+              "changed": []
+            },
+            "preview": {
+              "added": [],
+              "removed": [],
+              "changed": []
+            },
+            "render": {
+              "added": [],
+              "removed": [],
+              "changed": []
+            }
+          },
+          "trigger_unchanged": true,
+          "alembic_unchanged": true,
+          "env_unchanged": true,
+          "git_head_unchanged": true,
+          "obra_containers_unchanged": true,
+          "backend_containers_unchanged": true,
+          "frontend_ports_unchanged": true
+        },
+        "row_counts": {
+          "projects": 196,
+          "media_assets": 197,
+          "audio_assets": 10,
+          "edit_spec_revisions": 174,
+          "preview_jobs": 97,
+          "render_jobs": 92
+        },
+        "artifact_counts": {
+          "mp4": 197,
+          "mp3": 10,
+          "preview": 8,
+          "render": 14
+        },
+        "alembic_revision": "0005_r05_render_exports",
+        "obra_container_count": 5
+      }
+    }
+  ],
+  "notes": [
+    "Tracked JavaScript diff manually reviewed: only replacement of logo children and authorized dark-first theme fallback; no editing, media, render, API or routing handlers changed.",
+    "CSS diff manually reviewed as presentation changes; composition text values and internal contain background retained.",
+    "No new production dependency or external resource reference introduced. Existing local font-license URLs are documentation only.",
+    "claude_resume.txt is untracked and was not opened or modified by this audit.",
+    "An audit scratch command initially assumed manifest.outputs was a list and raised AttributeError. Corrected inspection used the actual dict; no product files or evidence were modified by that failed read-only command."
+  ]
+}

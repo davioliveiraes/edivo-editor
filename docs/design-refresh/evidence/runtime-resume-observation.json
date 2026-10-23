@@ -1,0 +1,33 @@
+{
+  "observed_at": "2026-10-23T18:05:05.519645+00:00",
+  "source_command": "docker ps -a --filter label=com.docker.compose.project=edivo --format ID/Names/Status/Ports",
+  "application_lifecycle_performed_this_resume": false,
+  "containers": [
+    {
+      "id": "0805db62c5a4",
+      "name": "edivo-frontend-1",
+      "status": "Exited (143)"
+    },
+    {
+      "id": "46be91c9ee40",
+      "name": "edivo-api-1",
+      "status": "Exited (143)"
+    },
+    {
+      "id": "b7c70fb531b8",
+      "name": "edivo-worker-1",
+      "status": "Exited (0)"
+    },
+    {
+      "id": "ec62787f7dbc",
+      "name": "edivo-migrate-1",
+      "status": "Exited (0)"
+    },
+    {
+      "id": "3f51b3c28b54",
+      "name": "edivo-db-1",
+      "status": "Exited (0)"
+    }
+  ],
+  "limitation": "Containers were found stopped on resume. Earlier preserved QA runtime was active; latest stopped state does not establish cause. No application container was started or stopped in this resume; final capture diagnostic used a standalone container without network/application data."
+}

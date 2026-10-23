@@ -1,0 +1,90 @@
+{
+  "fixture_only": true,
+  "application_services_used": false,
+  "actual_skip_link_css": ".skip-link {\n  position: fixed;\n  top: 12px;\n  left: 12px;\n  transform: translateY(-150%);\n  z-index: 10;\n  padding: var(--space-3) 18px;\n  background: var(--foreground);\n  color: var(--background);\n  border-radius: var(--radius-control);\n}\n.skip-link:focus {\n  transform: translateY(0);\n}",
+  "browser": "145.0.7632.6",
+  "observations": [
+    {
+      "label": "initial",
+      "active_element": "BODY",
+      "focused": false,
+      "focus_visible": false,
+      "transform": "matrix(1, 0, 0, 1, 0, -69.5859)",
+      "rect": {
+        "x": 12,
+        "y": -57.5859375,
+        "width": 173.765625,
+        "height": 46.390625,
+        "bottom": -11.1953125
+      },
+      "scroll_y": 0,
+      "inner_height": 900
+    },
+    {
+      "label": "after_full_page",
+      "active_element": "BODY",
+      "focused": false,
+      "focus_visible": false,
+      "transform": "matrix(1, 0, 0, 1, 0, -69.5859)",
+      "rect": {
+        "x": 12,
+        "y": -57.5859375,
+        "width": 173.765625,
+        "height": 46.390625,
+        "bottom": -11.1953125
+      },
+      "scroll_y": 0,
+      "inner_height": 900
+    },
+    {
+      "label": "after_locator",
+      "active_element": "BODY",
+      "focused": false,
+      "focus_visible": false,
+      "transform": "matrix(1, 0, 0, 1, 0, -69.5859)",
+      "rect": {
+        "x": 12,
+        "y": -57.5859375,
+        "width": 173.765625,
+        "height": 46.390625,
+        "bottom": -11.1953125
+      },
+      "scroll_y": 4225,
+      "inner_height": 900
+    },
+    {
+      "label": "after_scroll",
+      "active_element": "BODY",
+      "focused": false,
+      "focus_visible": false,
+      "transform": "matrix(1, 0, 0, 1, 0, -69.5859)",
+      "rect": {
+        "x": 12,
+        "y": -57.5859375,
+        "width": 173.765625,
+        "height": 46.390625,
+        "bottom": -11.1953125
+      },
+      "scroll_y": 4225,
+      "inner_height": 900
+    },
+    {
+      "label": "explicit_keyboard_focus",
+      "active_element": "A",
+      "focused": true,
+      "focus_visible": true,
+      "transform": "matrix(1, 0, 0, 1, 0, 0)",
+      "rect": {
+        "x": 12,
+        "y": 12,
+        "width": 173.765625,
+        "height": 46.390625,
+        "bottom": 58.390625
+      },
+      "scroll_y": 4225,
+      "inner_height": 900
+    }
+  ],
+  "hidden_during_ordinary_viewport": true,
+  "focused_link_visible": true
+}

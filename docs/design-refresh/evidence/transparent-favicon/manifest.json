@@ -1,0 +1,27 @@
+{
+  "source": "frontend/public/brand/edivo-icon.png",
+  "source_sha256": "66d278a98cda53f0bb4af51dc01924f26c592a52909913ae6c6099f54c6551f0",
+  "source_size": [
+    512,
+    512
+  ],
+  "method": "Existing official icon pixels; Canvas green chroma matte removal, no redraw; transparent PNG/ICO.",
+  "outputs": {
+    "favicon-green-16x16.png": {
+      "bytes": 546,
+      "sha256": "298c0ff5fd980e818cad11bd758b3a95228c731c82d8789b230f5ab012f95184"
+    },
+    "favicon-green-32x32.png": {
+      "bytes": 1262,
+      "sha256": "0dbc5e4a96b72e70ab2af31eeaffd1cf3b69abae9693b415346884fbb4aa1153"
+    },
+    "favicon-green-48x48.png": {
+      "bytes": 2310,
+      "sha256": "9230616cf98b95515778ab68b3e0c193dae386452b9fc9f9d2a405e4ed4b43ee"
+    },
+    "favicon-green.ico": {
+      "bytes": 4172,
+      "sha256": "f59d56393b6c0ca07ce746c803f59bfb3523515619fb4144352eb24ee8305e96"
+    }
+  }
+}

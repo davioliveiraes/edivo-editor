@@ -1,0 +1,402 @@
+{
+  "delivery": "VIS-01",
+  "status": "passed",
+  "observed_at": "2026-10-23T13:03:13.766220+00:00",
+  "method": "Static resolved CSS token pairs; locally executed arithmetic, not a browser-rendered full-page audit.",
+  "source": "frontend/src/app/styles.css",
+  "source_sha256": "83117baff91668dffcf578885c6ad4ead10aba0c2d6e075130be80e2c3b0d224",
+  "source_selectors": [":root", ":root[data-theme='light']"],
+  "formula": {
+    "standard": "WCAG relative luminance contrast, sRGB",
+    "channel_normalization": "8-bit channel /255",
+    "linearization": "c/12.92 when c<=0.04045; otherwise ((c+0.055)/1.055)^2.4",
+    "relative_luminance": "0.2126*R_linear+0.7152*G_linear+0.0722*B_linear",
+    "contrast": "(max(L1,L2)+0.05)/(min(L1,L2)+0.05)",
+    "thresholds": {
+      "normal_text": 4.5,
+      "specified_control_boundary": 3
+    },
+    "pass_uses_unrounded_ratio": true
+  },
+  "font_context": {
+    "ui": "Locally bundled DM Sans and Manrope; fixed functional declarations>=12px.",
+    "authored_video_text": "DejaVu rendering rules preserved and excluded from interface-token claims."
+  },
+  "passed_pairs": 24,
+  "minimum_normal_text_ratio": 4.54967,
+  "minimum_control_boundary_ratio": 3.394034,
+  "pairs": [
+    {
+      "theme": "dark",
+      "foreground_token": "--foreground",
+      "background_token": "--surface",
+      "foreground": "#f5f7fa",
+      "background": "#11161d",
+      "contrast_ratio": 16.921696,
+      "minimum": 4.5,
+      "criterion": "normal_text",
+      "status": "passed"
+    },
+    {
+      "theme": "dark",
+      "foreground_token": "--muted-foreground",
+      "background_token": "--surface",
+      "foreground": "#a9b3bf",
+      "background": "#11161d",
+      "contrast_ratio": 8.550569,
+      "minimum": 4.5,
+      "criterion": "normal_text",
+      "status": "passed"
+    },
+    {
+      "theme": "dark",
+      "foreground_token": "--tertiary-foreground",
+      "background_token": "--surface-elevated",
+      "foreground": "#7b8794",
+      "background": "#171d25",
+      "contrast_ratio": 4.629462,
+      "minimum": 4.5,
+      "criterion": "normal_text",
+      "status": "passed"
+    },
+    {
+      "theme": "dark",
+      "foreground_token": "--primary-foreground",
+      "background_token": "--primary",
+      "foreground": "#07130b",
+      "background": "#35e66b",
+      "contrast_ratio": 11.456398,
+      "minimum": 4.5,
+      "criterion": "normal_text",
+      "status": "passed"
+    },
+    {
+      "theme": "dark",
+      "foreground_token": "--primary-foreground",
+      "background_token": "--primary-hover",
+      "foreground": "#07130b",
+      "background": "#29d85c",
+      "contrast_ratio": 10.000918,
+      "minimum": 4.5,
+      "criterion": "normal_text",
+      "status": "passed"
+    },
+    {
+      "theme": "dark",
+      "foreground_token": "--accent",
+      "background_token": "--surface-elevated",
+      "foreground": "#35e66b",
+      "background": "#171d25",
+      "contrast_ratio": 10.236898,
+      "minimum": 4.5,
+      "criterion": "normal_text",
+      "status": "passed"
+    },
+    {
+      "theme": "dark",
+      "foreground_token": "--success",
+      "background_token": "--success-wash",
+      "foreground": "#22c55e",
+      "background": "#142f24",
+      "contrast_ratio": 6.304547,
+      "minimum": 4.5,
+      "criterion": "normal_text",
+      "status": "passed"
+    },
+    {
+      "theme": "dark",
+      "foreground_token": "--error",
+      "background_token": "--error-wash",
+      "foreground": "#f87171",
+      "background": "#331e24",
+      "contrast_ratio": 5.615457,
+      "minimum": 4.5,
+      "criterion": "normal_text",
+      "status": "passed"
+    },
+    {
+      "theme": "dark",
+      "foreground_token": "--warning",
+      "background_token": "--warning-wash",
+      "foreground": "#f59e0b",
+      "background": "#342a18",
+      "contrast_ratio": 6.560755,
+      "minimum": 4.5,
+      "criterion": "normal_text",
+      "status": "passed"
+    },
+    {
+      "theme": "dark",
+      "foreground_token": "--info",
+      "background_token": "--info-wash",
+      "foreground": "#60a5fa",
+      "background": "#18243b",
+      "contrast_ratio": 6.098784,
+      "minimum": 4.5,
+      "criterion": "normal_text",
+      "status": "passed"
+    },
+    {
+      "theme": "dark",
+      "foreground_token": "--control-border",
+      "background_token": "--background",
+      "foreground": "#657485",
+      "background": "#0b0f14",
+      "contrast_ratio": 4.017889,
+      "minimum": 3,
+      "criterion": "specified_control_boundary",
+      "status": "passed"
+    },
+    {
+      "theme": "dark",
+      "foreground_token": "--control-border",
+      "background_token": "--surface-elevated",
+      "foreground": "#657485",
+      "background": "#171d25",
+      "contrast_ratio": 3.543641,
+      "minimum": 3,
+      "criterion": "specified_control_boundary",
+      "status": "passed"
+    },
+    {
+      "theme": "light",
+      "foreground_token": "--foreground",
+      "background_token": "--surface",
+      "foreground": "#0f1720",
+      "background": "#ffffff",
+      "contrast_ratio": 18.04547,
+      "minimum": 4.5,
+      "criterion": "normal_text",
+      "status": "passed"
+    },
+    {
+      "theme": "light",
+      "foreground_token": "--muted-foreground",
+      "background_token": "--surface",
+      "foreground": "#4b5a69",
+      "background": "#ffffff",
+      "contrast_ratio": 7.081147,
+      "minimum": 4.5,
+      "criterion": "normal_text",
+      "status": "passed"
+    },
+    {
+      "theme": "light",
+      "foreground_token": "--tertiary-foreground",
+      "background_token": "--surface-elevated",
+      "foreground": "#5b6875",
+      "background": "#eef2f6",
+      "contrast_ratio": 5.070051,
+      "minimum": 4.5,
+      "criterion": "normal_text",
+      "status": "passed"
+    },
+    {
+      "theme": "light",
+      "foreground_token": "--primary-foreground",
+      "background_token": "--primary",
+      "foreground": "#07130b",
+      "background": "#24c85a",
+      "contrast_ratio": 8.567505,
+      "minimum": 4.5,
+      "criterion": "normal_text",
+      "status": "passed"
+    },
+    {
+      "theme": "light",
+      "foreground_token": "--primary-foreground",
+      "background_token": "--primary-hover",
+      "foreground": "#07130b",
+      "background": "#1db451",
+      "contrast_ratio": 6.955243,
+      "minimum": 4.5,
+      "criterion": "normal_text",
+      "status": "passed"
+    },
+    {
+      "theme": "light",
+      "foreground_token": "--accent",
+      "background_token": "--surface-elevated",
+      "foreground": "#126c32",
+      "background": "#eef2f6",
+      "contrast_ratio": 5.802982,
+      "minimum": 4.5,
+      "criterion": "normal_text",
+      "status": "passed"
+    },
+    {
+      "theme": "light",
+      "foreground_token": "--success",
+      "background_token": "--success-wash",
+      "foreground": "#15803d",
+      "background": "#eaf7ef",
+      "contrast_ratio": 4.54967,
+      "minimum": 4.5,
+      "criterion": "normal_text",
+      "status": "passed"
+    },
+    {
+      "theme": "light",
+      "foreground_token": "--error",
+      "background_token": "--error-wash",
+      "foreground": "#b42318",
+      "background": "#fff1f0",
+      "contrast_ratio": 5.977084,
+      "minimum": 4.5,
+      "criterion": "normal_text",
+      "status": "passed"
+    },
+    {
+      "theme": "light",
+      "foreground_token": "--warning",
+      "background_token": "--warning-wash",
+      "foreground": "#92400e",
+      "background": "#fff7e8",
+      "contrast_ratio": 6.658415,
+      "minimum": 4.5,
+      "criterion": "normal_text",
+      "status": "passed"
+    },
+    {
+      "theme": "light",
+      "foreground_token": "--info",
+      "background_token": "--info-wash",
+      "foreground": "#1d4ed8",
+      "background": "#eef5ff",
+      "contrast_ratio": 6.108171,
+      "minimum": 4.5,
+      "criterion": "normal_text",
+      "status": "passed"
+    },
+    {
+      "theme": "light",
+      "foreground_token": "--control-border",
+      "background_token": "--background",
+      "foreground": "#778492",
+      "background": "#f7f9fc",
+      "contrast_ratio": 3.620166,
+      "minimum": 3,
+      "criterion": "specified_control_boundary",
+      "status": "passed"
+    },
+    {
+      "theme": "light",
+      "foreground_token": "--control-border",
+      "background_token": "--surface-elevated",
+      "foreground": "#778492",
+      "background": "#eef2f6",
+      "contrast_ratio": 3.394034,
+      "minimum": 3,
+      "criterion": "specified_control_boundary",
+      "status": "passed"
+    }
+  ],
+  "contrast_adjustments": [
+    {
+      "token": "--tertiary-foreground",
+      "theme": "light",
+      "initial_reference": "#73808c",
+      "final_value": "#5b6875",
+      "comparison_background": "#eef2f6",
+      "reference_ratio": 3.593046,
+      "final_ratio": 5.070051,
+      "reason": "Initial light auxiliary was below4.5 even on white; darkened for small captions on elevated surfaces."
+    },
+    {
+      "token": "--accent",
+      "theme": "light",
+      "initial_reference": "#24c85a",
+      "final_value": "#126c32",
+      "comparison_background": "#eef2f6",
+      "reference_ratio": 1.968192,
+      "final_ratio": 5.802982,
+      "reason": "Action green remains primary button fill; text accent uses a darker accessible green."
+    },
+    {
+      "token": "--success",
+      "theme": "light",
+      "initial_reference": "#22c55e",
+      "final_value": "#15803d",
+      "comparison_background": "#eaf7ef",
+      "reference_ratio": 2.066936,
+      "final_ratio": 4.54967,
+      "reason": "Semantic success text is darker on the corresponding light wash."
+    },
+    {
+      "token": "--error",
+      "theme": "light",
+      "initial_reference": "#ef4444",
+      "final_value": "#b42318",
+      "comparison_background": "#fff1f0",
+      "reference_ratio": 3.421287,
+      "final_ratio": 5.977084,
+      "reason": "Semantic error text is darker on the corresponding light wash."
+    },
+    {
+      "token": "--warning",
+      "theme": "light",
+      "initial_reference": "#f59e0b",
+      "final_value": "#92400e",
+      "comparison_background": "#fff7e8",
+      "reference_ratio": 2.016916,
+      "final_ratio": 6.658415,
+      "reason": "Semantic warning text is darker on the corresponding light wash."
+    },
+    {
+      "token": "--info",
+      "theme": "light",
+      "initial_reference": "#3b82f6",
+      "final_value": "#1d4ed8",
+      "comparison_background": "#eef5ff",
+      "reference_ratio": 3.352213,
+      "final_ratio": 6.108171,
+      "reason": "Semantic information text is darker on the corresponding light wash."
+    },
+    {
+      "token": "--error",
+      "theme": "dark",
+      "initial_reference": "#ef4444",
+      "final_value": "#f87171",
+      "comparison_background": "#331e24",
+      "reference_ratio": 4.127728,
+      "final_ratio": 5.615457,
+      "reason": "Lighter red preserves normal-text contrast on the dark error wash."
+    },
+    {
+      "token": "--info",
+      "theme": "dark",
+      "initial_reference": "#3b82f6",
+      "final_value": "#60a5fa",
+      "comparison_background": "#18243b",
+      "reference_ratio": 4.215906,
+      "final_ratio": 6.098784,
+      "reason": "Lighter blue preserves normal-text contrast on the dark information wash."
+    }
+  ],
+  "initial_light_auxiliary_on_white": {
+    "foreground": "#73808c",
+    "background": "#ffffff",
+    "ratio": 4.042095,
+    "minimum": 4.5,
+    "status": "below_target_reference_value"
+  },
+  "limitations": [
+    "Not a complete WCAG audit or certification.",
+    "No image, video-frame, logo-pixel, authored overlay, translucent compositing, opacity/disabled-state or focus-area calculation is claimed.",
+    "The24 tested pairs are opaque six-digit CSS colors; var references are resolved from the current stylesheet.",
+    "This arithmetic does not establish rendered layout, assistive-technology behavior or actual font rasterization contrast; real-browser QA is recorded separately."
+  ],
+  "application_logic_modified": false,
+  "css_modified_by_this_measurement": false,
+  "stylesheet_sha256": {
+    "frontend/src/app/styles.css": "83117baff91668dffcf578885c6ad4ead10aba0c2d6e075130be80e2c3b0d224",
+    "frontend/src/features/editor/editor.css": "f19d6f86baeb613e77e9cba37e51fc9c5c3a47285ed33027bc94f6793dfbb94c",
+    "frontend/src/features/editor/export.css": "5fcae5722399a75a76f2ffae189736e030094136d8742d8dece2619a670bcb3b"
+  },
+  "adjustments_reference": "Initial values proposed in DESIGN.md, not the previously deployed R05 palette.",
+  "format_validation": {
+    "initial_check_exit_code": 1,
+    "initial_output": "[warn] docs/design-refresh/evidence/token-contrast.json; Code style issues found in the above file. Run Prettier with --write to fix.",
+    "correction": "Prettier formatting only; no token values or computed ratios changed."
+  }
+}

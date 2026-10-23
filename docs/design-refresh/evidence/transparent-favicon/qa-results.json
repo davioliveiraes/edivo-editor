@@ -1,0 +1,70 @@
+{
+  "status": "passed",
+  "scope": "Browser tab favicon only; no application behavior change",
+  "generator": "node frontend/scripts/favicon-assets.mjs",
+  "assets": {
+    "favicon-green-16x16.png": {
+      "bytes": 546,
+      "sha256": "298c0ff5fd980e818cad11bd758b3a95228c731c82d8789b230f5ab012f95184"
+    },
+    "favicon-green-32x32.png": {
+      "bytes": 1262,
+      "sha256": "0dbc5e4a96b72e70ab2af31eeaffd1cf3b69abae9693b415346884fbb4aa1153"
+    },
+    "favicon-green-48x48.png": {
+      "bytes": 2310,
+      "sha256": "9230616cf98b95515778ab68b3e0c193dae386452b9fc9f9d2a405e4ed4b43ee"
+    },
+    "favicon-green.ico": {
+      "bytes": 4172,
+      "sha256": "f59d56393b6c0ca07ce746c803f59bfb3523515619fb4144352eb24ee8305e96"
+    }
+  },
+  "checks": 30,
+  "chromium": "145.0.7632.6",
+  "browser_report": "browser/report.json",
+  "contact_sheet": "browser/native-favicon-light-dark.png",
+  "native_light_dark_sheet_actually_viewed": true,
+  "visual_finding": "Only the green symbol visible at16/32/48px on light and dark; no black tile/background. Raster antialiasing, not vector reconstruction.",
+  "quality": {
+    "node_syntax": "passed",
+    "eslint_targeted": "passed",
+    "prettier_targeted": "passed",
+    "typescript_vite_build": "passed",
+    "compose_frontend_build_deploy_only": "passed",
+    "git_diff_check": "passed"
+  },
+  "previous_assets_preserved": true,
+  "new_assets_byte_identical_in_build": true,
+  "unit_tests_rerun": false,
+  "reason": "Only static assets, generator and HTMLicon links changed; relevant real browser asset checks executed. No Vitest pass claimed for this new task.",
+  "browser_chrome_visual_inspection_claimed": false,
+  "runtime_api_mutations": [],
+  "external_requests": [],
+  "logs": {
+    "browser.log": {
+      "sha256": "f7f47e201ab9105b383aa3f84fc57f39928c19e34f1ebb0ece9b69911c226138",
+      "content": "{\"status\":\"passed\",\"checks\":30,\"screenshots\":1,\"output\":\"/work/evidence/transparent-favicon/browser\"}\n"
+    },
+    "docker-deploy.log": {
+      "sha256": "2c57a4b3976e6090bae08adc06541e2f8274552ee3543f53ed27429f9e02833e",
+      "content": " Container edivo-frontend-1 Recreate \n Container edivo-frontend-1 Recreated \n Container edivo-frontend-1 Starting \n Container edivo-frontend-1 Started \n"
+    },
+    "docker-build.log": {
+      "sha256": "f582776f668433e0b95d393e21d2028ca01cdd73f5823657b0f21004ee72cbd4",
+      "content": " Image edivo-frontend:r05 Building \n#1 [internal] load local bake definitions\n#1 reading from stdin 1.50kB done\n#1 DONE 0.0s\n\n#2 [internal] load build definition from Dockerfile\n#2 transferring dockerfile:\n#2 transferring dockerfile: 336B 0.0s done\n#2 DONE 0.4s\n\n#3 [internal] load metadata for docker.io/library/node:24.14.0-bookworm-slim\n#3 ...\n\n#4 [auth] library/node:pull token for registry-1.docker.io\n#4 DONE 0.0s\n\n#3 [internal] load metadata for docker.io/library/node:24.14.0-bookworm-slim\n#3 DONE 1.5s\n\n#5 [internal] load .dockerignore\n#5 transferring context: 122B done\n#5 DONE 0.3s\n\n#6 [internal] load build context\n#6 transferring context: 20.00kB 0.0s done\n#6 DONE 0.0s\n\n#7 [1/6] FROM docker.io/library/node:24.14.0-bookworm-slim@sha256:d8e448a56fc63242f70026718378bd4b00f8c82e78d20eefb199224a4d8e33d8\n#7 resolve docker.io/library/node:24.14.0-bookworm-slim@sha256:d8e448a56fc63242f70026718378bd4b00f8c82e78d20eefb199224a4d8e33d8 0.1s done\n#7 DONE 0.1s\n\n#8 [2/6] WORKDIR /app\n#8 CACHED\n\n#9 [3/6] RUN chown node:node /app\n#9 CACHED\n\n#10 [4/6] COPY --chown=node:node package.json package-lock.json ./\n#10 CACHED\n\n#11 [5/6] RUN npm ci --no-audit --no-fund\n#11 CACHED\n\n#12 [6/6] COPY --chown=node:node . .\n#12 DONE 0.9s\n\n#13 exporting to image\n#13 exporting layers\n#13 exporting layers 0.9s done\n#13 exporting manifest sha256:fb65cff575d3c1c766be7d1f47b1291f17627cbb19ca336c17a17d2c8b3d8ed6 0.0s done\n#13 exporting config sha256:217a25a267447b98b6f5a3314974d363ef20e3fea94ae1483de791df10b9553e 0.0s done\n#13 exporting attestation manifest sha256:d9ee953c41de31d77877a960574ebb8fb0a34ee5934f73017c6815688e29cd8e\n#13 exporting attestation manifest sha256:d9ee953c41de31d77877a960574ebb8fb0a34ee5934f73017c6815688e29cd8e 0.1s done\n#13 exporting manifest list sha256:10e7aa91042b88bbab2c5da788f92ba30430e319fab2170e91078c73645b4eeb\n#13 exporting manifest list sha256:10e7aa91042b88bbab2c5da788f92ba30430e319fab2170e91078c73645b4eeb 0.3s done\n#13 naming to docker.io/library/edivo-frontend:r05\n#13 naming to docker.io/library/edivo-frontend:r05 done\n#13 unpacking to docker.io/library/edivo-frontend:r05\n#13 unpacking to docker.io/library/edivo-frontend:r05 0.2s done\n#13 DONE 1.9s\n\n#14 resolving provenance for metadata file\n#14 DONE 0.0s\n Image edivo-frontend:r05 Built \n"
+    },
+    "build.log": {
+      "sha256": "37df79b7df4bde174654ae1ddc3f390569506710f44c577d0dfc55b7f2c59c6a",
+      "content": "\n> edivo-frontend@0.1.0 build\n> tsc -b && vite build\n\nvite v8.3.4 building client environment for production...\ntransforming...\n✓ 1960 modules transformed.\nrendering chunks...\ncomputing gzip size...\ndist/index.html                                        1.65 kB │ gzip:   0.70 kB\ndist/assets/manrope-latin-500-normal-BYYD-dBL.woff2   14.04 kB\ndist/assets/dm-sans-latin-600-normal-Aqo67rzb.woff2   14.14 kB\ndist/assets/manrope-latin-600-normal-4f0koTD-.woff2   14.17 kB\ndist/assets/dm-sans-latin-400-normal-CW0RaeGs.woff2   14.20 kB\ndist/assets/manrope-latin-700-normal-BZp_XxE4.woff2   14.21 kB\ndist/assets/dm-sans-latin-500-normal-B9HHJjqV.woff2   14.30 kB\ndist/assets/manrope-latin-500-normal-DMZssgOp.woff    18.24 kB\ndist/assets/dm-sans-latin-600-normal-BmdmIIQ2.woff    18.32 kB\ndist/assets/dm-sans-latin-400-normal-BwCSEQnW.woff    18.35 kB\ndist/assets/manrope-latin-600-normal-BqgrALkZ.woff    18.38 kB\ndist/assets/manrope-latin-700-normal-DGRFkw-m.woff    18.41 kB\ndist/assets/dm-sans-latin-500-normal-Dr3UlScf.woff    18.52 kB\ndist/assets/index-Dep5jX0s.css                        51.60 kB │ gzip:  10.68 kB\ndist/assets/index-Ch8UX7YH.js                        359.44 kB │ gzip: 108.60 kB\n\n✓ built in 676ms\n"
+    },
+    "lint.log": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "content": ""
+    },
+    "format.log": {
+      "sha256": "17aa973d3f004560237d9a95171210b0671deff23d61628eecf7322ff5938f20",
+      "content": "Checking formatting...\nAll matched files use Prettier code style!\n"
+    }
+  }
+}

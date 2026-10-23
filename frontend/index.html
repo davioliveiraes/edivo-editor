@@ -3,25 +3,27 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="theme-color" content="#171b18" />
+    <meta name="theme-color" content="#0b0f14" />
+    <meta name="color-scheme" content="dark light" />
     <meta
       name="description"
-      content="Edivo. Um espaço local para suas próximas histórias em vídeo."
+      content="Edivo: seu espaço local para criar vídeos, com projetos, edição manual, textos, áudio, prévias e exportações."
     />
-    <title>Edivo — Seu espaço de criação</title>
+    <link rel="icon" href="/favicon-green.ico?v=vis01-green" sizes="16x16 32x32 48x48" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-green-16x16.png?v=vis01-green" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-green-32x32.png?v=vis01-green" />
+    <link rel="icon" type="image/png" sizes="48x48" href="/favicon-green-48x48.png?v=vis01-green" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png?v=vis01" />
+    <title>Edivo — Editor de Vídeos com IA</title>
     <script>
       try {
         const storedTheme = localStorage.getItem('edivo-theme');
-        const theme =
-          storedTheme === 'light' || storedTheme === 'dark'
-            ? storedTheme
-            : window.matchMedia('(prefers-color-scheme: dark)').matches
-              ? 'dark'
-              : 'light';
+        const theme = storedTheme === 'light' || storedTheme === 'dark' ? storedTheme : 'dark';
         document.documentElement.dataset.theme = theme;
         document.documentElement.classList.toggle('dark', theme === 'dark');
       } catch {
-        document.documentElement.dataset.theme = 'light';
+        document.documentElement.dataset.theme = 'dark';
+        document.documentElement.classList.add('dark');
       }
     </script>
   </head>

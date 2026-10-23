@@ -1,0 +1,18 @@
+{
+  "status": "failed",
+  "recorded_at": "2026-10-23T12:51:09.061476+00:00",
+  "command": [
+    "node",
+    "frontend/scripts/brand-assets.mjs",
+    "--docker"
+  ],
+  "exec_session": 25080,
+  "exit_code": 1,
+  "observed_failure": "Chrome145 full --dump-dom exceeded internal60s timeout; stdout empty, stderr repeated D-Bus missing/system_bus_socket/address parse errors.",
+  "complete_raw_output_retained": false,
+  "raw_output_limitation": "Tool output was truncated; this file records only observations actually returned.",
+  "assets_written": false,
+  "application_services_modified": false,
+  "source_images_modified": false,
+  "next_change": "Prefer existing headless_shell and bounded virtual-time/DOM timeout; retain failure evidence."
+}

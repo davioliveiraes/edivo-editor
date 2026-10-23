@@ -1,0 +1,24 @@
+{
+  "source": "frontend/public/brand/edivo-logo.png",
+  "source_sha256": "0e3217809425fe162caba2007fa51df884f7bc32c2ae586b48c799812beaacf8",
+  "method": "Deterministic raster alpha from existing Canvas asset. No wordmark reconstruction.",
+  "dimensions": [
+    960,
+    326
+  ],
+  "transparent_pixels": 233860,
+  "green_pixels": 36795,
+  "wordmark_pixels": 42305,
+  "assets": {
+    "dark": {
+      "path": "frontend/public/brand/edivo-logo-dark-transparent.png",
+      "bytes": 112608,
+      "sha256": "8c05f5b5905955bc91ee4745bf05a4a35968e1e8375713eb2584db1fd1cb1d73"
+    },
+    "light": {
+      "path": "frontend/public/brand/edivo-logo-light-transparent.png",
+      "bytes": 80454,
+      "sha256": "c7c9a27250a02a23959fef676b789c9475420901486d9c3ee8056dbdbd599b8a"
+    }
+  }
+}

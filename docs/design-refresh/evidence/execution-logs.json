@@ -1,0 +1,75 @@
+{
+  "purpose": "Exact versionable copies of VIS-01 execution logs; original .log files are preserved and ignored by existing repository rules.",
+  "logs": {
+    "asset-generation-final.stderr.log": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "content": ""
+    },
+    "asset-generation-final.stdout.log": {
+      "bytes": 111,
+      "sha256": "fd3e3b979b83d30b867c43354c199996d152853725e59f084e03a8ba3f691d7a",
+      "content": "{\"status\":\"passed\",\"assets\":10,\"logo\":[960,326],\"manifest\":\"docs/design-refresh/evidence/asset-manifest.json\"}\n"
+    },
+    "asset-generator-node-check.log": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "content": ""
+    },
+    "browser-after-launch-1.log": {
+      "bytes": 107,
+      "sha256": "39dd857d23928f4b83043461f4c0c788ce373ea7aa75167a16eead6c204ebc1c",
+      "content": "{\"stage\":\"after\",\"status\":\"passed\",\"checks\":98,\"screenshots\":48,\"output\":\"/work/evidence/browser-after-1\"}\n"
+    },
+    "browser-before-launch-1.log": {
+      "bytes": 109,
+      "sha256": "36c5948067f2d9cf86111e6cc0984e9ff6823708c4c2d833c9a373ea4466a8bc",
+      "content": "{\"stage\":\"before\",\"status\":\"passed\",\"checks\":47,\"screenshots\":42,\"output\":\"/work/evidence/browser-before-1\"}\n"
+    },
+    "browser-before-launch-2.log": {
+      "bytes": 109,
+      "sha256": "875ce8f479a732108cb368f24e49f30617183155d785ea5b99cf96abcc09d480",
+      "content": "{\"stage\":\"before\",\"status\":\"passed\",\"checks\":47,\"screenshots\":42,\"output\":\"/work/evidence/browser-before-2\"}\n"
+    },
+    "build-attempt-1.log": {
+      "bytes": 1226,
+      "sha256": "17b2437df5e217fe164f6da591b5921841ba656a62f5fd55a43380bb3a0ad9da",
+      "content": "\n> edivo-frontend@0.1.0 build\n> tsc -b && vite build\n\nvite v8.3.4 building client environment for production...\ntransforming...\n✓ 1960 modules transformed.\nrendering chunks...\ncomputing gzip size...\ndist/index.html                                        1.60 kB │ gzip:   0.69 kB\ndist/assets/manrope-latin-500-normal-BYYD-dBL.woff2   14.04 kB\ndist/assets/dm-sans-latin-600-normal-Aqo67rzb.woff2   14.14 kB\ndist/assets/manrope-latin-600-normal-4f0koTD-.woff2   14.17 kB\ndist/assets/dm-sans-latin-400-normal-CW0RaeGs.woff2   14.20 kB\ndist/assets/manrope-latin-700-normal-BZp_XxE4.woff2   14.21 kB\ndist/assets/dm-sans-latin-500-normal-B9HHJjqV.woff2   14.30 kB\ndist/assets/manrope-latin-500-normal-DMZssgOp.woff    18.24 kB\ndist/assets/dm-sans-latin-600-normal-BmdmIIQ2.woff    18.32 kB\ndist/assets/dm-sans-latin-400-normal-BwCSEQnW.woff    18.35 kB\ndist/assets/manrope-latin-600-normal-BqgrALkZ.woff    18.38 kB\ndist/assets/manrope-latin-700-normal-DGRFkw-m.woff    18.41 kB\ndist/assets/dm-sans-latin-500-normal-Dr3UlScf.woff    18.52 kB\ndist/assets/index-B6jJEI49.css                        51.78 kB │ gzip:  10.70 kB\ndist/assets/index-BVdnDaqk.js                        359.53 kB │ gzip: 108.63 kB\n\n✓ built in 952ms\n"
+    },
+    "eslint-attempt-1.log": {
+      "bytes": 58,
+      "sha256": "09f84afab4ae49be1f479ccbc9cde086a80aa3a4fd945867f9754db49080d632",
+      "content": "\n> edivo-frontend@0.1.0 lint\n> eslint . --max-warnings 0\n\n"
+    },
+    "frontend-build-image.log": {
+      "bytes": 1989,
+      "sha256": "f8859a458e8b945d16af2c7fbe621d79d00f8d8364cf428e7f05015da254aacd",
+      "content": " Image edivo-frontend:r05 Building \n#1 [internal] load local bake definitions\n#1 reading from stdin 1.50kB done\n#1 DONE 0.0s\n\n#2 [internal] load build definition from Dockerfile\n#2 transferring dockerfile: 336B 0.0s done\n#2 DONE 0.0s\n\n#3 [internal] load metadata for docker.io/library/node:24.14.0-bookworm-slim\n#3 ...\n\n#4 [auth] library/node:pull token for registry-1.docker.io\n#4 DONE 0.0s\n\n#3 [internal] load metadata for docker.io/library/node:24.14.0-bookworm-slim\n#3 DONE 1.5s\n\n#5 [internal] load .dockerignore\n#5 transferring context: 122B done\n#5 DONE 0.0s\n\n#6 [internal] load build context\n#6 transferring context: 849.71kB 0.0s done\n#6 DONE 0.1s\n\n#7 [1/6] FROM docker.io/library/node:24.14.0-bookworm-slim@sha256:d8e448a56fc63242f70026718378bd4b00f8c82e78d20eefb199224a4d8e33d8\n#7 resolve docker.io/library/node:24.14.0-bookworm-slim@sha256:d8e448a56fc63242f70026718378bd4b00f8c82e78d20eefb199224a4d8e33d8 0.1s done\n#7 DONE 0.1s\n\n#8 [2/6] WORKDIR /app\n#8 CACHED\n\n#9 [3/6] RUN chown node:node /app\n#9 CACHED\n\n#10 [4/6] COPY --chown=node:node package.json package-lock.json ./\n#10 CACHED\n\n#11 [5/6] RUN npm ci --no-audit --no-fund\n#11 CACHED\n\n#12 [6/6] COPY --chown=node:node . .\n#12 DONE 0.2s\n\n#13 exporting to image\n#13 exporting layers\n#13 exporting layers 0.2s done\n#13 exporting manifest sha256:b832d4556d00583ddfbf4a6a4338d0dfc6135314bc43f0586ab18cc545221f5d 0.0s done\n#13 exporting config sha256:ea4b31651775aa71a7d656f1929c1c4c4ebe17f3bdca213982735c2182a3c232 0.0s done\n#13 exporting attestation manifest sha256:98b22eb482acdbbf29c9da3128c684a6976e3137bee6bba482dbc269e53d42c5 0.0s done\n#13 exporting manifest list sha256:a809ab2baea8bafe6238e4ee8b0e1bb4e1d97edde3922462fcb056e568962e44 0.0s done\n#13 naming to docker.io/library/edivo-frontend:r05\n#13 naming to docker.io/library/edivo-frontend:r05 done\n#13 unpacking to docker.io/library/edivo-frontend:r05 0.1s done\n#13 DONE 0.5s\n\n#14 resolving provenance for metadata file\n#14 DONE 0.0s\n Image edivo-frontend:r05 Built \n"
+    },
+    "frontend-deploy.log": {
+      "bytes": 152,
+      "sha256": "2c57a4b3976e6090bae08adc06541e2f8274552ee3543f53ed27429f9e02833e",
+      "content": " Container edivo-frontend-1 Recreate \n Container edivo-frontend-1 Recreated \n Container edivo-frontend-1 Starting \n Container edivo-frontend-1 Started \n"
+    },
+    "preservation-helper-quality.log": {
+      "bytes": 564,
+      "sha256": "672820eca92ee8543a3924c730b9665a7f046797936590fd085807a601565ebb",
+      "content": "Authoring QA, no Docker/API execution performed by child agent.\nInitial command: backend/.venv/bin/ruff check docs/design-refresh/preservation.py\nInitial result: exit1\nBLE001 Do not catch blind exception: Exception\n   --> docs/design-refresh/preservation.py:176:12\nOuter QA error boundary was explicitly annotated for sanitized errors, matching repository convention; no application source changed.\nFinal commands: ruff check; ruff format --check; python3 -m py_compile on this helper.\nFinal result: All checks passed!; 1 file already formatted; py_compile exit0.\n"
+    },
+    "prettier-attempt-1.log": {
+      "bytes": 125,
+      "sha256": "e16e2eaff09d0048ab76dc5a45e1a14a0fbae7886698c496cbac975a1e1c9b91",
+      "content": "\n> edivo-frontend@0.1.0 format:check\n> prettier . --check\n\nChecking formatting...\nAll matched files use Prettier code style!\n"
+    },
+    "theme-brand-unit-attempt-1.log": {
+      "bytes": 274,
+      "sha256": "6be0a22149097828a3e6d1df660a49647d233ecc797231cbdefdaf2b6546baca",
+      "content": "\n> edivo-frontend@0.1.0 test\n> vitest --run tests/app.test.tsx\n\n\n RUN  v5.0.5 /home/davi/edivo-editor/frontend\n\n\n Test Files  1 passed (1)\n      Tests  12 passed (12)\n   Start at  09:55:36\n   Duration  1.95s (environment 42%, tests 36%, setup 10%, import 6%, transform 5%)\n\n"
+    },
+    "vitest-attempt-1.log": {
+      "bytes": 257,
+      "sha256": "0593ba38099160b7f54371cb04efd069e2ada5dd926e175fb49d63a4f96bfdc6",
+      "content": "\n> edivo-frontend@0.1.0 test\n> vitest --run\n\n\n RUN  v5.0.5 /home/davi/edivo-editor/frontend\n\n\n Test Files  9 passed (9)\n      Tests  316 passed (316)\n   Start at  09:58:12\n   Duration  22.18s (tests 54%, environment 33%, import 6%, transform 3%, setup 3%)\n\n"
+    }
+  }
+}

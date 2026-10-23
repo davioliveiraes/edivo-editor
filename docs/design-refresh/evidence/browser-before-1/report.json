@@ -1,0 +1,1146 @@
+{
+  "stage": "before",
+  "status": "passed",
+  "started_at": "2026-10-23T12:47:51.708Z",
+  "checks": [
+    {
+      "check": "existing_project_accessible_read_only",
+      "passed": true
+    },
+    {
+      "check": "real_saved_revision_and_media_library_available",
+      "passed": true
+    },
+    {
+      "check": "desktop-dark_projects_baseline_overflow_observation",
+      "passed": true,
+      "detail": {
+        "viewport": 1366,
+        "width": 1366,
+        "height": 2684
+      }
+    },
+    {
+      "check": "desktop-dark_saved_theme_respected",
+      "passed": true
+    },
+    {
+      "check": "desktop-dark_modal_keyboard_focus_inside",
+      "passed": true
+    },
+    {
+      "check": "desktop-dark_library_baseline_overflow_observation",
+      "passed": true,
+      "detail": {
+        "viewport": 1366,
+        "width": 1366,
+        "height": 1903
+      }
+    },
+    {
+      "check": "desktop-dark_editor_baseline_overflow_observation",
+      "passed": true,
+      "detail": {
+        "viewport": 1366,
+        "width": 1366,
+        "height": 5353
+      }
+    },
+    {
+      "check": "desktop-dark_timeline_keyboard_focus",
+      "passed": true
+    },
+    {
+      "check": "native_Vídeo do projeto_play_seek_pause",
+      "passed": true,
+      "detail": {
+        "duration": 16,
+        "current_time": 1.80688,
+        "video_width": 320,
+        "video_height": 180,
+        "decoded_frames": 75,
+        "error": null
+      }
+    },
+    {
+      "check": "native_Vídeo exportado_play_seek_pause",
+      "passed": true,
+      "detail": {
+        "duration": 12,
+        "current_time": 0.690471,
+        "video_width": 1080,
+        "video_height": 1920,
+        "decoded_frames": 29,
+        "error": null
+      }
+    },
+    {
+      "check": "native_Prévia gerada_play_seek_pause",
+      "passed": true,
+      "detail": {
+        "duration": 4,
+        "current_time": 0.67869,
+        "video_width": 540,
+        "video_height": 960,
+        "decoded_frames": 25,
+        "error": null
+      }
+    },
+    {
+      "check": "desktop-dark_playhead_does_not_dirty_saved_revision",
+      "passed": true
+    },
+    {
+      "check": "desktop-light_projects_baseline_overflow_observation",
+      "passed": true,
+      "detail": {
+        "viewport": 1366,
+        "width": 1366,
+        "height": 2684
+      }
+    },
+    {
+      "check": "desktop-light_saved_theme_respected",
+      "passed": true
+    },
+    {
+      "check": "desktop-light_modal_keyboard_focus_inside",
+      "passed": true
+    },
+    {
+      "check": "desktop-light_library_baseline_overflow_observation",
+      "passed": true,
+      "detail": {
+        "viewport": 1366,
+        "width": 1366,
+        "height": 1903
+      }
+    },
+    {
+      "check": "desktop-light_editor_baseline_overflow_observation",
+      "passed": true,
+      "detail": {
+        "viewport": 1366,
+        "width": 1366,
+        "height": 5353
+      }
+    },
+    {
+      "check": "desktop-light_timeline_keyboard_focus",
+      "passed": true
+    },
+    {
+      "check": "desktop-light_playhead_does_not_dirty_saved_revision",
+      "passed": true
+    },
+    {
+      "check": "tablet-dark_projects_baseline_overflow_observation",
+      "passed": true,
+      "detail": {
+        "viewport": 768,
+        "width": 768,
+        "height": 2708
+      }
+    },
+    {
+      "check": "tablet-dark_saved_theme_respected",
+      "passed": true
+    },
+    {
+      "check": "tablet-dark_library_baseline_overflow_observation",
+      "passed": true,
+      "detail": {
+        "viewport": 768,
+        "width": 768,
+        "height": 2276
+      }
+    },
+    {
+      "check": "tablet-dark_editor_baseline_overflow_observation",
+      "passed": true,
+      "detail": {
+        "viewport": 768,
+        "width": 768,
+        "height": 5608
+      }
+    },
+    {
+      "check": "tablet-light_projects_baseline_overflow_observation",
+      "passed": true,
+      "detail": {
+        "viewport": 768,
+        "width": 768,
+        "height": 2708
+      }
+    },
+    {
+      "check": "tablet-light_saved_theme_respected",
+      "passed": true
+    },
+    {
+      "check": "tablet-light_library_baseline_overflow_observation",
+      "passed": true,
+      "detail": {
+        "viewport": 768,
+        "width": 768,
+        "height": 2276
+      }
+    },
+    {
+      "check": "tablet-light_editor_baseline_overflow_observation",
+      "passed": true,
+      "detail": {
+        "viewport": 768,
+        "width": 768,
+        "height": 5608
+      }
+    },
+    {
+      "check": "mobile-375-dark_projects_baseline_overflow_observation",
+      "passed": true,
+      "detail": {
+        "viewport": 375,
+        "width": 375,
+        "height": 3734
+      }
+    },
+    {
+      "check": "mobile-375-dark_saved_theme_respected",
+      "passed": true
+    },
+    {
+      "check": "mobile-375-dark_library_baseline_overflow_observation",
+      "passed": true,
+      "detail": {
+        "viewport": 375,
+        "width": 375,
+        "height": 2892
+      }
+    },
+    {
+      "check": "mobile-375-dark_editor_baseline_overflow_observation",
+      "passed": true,
+      "detail": {
+        "viewport": 375,
+        "width": 375,
+        "height": 8545
+      }
+    },
+    {
+      "check": "mobile-375-light_projects_baseline_overflow_observation",
+      "passed": true,
+      "detail": {
+        "viewport": 375,
+        "width": 375,
+        "height": 3734
+      }
+    },
+    {
+      "check": "mobile-375-light_saved_theme_respected",
+      "passed": true
+    },
+    {
+      "check": "mobile-375-light_library_baseline_overflow_observation",
+      "passed": true,
+      "detail": {
+        "viewport": 375,
+        "width": 375,
+        "height": 2892
+      }
+    },
+    {
+      "check": "mobile-375-light_editor_baseline_overflow_observation",
+      "passed": true,
+      "detail": {
+        "viewport": 375,
+        "width": 375,
+        "height": 8545
+      }
+    },
+    {
+      "check": "mobile-390-dark_projects_baseline_overflow_observation",
+      "passed": true,
+      "detail": {
+        "viewport": 390,
+        "width": 390,
+        "height": 3710
+      }
+    },
+    {
+      "check": "mobile-390-dark_saved_theme_respected",
+      "passed": true
+    },
+    {
+      "check": "mobile-390-dark_library_baseline_overflow_observation",
+      "passed": true,
+      "detail": {
+        "viewport": 390,
+        "width": 390,
+        "height": 2892
+      }
+    },
+    {
+      "check": "mobile-390-dark_editor_baseline_overflow_observation",
+      "passed": true,
+      "detail": {
+        "viewport": 390,
+        "width": 390,
+        "height": 8358
+      }
+    },
+    {
+      "check": "mobile-390-light_projects_baseline_overflow_observation",
+      "passed": true,
+      "detail": {
+        "viewport": 390,
+        "width": 390,
+        "height": 3710
+      }
+    },
+    {
+      "check": "mobile-390-light_saved_theme_respected",
+      "passed": true
+    },
+    {
+      "check": "mobile-390-light_library_baseline_overflow_observation",
+      "passed": true,
+      "detail": {
+        "viewport": 390,
+        "width": 390,
+        "height": 2892
+      }
+    },
+    {
+      "check": "mobile-390-light_editor_baseline_overflow_observation",
+      "passed": true,
+      "detail": {
+        "viewport": 390,
+        "width": 390,
+        "height": 8358
+      }
+    },
+    {
+      "check": "read_only_public_snapshot_unchanged",
+      "passed": true
+    },
+    {
+      "check": "no_mutating_requests_attempted",
+      "passed": true
+    },
+    {
+      "check": "no_unexpected_external_resources",
+      "passed": true
+    },
+    {
+      "check": "no_uncaught_page_errors",
+      "passed": true
+    }
+  ],
+  "screenshots": [
+    "desktop-dark-projects.png",
+    "desktop-dark-modal.png",
+    "desktop-dark-library.png",
+    "desktop-dark-editor.png",
+    "desktop-dark-timeline.png",
+    "desktop-dark-text-audio.png",
+    "desktop-dark-previews.png",
+    "desktop-dark-exports.png",
+    "desktop-light-projects.png",
+    "desktop-light-modal.png",
+    "desktop-light-library.png",
+    "desktop-light-editor.png",
+    "desktop-light-timeline.png",
+    "desktop-light-text-audio.png",
+    "desktop-light-previews.png",
+    "desktop-light-exports.png",
+    "tablet-dark-projects.png",
+    "tablet-dark-library.png",
+    "tablet-dark-editor.png",
+    "tablet-light-projects.png",
+    "tablet-light-library.png",
+    "tablet-light-editor.png",
+    "mobile-375-dark-projects.png",
+    "mobile-375-dark-library.png",
+    "mobile-375-dark-editor.png",
+    "mobile-375-light-projects.png",
+    "mobile-375-light-library.png",
+    "mobile-375-light-editor.png",
+    "mobile-390-dark-projects.png",
+    "mobile-390-dark-library.png",
+    "mobile-390-dark-editor.png",
+    "mobile-390-dark-timeline.png",
+    "mobile-390-dark-text-audio.png",
+    "mobile-390-dark-previews.png",
+    "mobile-390-dark-exports.png",
+    "mobile-390-light-projects.png",
+    "mobile-390-light-library.png",
+    "mobile-390-light-editor.png",
+    "mobile-390-light-timeline.png",
+    "mobile-390-light-text-audio.png",
+    "mobile-390-light-previews.png",
+    "mobile-390-light-exports.png"
+  ],
+  "page_errors": [],
+  "blocked_mutations": [],
+  "external_requests": [],
+  "range_responses": [
+    {
+      "path": "/api/v1/projects/3f4bc7e0-3b4e-4db6-a812-18b581a398e3/media/5490c581-f4ca-4548-8c4d-6e1aac6fbc2e/stream",
+      "status": 206,
+      "range": "bytes=0-",
+      "content_range": "bytes 0-919781/919782"
+    },
+    {
+      "path": "/api/v1/projects/3f4bc7e0-3b4e-4db6-a812-18b581a398e3/media/5490c581-f4ca-4548-8c4d-6e1aac6fbc2e/stream",
+      "status": 206,
+      "range": "bytes=884736-",
+      "content_range": "bytes 884736-919781/919782"
+    },
+    {
+      "path": "/api/v1/projects/3f4bc7e0-3b4e-4db6-a812-18b581a398e3/media/5490c581-f4ca-4548-8c4d-6e1aac6fbc2e/stream",
+      "status": 206,
+      "range": "bytes=65536-",
+      "content_range": "bytes 65536-919781/919782"
+    },
+    {
+      "path": "/api/v1/projects/3f4bc7e0-3b4e-4db6-a812-18b581a398e3/previews/2bd24155-09d5-45c7-aa99-1d9952142be5/file",
+      "status": 206,
+      "range": "bytes=0-",
+      "content_range": "bytes 0-332764/332765"
+    },
+    {
+      "path": "/api/v1/projects/3f4bc7e0-3b4e-4db6-a812-18b581a398e3/renders/0eb40bfc-88ea-4dbf-a9b6-0865234d533d/file",
+      "status": 206,
+      "range": "bytes=0-",
+      "content_range": "bytes 0-2808512/2808513"
+    },
+    {
+      "path": "/api/v1/projects/3f4bc7e0-3b4e-4db6-a812-18b581a398e3/previews/2bd24155-09d5-45c7-aa99-1d9952142be5/file",
+      "status": 206,
+      "range": "bytes=131072-",
+      "content_range": "bytes 131072-332764/332765"
+    },
+    {
+      "path": "/api/v1/projects/3f4bc7e0-3b4e-4db6-a812-18b581a398e3/renders/0eb40bfc-88ea-4dbf-a9b6-0865234d533d/file",
+      "status": 206,
+      "range": "bytes=98304-",
+      "content_range": "bytes 98304-2808512/2808513"
+    },
+    {
+      "path": "/api/v1/projects/3f4bc7e0-3b4e-4db6-a812-18b581a398e3/renders/0eb40bfc-88ea-4dbf-a9b6-0865234d533d/file",
+      "status": 206,
+      "range": "bytes=229376-",
+      "content_range": "bytes 229376-2808512/2808513"
+    },
+    {
+      "path": "/api/v1/projects/3f4bc7e0-3b4e-4db6-a812-18b581a398e3/renders/0eb40bfc-88ea-4dbf-a9b6-0865234d533d/file",
+      "status": 206,
+      "range": "bytes=950272-",
+      "content_range": "bytes 950272-2808512/2808513"
+    },
+    {
+      "path": "/api/v1/projects/3f4bc7e0-3b4e-4db6-a812-18b581a398e3/previews/2bd24155-09d5-45c7-aa99-1d9952142be5/file",
+      "status": 206,
+      "range": "bytes=262144-",
+      "content_range": "bytes 262144-332764/332765"
+    },
+    {
+      "path": "/api/v1/projects/3f4bc7e0-3b4e-4db6-a812-18b581a398e3/media/5490c581-f4ca-4548-8c4d-6e1aac6fbc2e/stream",
+      "status": 206,
+      "range": "bytes=0-",
+      "content_range": "bytes 0-919781/919782"
+    },
+    {
+      "path": "/api/v1/projects/3f4bc7e0-3b4e-4db6-a812-18b581a398e3/media/5490c581-f4ca-4548-8c4d-6e1aac6fbc2e/stream",
+      "status": 206,
+      "range": "bytes=884736-",
+      "content_range": "bytes 884736-919781/919782"
+    },
+    {
+      "path": "/api/v1/projects/3f4bc7e0-3b4e-4db6-a812-18b581a398e3/previews/2bd24155-09d5-45c7-aa99-1d9952142be5/file",
+      "status": 206,
+      "range": "bytes=0-",
+      "content_range": "bytes 0-332764/332765"
+    },
+    {
+      "path": "/api/v1/projects/3f4bc7e0-3b4e-4db6-a812-18b581a398e3/renders/0eb40bfc-88ea-4dbf-a9b6-0865234d533d/file",
+      "status": 206,
+      "range": "bytes=0-",
+      "content_range": "bytes 0-2808512/2808513"
+    },
+    {
+      "path": "/api/v1/projects/3f4bc7e0-3b4e-4db6-a812-18b581a398e3/media/5490c581-f4ca-4548-8c4d-6e1aac6fbc2e/stream",
+      "status": 206,
+      "range": "bytes=0-",
+      "content_range": "bytes 0-919781/919782"
+    },
+    {
+      "path": "/api/v1/projects/3f4bc7e0-3b4e-4db6-a812-18b581a398e3/media/5490c581-f4ca-4548-8c4d-6e1aac6fbc2e/stream",
+      "status": 206,
+      "range": "bytes=884736-",
+      "content_range": "bytes 884736-919781/919782"
+    },
+    {
+      "path": "/api/v1/projects/3f4bc7e0-3b4e-4db6-a812-18b581a398e3/renders/0eb40bfc-88ea-4dbf-a9b6-0865234d533d/file",
+      "status": 206,
+      "range": "bytes=0-",
+      "content_range": "bytes 0-2808512/2808513"
+    },
+    {
+      "path": "/api/v1/projects/3f4bc7e0-3b4e-4db6-a812-18b581a398e3/previews/2bd24155-09d5-45c7-aa99-1d9952142be5/file",
+      "status": 206,
+      "range": "bytes=0-",
+      "content_range": "bytes 0-332764/332765"
+    },
+    {
+      "path": "/api/v1/projects/3f4bc7e0-3b4e-4db6-a812-18b581a398e3/media/5490c581-f4ca-4548-8c4d-6e1aac6fbc2e/stream",
+      "status": 206,
+      "range": "bytes=0-",
+      "content_range": "bytes 0-919781/919782"
+    },
+    {
+      "path": "/api/v1/projects/3f4bc7e0-3b4e-4db6-a812-18b581a398e3/media/5490c581-f4ca-4548-8c4d-6e1aac6fbc2e/stream",
+      "status": 206,
+      "range": "bytes=884736-",
+      "content_range": "bytes 884736-919781/919782"
+    },
+    {
+      "path": "/api/v1/projects/3f4bc7e0-3b4e-4db6-a812-18b581a398e3/previews/2bd24155-09d5-45c7-aa99-1d9952142be5/file",
+      "status": 206,
+      "range": "bytes=0-",
+      "content_range": "bytes 0-332764/332765"
+    },
+    {
+      "path": "/api/v1/projects/3f4bc7e0-3b4e-4db6-a812-18b581a398e3/renders/0eb40bfc-88ea-4dbf-a9b6-0865234d533d/file",
+      "status": 206,
+      "range": "bytes=0-",
+      "content_range": "bytes 0-2808512/2808513"
+    },
+    {
+      "path": "/api/v1/projects/3f4bc7e0-3b4e-4db6-a812-18b581a398e3/media/5490c581-f4ca-4548-8c4d-6e1aac6fbc2e/stream",
+      "status": 206,
+      "range": "bytes=0-",
+      "content_range": "bytes 0-919781/919782"
+    },
+    {
+      "path": "/api/v1/projects/3f4bc7e0-3b4e-4db6-a812-18b581a398e3/media/5490c581-f4ca-4548-8c4d-6e1aac6fbc2e/stream",
+      "status": 206,
+      "range": "bytes=884736-",
+      "content_range": "bytes 884736-919781/919782"
+    },
+    {
+      "path": "/api/v1/projects/3f4bc7e0-3b4e-4db6-a812-18b581a398e3/previews/2bd24155-09d5-45c7-aa99-1d9952142be5/file",
+      "status": 206,
+      "range": "bytes=0-",
+      "content_range": "bytes 0-332764/332765"
+    },
+    {
+      "path": "/api/v1/projects/3f4bc7e0-3b4e-4db6-a812-18b581a398e3/renders/0eb40bfc-88ea-4dbf-a9b6-0865234d533d/file",
+      "status": 206,
+      "range": "bytes=0-",
+      "content_range": "bytes 0-2808512/2808513"
+    },
+    {
+      "path": "/api/v1/projects/3f4bc7e0-3b4e-4db6-a812-18b581a398e3/media/5490c581-f4ca-4548-8c4d-6e1aac6fbc2e/stream",
+      "status": 206,
+      "range": "bytes=65536-",
+      "content_range": "bytes 65536-919781/919782"
+    },
+    {
+      "path": "/api/v1/projects/3f4bc7e0-3b4e-4db6-a812-18b581a398e3/media/5490c581-f4ca-4548-8c4d-6e1aac6fbc2e/stream",
+      "status": 206,
+      "range": "bytes=0-",
+      "content_range": "bytes 0-919781/919782"
+    },
+    {
+      "path": "/api/v1/projects/3f4bc7e0-3b4e-4db6-a812-18b581a398e3/media/5490c581-f4ca-4548-8c4d-6e1aac6fbc2e/stream",
+      "status": 206,
+      "range": "bytes=884736-",
+      "content_range": "bytes 884736-919781/919782"
+    },
+    {
+      "path": "/api/v1/projects/3f4bc7e0-3b4e-4db6-a812-18b581a398e3/previews/2bd24155-09d5-45c7-aa99-1d9952142be5/file",
+      "status": 206,
+      "range": "bytes=0-",
+      "content_range": "bytes 0-332764/332765"
+    },
+    {
+      "path": "/api/v1/projects/3f4bc7e0-3b4e-4db6-a812-18b581a398e3/media/5490c581-f4ca-4548-8c4d-6e1aac6fbc2e/stream",
+      "status": 206,
+      "range": "bytes=229376-",
+      "content_range": "bytes 229376-919781/919782"
+    },
+    {
+      "path": "/api/v1/projects/3f4bc7e0-3b4e-4db6-a812-18b581a398e3/renders/0eb40bfc-88ea-4dbf-a9b6-0865234d533d/file",
+      "status": 206,
+      "range": "bytes=0-",
+      "content_range": "bytes 0-2808512/2808513"
+    },
+    {
+      "path": "/api/v1/projects/3f4bc7e0-3b4e-4db6-a812-18b581a398e3/media/5490c581-f4ca-4548-8c4d-6e1aac6fbc2e/stream",
+      "status": 206,
+      "range": "bytes=0-",
+      "content_range": "bytes 0-919781/919782"
+    },
+    {
+      "path": "/api/v1/projects/3f4bc7e0-3b4e-4db6-a812-18b581a398e3/previews/2bd24155-09d5-45c7-aa99-1d9952142be5/file",
+      "status": 206,
+      "range": "bytes=0-",
+      "content_range": "bytes 0-332764/332765"
+    },
+    {
+      "path": "/api/v1/projects/3f4bc7e0-3b4e-4db6-a812-18b581a398e3/renders/0eb40bfc-88ea-4dbf-a9b6-0865234d533d/file",
+      "status": 206,
+      "range": "bytes=0-",
+      "content_range": "bytes 0-2808512/2808513"
+    },
+    {
+      "path": "/api/v1/projects/3f4bc7e0-3b4e-4db6-a812-18b581a398e3/media/5490c581-f4ca-4548-8c4d-6e1aac6fbc2e/stream",
+      "status": 206,
+      "range": "bytes=0-",
+      "content_range": "bytes 0-919781/919782"
+    },
+    {
+      "path": "/api/v1/projects/3f4bc7e0-3b4e-4db6-a812-18b581a398e3/previews/2bd24155-09d5-45c7-aa99-1d9952142be5/file",
+      "status": 206,
+      "range": "bytes=0-",
+      "content_range": "bytes 0-332764/332765"
+    },
+    {
+      "path": "/api/v1/projects/3f4bc7e0-3b4e-4db6-a812-18b581a398e3/renders/0eb40bfc-88ea-4dbf-a9b6-0865234d533d/file",
+      "status": 206,
+      "range": "bytes=0-",
+      "content_range": "bytes 0-2808512/2808513"
+    }
+  ],
+  "browser": "145.0.7632.6",
+  "playwright_driver_version": "1.50.1",
+  "project_id": "3f4bc7e0-3b4e-4db6-a812-18b581a398e3",
+  "real_api": true,
+  "database_storage_mutations_performed": false,
+  "simulated_states_separate": [],
+  "viewports": [
+    {
+      "name": "desktop",
+      "theme": "dark",
+      "viewport": 1366,
+      "width": 1366,
+      "height": 5353
+    },
+    {
+      "name": "desktop",
+      "theme": "light",
+      "viewport": 1366,
+      "width": 1366,
+      "height": 5353
+    },
+    {
+      "name": "tablet",
+      "theme": "dark",
+      "viewport": 768,
+      "width": 768,
+      "height": 5608
+    },
+    {
+      "name": "tablet",
+      "theme": "light",
+      "viewport": 768,
+      "width": 768,
+      "height": 5608
+    },
+    {
+      "name": "mobile-375",
+      "theme": "dark",
+      "viewport": 375,
+      "width": 375,
+      "height": 8545
+    },
+    {
+      "name": "mobile-375",
+      "theme": "light",
+      "viewport": 375,
+      "width": 375,
+      "height": 8545
+    },
+    {
+      "name": "mobile-390",
+      "theme": "dark",
+      "viewport": 390,
+      "width": 390,
+      "height": 8358
+    },
+    {
+      "name": "mobile-390",
+      "theme": "light",
+      "viewport": 390,
+      "width": 390,
+      "height": 8358
+    }
+  ],
+  "project_name": "QA R05 export 217e2d74-cecf-4c1f-9097-77c549f56303",
+  "initial_public_snapshot": {
+    "project": {
+      "id": "3f4bc7e0-3b4e-4db6-a812-18b581a398e3",
+      "name": "QA R05 export 217e2d74-cecf-4c1f-9097-77c549f56303",
+      "purpose": "Prova sintética local R05",
+      "target_preset": null,
+      "created_at": "2026-10-22T12:36:52.679210Z",
+      "updated_at": "2026-10-22T12:36:52.679272Z"
+    },
+    "revision": {
+      "id": "8a8f3f23-4b76-4dd3-a652-10abc70fe61d",
+      "project_id": "3f4bc7e0-3b4e-4db6-a812-18b581a398e3",
+      "revision_number": 3,
+      "created_at": "2026-10-22T17:13:42.473265Z",
+      "source_media_id": "5490c581-f4ca-4548-8c4d-6e1aac6fbc2e",
+      "trim": {
+        "start_ms": 1000,
+        "end_ms": 13000
+      },
+      "canvas": {
+        "preset": "4:5",
+        "fit": "cover",
+        "focal_x": 0.25,
+        "focal_y": 0.75
+      },
+      "schema_version": 2,
+      "text_overlays": [
+        {
+          "id": "14d9907b-62bf-4495-8b08-2702d4118725",
+          "text": "Revisão posterior — export anterior preservado",
+          "start_ms": 1000,
+          "end_ms": 13000,
+          "position": "bottom",
+          "style": "blue_outline",
+          "size": "medium"
+        }
+      ],
+      "audio": {
+        "source_volume": 0.7,
+        "background_audio_id": "b99c049d-1f73-4133-8113-ab20c678b9a5",
+        "background_volume": 0.15,
+        "background_loop": true,
+        "fade_in_ms": 1000,
+        "fade_out_ms": 1500
+      }
+    },
+    "media": {
+      "items": [
+        {
+          "id": "5490c581-f4ca-4548-8c4d-6e1aac6fbc2e",
+          "project_id": "3f4bc7e0-3b4e-4db6-a812-18b581a398e3",
+          "kind": "source_video",
+          "original_filename": "horizontal.mp4",
+          "checksum_sha256": "a220876b0e90f28f91e984a45054caf3c92c27e980bda4c9d95de860a041dc3e",
+          "byte_size": 919782,
+          "mime_detected": "video/mp4",
+          "duration_ms": 16000,
+          "width": 320,
+          "height": 180,
+          "fps_num": 24,
+          "fps_den": 1,
+          "video_codec": "h264",
+          "has_audio": true,
+          "audio_codec": "aac",
+          "created_at": "2026-10-22T12:36:53.488215Z"
+        }
+      ],
+      "total": 1,
+      "limit": 100,
+      "offset": 0
+    },
+    "audio": {
+      "items": [
+        {
+          "id": "b99c049d-1f73-4133-8113-ab20c678b9a5",
+          "project_id": "3f4bc7e0-3b4e-4db6-a812-18b581a398e3",
+          "original_filename": "short.mp3",
+          "checksum_sha256": "7055fd0edb521ce6b00b877d1cdd0a50ab055637e0a99c5958d9cf4ecb70bf63",
+          "byte_size": 24813,
+          "mime_detected": "audio/mpeg",
+          "duration_ms": 2040,
+          "codec": "mp3",
+          "sample_rate": 48000,
+          "channels": 1,
+          "created_at": "2026-10-22T12:36:53.997612Z"
+        }
+      ],
+      "total": 1,
+      "limit": 100,
+      "offset": 0
+    },
+    "renders": {
+      "items": [
+        {
+          "id": "99cc6cb8-f774-4449-9122-e169648a98f4",
+          "project_id": "3f4bc7e0-3b4e-4db6-a812-18b581a398e3",
+          "revision_id": "8a8f3f23-4b76-4dd3-a652-10abc70fe61d",
+          "revision_number": 3,
+          "profile": "high",
+          "preset": "4:5",
+          "render_engine_version": "r05-1",
+          "status": "canceled",
+          "stage": "canceled",
+          "attempts": 1,
+          "max_attempts": 2,
+          "progress_encoded_ms": 1514,
+          "progress_percent": null,
+          "cancel_requested_at": "2026-10-22T19:07:48.330339Z",
+          "created_at": "2026-10-22T19:07:46.678659Z",
+          "updated_at": "2026-10-22T19:07:49.334638Z",
+          "started_at": "2026-10-22T19:07:46.917794Z",
+          "finished_at": "2026-10-22T19:07:49.334638Z",
+          "error_code": null,
+          "artifact_available": false,
+          "checksum_sha256": null,
+          "byte_size": null,
+          "duration_ms": null,
+          "width": null,
+          "height": null,
+          "fps_num": null,
+          "fps_den": null,
+          "video_codec": null,
+          "audio_codec": null,
+          "status_url": "/api/v1/projects/3f4bc7e0-3b4e-4db6-a812-18b581a398e3/renders/99cc6cb8-f774-4449-9122-e169648a98f4",
+          "file_url": null
+        },
+        {
+          "id": "79a1e1e9-2692-4337-b6ad-45274f7d8231",
+          "project_id": "3f4bc7e0-3b4e-4db6-a812-18b581a398e3",
+          "revision_id": "8a8f3f23-4b76-4dd3-a652-10abc70fe61d",
+          "revision_number": 3,
+          "profile": "high",
+          "preset": "4:5",
+          "render_engine_version": "r05-1",
+          "status": "failed",
+          "stage": "failed",
+          "attempts": 1,
+          "max_attempts": 2,
+          "progress_encoded_ms": 0,
+          "progress_percent": null,
+          "cancel_requested_at": null,
+          "created_at": "2026-10-22T17:14:17.904028Z",
+          "updated_at": "2026-10-22T17:14:19.947918Z",
+          "started_at": "2026-10-22T17:14:19.021775Z",
+          "finished_at": "2026-10-22T17:14:19.947918Z",
+          "error_code": "render_encoding_failed",
+          "artifact_available": false,
+          "checksum_sha256": null,
+          "byte_size": null,
+          "duration_ms": null,
+          "width": null,
+          "height": null,
+          "fps_num": null,
+          "fps_den": null,
+          "video_codec": null,
+          "audio_codec": null,
+          "status_url": "/api/v1/projects/3f4bc7e0-3b4e-4db6-a812-18b581a398e3/renders/79a1e1e9-2692-4337-b6ad-45274f7d8231",
+          "file_url": null
+        },
+        {
+          "id": "0eb40bfc-88ea-4dbf-a9b6-0865234d533d",
+          "project_id": "3f4bc7e0-3b4e-4db6-a812-18b581a398e3",
+          "revision_id": "d0dc9cff-7b16-46ff-900b-dd0babe83310",
+          "revision_number": 1,
+          "profile": "standard",
+          "preset": "9:16",
+          "render_engine_version": "r05-1",
+          "status": "completed",
+          "stage": "completed",
+          "attempts": 1,
+          "max_attempts": 2,
+          "progress_encoded_ms": 12000,
+          "progress_percent": 100,
+          "cancel_requested_at": null,
+          "created_at": "2026-10-22T17:14:08.771814Z",
+          "updated_at": "2026-10-22T17:14:17.498913Z",
+          "started_at": "2026-10-22T17:14:09.999939Z",
+          "finished_at": "2026-10-22T17:14:17.498913Z",
+          "error_code": null,
+          "artifact_available": true,
+          "checksum_sha256": "06ea86d1c01a5648289c95fd9a703d96aa5cc87f37e237f4729bfd2d7deff10a",
+          "byte_size": 2808513,
+          "duration_ms": 12000,
+          "width": 1080,
+          "height": 1920,
+          "fps_num": 30,
+          "fps_den": 1,
+          "video_codec": "h264",
+          "audio_codec": "aac",
+          "status_url": "/api/v1/projects/3f4bc7e0-3b4e-4db6-a812-18b581a398e3/renders/0eb40bfc-88ea-4dbf-a9b6-0865234d533d",
+          "file_url": "/api/v1/projects/3f4bc7e0-3b4e-4db6-a812-18b581a398e3/renders/0eb40bfc-88ea-4dbf-a9b6-0865234d533d/file"
+        },
+        {
+          "id": "69f40b33-2edc-4a59-ab42-629949454921",
+          "project_id": "3f4bc7e0-3b4e-4db6-a812-18b581a398e3",
+          "revision_id": "0f4c7a80-714d-40a5-a25d-61c1c2451ce1",
+          "revision_number": 2,
+          "profile": "standard",
+          "preset": "9:16",
+          "render_engine_version": "r05-1",
+          "status": "completed",
+          "stage": "completed",
+          "attempts": 1,
+          "max_attempts": 2,
+          "progress_encoded_ms": 12000,
+          "progress_percent": 100,
+          "cancel_requested_at": null,
+          "created_at": "2026-10-22T17:13:42.446897Z",
+          "updated_at": "2026-10-22T17:14:08.480978Z",
+          "started_at": "2026-10-22T17:14:00.105875Z",
+          "finished_at": "2026-10-22T17:14:08.480978Z",
+          "error_code": null,
+          "artifact_available": true,
+          "checksum_sha256": "2f8de00b3e8545f485f09199c899abc0df6ff7f17bb6640d9635400fdb51ba90",
+          "byte_size": 3152917,
+          "duration_ms": 12000,
+          "width": 1080,
+          "height": 1920,
+          "fps_num": 30,
+          "fps_den": 1,
+          "video_codec": "h264",
+          "audio_codec": "aac",
+          "status_url": "/api/v1/projects/3f4bc7e0-3b4e-4db6-a812-18b581a398e3/renders/69f40b33-2edc-4a59-ab42-629949454921",
+          "file_url": "/api/v1/projects/3f4bc7e0-3b4e-4db6-a812-18b581a398e3/renders/69f40b33-2edc-4a59-ab42-629949454921/file"
+        },
+        {
+          "id": "3bfcb275-efa3-4df2-b9dd-2b967cd67033",
+          "project_id": "3f4bc7e0-3b4e-4db6-a812-18b581a398e3",
+          "revision_id": "0f4c7a80-714d-40a5-a25d-61c1c2451ce1",
+          "revision_number": 2,
+          "profile": "standard",
+          "preset": "9:16",
+          "render_engine_version": "r05-1",
+          "status": "canceled",
+          "stage": "canceled",
+          "attempts": 0,
+          "max_attempts": 2,
+          "progress_encoded_ms": null,
+          "progress_percent": null,
+          "cancel_requested_at": "2026-10-22T12:36:55.175721Z",
+          "created_at": "2026-10-22T12:36:54.859418Z",
+          "updated_at": "2026-10-22T12:36:55.175721Z",
+          "started_at": null,
+          "finished_at": "2026-10-22T12:36:55.175721Z",
+          "error_code": null,
+          "artifact_available": false,
+          "checksum_sha256": null,
+          "byte_size": null,
+          "duration_ms": null,
+          "width": null,
+          "height": null,
+          "fps_num": null,
+          "fps_den": null,
+          "video_codec": null,
+          "audio_codec": null,
+          "status_url": "/api/v1/projects/3f4bc7e0-3b4e-4db6-a812-18b581a398e3/renders/3bfcb275-efa3-4df2-b9dd-2b967cd67033",
+          "file_url": null
+        }
+      ],
+      "total": 5,
+      "limit": 100,
+      "offset": 0
+    }
+  },
+  "render_id": "0eb40bfc-88ea-4dbf-a9b6-0865234d533d",
+  "preview_id": "2bd24155-09d5-45c7-aa99-1d9952142be5",
+  "contrast": {
+    "desktop-dark": [
+      {
+        "selector": "body",
+        "foreground": "rgb(238, 241, 233)",
+        "background_rgb": [
+          23,
+          27,
+          24
+        ],
+        "ratio": 15.25,
+        "font_size_px": 16,
+        "disabled": false
+      },
+      {
+        "selector": ".panel-description",
+        "foreground": "rgb(165, 176, 163)",
+        "background_rgb": [
+          32,
+          39,
+          34
+        ],
+        "ratio": 6.79,
+        "font_size_px": 12,
+        "disabled": false
+      },
+      {
+        "selector": ".field-help",
+        "foreground": "rgb(165, 176, 163)",
+        "background_rgb": [
+          32,
+          39,
+          34
+        ],
+        "ratio": 6.79,
+        "font_size_px": 10,
+        "disabled": false
+      },
+      {
+        "selector": ".editor-save-state",
+        "foreground": "rgb(165, 176, 163)",
+        "background_rgb": [
+          23,
+          27,
+          24
+        ],
+        "ratio": 7.74,
+        "font_size_px": 11,
+        "disabled": false
+      },
+      {
+        "selector": "[data-slot=\"button\"].bg-primary:not(:disabled)",
+        "foreground": "rgb(32, 49, 30)",
+        "background_rgb": [
+          200,
+          230,
+          165
+        ],
+        "ratio": 10.08,
+        "font_size_px": 14,
+        "disabled": false
+      },
+      {
+        "selector": ".section-kicker",
+        "foreground": "rgb(165, 176, 163)",
+        "background_rgb": [
+          23,
+          27,
+          24
+        ],
+        "ratio": 7.74,
+        "font_size_px": 9,
+        "disabled": false
+      },
+      {
+        "selector": ".timeline-ruler",
+        "foreground": "rgb(165, 176, 163)",
+        "background_rgb": [
+          32,
+          39,
+          34
+        ],
+        "ratio": 6.79,
+        "font_size_px": 8,
+        "disabled": false
+      },
+      {
+        "selector": ".export-history-main > strong",
+        "foreground": "rgb(238, 241, 233)",
+        "background_rgb": [
+          32,
+          39,
+          34
+        ],
+        "ratio": 13.38,
+        "font_size_px": 13,
+        "disabled": false
+      }
+    ],
+    "desktop-light": [
+      {
+        "selector": "body",
+        "foreground": "rgb(35, 44, 38)",
+        "background_rgb": [
+          248,
+          249,
+          245
+        ],
+        "ratio": 13.61,
+        "font_size_px": 16,
+        "disabled": false
+      },
+      {
+        "selector": ".panel-description",
+        "foreground": "rgb(96, 106, 96)",
+        "background_rgb": [
+          255,
+          255,
+          255
+        ],
+        "ratio": 5.63,
+        "font_size_px": 12,
+        "disabled": false
+      },
+      {
+        "selector": ".field-help",
+        "foreground": "rgb(96, 106, 96)",
+        "background_rgb": [
+          255,
+          255,
+          255
+        ],
+        "ratio": 5.63,
+        "font_size_px": 10,
+        "disabled": false
+      },
+      {
+        "selector": ".editor-save-state",
+        "foreground": "rgb(96, 106, 96)",
+        "background_rgb": [
+          248,
+          249,
+          245
+        ],
+        "ratio": 5.33,
+        "font_size_px": 11,
+        "disabled": false
+      },
+      {
+        "selector": "[data-slot=\"button\"].bg-primary:not(:disabled)",
+        "foreground": "rgb(255, 255, 255)",
+        "background_rgb": [
+          60,
+          97,
+          58
+        ],
+        "ratio": 7.09,
+        "font_size_px": 14,
+        "disabled": false
+      },
+      {
+        "selector": ".section-kicker",
+        "foreground": "rgb(96, 106, 96)",
+        "background_rgb": [
+          248,
+          249,
+          245
+        ],
+        "ratio": 5.33,
+        "font_size_px": 9,
+        "disabled": false
+      },
+      {
+        "selector": ".timeline-ruler",
+        "foreground": "rgb(96, 106, 96)",
+        "background_rgb": [
+          255,
+          255,
+          255
+        ],
+        "ratio": 5.63,
+        "font_size_px": 8,
+        "disabled": false
+      },
+      {
+        "selector": ".export-history-main > strong",
+        "foreground": "rgb(35, 44, 38)",
+        "background_rgb": [
+          255,
+          255,
+          255
+        ],
+        "ratio": 14.39,
+        "font_size_px": 13,
+        "disabled": false
+      }
+    ]
+  },
+  "finished_at": "2026-10-23T12:48:26.850Z"
+}

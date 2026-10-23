@@ -1,0 +1,60 @@
+{
+  "purpose": "Retains complete logs in versionable JSON; existing .gitignore ignores .log. Agent lint/format logs are tool-output transcriptions identified in agent-quality-capture.json.",
+  "logs": {
+    "browser-launch-2.log": {
+      "sha256": "aeb3c73ceb1e3a3a2e4649fc99504f75abe92de176d37a69a7f7ece381ee1f90",
+      "bytes": 102,
+      "content": "{\"status\":\"passed\",\"checks\":63,\"screenshots\":6,\"output\":\"/work/evidence/transparent-brand/browser-2\"}\n"
+    },
+    "browser-launch.log": {
+      "sha256": "938565404aa3423ac82f638b01d2fcc1e917d4414a491d0192e6dbb1c0cefe4c",
+      "bytes": 99,
+      "content": "{\"status\":\"failed\",\"checks\":4,\"screenshots\":0,\"output\":\"/work/evidence/transparent-brand/browser\"}\n"
+    },
+    "build.log": {
+      "sha256": "d8282901e8a1f32312fac01708489361cec664376c98c428c7d0d326d1e1e675",
+      "bytes": 1226,
+      "content": "\n> edivo-frontend@0.1.0 build\n> tsc -b && vite build\n\nvite v8.3.4 building client environment for production...\ntransforming...\n✓ 1960 modules transformed.\nrendering chunks...\ncomputing gzip size...\ndist/index.html                                        1.60 kB │ gzip:   0.69 kB\ndist/assets/manrope-latin-500-normal-BYYD-dBL.woff2   14.04 kB\ndist/assets/dm-sans-latin-600-normal-Aqo67rzb.woff2   14.14 kB\ndist/assets/manrope-latin-600-normal-4f0koTD-.woff2   14.17 kB\ndist/assets/dm-sans-latin-400-normal-CW0RaeGs.woff2   14.20 kB\ndist/assets/manrope-latin-700-normal-BZp_XxE4.woff2   14.21 kB\ndist/assets/dm-sans-latin-500-normal-B9HHJjqV.woff2   14.30 kB\ndist/assets/manrope-latin-500-normal-DMZssgOp.woff    18.24 kB\ndist/assets/dm-sans-latin-600-normal-BmdmIIQ2.woff    18.32 kB\ndist/assets/dm-sans-latin-400-normal-BwCSEQnW.woff    18.35 kB\ndist/assets/manrope-latin-600-normal-BqgrALkZ.woff    18.38 kB\ndist/assets/manrope-latin-700-normal-DGRFkw-m.woff    18.41 kB\ndist/assets/dm-sans-latin-500-normal-Dr3UlScf.woff    18.52 kB\ndist/assets/index-Dep5jX0s.css                        51.60 kB │ gzip:  10.68 kB\ndist/assets/index-Ch8UX7YH.js                        359.44 kB │ gzip: 108.60 kB\n\n✓ built in 1.81s\n"
+    },
+    "docker-build.log": {
+      "sha256": "8ffe3e22dc412635250dbbb60774512a5a07bbdfbadabf1841fb8487b9911e06",
+      "bytes": 2160,
+      "content": " Image edivo-frontend:r05 Building \n#1 [internal] load local bake definitions\n#1 reading from stdin 1.50kB done\n#1 DONE 0.0s\n\n#2 [internal] load build definition from Dockerfile\n#2 transferring dockerfile: 336B 0.0s done\n#2 DONE 0.1s\n\n#3 [internal] load metadata for docker.io/library/node:24.14.0-bookworm-slim\n#3 ...\n\n#4 [auth] library/node:pull token for registry-1.docker.io\n#4 DONE 0.0s\n\n#3 [internal] load metadata for docker.io/library/node:24.14.0-bookworm-slim\n#3 DONE 2.4s\n\n#5 [internal] load .dockerignore\n#5 transferring context: 122B 0.0s done\n#5 DONE 0.0s\n\n#6 [internal] load build context\n#6 transferring context: 243.03kB 0.0s done\n#6 DONE 0.1s\n\n#7 [1/6] FROM docker.io/library/node:24.14.0-bookworm-slim@sha256:d8e448a56fc63242f70026718378bd4b00f8c82e78d20eefb199224a4d8e33d8\n#7 resolve docker.io/library/node:24.14.0-bookworm-slim@sha256:d8e448a56fc63242f70026718378bd4b00f8c82e78d20eefb199224a4d8e33d8 0.1s done\n#7 DONE 0.2s\n\n#8 [2/6] WORKDIR /app\n#8 CACHED\n\n#9 [3/6] RUN chown node:node /app\n#9 CACHED\n\n#10 [4/6] COPY --chown=node:node package.json package-lock.json ./\n#10 CACHED\n\n#11 [5/6] RUN npm ci --no-audit --no-fund\n#11 CACHED\n\n#12 [6/6] COPY --chown=node:node . .\n#12 DONE 0.4s\n\n#13 exporting to image\n#13 exporting layers\n#13 exporting layers 5.1s done\n#13 exporting manifest sha256:e4c8128bbd1776bd5cda6cbfffcda7634c03f1abb60a935b14e8bf82e1eab0dd 0.0s done\n#13 exporting config sha256:1af5658aed62a79759d86c6bed1f54dfa4d7d0f8a274d68f3bdcfa7a8aeb68bb 0.0s done\n#13 exporting attestation manifest sha256:662193f99b57903490847ff00c37ff4c5683c4db8bfb60777437b04029558656\n#13 exporting attestation manifest sha256:662193f99b57903490847ff00c37ff4c5683c4db8bfb60777437b04029558656 0.1s done\n#13 exporting manifest list sha256:68e69e9edfd9cfa656f76636bde4ac5479913504fdfe56bc0d3e12e4a1bec570 0.0s done\n#13 naming to docker.io/library/edivo-frontend:r05\n#13 naming to docker.io/library/edivo-frontend:r05 0.0s done\n#13 unpacking to docker.io/library/edivo-frontend:r05\n#13 unpacking to docker.io/library/edivo-frontend:r05 0.2s done\n#13 DONE 5.7s\n\n#14 resolving provenance for metadata file\n#14 DONE 0.1s\n Image edivo-frontend:r05 Built \n"
+    },
+    "docker-deploy.log": {
+      "sha256": "2c57a4b3976e6090bae08adc06541e2f8274552ee3543f53ed27429f9e02833e",
+      "bytes": 152,
+      "content": " Container edivo-frontend-1 Recreate \n Container edivo-frontend-1 Recreated \n Container edivo-frontend-1 Starting \n Container edivo-frontend-1 Started \n"
+    },
+    "format-followup-agent.log": {
+      "sha256": "e16e2eaff09d0048ab76dc5a45e1a14a0fbae7886698c496cbac975a1e1c9b91",
+      "bytes": 125,
+      "content": "\n> edivo-frontend@0.1.0 format:check\n> prettier . --check\n\nChecking formatting...\nAll matched files use Prettier code style!\n"
+    },
+    "lint-followup-agent.log": {
+      "sha256": "09f84afab4ae49be1f479ccbc9cde086a80aa3a4fd945867f9754db49080d632",
+      "bytes": 58,
+      "content": "\n> edivo-frontend@0.1.0 lint\n> eslint . --max-warnings 0\n\n"
+    },
+    "vitest-timeout-investigation.log": {
+      "sha256": "0a3151cceacc4e2b80d626eeac7e3073737ccd7b69488fb1b2aaa06e059af574",
+      "bytes": 306,
+      "content": "\n> edivo-frontend@0.1.0 test\n> vitest --run tests/composition.test.tsx tests/previews.test.tsx\n\n\n RUN  v5.0.5 /home/davi/edivo-editor/frontend\n\n\n Test Files  2 passed (2)\n      Tests  74 passed (74)\n   Start at  15:53:15\n   Duration  28.12s (tests 65%, environment 25%, import 5%, setup 3%, transform 2%)\n\n"
+    },
+    "vitest-two-workers.log": {
+      "sha256": "1426bd8a87b605d63f8c96bd615bc378cd80fffb38d6d1fafc8d72abc517dc2e",
+      "bytes": 471,
+      "content": "\n> edivo-frontend@0.1.0 test\n> vitest --run --maxWorkers=2\n\n\n RUN  v5.0.5 /home/davi/edivo-editor/frontend\n\n\n Test Files  9 passed (9)\n      Tests  316 passed (316)\n   Start at  15:57:11\n   Duration  44.27s (tests 68%, environment 22%, import 5%, setup 4%, transform 2%)\n\n    Isolate  9 workers spawned · ~2.38s startup each (spawn + environment, per file)\n             at least ~8.33s faster with isolate: false — reuses workers across files instead of one per file\n\n"
+    },
+    "vitest-without-build.log": {
+      "sha256": "5c84862833a3d2178fd645f6f5e5ef79c6970a7b37565bcbac6860a1a5aec2e4",
+      "bytes": 1967,
+      "content": "\n> edivo-frontend@0.1.0 test\n> vitest --run\n\n\n RUN  v5.0.5 /home/davi/edivo-editor/frontend\n\n ❯ tests/editor-controls.test.tsx (23 tests | 1 failed) 19857ms\n   ❯ Non-destructive timeline (6)\n     × represents one source with full duration, playhead and selected region 5444ms\n ❯ tests/composition.test.tsx (45 tests | 1 failed) 32159ms\n   ❯ Versioned composition and explicit saves (4)\n     × persists text and audio as v2 only after the explicit save action 5169ms\n\n⎯⎯⎯⎯⎯⎯⎯ Failed Tests 2 ⎯⎯⎯⎯⎯⎯⎯\n\n FAIL  tests/composition.test.tsx > Versioned composition and explicit saves > persists text and audio as v2 only after the explicit save action\nError: Test timed out in 5000ms.\nIf this is a long-running test, pass a timeout value as the last argument or configure it globally with \"testTimeout\".\n ❯ tests/composition.test.tsx:170:3\n    168|   });\n    169|\n    170|   it('persists text and audio as v2 only after the explicit save actio…\n       |   ^\n    171|     const api = server(legacy);\n    172|     await open();\n\n⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/2]⎯\n\n FAIL  tests/editor-controls.test.tsx > Non-destructive timeline > represents one source with full duration, playhead and selected region\nError: Test timed out in 5000ms.\nIf this is a long-running test, pass a timeout value as the last argument or configure it globally with \"testTimeout\".\n ❯ tests/editor-controls.test.tsx:108:3\n    106|\n    107| describe('Non-destructive timeline', () => {\n    108|   it('represents one source with full duration, playhead and selected …\n       |   ^\n    109|     server();\n    110|     const video = await open();\n\n⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/2]⎯\n\n\n Test Files  2 failed | 7 passed (9)\n      Tests  2 failed | 314 passed (316)\n   Start at  15:53:51\n   Duration  41.61s (tests 62%, environment 26%, import 6%, setup 3%, transform 2%)\n\n"
+    },
+    "vitest.log": {
+      "sha256": "2b75a806800efa9279d53fb89fe34ef10937198181faacfd15c005dc2808fcaa",
+      "bytes": 2017,
+      "content": "\n> edivo-frontend@0.1.0 test\n> vitest --run\n\n\n RUN  v5.0.5 /home/davi/edivo-editor/frontend\n\n ❯ tests/previews.test.tsx (29 tests | 1 failed) 11996ms\n   ❯ Explicit preview requests and revision ownership (11)\n     × uses the explicitly saved new revision after the editor dirty state is cleared 5462ms\n ❯ tests/composition.test.tsx (45 tests | 1 failed) 29121ms\n   ❯ Versioned composition and explicit saves (4)\n     × persists text and audio as v2 only after the explicit save action 6454ms\n\n⎯⎯⎯⎯⎯⎯⎯ Failed Tests 2 ⎯⎯⎯⎯⎯⎯⎯\n\n FAIL  tests/composition.test.tsx > Versioned composition and explicit saves > persists text and audio as v2 only after the explicit save action\nError: Test timed out in 5000ms.\nIf this is a long-running test, pass a timeout value as the last argument or configure it globally with \"testTimeout\".\n ❯ tests/composition.test.tsx:170:3\n    168|   });\n    169|\n    170|   it('persists text and audio as v2 only after the explicit save actio…\n       |   ^\n    171|     const api = server(legacy);\n    172|     await open();\n\n⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/2]⎯\n\n FAIL  tests/previews.test.tsx > Explicit preview requests and revision ownership > uses the explicitly saved new revision after the editor dirty state is cleared\nError: Test timed out in 5000ms.\nIf this is a long-running test, pass a timeout value as the last argument or configure it globally with \"testTimeout\".\n ❯ tests/previews.test.tsx:223:3\n    221|   });\n    222|\n    223|   it('uses the explicitly saved new revision after the editor dirty st…\n       |   ^\n    224|     const api = server(completed);\n    225|     render(<EditorWorkspace projectId={project.id} />);\n\n⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/2]⎯\n\n\n Test Files  2 failed | 7 passed (9)\n      Tests  2 failed | 314 passed (316)\n   Start at  15:33:57\n   Duration  36.04s (tests 69%, environment 15%, import 9%, transform 4%, setup 4%)\n\n"
+    }
+  }
+}

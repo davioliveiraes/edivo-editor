@@ -1,0 +1,287 @@
+{
+  "status": "passed",
+  "started_at": "2026-10-23T21:39:45.439Z",
+  "browser": "145.0.7632.6",
+  "real_application_document": true,
+  "read_only_get_head": true,
+  "browser_chrome_tab_visual_inspection_claimed": false,
+  "checks": [
+    {
+      "name": "16_fresh_versioned_html_link",
+      "passed": true,
+      "detail": {
+        "href": "/favicon-green-16x16.png?v=vis01-green",
+        "sizes": "16x16"
+      }
+    },
+    {
+      "name": "16_http_200",
+      "passed": true
+    },
+    {
+      "name": "16_png_content_type",
+      "passed": true
+    },
+    {
+      "name": "16_png_header_dimensions",
+      "passed": true
+    },
+    {
+      "name": "16_corners_alpha_zero",
+      "passed": true
+    },
+    {
+      "name": "16_background_transparent",
+      "passed": true,
+      "detail": 0.61328125
+    },
+    {
+      "name": "16_only_green_symbol_opaque",
+      "passed": true,
+      "detail": {
+        "width": 16,
+        "height": 16,
+        "corners_alpha": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "transparent_fraction": 0.61328125,
+        "opaque_pixels": 46,
+        "non_green_opaque_pixels": 0
+      }
+    },
+    {
+      "name": "32_fresh_versioned_html_link",
+      "passed": true,
+      "detail": {
+        "href": "/favicon-green-32x32.png?v=vis01-green",
+        "sizes": "32x32"
+      }
+    },
+    {
+      "name": "32_http_200",
+      "passed": true
+    },
+    {
+      "name": "32_png_content_type",
+      "passed": true
+    },
+    {
+      "name": "32_png_header_dimensions",
+      "passed": true
+    },
+    {
+      "name": "32_corners_alpha_zero",
+      "passed": true
+    },
+    {
+      "name": "32_background_transparent",
+      "passed": true,
+      "detail": 0.66796875
+    },
+    {
+      "name": "32_only_green_symbol_opaque",
+      "passed": true,
+      "detail": {
+        "width": 32,
+        "height": 32,
+        "corners_alpha": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "transparent_fraction": 0.66796875,
+        "opaque_pixels": 225,
+        "non_green_opaque_pixels": 0
+      }
+    },
+    {
+      "name": "48_fresh_versioned_html_link",
+      "passed": true,
+      "detail": {
+        "href": "/favicon-green-48x48.png?v=vis01-green",
+        "sizes": "48x48"
+      }
+    },
+    {
+      "name": "48_http_200",
+      "passed": true
+    },
+    {
+      "name": "48_png_content_type",
+      "passed": true
+    },
+    {
+      "name": "48_png_header_dimensions",
+      "passed": true
+    },
+    {
+      "name": "48_corners_alpha_zero",
+      "passed": true
+    },
+    {
+      "name": "48_background_transparent",
+      "passed": true,
+      "detail": 0.6566840277777778
+    },
+    {
+      "name": "48_only_green_symbol_opaque",
+      "passed": true,
+      "detail": {
+        "width": 48,
+        "height": 48,
+        "corners_alpha": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "transparent_fraction": 0.6566840277777778,
+        "opaque_pixels": 568,
+        "non_green_opaque_pixels": 0
+      }
+    },
+    {
+      "name": "ico_fresh_versioned_html_link",
+      "passed": true
+    },
+    {
+      "name": "ico_http_200",
+      "passed": true
+    },
+    {
+      "name": "ico_header_three_frames",
+      "passed": true
+    },
+    {
+      "name": "ico_frame_16_matches_alpha_png",
+      "passed": true
+    },
+    {
+      "name": "ico_frame_32_matches_alpha_png",
+      "passed": true
+    },
+    {
+      "name": "ico_frame_48_matches_alpha_png",
+      "passed": true
+    },
+    {
+      "name": "no_mutating_http_attempts",
+      "passed": true
+    },
+    {
+      "name": "no_external_requests",
+      "passed": true
+    },
+    {
+      "name": "no_uncaught_page_errors",
+      "passed": true
+    }
+  ],
+  "assets": [
+    {
+      "path": "/favicon-green-16x16.png?v=vis01-green",
+      "bytes": 546,
+      "sha256": "298c0ff5fd980e818cad11bd758b3a95228c731c82d8789b230f5ab012f95184",
+      "width": 16,
+      "height": 16,
+      "corners_alpha": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "transparent_fraction": 0.61328125,
+      "opaque_pixels": 46,
+      "non_green_opaque_pixels": 0
+    },
+    {
+      "path": "/favicon-green-32x32.png?v=vis01-green",
+      "bytes": 1262,
+      "sha256": "0dbc5e4a96b72e70ab2af31eeaffd1cf3b69abae9693b415346884fbb4aa1153",
+      "width": 32,
+      "height": 32,
+      "corners_alpha": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "transparent_fraction": 0.66796875,
+      "opaque_pixels": 225,
+      "non_green_opaque_pixels": 0
+    },
+    {
+      "path": "/favicon-green-48x48.png?v=vis01-green",
+      "bytes": 2310,
+      "sha256": "9230616cf98b95515778ab68b3e0c193dae386452b9fc9f9d2a405e4ed4b43ee",
+      "width": 48,
+      "height": 48,
+      "corners_alpha": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "transparent_fraction": 0.6566840277777778,
+      "opaque_pixels": 568,
+      "non_green_opaque_pixels": 0
+    }
+  ],
+  "screenshots": [
+    {
+      "path": "native-favicon-light-dark.png",
+      "sha256": "535e314435340a3a36d2cf45fd1177bb5d989a35e44e8fd1b7da7b81b6a37db6"
+    }
+  ],
+  "page_errors": [],
+  "external_requests": [],
+  "blocked_mutations": [],
+  "favicon_links": [
+    {
+      "href": "/favicon-green.ico?v=vis01-green",
+      "sizes": "16x16 32x32 48x48"
+    },
+    {
+      "href": "/favicon-green-16x16.png?v=vis01-green",
+      "sizes": "16x16"
+    },
+    {
+      "href": "/favicon-green-32x32.png?v=vis01-green",
+      "sizes": "32x32"
+    },
+    {
+      "href": "/favicon-green-48x48.png?v=vis01-green",
+      "sizes": "48x48"
+    }
+  ],
+  "ico": {
+    "path": "/favicon-green.ico?v=vis01-green",
+    "bytes": 4172,
+    "sha256": "f59d56393b6c0ca07ce746c803f59bfb3523515619fb4144352eb24ee8305e96",
+    "frames": [
+      {
+        "width": 16,
+        "height": 16,
+        "bytes": 546,
+        "sha256": "298c0ff5fd980e818cad11bd758b3a95228c731c82d8789b230f5ab012f95184"
+      },
+      {
+        "width": 32,
+        "height": 32,
+        "bytes": 1262,
+        "sha256": "0dbc5e4a96b72e70ab2af31eeaffd1cf3b69abae9693b415346884fbb4aa1153"
+      },
+      {
+        "width": 48,
+        "height": 48,
+        "bytes": 2310,
+        "sha256": "9230616cf98b95515778ab68b3e0c193dae386452b9fc9f9d2a405e4ed4b43ee"
+      }
+    ]
+  },
+  "finished_at": "2026-10-23T21:39:51.950Z"
+}

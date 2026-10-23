@@ -1,0 +1,17 @@
+{
+  "capture_method": "Exact combined output returned through exec_command/write_stdin; stderr was not separately redirected. Output budgets were not exceeded. These files are tool-output transcriptions, not independent raw pipe captures.",
+  "commands": [
+    {
+      "command": "npm run lint",
+      "cwd": "frontend",
+      "exit_code": 0,
+      "output_file": "lint-followup-agent.log"
+    },
+    {
+      "command": "npm run format:check",
+      "cwd": "frontend",
+      "exit_code": 0,
+      "output_file": "format-followup-agent.log"
+    }
+  ]
+}

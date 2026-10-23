@@ -1,0 +1,24 @@
+{
+  "status": "passed",
+  "recorded_at": "2026-10-23T12:57:26.518890+00:00",
+  "reason": "Optimize the generated header WebP while retaining official JPEG and PNG raster reference.",
+  "authorized_scope": "Only VIS-01-created logo WebP and asset manifest updated after old hashes were verified. No generic overwrite option added.",
+  "before": {
+    "width": 960,
+    "height": 326,
+    "bytes": 108170,
+    "sha256": "3b9380ba37005244480604b2ffae56e8aaec9ca684791e2682cd905dbcaaf4c8"
+  },
+  "after": {
+    "width": 960,
+    "height": 326,
+    "bytes": 11096,
+    "sha256": "41f1108f74d972c4a76bdff12687c6461d979ad5c8a694dcf82346faf426c3d9"
+  },
+  "quality_before": 1,
+  "quality_after": 0.92,
+  "other_assets_identical": true,
+  "source_jpegs_unchanged": true,
+  "initial_manifest": "asset-manifest-initial-q1.json",
+  "bytes_reduction_percent": 89.74
+}
