@@ -99,6 +99,12 @@ class PreviewJobRepository:
         job = self.session.scalar(self.claim_query(project_id, self.max_attempts))
         if job is None:
             return None
+        return self.claim_locked(job, lease_seconds)
+
+    def claim_locked(self, job: PreviewJob, lease_seconds: float) -> PreviewClaim:
+        """Claim the eligible row already locked by this transaction's scheduler."""
+        if job.status != "queued" or job.attempts >= self.max_attempts:
+            raise ValueError("invalid_preview_claim_candidate")
         token = uuid4()
         attempt = job.attempts + 1
         self.session.execute(

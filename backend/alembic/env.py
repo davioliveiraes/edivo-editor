@@ -14,6 +14,7 @@ from app.models.edit_spec_revision import EditSpecRevision  # noqa: F401
 from app.models.media_asset import MediaAsset  # noqa: F401
 from app.models.preview_job import PreviewJob  # noqa: F401
 from app.models.project import Project  # noqa: F401
+from app.models.render_job import RenderJob  # noqa: F401
 
 logger = logging.getLogger("edivo.migrations")
 target_metadata = Base.metadata

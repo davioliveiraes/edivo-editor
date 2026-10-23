@@ -54,7 +54,12 @@ class LocalStorage:
         for part in (directory, *directory.parents):
             if part.is_symlink():
                 raise OSError("unsafe_storage_directory")
-        directory.mkdir(mode=0o700, parents=True, exist_ok=True)
+        # Path.mkdir(parents=True) applies mode only to the final component.
+        # Create each missing ancestor privately, without changing existing modes.
+        for part in (*reversed(directory.parents), directory):
+            part.mkdir(mode=0o700, exist_ok=True)
+            if part.is_symlink() or not part.is_dir():
+                raise OSError("unsafe_storage_directory")
         if not directory.is_dir():
             raise OSError("invalid_storage_directory")
         return directory
@@ -176,27 +181,59 @@ class LocalStorage:
             storage_key, f"previews/{project_id}/{job_id}/preview.mp4", byte_size
         )
 
+    def open_render(
+        self, storage_key: str, project_id: UUID, job_id: UUID, byte_size: int
+    ) -> OpenedOriginal:
+        return self._open_managed(
+            storage_key, f"renders/{project_id}/{job_id}/final.mp4", byte_size
+        )
+
     def promote_preview(self, staged: StagedFile, project_id: UUID, job_id: UUID) -> str:
+        return self._promote_artifact(
+            staged, project_id, job_id, "previews", "preview.mp4", "preview"
+        )
+
+    def promote_render(self, staged: StagedFile, project_id: UUID, job_id: UUID) -> str:
+        return self._promote_artifact(staged, project_id, job_id, "renders", "final.mp4", "render")
+
+    def _promote_artifact(
+        self,
+        staged: StagedFile,
+        project_id: UUID,
+        job_id: UUID,
+        namespace: str,
+        filename: str,
+        error_prefix: str,
+    ) -> str:
         """Publish exclusively; an ambiguous publication is preserved for reconciliation.
 
         The worker holds the project/job locks and checks its lease before and
         after this operation. Unlike upload compensation, no failure here may
         remove a canonical artifact that another transaction could have committed.
         """
+        message = (
+            "Não foi possível publicar a prévia."
+            if error_prefix == "preview"
+            else "Não foi possível publicar o vídeo."
+        )
         try:
             if not self.root.is_dir():
                 raise OSError("storage_missing")
             self.ensure_space(staged.byte_size)
-            parent = self._directory(self.root / "previews" / str(project_id))
+            parent = self._directory(self.root / namespace / str(project_id))
             destination = parent / str(job_id)
             try:
                 destination.mkdir(mode=0o700, exist_ok=False)
             except FileExistsError:
                 raise AppError(
-                    503, "preview_publication_interrupted", "Não foi possível publicar a prévia."
+                    503,
+                    f"{error_prefix}_publication_interrupted",
+                    message,
                 ) from None
-            target = destination / "preview.mp4"
-            source_fd = os.open(staged.path, os.O_RDONLY | os.O_NOFOLLOW | os.O_CLOEXEC)
+            target = destination / filename
+            source_fd = os.open(
+                staged.path, os.O_RDONLY | os.O_NOFOLLOW | os.O_CLOEXEC | os.O_NONBLOCK
+            )
             with os.fdopen(source_fd, "rb") as source:
                 metadata = os.fstat(source.fileno())
                 if not stat.S_ISREG(metadata.st_mode) or metadata.st_size != staged.byte_size:
@@ -216,9 +253,7 @@ class LocalStorage:
             self.discard_staging(staged.path)
             return target.relative_to(self.root).as_posix()
         except OSError:
-            raise AppError(
-                503, "storage_unavailable", "Não foi possível publicar a prévia."
-            ) from None
+            raise AppError(503, "storage_unavailable", message) from None
 
     def _open_managed(self, storage_key: str, expected_key: str, byte_size: int) -> OpenedOriginal:
         """Open only the authorized original, without following any path symlink.

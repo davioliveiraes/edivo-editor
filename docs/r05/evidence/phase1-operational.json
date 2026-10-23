@@ -1,0 +1,38 @@
+{
+  "recorded_at": "2026-10-22T01:38:40.814306+00:00",
+  "gate": "R05.1",
+  "status": "passed",
+  "commands": [
+    {
+      "command": "docker compose config --quiet",
+      "exit_code": 0
+    },
+    {
+      "command": "docker compose build api",
+      "exit_code": 0
+    },
+    {
+      "command": "docker compose run --rm --no-deps migrate",
+      "exit_code": 0,
+      "revision": "0005_r05_render_exports"
+    },
+    {
+      "command": "docker compose up -d --no-deps --wait --wait-timeout 90 api",
+      "exit_code": 0,
+      "health": "healthy"
+    },
+    {
+      "command": "docker compose exec -T api alembic check",
+      "exit_code": 0,
+      "result": "No new upgrade operations detected."
+    },
+    {
+      "command": "docker compose exec -T api alembic upgrade head",
+      "exit_code": 0,
+      "result": "No new migration applied."
+    }
+  ],
+  "preservation": "preservation-after-migration.json",
+  "postgres_tests": "phase1-postgres-attempt-1.log",
+  "scope": "No worker, database, frontend or ObraControl lifecycle operations in this gate."
+}

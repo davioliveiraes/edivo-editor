@@ -1,0 +1,40 @@
+{
+  "background_frequency_hz": 880,
+  "human_listening_performed": false,
+  "limitation": "Synthetic signals below full scale; arbitrary high-gain mixes can clip",
+  "measurement": "Mono PCM float32, 16kHz, 0.2..0.7s of final MP4, no gain normalization",
+  "peak": {
+    "background": {
+      "0.0": 0.0,
+      "0.5": 0.060870129615068436,
+      "1.0": 0.12228385359048843
+    },
+    "source": {
+      "0.0": 0.0,
+      "0.5": 0.06451811641454697,
+      "1.0": 0.1290191262960434,
+      "2.0": 0.2591440677642822
+    }
+  },
+  "rms": {
+    "background": {
+      "0.0": 0.0,
+      "0.5": 0.04190641658783884,
+      "1.0": 0.08387982660484716
+    },
+    "source": {
+      "0.0": 0.0,
+      "0.5": 0.044156474320660784,
+      "1.0": 0.08816704920372788,
+      "2.0": 0.1761340010000168
+    }
+  },
+  "source_frequency_hz": 1000,
+  "status": "passed",
+  "created_at": "2026-10-22T12:30:11.732551+00:00",
+  "test": "tests/test_render_compositor.py -k gains -q -s",
+  "distinct_tests": 1,
+  "synthetic_compositions": 7,
+  "prior_attempt": "phase2-gain-tests-attempt-1.log (six compositions before adding original volume 2.0)",
+  "log": "phase2-gain-tests-attempt-2.log"
+}

@@ -1,25 +1,25 @@
 # Edivo
 
-Editor de vídeo web **local-first**, com React/TypeScript, FastAPI/Python e
-FFmpeg. A **R04 — Textos, Áudio e Geração de Prévia** implementa textos, música
-MP3, EditSpec v2 e prévias MP4 curtas processadas pelo worker independente.
-Projetos, importações, player HTML5 privado, timeline e revisões não destrutivas
-das R01–R03 permanecem na aplicação. **A R04 está concluída tecnicamente**, com
-os critérios essenciais validados e as limitações registradas no relatório.
+Editor de vídeo web **local-first**, com React/TypeScript, FastAPI/Python,
+PostgreSQL e FFmpeg. Projetos, upload seguro MP4/MP3, player privado, timeline,
+textos, áudio, revisões imutáveis e prévias curtas das R01–R04 estão preservados.
 
-O produto evoluirá para um editor visual orientado principalmente por prompts.
-A R04 estabelece a composição local reutilizável; não inclui exportação final,
-campo de prompt ou integração de IA.
+**R05 — Renderização, Exportação e Histórico concluída: 22/22 critérios verificados.**
+Exportações completas de revisões salvas, progresso, cancelamento, reprodução,
+download privado e histórico foram validados com PostgreSQL, FFmpeg e Chromium
+reais, incluindo persistência após reinício e auditoria final de integridade.
 
-O contrato atual está na [especificação R04](docs/R04_EDIVO_ESPECIFICACAO_OPERACIONAL.md).
-Consulte o [aceite R04](docs/r04/acceptance.md), o [QA R04](docs/r04/qa-results.json)
-e a [compatibilidade R04](docs/r04/compatibility.md). O [aceite R03](docs/r03/acceptance.md),
-seu [QA](docs/r03/qa-results.json) e o [relatório R02](docs/r02/acceptance.md)
-e o [aceite R01](docs/r01/acceptance.md) permanecem como histórico.
-Os documentos originais de planejamento em `docs/` foram
-preservados. Consulte também
-[arquitetura](docs/architecture.md), [decisões](docs/adr/0001-r01-foundation.md),
-[roadmap](docs/roadmap.md) e [convenções para agentes](AGENTS.md).
+O contrato vigente é a [especificação R05](docs/R05_EDIVO_ESPECIFICACAO_OPERACIONAL.md),
+reconciliada com o checkout na [matriz](docs/r05/compatibility.md).
+Consulte o [aceite R05](docs/r05/acceptance.md) e os [resultados de QA](docs/r05/qa-results.json). Relatórios históricos
+[R04](docs/r04/acceptance.md), [R03](docs/r03/acceptance.md),
+[R02](docs/r02/acceptance.md) e [R01](docs/r01/acceptance.md) permanecem preservados.
+As contagens históricas de testes não representam uma nova execução R05.
+
+O produto evoluirá para edição orientada por prompts. IA, heditor, agentes e
+Higgsfield continuam fora desta entrega; **R06 não foi iniciada**.
+Veja [arquitetura](docs/architecture.md), [roadmap](docs/roadmap.md),
+[decisões](docs/adr/0001-r01-foundation.md) e [convenções](AGENTS.md).
 
 ## Requisitos
 
@@ -57,13 +57,13 @@ O serviço `migrate` deve terminar com código zero. Os serviços `api` e `worke
 aguardam banco saudável e migração concluída; o frontend aguarda a API saudável.
 Na primeira inicialização, aguarde os healthchecks antes de abrir a interface.
 
-| Serviço | Função | Acesso padrão no host |
-| --- | --- | --- |
-| `frontend` | React e servidor Vite de desenvolvimento | http://127.0.0.1:5173 |
-| `api` | FastAPI/Uvicorn | http://127.0.0.1:8000 |
-| `db` | PostgreSQL 16 | Nenhuma porta publicada |
-| `worker` | Diagnóstico, fila PostgreSQL e codificação de prévias curtas | Nenhuma porta publicada |
-| `migrate` | Alembic, execução única | Nenhuma porta publicada |
+| Serviço    | Função                                                 | Acesso padrão no host   |
+| ---------- | ------------------------------------------------------ | ----------------------- |
+| `frontend` | React e servidor Vite de desenvolvimento               | http://127.0.0.1:5173   |
+| `api`      | FastAPI/Uvicorn                                        | http://127.0.0.1:8000   |
+| `db`       | PostgreSQL 16                                          | Nenhuma porta publicada |
+| `worker`   | Diagnóstico, scheduler PostgreSQL de prévias e exports | Nenhuma porta publicada |
+| `migrate`  | Alembic, execução única                                | Nenhuma porta publicada |
 
 As portas externas usam `EDIVO_API_PORT` e `EDIVO_FRONTEND_PORT`. Para coexistir
 com o ObraControl, o `.env` local deste ambiente usa **8001** para a API e **5174**
@@ -110,33 +110,33 @@ e na montagem do DSN. Não codifique apenas `POSTGRES_PASSWORD`, pois isso mudar
 a senha do banco. Um DSN nativo configurado separadamente precisa de URL encoding
 quando suas credenciais contêm caracteres reservados.
 
-| Variável | Uso |
-| --- | --- |
-| `POSTGRES_USER`, `POSTGRES_DB`, `POSTGRES_PASSWORD` | Credenciais locais do banco |
-| `EDIVO_UID`, `EDIVO_GID` | Identidade do backend e permissões do bind mount |
-| `EDIVO_API_PORT`, `EDIVO_FRONTEND_PORT` | Portas externas, padrões 8000 e 5173; bind somente loopback |
-| `EDIVO_ENV`, `EDIVO_LOG_LEVEL` | Ambiente e nível de logging |
-| `EDIVO_DATABASE_URL` | URL `postgresql+psycopg://...` para SQLAlchemy/Alembic |
-| `EDIVO_DATABASE_CONNECT_TIMEOUT` | Timeout de conexão em segundos |
-| `EDIVO_STORAGE_ROOT` | Storage; no Compose é `/data/storage` |
-| `EDIVO_CORS_ORIGINS` | Lista JSON de origens locais permitidas |
-| `EDIVO_FFMPEG_BIN`, `EDIVO_FFPROBE_BIN` | Executáveis para diagnóstico |
-| `EDIVO_FFMPEG_TIMEOUT_SECONDS` | Timeout por subprocesso de inventário |
-| `EDIVO_CAPABILITIES_CACHE_SECONDS` | Prazo do cache de capacidades |
-| `API_PROXY_TARGET` | Destino do proxy Vite; não é segredo nem URL do browser |
+| Variável                                            | Uso                                                         |
+| --------------------------------------------------- | ----------------------------------------------------------- |
+| `POSTGRES_USER`, `POSTGRES_DB`, `POSTGRES_PASSWORD` | Credenciais locais do banco                                 |
+| `EDIVO_UID`, `EDIVO_GID`                            | Identidade do backend e permissões do bind mount            |
+| `EDIVO_API_PORT`, `EDIVO_FRONTEND_PORT`             | Portas externas, padrões 8000 e 5173; bind somente loopback |
+| `EDIVO_ENV`, `EDIVO_LOG_LEVEL`                      | Ambiente e nível de logging                                 |
+| `EDIVO_DATABASE_URL`                                | URL `postgresql+psycopg://...` para SQLAlchemy/Alembic      |
+| `EDIVO_DATABASE_CONNECT_TIMEOUT`                    | Timeout de conexão em segundos                              |
+| `EDIVO_STORAGE_ROOT`                                | Storage; no Compose é `/data/storage`                       |
+| `EDIVO_CORS_ORIGINS`                                | Lista JSON de origens locais permitidas                     |
+| `EDIVO_FFMPEG_BIN`, `EDIVO_FFPROBE_BIN`             | Executáveis para diagnóstico                                |
+| `EDIVO_FFMPEG_TIMEOUT_SECONDS`                      | Timeout por subprocesso de inventário                       |
+| `EDIVO_CAPABILITIES_CACHE_SECONDS`                  | Prazo do cache de capacidades                               |
+| `API_PROXY_TARGET`                                  | Destino do proxy Vite; não é segredo nem URL do browser     |
 
 Limites específicos da importação, configurados no `.env` e consumidos pela API:
 
-| Variável | Padrão | Uso |
-| --- | --- | --- |
-| `EDIVO_UPLOAD_MAX_BYTES` | `524288000` | Até 500 MiB de bytes reais por arquivo |
-| `EDIVO_UPLOAD_MULTIPART_OVERHEAD_BYTES` | `65536` | 64 KiB adicionais para o envelope multipart; o body inteiro é limitado durante a entrada |
-| `EDIVO_MEDIA_MAX_DURATION_SECONDS` | `600` | Duração máxima de 10 minutos |
-| `EDIVO_AUDIO_UPLOAD_MAX_BYTES` | `31457280` | Limite MP3 independente, 30 MiB; pode ser reduzido |
-| `EDIVO_AUDIO_MAX_DURATION_SECONDS` | `600` | Duração máxima MP3, até 10 minutos |
-| `EDIVO_FFPROBE_TIMEOUT_SECONDS` | `15` | Prazo de inspeção por subprocesso |
-| `EDIVO_FFPROBE_MAX_OUTPUT_BYTES` | `1048576` | Limite combinado de stdout/stderr, 1 MiB |
-| `EDIVO_STORAGE_MIN_FREE_BYTES` | `67108864` | Reserva mínima de disco livre, 64 MiB |
+| Variável                                | Padrão      | Uso                                                                                      |
+| --------------------------------------- | ----------- | ---------------------------------------------------------------------------------------- |
+| `EDIVO_UPLOAD_MAX_BYTES`                | `524288000` | Até 500 MiB de bytes reais por arquivo                                                   |
+| `EDIVO_UPLOAD_MULTIPART_OVERHEAD_BYTES` | `65536`     | 64 KiB adicionais para o envelope multipart; o body inteiro é limitado durante a entrada |
+| `EDIVO_MEDIA_MAX_DURATION_SECONDS`      | `600`       | Duração máxima de 10 minutos                                                             |
+| `EDIVO_AUDIO_UPLOAD_MAX_BYTES`          | `31457280`  | Limite MP3 independente, 30 MiB; pode ser reduzido                                       |
+| `EDIVO_AUDIO_MAX_DURATION_SECONDS`      | `600`       | Duração máxima MP3, até 10 minutos                                                       |
+| `EDIVO_FFPROBE_TIMEOUT_SECONDS`         | `15`        | Prazo de inspeção por subprocesso                                                        |
+| `EDIVO_FFPROBE_MAX_OUTPUT_BYTES`        | `1048576`   | Limite combinado de stdout/stderr, 1 MiB                                                 |
+| `EDIVO_STORAGE_MIN_FREE_BYTES`          | `67108864`  | Reserva mínima de disco livre, 64 MiB                                                    |
 
 O Compose repassa os limites de arquivo/duração à interface pelas variáveis
 públicas `VITE_UPLOAD_MAX_BYTES`, `VITE_MEDIA_MAX_DURATION_SECONDS`,
@@ -156,11 +156,14 @@ e os dados existentes. A **`0003_r03_edit_spec_revisions`** acrescenta somente
 revisões de EditSpec, índices, constraints e proteção contra alteração/exclusão
 das revisões. **`0004_r04_text_audio_previews`** acrescenta `audio_assets` e
 `preview_jobs` e amplia somente a constraint de schema para 1/2, sem regravar
-snapshots nem remover a trigger. Para aplicar/repetir e consultar a revisão:
+snapshots nem remover a trigger. **`0005_r05_render_exports`**, dependente da
+0004, cria somente `render_jobs`, com FKs, constraints e índices, preservando
+tabelas, snapshots e migrations anteriores. Para aplicar/repetir e consultar:
 
 ```bash
 docker compose run --rm migrate
 docker compose exec api alembic current
+docker compose exec api alembic check
 docker compose exec db sh -c 'psql -U "$POSTGRES_USER" -d "$POSTGRES_DB" -c "SELECT version_num FROM alembic_version"'
 ```
 
@@ -192,19 +195,19 @@ não negativo; o padrão é 20/0. Ambas as listagens usam `created_at DESC, id D
 e retornam `{ "items": [], "total": 0, "limit": 20, "offset": 0 }` para uma
 lista vazia.
 
-| Método | Endpoint | Sucesso |
-| --- | --- | --- |
-| `POST` | `/api/v1/projects` | `201`, projeto criado |
-| `GET` | `/api/v1/projects` | `200`, projetos ativos paginados |
-| `GET` | `/api/v1/projects/{project_id}` | `200`, detalhe de projeto ativo |
-| `PATCH` | `/api/v1/projects/{project_id}` | `200`, atualização parcial |
-| `DELETE` | `/api/v1/projects/{project_id}` | `204`, exclusão lógica sem corpo |
-| `POST` | `/api/v1/projects/{project_id}/media` | `201`, MP4 importado e metadados persistidos |
-| `GET` | `/api/v1/projects/{project_id}/media` | `200`, mídias paginadas |
-| `GET` | `/api/v1/projects/{project_id}/media/{media_id}` | `200`, metadados de mídia do projeto |
-| `POST` | `/api/v1/projects/{project_id}/audio` | `201`, MP3 validado e preservado |
-| `GET` | `/api/v1/projects/{project_id}/audio` | `200`, músicas paginadas |
-| `GET` | `/api/v1/projects/{project_id}/audio/{audio_id}` | `200`, metadados do MP3 associado |
+| Método   | Endpoint                                         | Sucesso                                      |
+| -------- | ------------------------------------------------ | -------------------------------------------- |
+| `POST`   | `/api/v1/projects`                               | `201`, projeto criado                        |
+| `GET`    | `/api/v1/projects`                               | `200`, projetos ativos paginados             |
+| `GET`    | `/api/v1/projects/{project_id}`                  | `200`, detalhe de projeto ativo              |
+| `PATCH`  | `/api/v1/projects/{project_id}`                  | `200`, atualização parcial                   |
+| `DELETE` | `/api/v1/projects/{project_id}`                  | `204`, exclusão lógica sem corpo             |
+| `POST`   | `/api/v1/projects/{project_id}/media`            | `201`, MP4 importado e metadados persistidos |
+| `GET`    | `/api/v1/projects/{project_id}/media`            | `200`, mídias paginadas                      |
+| `GET`    | `/api/v1/projects/{project_id}/media/{media_id}` | `200`, metadados de mídia do projeto         |
+| `POST`   | `/api/v1/projects/{project_id}/audio`            | `201`, MP3 validado e preservado             |
+| `GET`    | `/api/v1/projects/{project_id}/audio`            | `200`, músicas paginadas                     |
+| `GET`    | `/api/v1/projects/{project_id}/audio/{audio_id}` | `200`, metadados do MP3 associado            |
 
 `Project` tem UUID gerado no servidor, `name` obrigatório após trim com 1–120
 caracteres, `purpose` opcional de até 500 caracteres, `target_preset` opcional
@@ -242,16 +245,16 @@ curl -fsS http://127.0.0.1:8000/api/v1/projects/PROJECT_UUID/media
 Erros seguem o envelope R01 `{ "code": "...", "message": "...", "request_id": "..." }`,
 com mensagens sanitizadas. Swagger apresenta os contratos em `/docs`.
 
-| HTTP | Situações |
-| --- | --- |
-| `400` | Multipart malformado/incompleto, campos extras, mais de um arquivo, Content-Length inválido |
-| `404` | Projeto inexistente/excluído, mídia ausente ou pertencente a outro projeto; DELETE repetido; edição ainda não salva |
-| `409` | Revisão esperada desatualizada, limite de jobs ativos ou prévia ainda não pronta |
-| `413` | Body total ou arquivo real acima dos limites |
-| `415` | Extensão/container incompatível; MP3 com vídeo/capa |
-| `416` | Range de streaming inválido, múltiplo ou insatisfatível |
+| HTTP  | Situações                                                                                                                      |
+| ----- | ------------------------------------------------------------------------------------------------------------------------------ |
+| `400` | Multipart malformado/incompleto, campos extras, mais de um arquivo, Content-Length inválido                                    |
+| `404` | Projeto inexistente/excluído, mídia ausente ou pertencente a outro projeto; DELETE repetido; edição ainda não salva            |
+| `409` | Revisão esperada desatualizada, limite de jobs ativos ou prévia ainda não pronta                                               |
+| `413` | Body total ou arquivo real acima dos limites                                                                                   |
+| `415` | Extensão/container incompatível; MP3 com vídeo/capa                                                                            |
+| `416` | Range de streaming inválido, múltiplo ou insatisfatível                                                                        |
 | `422` | Dados/UUID/paginação/janela inválidos; mídia vazia, corrompida, sem stream útil, duração excessiva ou metadados inconsistentes |
-| `503` | Banco/storage indisponíveis, FFprobe ausente, timeout de análise ou artefato de prévia indisponível |
+| `503` | Banco/storage indisponíveis, FFprobe ausente, timeout de análise ou artefato de prévia indisponível                            |
 
 A exclusão de projeto exige confirmação na interface e preenche `deleted_at`.
 Oculta o projeto e bloqueia novas importações/consultas de mídia por ele, mas
@@ -284,11 +287,11 @@ salvamento e revisão salva; confirma descarte ao sair/trocar fonte. Em conflito
 recarregue conscientemente a revisão atual antes de tentar salvar novamente.
 Não há sobrescrita automática, autosave ou endpoint de restauração/histórico.
 
-| Método | Endpoint | Resultado |
-| --- | --- | --- |
-| `GET` / `HEAD` | `/api/v1/projects/{project_id}/media/{media_id}/stream` | `200` completo; `206` Range; HEAD sem corpo |
-| `GET` | `/api/v1/projects/{project_id}/edit-spec` | `200` revisão atual; `404 edit_spec_not_found` antes do primeiro save |
-| `PUT` | `/api/v1/projects/{project_id}/edit-spec` | `201` primeira revisão; `200` atualização/no-op; `409 edit_spec_conflict` |
+| Método         | Endpoint                                                | Resultado                                                                 |
+| -------------- | ------------------------------------------------------- | ------------------------------------------------------------------------- |
+| `GET` / `HEAD` | `/api/v1/projects/{project_id}/media/{media_id}/stream` | `200` completo; `206` Range; HEAD sem corpo                               |
+| `GET`          | `/api/v1/projects/{project_id}/edit-spec`               | `200` revisão atual; `404 edit_spec_not_found` antes do primeiro save     |
+| `PUT`          | `/api/v1/projects/{project_id}/edit-spec`               | `201` primeira revisão; `200` atualização/no-op; `409 edit_spec_conflict` |
 
 O stream aceita **um** Range fechado (`bytes=0-1023`), aberto (`bytes=1024-`)
 ou suffix (`bytes=-1024`). Range inválido/múltiplo/insatisfatível retorna `416`,
@@ -345,7 +348,7 @@ são apresentados sem transcoding automático. Rotação/display matrix e pixel
 aspect ratio são interpretados pelo navegador; a resolução codificada da
 biblioteca pode diferir da dimensão visual. VFR, keyframes e agendamento do
 navegador limitam seek e pausa: **não há promessa de precisão por frame** nem
-equivalência com uma exportação futura.
+equivalência por frame com os arquivos codificados.
 
 ### Textos, música e EditSpec v2
 
@@ -395,24 +398,27 @@ O resultado mostra a revisão e janela efetivamente usadas, mesmo após novas
 alterações. O polling de aproximadamente dois segundos só acompanha jobs ativos;
 a referência persistida localmente é revalidada no backend após recarregar.
 
-| Método e rota relativa a `/api/v1/projects/{project_id}` | Resultado |
-| --- | --- |
-| `POST /previews` | 202 novo/equivalente pendente; 200 artefato equivalente íntegro |
-| `GET /previews/{preview_id}` | Estado, estágio real, revisão, janela, tentativas e URLs relativas |
-| `GET /previews/{preview_id}/file` | MP4 privado, 200/206/416 e leitura em streaming |
-| `HEAD /previews/{preview_id}/file` | Mesmos cabeçalhos, sem corpo |
+| Método e rota relativa a `/api/v1/projects/{project_id}` | Resultado                                                          |
+| -------------------------------------------------------- | ------------------------------------------------------------------ |
+| `POST /previews`                                         | 202 novo/equivalente pendente; 200 artefato equivalente íntegro    |
+| `GET /previews/{preview_id}`                             | Estado, estágio real, revisão, janela, tentativas e URLs relativas |
+| `GET /previews/{preview_id}/file`                        | MP4 privado, 200/206/416 e leitura em streaming                    |
+| `HEAD /previews/{preview_id}/file`                       | Mesmos cabeçalhos, sem corpo                                       |
 
 ```json
-{"edit_spec_revision_id":"UUID_DA_REVISAO_SALVA","preview_start_ms":5000,"duration_ms":4000}
+{
+  "edit_spec_revision_id": "UUID_DA_REVISAO_SALVA",
+  "preview_start_ms": 5000,
+  "duration_ms": 4000
+}
 ```
 
 Há até dois jobs ativos por projeto e um processamento por worker. O terceiro
 retorna `409 preview_active_limit`; arquivo ainda pendente/falho retorna
-`409 preview_not_ready`; projeto/revisão/job de outro projeto ou excluído retorna
-404. Falhas de dependência durante a consulta API geram 503 sanitizado. Uma
+`409 preview_not_ready`; projeto/revisão/job de outro projeto ou excluído retorna 404. Falhas de dependência durante a consulta API geram 503 sanitizado. Uma
 falha do worker aparece no GET do job com HTTP 200, `status=failed` e código
-seguro. `error_code` não contém stderr nem caminhos. Não há endpoint de download
-final nem storage estático.
+seguro. `error_code` não contém stderr nem caminhos. O arquivo desta rota é uma prévia curta; exports finais usam `/renders`.
+Não existe storage estático.
 
 A chave de idempotência inclui perfil, revisão e janela efetiva. Um artefato
 concluído só é reutilizado após tamanho, modo 0400 e SHA-256 conferidos. GET de
@@ -452,6 +458,168 @@ Os limites completos estão em `.env.example`. Defaults: timeout global do job
 120 s e saída combinada 256 KiB. O container worker limita 2 CPUs, 1536 MiB sem
 swap adicional e 128 PIDs, com Tini e sem privilégios extras. Heartbeat deve ser
 menor que metade do lease. SIGTERM/SIGINT encerram o grupo de subprocessos.
+
+## Exportação completa R05
+
+Exports usam exclusivamente o UUID de uma revisão **já salva**, v1 ou v2.
+Não recebem um draft nem salvam alterações implicitamente. O snapshot v1 recebe
+texto vazio/áudio neutro somente em memória. Novos saves não alteram um render
+em execução ou seu resultado. No editor existente, o painel **Exportar vídeo**
+permite selecionar perfil, acompanhar/cancelar o trabalho, reproduzir/baixar o
+resultado e consultar o histórico. O QA real em Chromium validou reprodução,
+seek, download, cancelamento e recuperação dos mesmos resultados após reinício.
+
+Salve a edição explicitamente, escolha **Padrão (standard)** ou **Alta qualidade
+(high)** e use **Gerar vídeo**. O painel mostra revisão, proporção e resolução
+finais. Alterações não salvas bloqueiam a solicitação, sem alterar o acesso aos
+resultados anteriores. A composição renderizada é sempre o snapshot indicado.
+
+O acompanhamento consulta o job aproximadamente a cada dois segundos enquanto
+ativo, interrompendo após terminar ou sair da tela. Percentual aparece somente
+durante encoding quando informado pelo servidor. Validação/publicação são
+estágios sem percentual. **Cancelar renderização** abre confirmação e registra
+intenção; a interrupção depende do worker e não é instantânea.
+
+O histórico usa páginas de 20 itens e preserva exports falhos/cancelados, além
+dos concluídos. **Ver exportação** seleciona um resultado sem interromper o
+acompanhamento de outro job ativo. Revisões anteriores são identificadas; uma
+nova tentativa exige ação explícita. **Baixar MP4** aparece somente para arquivo
+disponível; o player nativo informa falhas de rede/codec sem invalidar um download
+íntegro. Players de fonte, prévia e resultado se pausam mutuamente.
+
+IDs de acompanhamento, resultado selecionado e identidade de POST incerto são
+lembrados localmente por projeto e revalidados pela API. Falha de conexão não
+transforma o job em failed nem repete o POST automaticamente: **Consultar
+solicitação novamente** reapresenta a mesma chave quando a resposta anterior
+ficou incerta. O histórico PostgreSQL continua sendo a fonte de verdade.
+
+| Método e rota relativa a `/api/v1/projects/{project_id}` | Resultado                                                                    |
+| -------------------------------------------------------- | ---------------------------------------------------------------------------- |
+| `POST /renders`                                          | 202 ativo; 200 completed íntegro ou replay terminal conhecido                |
+| `GET /renders`                                           | 200 histórico `{items,total,limit,offset}`                                   |
+| `GET /renders/{render_id}`                               | 200 estado/estágio, revisão, progresso e metadados públicos                  |
+| `POST /renders/{render_id}/cancel`                       | 200 queued cancelado/já canceled; 202 intenção running; 409 completed/failed |
+| `GET /renders/{render_id}/file`                          | 200/206 MP4 completed íntegro; 416 Range inválido                            |
+| `HEAD /renders/{render_id}/file`                         | Mesmos cabeçalhos, sem corpo                                                 |
+
+```json
+{
+  "edit_spec_revision_id": "UUID_DA_REVISAO_SALVA",
+  "profile": "standard",
+  "idempotency_key": "UUID_DA_SOLICITACAO"
+}
+```
+
+A entrada chama o vínculo `edit_spec_revision_id`; a resposta usa `revision_id`
+e `revision_number`, coerentes com prévias. Inclui perfil/preset, status/stage,
+progresso nullable, tentativas, datas UTC, erro seguro e metadados reais.
+`file_url` é relativa e aparece somente quando o artefato está disponível.
+Nenhuma storage key, lease/token, path físico, comando ou credencial é público.
+Erros mantêm `{code,message,request_id}` e `X-Request-ID`.
+
+O histórico aceita `limit` 1–100 (padrão 20), `offset` não negativo e filtro
+opcional `status`; ordena `created_at DESC,id DESC`. Inclui completed, failed e
+canceled, sem apagar versões anteriores. Verifica presença/modo/tamanho para
+não reler até 2 GiB de hash por item. Consulta individual, reuso e download
+verificam SHA-256 completo. Um completed ausente/corrompido mantém seu estado
+histórico, mas fica indisponível; download e replay da mesma chave retornam
+`503 render_artifact_unavailable`. Um POST sem chave não reutiliza esse arquivo
+e pode criar um novo job, respeitando o limite ativo. A consulta individual informa
+`artifact_available=false` e código seguro, sem mudar o banco.
+
+A chave idempotente opcional é UUID, com identidade permanente por projeto.
+Mesma chave/revisão/perfil devolve o mesmo job; payload diferente gera
+`409 idempotency_conflict`, motor incompatível `409 render_engine_conflict`.
+Replay de failed/canceled retorna 200 com o mesmo terminal: nova tentativa
+explícita requer **nova chave**. Sem chave, pode reutilizar equivalente ativo
+ou completed íntegro. Fingerprint inclui projeto, revisão, perfil e motor
+`r05-1`; nova chave explícita não ganha silenciosamente a identidade de outro
+job. Há somente um render queued/running por projeto; o excedente recebe
+`409 render_active_limit`. Falha/cancelamento não disponibilizam arquivo parcial.
+
+Há também um teto global de 20 renders queued/running, configurável por
+`EDIVO_RENDER_MAX_ACTIVE_TOTAL` (1–1000). A admissão de um job novo é serializada
+por advisory lock transacional PostgreSQL; no teto, responde
+`409 render_queue_full`. Replay e reuso idempotente continuam permitidos.
+Jobs de projetos excluídos ainda ativos contam até a recuperação do worker
+encerrá-los; não são apagados. Assim a fila permanece limitada com o worker parado.
+
+| Preset salvo | Resolução final |
+| ------------ | --------------- |
+| 9:16         | 1080×1920       |
+| 1:1          | 1080×1080       |
+| 4:5          | 1080×1350       |
+| 16:9         | 1920×1080       |
+
+Ambos os perfis produzem H.264/libx264, yuv420p, 30 fps, SAR 1:1 e MP4 faststart;
+AAC 48 kHz estéreo quando houver áudio. `standard`: veryfast/CRF23/AAC160k;
+`high`: medium/CRF20/AAC192k. Não há promessa de tamanho/bitrate fixo. O mesmo
+compositor continua produzindo prévias reduzidas 24 fps/CRF28/AAC128k, até 8 s.
+Export final compõe **todo o trim diretamente**, sem concatenar prévias.
+
+Trim e textos são absolutos da fonte; música/fades seguem o relógio completo
+do trim. Cover/contain, focal, autorrotação, SAR, VFR e textos usam o núcleo R04.
+A tolerância final é um frame a 30 fps +1 ms, aproximadamente 34,333 ms; não há
+promessa frame-perfect. Mix preserva `amix normalize=0`; ganhos altos podem
+saturar fontes arbitrárias. Sinais sintéticos foram medidos sem clipping,
+mas não houve escuta humana nem normalização/limiter automático.
+
+Um scheduler PostgreSQL FIFO escolhe PreviewJob ou RenderJob elegível, sem
+preempção, com um FFmpeg por worker e um worker Compose por padrão. Claim curto
+usa SKIP LOCKED e é confirmado antes de processar. Lease de 30 s, heartbeat de
+5 s, token de fencing, relógio PostgreSQL fresco e até duas tentativas protegem
+a posse. Publicação e cancelamento respeitam Project→Job. Progresso real vem de
+`-progress pipe:1`, persistido no máximo aproximadamente uma vez por segundo;
+`out_time_us` e o alias `out_time_ms` são microssegundos no FFmpeg 5.1.9 testado.
+Encoding chega a no máximo 99%; validar/publicar é indeterminado. Somente após
+FFprobe, decode integral, hash, promoção e commit confirmado aparece completed/100%.
+
+Cancelamento da API é intenção durável, nunca um sinal de processo. Queued é
+cancelado atomicamente; running é observado pelo worker em até seu intervalo
+configurado, que encerra seu próprio grupo SIGTERM/grace/SIGKILL e só então
+confirma canceled. Se a intenção foi persistida primeiro, bloqueia completed;
+se completed já venceu, cancelamento retorna 409. SIGTERM/SIGINT do worker
+permitem retry finito; crash exige recuperação de lease, sem publicar tentativa
+antiga. Commit incerto preserva artefato para reconciliação conservadora.
+
+A saída validada fica em `renders/{project_uuid}/{render_uuid}/final.mp4`, 0400,
+com promoção exclusiva e diretórios privados. Download reutiliza descritor
+fixado/NOFOLLOW, streaming limitado, HEAD e Range fechado/aberto/suffix.
+Usa `video/mp4`, `private, no-store`, `nosniff` e `Content-Disposition: attachment`;
+filename controlado como `edivo-r8-9x16-standard.mp4`, sem nomes enviados pelo
+usuário. Projeto excluído ou associação incorreta recebe 404; não existe
+StaticFiles de storage. Não há remoção automática de exports concluídos.
+
+Configurações R05 em `.env.example` (prefixo `EDIVO_`):
+
+| Variável                                                       | Padrão                                     |
+| -------------------------------------------------------------- | ------------------------------------------ |
+| `RENDER_TIMEOUT_SECONDS`, `RENDER_CPU_SECONDS`                 | 3600 s, teto configurável; não SLA         |
+| `RENDER_MAX_OUTPUT_BYTES`                                      | 2147483648, até 2 GiB                      |
+| `RENDER_MAX_ACTIVE_PER_PROJECT`, `RENDER_WORKER_CONCURRENCY`   | 1 / 1                                      |
+| `RENDER_MAX_ACTIVE_TOTAL`                                      | 20 (intervalo permitido: 1–1000)           |
+| `RENDER_POLL_SECONDS`, `RENDER_MAX_ATTEMPTS`                   | 2 s / 2                                    |
+| `RENDER_LEASE_SECONDS`, `RENDER_HEARTBEAT_SECONDS`             | 30 s / 5 s                                 |
+| `RENDER_MEMORY_BYTES`, `RENDER_THREADS`                        | 1073741824 (AS por processo) / 2           |
+| `RENDER_PROCESS_OUTPUT_BYTES`                                  | 262144, saída limitada e stderr            |
+| `RENDER_PROGRESS_OUTPUT_BYTES`                                 | 16777216, total consumido incrementalmente |
+| `RENDER_CANCEL_POLL_SECONDS`, `RENDER_TERMINATE_GRACE_SECONDS` | 0,5 s / 2 s                                |
+
+Settings rejeitam valores não finitos e limites inseguros; heartbeat e consulta
+de cancelamento devem ser menores que metade do lease. O worker reserva o teto
+de saída mais a margem livre antes de executar; disco insuficiente falha com
+erro sanitizado e nunca apaga arquivos de usuários. O limite do upload MP4
+(500 MiB) e o da prévia (64 MiB) permanecem independentes. O cgroup Compose inclui
+Python e FFmpeg em 1536 MiB/2 CPUs/128 PIDs. Não aumente concorrência sem medir
+memória/CPU e sem nova decisão; não há fila distribuída.
+
+O supervisor fixa `MALLOC_ARENA_MAX=2` apenas nos subprocessos de render para
+limitar reservas do alocador glibc dentro do teto de AS de 1 GiB; prévias mantêm
+seu ambiente anterior. O ajuste não aumenta recursos nem altera os perfis.
+O [diagnóstico high/4:5](docs/r05/compatibility.md#reserva-de-memória-do-alocador--diagnóstico-r053)
+registra a falha original e a repetição isolada de 12 s aprovada. A retomada
+[HTTP pelo worker](docs/r05/evidence/render-http-finish.json) passou com
+cancelamento durante encoding e falha anterior preservada no histórico.
 
 ## Política de upload e integridade
 
@@ -510,7 +678,7 @@ o relatório R02 para a execução e o resultado observado dessa auditoria.
 
 ## Desenvolvimento e qualidade
 
-Os containers incluem dependências de desenvolvimento e as suítes R01–R04:
+Os containers incluem dependências de desenvolvimento e as suítes R01–R05:
 
 ```bash
 docker compose exec api pytest
@@ -533,6 +701,28 @@ registra 692 testes backend e oito PostgreSQL opt-in aprovados separadamente
 (700 casos distintos), além de 149 testes frontend e lint/build aprovados.
 O harness bruto parou no Vitest; duas reexecuções passaram sem mudar fontes.
 A causa inicial permanece desconhecida e não foi apagada das evidências.
+
+Na R05, a [regressão final nos containers](docs/r05/evidence/full-compose-final-summary.json)
+passou com **1110 testes backend padrão**, **30 PostgreSQL opt-in** em execução
+separada e **313 testes frontend**, além de Ruff, ESLint, Prettier e build
+TypeScript/Vite. A [união por identidade JUnit](docs/r05/evidence/backend-distinct-final-counts.json)
+confirma **1140 casos backend distintos**, sem somar reexecuções. Os **nove testes
+Python host do harness** ficam separados (1149 casos Python ao todo). Os **29
+checks operacionais Compose** também são contabilizados separadamente; incluem
+startup, readiness, portas, persistência do volume, FFmpeg e sinais.
+
+O [fluxo Chromium](docs/r05/evidence/browser-attempt-1/r05-export-1792717682595939151.json)
+passou em 15 verificações e a [reabertura na imagem final](docs/r05/evidence/browser-attempt-3/r05-verify-1792720452716863901.json)
+passou em cinco, após reinício. A [verificação final integrada](docs/r05/evidence/post-admission-verification-summary.json)
+também confirmou histórico/download de renders, prévia R04 e preservação.
+Esses checks HTTP/FFmpeg/navegador não são adicionados aos totais pytest/Vitest.
+
+A [auditoria final somente leitura](docs/r05/evidence/storage-admission-final.json)
+conferiu 197 MP4, dez MP3, oito artefatos de prévia e 14 renders finais, sem
+temporários, divergências ou arquivos desconhecidos. A [comparação com o baseline](docs/r05/evidence/preservation-admission-final.json)
+preservou os 165 documentos/locks históricos, 94 artefatos anteriores, registros,
+revisões/trigger, Git e os cinco containers ObraControl. Os [hashes de runtime](docs/r05/evidence/final-runtime-source-hashes.json)
+confirmam API, worker e frontend correspondentes às fontes validadas.
 
 Para repetir os testes PostgreSQL opt-in, aguarde a fila ficar vazia e execute
 somente sobre o banco local Edivo de desenvolvimento. O worker é retomado mesmo
@@ -604,67 +794,99 @@ usuário e não é uma funcionalidade de renderização do produto.
 
 ## QA operacional
 
-```bash
-python3 scripts/acceptance-compose.py
-python3 scripts/acceptance-r02.py
-python3 scripts/acceptance-upload-limits.py
-python3 scripts/acceptance-r03.py
-python3 scripts/acceptance-editspec.py --output docs/r04/evidence/r03-edit-spec-regression.json
-python3 scripts/generate-r04-fixtures.py
-python3 scripts/acceptance-r04-mp3-security.py
-python3 scripts/acceptance-r04-process-control.py
-python3 scripts/acceptance-r04-previews.py --restart
-docker compose exec -T api python - < scripts/audit-storage-r04.py
-```
-
-A matriz FFmpeg roda separadamente, com código/fixtures em leitura e diretório
-novo para evidências (não reutilize um diretório histórico):
+Execute os cenários integrados em uma janela sem outras validações ou uploads.
+O aceite Compose pode interromper temporariamente **somente serviços Edivo**.
+Confirme filas ociosas antes de parar o worker ou reiniciar a stack. Nunca
+interrompa ObraControl, remova volumes ou use `down -v`.
 
 ```bash
-docker compose run --rm --no-deps -T \
-  -v "$PWD/backend:/validation:ro" \
-  -v "$PWD/scripts/acceptance-r04-ffmpeg.py:/qa/acceptance-r04-ffmpeg.py:ro" \
-  -v /tmp/edivo-r04/fixtures:/fixtures:ro \
-  -v "$PWD/docs/r04/evidence:/evidence" \
-  -e PYTHONPATH=/validation -e PYTHONDONTWRITEBYTECODE=1 -w /validation \
-  api python /qa/acceptance-r04-ffmpeg.py --fixtures /fixtures \
-  --output /evidence/ffmpeg-matrix-local/report.json
+# Diretório novo, diretamente em docs/r05/evidence: retém stdout/stderr completos.
+python3 scripts/acceptance-compose.py --logs-dir docs/r05/evidence/compose-run-01
+# Auditorias somente leitura; escolha nomes de evidência novos em cada execução.
+python3 scripts/r05-preservation.py --output docs/r05/evidence/preservation-run-01.json
+docker compose exec -T api python - < scripts/audit-storage-r05.py
 ```
 
-O script de regressão valida a stack e executa cenários operacionais, inclusive
-interrupção temporária do banco e reinício do worker. Execute quando não houver outra
-validação usando os mesmos serviços. Consulte seu resultado e o relatório de
-aceite; testes de UI com mocks não substituem a comunicação real pelo proxy.
+O primeiro comando executa build, startup e suites, a menos que seja usado
+`--skip-build`. Logs negativos, inclusive qualquer falha do Vitest, devem ser
+mantidos com comando e contexto; uma reexecução aprovada não apaga a falha.
+A ocorrência intermitente R04 permanece documentada em seu relatório histórico.
+O diretório de logs também retém o JUnit padrão. Para a contagem final,
+`scripts/r05-test-counts.py` recebe esse XML, os relatórios PostgreSQL opt-in e,
+se desejado, o XML dos nove testes host do harness do navegador. A união
+`backend_distinct_passed` inclui apenas aplicação/PG, sem somar reruns;
+`qa_harness_distinct_passed` fica separado e `python_distinct_passed` representa
+a união Python total. Checks HTTP, FFmpeg e navegador não entram nesses totais.
 
-O QA de navegador R04 usa Chromium do container oficial Playwright, separado
-das dependências do produto. Com os serviços Edivo saudáveis:
+Testes PostgreSQL são opt-in e usam projetos sintéticos novos. Primeiro confirme
+que não há jobs ativos de usuários. O alias do DSN é copiado apenas dentro do
+container; não o imprima nem coloque credenciais em arquivos de evidência:
 
 ```bash
-npm install --prefix /tmp/edivo-browser playwright@1.58.2 --no-audit --no-fund
-docker pull mcr.microsoft.com/playwright:v1.58.2-noble
-python3 scripts/generate-r04-fixtures.py
-python3 scripts/browser-r04.py --stage composition
-# Após composição, a referência sintética pode ser reutilizada por --project-id.
-python3 scripts/browser-r04.py --stage preview
-# Após reiniciar somente os serviços Edivo quando a fila estiver vazia:
-python3 scripts/browser-r04.py --stage verify
+(
+  docker compose stop worker || exit
+  trap 'docker compose start worker' EXIT
+  docker compose exec -T api sh -c \
+    'EDIVO_QA_DATABASE_URL="$EDIVO_DATABASE_URL" EDIVO_QA_QUEUE_POSTGRES=1 EDIVO_QA_RENDER_POSTGRES=1 EDIVO_QA_WORKER_POSTGRES=1 pytest -q tests/test_preview_queue_postgres.py tests/test_render_postgres.py tests/test_worker_scheduler_postgres.py tests/test_render_publication_postgres.py'
+)
 ```
 
-As amostras de aproximadamente doze segundos são geradas por FFmpeg no
-runtime da API: H.264/AAC horizontal, vertical sem áudio, quadrada, VFR, SAR,
-rotação e codec MPEG-4 Part 2 para testar incompatibilidade real do navegador.
-Arquivos ficam em `/tmp`; não use mídia pessoal e não versione MP4 gerado.
-O harness conserva seed entre etapas, registra respostas Range e eventos
-nativos de mídia e copia JSON/capturas para `docs/r04/evidence/`. Seus containers
-auxiliares não montam o socket Docker ou diretórios pessoais. Playwright é
-ferramenta de QA externa, sem mudança em `frontend/package-lock.json`.
-`acceptance-r02.py` exercita HTTP, integridade e persistência, reiniciando somente
-serviços Edivo; `acceptance-upload-limits.py` usa um processo isolado com limites
-menores e PostgreSQL/FFprobe reais. Eles criam projetos sintéticos, excluídos
-logicamente ao terminar, e preservam os originais de QA. A auditoria apenas lê
-registros/arquivos e confere hashes; execute sem uploads simultâneos. Exit 0
-significa consistência, 1 exige revisão e 2 indica auditoria indisponível.
-Nenhum desses comandos remove volumes ou arquivos preexistentes.
+A prova HTTP R05 é dividida em etapas. O operador coordena o ciclo do worker;
+o script não inicia/para containers, não acessa PostgreSQL diretamente e não
+modifica arquivos canônicos. Ela importa MP4/MP3 sintéticos, salva v1/v2, renderiza
+12 s, acompanha progresso, cancela um render em execução, baixa os bytes e
+verifica Range/SHA-256/histórico. As fixtures da matriz ficam em
+`/tmp/edivo-r05/fixtures`; novos conjuntos devem usar diretórios novos.
+
+```bash
+python3 scripts/acceptance-r05-renders.py --help
+# Worker Edivo parado e fila previamente ociosa:
+python3 scripts/acceptance-r05-renders.py --stage queued
+# Depois de iniciar somente o worker Edivo:
+python3 scripts/acceptance-r05-renders.py --stage render
+# Retomar somente cancelamento/histórico após os dois exports já concluídos:
+python3 scripts/acceptance-r05-renders.py --stage finish
+# Depois de reiniciar serviços Edivo com filas ociosas:
+python3 scripts/acceptance-r05-renders.py --stage verify
+```
+
+`--api` permite outra porta loopback; `--work`, `--fixtures`, `--output` e
+`--timeout` estão documentados no help. Seed privado é preservado entre etapas.
+Relatórios são exclusivos: repetição exige `--output` novo; um novo cenário
+completo exige `--work` novo. Não apague um resultado negativo para repetir.
+
+`scripts/acceptance-r05-db-outage.py` passou em [37 verificações reais](docs/r05/evidence/db-outage-attempt-1/report.json):
+queda do PostgreSQL durante encoding, health 200/ready 503, fencing/encerramento
+sem publicar parcial, restauração do mesmo banco e retry com novo token.
+O resultado de 12 s passou por FFprobe, decode e SHA; o original manteve SHA,
+0400 e mtime. O roteiro exige worker principal previamente parado e filas vazias.
+Cria projeto/one-offs sintéticos próprios, interrompe/restaura somente o serviço
+**db Edivo** e tenta restaurar o banco em `finally`, inclusive em falha. Execute-o
+somente em janela coordenada, sem outras validações ou uploads.
+
+O roteiro Chromium `scripts/browser-r05.py` usa um projeto sintético próprio,
+duas exportações (concluída/cancelada), download real, temas, teclado e mobile
+emulado 375/390 px. Os estágios `export` e `verify` retêm evidências em diretórios
+novos; o segundo consulta os mesmos dados após reinício seguro do Edivo. Sua
+execução passou nas duas etapas. O primeiro fluxo gerou/reproduziu/baixou um
+MP4 final de 12 s/1080×1920, com Range e SHA exatos, e cancelou outro render
+durante encoding; o segundo recuperou revisão, histórico e arquivo após reinício
+na imagem final. Capturas desktop/mobile e temas constam nos respectivos diretórios.
+
+A matriz independente `scripts/acceptance-r05-ffmpeg.py --help` exige runtime
+backend com FFmpeg/fontes locais, `--fixtures`, `--artifacts` e `--output` novos.
+Não usa banco, rede ou storage da aplicação. O registro de execução está no
+[resumo do compositor](docs/r05/evidence/phase2-final-summary.json), separado
+dos testes HTTP e do navegador. Roteiros R01–R04 podem ter paths históricos
+fixos: não execute seus defaults para produzir evidências R05 sobre arquivos
+antigos. Consulte cada help e direcione resultados novos quando suportado.
+
+O QA R05 usou **Chromium 145.0.7632.6 headless**, teclado, temas claro/escuro e
+mobile emulado 375/390 px. Firefox/WebKit, dispositivos físicos e escuta humana
+não foram testados. QA de áudio sintético mede RMS/peak e sincronismo; métricas
+não comprovam inteligibilidade subjetiva de voz. Falhas iniciais de QA, de lease
+experimental e de alocação high/4:5 continuam registradas com suas correções;
+as execuções aprovadas não apagaram as evidências negativas.
 
 ## Problemas comuns no Ubuntu/WSL2
 
@@ -673,9 +895,9 @@ Nenhum desses comandos remove volumes ou arquivos preexistentes.
   `docker info` e `docker compose version` no terminal WSL.
 - **Acesso negado ao socket Docker:** confira a integração/permissões da
   distribuição. Não use `chmod 666` no socket nem monte esse socket no app.
-- **Portas ocupadas:** identifique o processo com `ss -ltn`; pare o processo
-  conflitante de forma controlada ou configure `EDIVO_API_PORT` e
-  `EDIVO_FRONTEND_PORT` livres, mantendo loopback e ajustando CORS. As portas
+- **Portas ocupadas:** identifique o processo com `ss -ltn` e configure
+  `EDIVO_API_PORT` e `EDIVO_FRONTEND_PORT` livres, mantendo loopback e ajustando
+  CORS. Não pare nem altere ObraControl para liberar portas. As portas
   internas e `API_PROXY_TARGET=http://api:8000` permanecem iguais.
 - **Storage indisponível:** execute o preparo com seu usuário e confira
   proprietário/UID/GID do diretório. Não aplique `chmod 777` indiscriminadamente.
@@ -710,17 +932,17 @@ Nenhum desses comandos remove volumes ou arquivos preexistentes.
 
 ## Limites atuais e próxima etapa
 
-Esta implementação inclui projetos, upload MP4/MP3, metadados, streaming, player,
-timeline não destrutiva, presets e EditSpec v1/v2 com textos e controles de áudio.
-Geração local de prévias curtas foi validada em integração real e Chromium,
-conforme o [aceite R04](docs/r04/acceptance.md).
-Não possui exportação final, render completo, IA, heditor, Higgsfield,
-autenticação ou recursos SaaS. Não há monitoramento HTTP
-do worker. O servidor Vite e o Compose são destinados ao desenvolvimento local.
+R01–R04 permanecem funcionais. A R05 acrescentou exportação completa, worker,
+interface e histórico; os gates R05.0–R05.5 e os 22 critérios passaram. A base
+está tecnicamente pronta para R06, com limitações de navegador, precisão
+temporal, mix de ganhos altos e orçamento local documentadas. O Compose/Vite
+destinam-se ao desenvolvimento local, sem autenticação nem exposição pública.
 
-A próxima etapa prevista após o aceite R04 é **R05**, que exige
-nova autorização explícita e não foi iniciada. Nenhuma operação de
-gerenciamento de Git é executada pelos scripts do projeto.
+R06 exige nova autorização e não foi iniciada. IA, heditor, agentes, prompts,
+Higgsfield, multitrilha, transições, 4K e formatos/codecs extras ficam fora da
+R05. Git é gerenciado manualmente pelo usuário; scripts não fazem commits,
+troca de branches ou publicação. Originais, prévias, revisões e exports são
+preservados; não existe retenção destrutiva automática.
 
 Referências de compatibilidade: [Vite](https://vite.dev/guide/),
 [ordem de startup do Compose](https://docs.docker.com/compose/how-tos/startup-order/)

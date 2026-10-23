@@ -1,0 +1,7 @@
+{"argv": ["docker", "compose", "ps", "--all", "--quiet", "worker"], "exit_code": 0, "log_sanitization": []}
+{"argv": ["docker", "inspect", "--format", "{{json .Id}} {{json .Name}} {{json .State.Running}} {{json .Config.Labels}}", "343f33b197c1b071e019b152ad5e867ae663ee89b87c525050d5dc96538cfb74"], "exit_code": 0, "log_sanitization": []}
+{"argv": ["docker", "compose", "exec", "-T", "api", "python", "-c", "<qa-source-sha256:7b280c85a62d3d2d72f0fb0262811e6b323e7ea96bfb33fad36050c64ef5d595>", "active"], "exit_code": 0, "log_sanitization": []}
+{"argv": ["docker", "compose", "exec", "-T", "api", "python", "-c", "<qa-source-sha256:2f8cb20e9060af688e5fd83c068b3dfa69cf6afb6b4175ee41c4053e84afcc46>"], "exit_code": 0, "log_sanitization": []}
+{"argv": ["docker", "compose", "exec", "-T", "api", "python", "-c", "<qa-source-sha256:7b280c85a62d3d2d72f0fb0262811e6b323e7ea96bfb33fad36050c64ef5d595>", "snapshot", "a30c8614-29df-47a3-9fd2-15c0fee19054"], "exit_code": 0, "log_sanitization": []}
+{"argv": ["docker", "inspect", "--format", "{{json .Id}} {{json .Name}} {{json .State.Running}} {{json .Config.Labels}}", "edivo-r05-control-97e18ce4c030-sigterm-2d236a15"], "exit_code": 1, "log_sanitization": []}
+{"argv": ["docker", "inspect", "--format", "{{json .Id}} {{json .Name}} {{json .State.Running}} {{json .Config.Labels}}", "edivo-r05-control-97e18ce4c030-sigterm-2d236a15"], "exit_code": 1, "log_sanitization": []}

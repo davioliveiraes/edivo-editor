@@ -50,6 +50,7 @@ beforeEach(() => {
 
 function mockEditor({ media = [source], saved = null as EditSpecRevision | null } = {}) {
   const fetchMock = vi.fn(async (url: string, options?: RequestInit) => {
+    if (url.includes('/renders?')) return json(page([]));
     if (options?.method === 'HEAD') return new Response(null, { status: 200 });
     if (url.endsWith('/edit-spec'))
       return saved ? json(saved) : json({ code: 'edit_spec_not_found' }, 404);

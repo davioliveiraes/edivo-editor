@@ -1,0 +1,113 @@
+{
+  "release": "R05",
+  "recorded_at": "2026-10-23T01:50:58.529110+00:00",
+  "status": "passed",
+  "after_global_admission_correction": true,
+  "checks": 29,
+  "check_names": [
+    "compose_config",
+    "compose_build",
+    "compose_startup",
+    "backend_runtime_versions",
+    "frontend_runtime_versions",
+    "api_health_200",
+    "api_ready_200",
+    "api_capabilities_200",
+    "frontend_vite_proxy_200",
+    "alembic_baseline_and_repeatability",
+    "idle_queue_before_operational_restart",
+    "postgres_volume_persistence",
+    "shared_storage_persistence_after_restart",
+    "ffmpeg_synthetic_smoke_api",
+    "ffmpeg_synthetic_smoke_worker",
+    "only_loopback_api_and_frontend_ports",
+    "persistent_volume_shared_bind_mount_and_images",
+    "database_offline_health_200_ready_503",
+    "database_recovery_ready_200",
+    "storage_inaccessible_ready_503",
+    "worker_idle",
+    "worker_sigterm_exit_0",
+    "pytest",
+    "ruff_check",
+    "ruff_format",
+    "vitest",
+    "eslint",
+    "prettier",
+    "frontend_build"
+  ],
+  "source_log": "full-compose-attempt-2.log",
+  "log_sha256": "1c39affe96a2a16a58aed5f6786c7f2f1217b7f8699cace6ab809c30740c502c",
+  "command_logs": "full-compose-attempt-2/commands.jsonl",
+  "backend_default": {
+    "collected": 1140,
+    "passed": 1110,
+    "skipped_opt_in_postgres": 30,
+    "negative": 0,
+    "junit": "full-compose-attempt-2/backend-default.xml",
+    "junit_sha256": "4597322a409608b5478f694b8ed6858992c68935eacea38ca1eae5aacc6073a6"
+  },
+  "frontend": {
+    "distinct_passed": 313,
+    "full_suite_runtime": "Docker",
+    "count_not_added_to_backend": true
+  },
+  "runtime": {
+    "backend_runtime_versions": {
+      "python": "3.12.14",
+      "packages": {
+        "fastapi": "0.143.3",
+        "pydantic": "2.14.1",
+        "pydantic-settings": "2.16.0",
+        "SQLAlchemy": "2.0.55",
+        "psycopg": "3.3.6",
+        "alembic": "1.20.0",
+        "uvicorn": "0.54.0",
+        "pytest": "9.1.1",
+        "httpx": "0.28.1",
+        "ruff": "0.17.1"
+      },
+      "uv": "uv 0.13.1 (x86_64-unknown-linux-gnu)"
+    },
+    "frontend_runtime_versions": {
+      "node": "v24.14.0",
+      "npm": "11.9.0"
+    },
+    "alembic_baseline_and_repeatability": {
+      "revision": "0005_r05_render_exports",
+      "postgres": "16.13 (Debian 16.13-1.pgdg12+1)",
+      "tables": [
+        "alembic_version",
+        "audio_assets",
+        "edit_spec_revisions",
+        "media_assets",
+        "preview_jobs",
+        "projects",
+        "render_jobs"
+      ]
+    },
+    "persistent_volume_shared_bind_mount_and_images": {
+      "db": {
+        "tag": "postgres:16.13-bookworm",
+        "image_id": "sha256:472efd9a66f2b2f1a5aeb18b28de74332e6ef88c2b93a1a5d812fb6db67a5f60"
+      },
+      "migrate": {
+        "tag": "edivo-backend:r05",
+        "image_id": "sha256:8c37b5e2c2654ff049fbceb768b355762d2d4372ff4cdc604c2fc039fc36bb69"
+      },
+      "api": {
+        "tag": "edivo-backend:r05",
+        "image_id": "sha256:8c37b5e2c2654ff049fbceb768b355762d2d4372ff4cdc604c2fc039fc36bb69"
+      },
+      "worker": {
+        "tag": "edivo-backend:r05",
+        "image_id": "sha256:8c37b5e2c2654ff049fbceb768b355762d2d4372ff4cdc604c2fc039fc36bb69"
+      },
+      "frontend": {
+        "tag": "edivo-frontend:r05",
+        "image_id": "sha256:e78540e59d00ed6fbd9c170fc8f5437c4e90de6066e2d4cfb76f99b7854e761f"
+      }
+    }
+  },
+  "checks_not_added_to_pytest_counts": true,
+  "r06_started": false
+}

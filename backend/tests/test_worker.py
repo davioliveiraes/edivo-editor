@@ -59,15 +59,16 @@ def test_worker_idle_lifecycle_and_dependency_failures(
     monkeypatch.setattr(worker, "Event", Event)
     monkeypatch.setattr(worker.signal, "signal", signal_handler)
     monkeypatch.setattr(worker, "PreviewProcessor", lambda *_args: object())
+    monkeypatch.setattr(worker, "RenderProcessor", lambda *_args: object())
 
-    class PreviewWorker:
-        def __init__(self, _settings, _sessions, stopped, _processor):
+    class WorkerScheduler:
+        def __init__(self, _settings, _sessions, stopped, _preview_processor, _render_processor):
             self.stopped = stopped
 
         def run(self):
             self.stopped.wait()
 
-    monkeypatch.setattr(worker, "PreviewWorker", PreviewWorker)
+    monkeypatch.setattr(worker, "WorkerScheduler", WorkerScheduler)
     monkeypatch.setattr(worker.CapabilityDetector, "get", lambda _self: report)
     assert worker.run() == expected
     assert "closed" in events

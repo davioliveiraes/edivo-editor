@@ -7,13 +7,14 @@ Leia integralmente `docs/EDIVO_DOCUMENTACAO_PROJETO.md`,
 e `docs/R01_EDIVO_ESPECIFICACAO_OPERACIONAL.md` antes de implementar. Leia também
 `docs/R02_EDIVO_ESPECIFICACAO_OPERACIONAL.md`,
 `docs/R03_EDIVO_ESPECIFICACAO_OPERACIONAL.md`,
-`docs/R04_EDIVO_ESPECIFICACAO_OPERACIONAL.md`, README, arquitetura, roadmap e
-evidências históricas R01/R02/R03. A especificação operacional R04 e a autorização expressa do
-usuário definem o escopo atual; R00 define a arquitetura e R01/R02/R03 permanecem
+`docs/R04_EDIVO_ESPECIFICACAO_OPERACIONAL.md`,
+`docs/R05_EDIVO_ESPECIFICACAO_OPERACIONAL.md`, README, arquitetura, roadmap e
+evidências históricas R01–R04. A especificação operacional R05 e a autorização expressa do
+usuário definem o escopo atual; R00 define a arquitetura e R01–R04 permanecem
 funcionais. Preserve os documentos de origem,
 as evidências históricas e alterações preexistentes.
 
-## Escopo atual: R04 — textos, áudio e prévias locais
+## Escopo atual: R05 — renderização, exportação e histórico
 
 Preservar a fundação executável: React/TypeScript strict/Vite,
 FastAPI/Python 3.12, PostgreSQL 16/SQLAlchemy 2/psycopg 3/Alembic baseline,
@@ -32,10 +33,23 @@ loop/fades e prévias privadas reais de até 8 s. PreviewJob usa PostgreSQL,
 SKIP LOCKED, lease/heartbeat, fencing e até duas tentativas; codificação só no
 worker independente. Preservar revisões v1 e trigger; migration nova 0004 aceita
 schema 1/2, sem regravar snapshots. Seguir gates R04.0–R04.5 e a matriz em
-`docs/r04/compatibility.md`. O produto será orientado por prompts futuramente,
-mas IA/heditor/agentes/Higgsfield não entram agora. Não implementar export final,
-render completo, multitrilha, legendas automáticas, autenticação, Redis/Celery
-ou infraestrutura pública. R05 exige nova autorização. Não alterar ObraControl.
+`docs/r04/compatibility.md`. A R05 autorizada acrescenta RenderJob persistente,
+exportação completa de revisão salva v1/v2, perfis standard/high em H.264/AAC
+30 fps, progresso real, cancelamento, download privado GET/HEAD com Range e
+histórico paginado. Reutilizar compositor, supervisor e fila PostgreSQL R04;
+um scheduler e um FFmpeg por worker, lease/heartbeat/fencing/retry finito.
+Limitar admissão a um render ativo por projeto e 20 no total por padrão
+(`EDIVO_RENDER_MAX_ACTIVE_TOTAL`, 1–1000); COUNT/INSERT de novas solicitações
+serializados por advisory lock PostgreSQL, preservando replay/reuso no teto.
+Seguir os gates R05.0–R05.5 e `docs/r05/compatibility.md`, preservando baseline,
+revisões, originais, prévias e exports concluídos. Mesma chave idempotente tem
+identidade permanente; falha/cancelamento requer nova solicitação explícita.
+Não publicar antes de validação integral e commit confirmado. Cancelamento é
+intenção durável; só o worker encerra seu próprio grupo de processos.
+O produto será orientado por prompts futuramente, mas IA/heditor/agentes/Higgsfield
+não entram agora. Não implementar multitrilha, legendas automáticas, autenticação,
+Redis/Celery, infraestrutura pública ou retenção destrutiva. R06 exige nova
+autorização. Não alterar ObraControl.
 Não criar abstrações ou módulos vazios para funcionalidades futuras.
 
 ## Implementação e qualidade

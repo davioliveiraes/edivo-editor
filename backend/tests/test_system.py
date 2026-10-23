@@ -115,4 +115,8 @@ def test_no_future_api_routes(application):
         "/api/v1/projects/{project_id}/previews",
         "/api/v1/projects/{project_id}/previews/{preview_id}",
         "/api/v1/projects/{project_id}/previews/{preview_id}/file",
+        "/api/v1/projects/{project_id}/renders",
+        "/api/v1/projects/{project_id}/renders/{render_id}",
+        "/api/v1/projects/{project_id}/renders/{render_id}/cancel",
+        "/api/v1/projects/{project_id}/renders/{render_id}/file",
     }

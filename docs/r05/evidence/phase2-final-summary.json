@@ -1,0 +1,79 @@
+{
+  "phase": "R05.2",
+  "status": "passed",
+  "created_at": "2026-10-22T12:30:11.732848+00:00",
+  "production_sources_frozen": true,
+  "source_sha256": {
+    "backend/app/integrations/ffmpeg/preview.py": "587826271a0998303048b6ea715287441bb17e2a1642b5a7f1e5692564390dc5",
+    "backend/tests/test_render_compositor.py": "2dcbcd752804e55e879c5eefaf2b924ec2bed13e9663d0a41d0cf995317d2441",
+    "scripts/acceptance-r05-ffmpeg.py": "992591e85241954076495062e5ec3735c16e1537e0008cf65401ab71a9b9aa0f"
+  },
+  "tests": [
+    {
+      "command": "python -m pytest tests/test_render_compositor.py tests/test_preview_compositor.py -q",
+      "runtime": "edivo-backend:r05 isolated current sources read-only, network none, 2 CPUs/1536MiB/128 PIDs",
+      "passed": 119,
+      "skipped": 0,
+      "elapsed_seconds": 55.8,
+      "log": "phase2-compositor-attempt-1.log"
+    },
+    {
+      "command": "python -m pytest tests/test_render_compositor.py -k fractional_frame -q",
+      "runtime": "same isolated backend",
+      "passed": 2,
+      "deselected": 50,
+      "elapsed_seconds": 3.16,
+      "log": "phase2-boundary-tests-attempt-1.log"
+    },
+    {
+      "command": "python -m pytest tests/test_render_compositor.py -k gains -q -s",
+      "runtime": "same isolated backend",
+      "passed": 1,
+      "deselected": 52,
+      "elapsed_seconds": 9.98,
+      "log": "phase2-gain-tests-attempt-2.log"
+    }
+  ],
+  "distinct_tests_passed": 122,
+  "count_policy": "119 initial distinct cases +2 newly added boundary cases +1 new gain case; gain reexecution is not counted twice. These totals include69 historical preview cases and53 new final compositor cases, not full-project regression totals.",
+  "host_execution": {
+    "passed": 70,
+    "skipped": 49,
+    "reason": "Host has no FFmpeg/FFprobe; all those real cases were executed in Docker instead."
+  },
+  "quality_commands": [
+    "backend/.venv/bin/ruff check backend/tests/test_render_compositor.py backend/app/integrations/ffmpeg/preview.py scripts/acceptance-r05-ffmpeg.py",
+    "backend/.venv/bin/ruff format --check backend/tests/test_render_compositor.py backend/app/integrations/ffmpeg/preview.py scripts/acceptance-r05-ffmpeg.py"
+  ],
+  "matrix": {
+    "result": "ffmpeg-matrix.json",
+    "compositions": 23,
+    "final_compositions": 22,
+    "preview_regression_compositions": 1,
+    "passed_checks": 77,
+    "elapsed_seconds": 62.025,
+    "negative_attempt_retained": "phase2-matrix-attempt-1.log",
+    "successful_attempt": "phase2-matrix-attempt-2.log"
+  },
+  "progress_units": "progress-units.json: out_time_us=out_time_ms=1000000 for exactly1s/30 frames; both are microseconds",
+  "audio_gains": "audio-gain.json: original0/0.5/1/2 and background0/0.5/1 measured independently through decoded AAC PCM; no automatic normalization",
+  "synthetic_fixture_host_directory": "/tmp/edivo-r05/fixtures",
+  "synthetic_artifact_host_directory": "/tmp/edivo-r05/artifacts",
+  "visual_evidence": {
+    "file": "complete-12s-text-music.png",
+    "sha256": "cf0c8698945af6ab8a2b96a6beb881b3a8340e4bb89dc46fd971f8b477971477",
+    "inspected_by_agent_with_view_image": true,
+    "observations": "Three distinct top/center/bottom overlays readable and inside the canvas; accents, quotes, colon, backslash and percent remain literal. White/blue outline and white plain styles visible."
+  },
+  "manual_human_visual_inspection_performed": false,
+  "human_auditory_inspection_performed": false,
+  "limitations": [
+    "Synthetic automated audio levels do not prove intelligibility or subjective quality for arbitrary media.",
+    "The preserved R04 amix normalize=0 semantics can clip for arbitrary high-gain sources/mixes; no new limiter is silently introduced.",
+    "One frame at30fps +1ms is the validation tolerance; not frame-perfect source editing.",
+    "Worker/publication/DB/API/browser are later gates and are not claimed by compositor-only QA."
+  ],
+  "originals_mutated": false,
+  "database_or_application_storage_used": false,
+  "services_restarted_by_this_subtask": false
+}

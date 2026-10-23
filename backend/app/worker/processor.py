@@ -16,6 +16,7 @@ from uuid import UUID
 
 from pydantic import TypeAdapter, ValidationError
 from sqlalchemy.exc import SQLAlchemyError
+from sqlalchemy.orm import Session
 
 from app.core.config import Settings
 from app.core.errors import AppError
@@ -48,6 +49,56 @@ class PreviewInputs:
     background: InputAsset | None
     video_stream_index: int
     source_has_audio: bool
+
+
+def load_revision_inputs(session: Session, project_id: UUID, revision_id: UUID) -> PreviewInputs:
+    """Authorize the immutable composition inputs shared by previews and exports.
+
+    Return detached values only: filesystem reads and encoding must take place
+    after this short read transaction closes. The caller adds job-specific rules.
+    """
+    if ProjectRepository(session).get_active(project_id) is None:
+        raise PreviewProcessError("preview_project_unavailable")
+    revision = session.get(EditSpecRevision, revision_id)
+    if revision is None or revision.project_id != project_id:
+        raise PreviewProcessError("preview_plan_invalid")
+    plan = PLAN_ADAPTER.validate_python(revision.spec_json)
+    if (
+        plan.schema_version != revision.schema_version
+        or plan.source_media_id != revision.source_media_id
+    ):
+        raise PreviewProcessError("preview_plan_invalid")
+    source = session.get(MediaAsset, plan.source_media_id)
+    if (
+        source is None
+        or source.project_id != project_id
+        or source.kind != "source_video"
+        or source.mime_detected != "video/mp4"
+        or plan.trim.end_ms > source.duration_ms
+        or plan.trim.end_ms - plan.trim.start_ms < min(100, source.duration_ms)
+    ):
+        raise PreviewProcessError("preview_plan_invalid")
+    stream_index = source.probe_metadata.get("video_stream_index")
+    if type(stream_index) is not int or not 0 <= stream_index <= 127:
+        raise PreviewProcessError("preview_source_unavailable")
+    background = None
+    if isinstance(plan, EditSpecV2) and plan.audio.background_audio_id is not None:
+        audio = session.get(AudioAsset, plan.audio.background_audio_id)
+        if (
+            audio is None
+            or audio.project_id != project_id
+            or audio.mime_detected != "audio/mpeg"
+            or audio.codec != "mp3"
+        ):
+            raise PreviewProcessError("preview_audio_unavailable")
+        background = InputAsset(audio.id, audio.storage_key, audio.byte_size, audio.checksum_sha256)
+    return PreviewInputs(
+        plan,
+        InputAsset(source.id, source.storage_key, source.byte_size, source.checksum_sha256),
+        background,
+        stream_index,
+        source.has_audio,
+    )
 
 
 def hash_pinned(file: BinaryIO, expected_bytes: int, runner: ProcessRunner) -> str:
@@ -101,48 +152,14 @@ class PreviewProcessor:
                 or claim.profile_version != 1
             ):
                 raise PreviewProcessError("preview_plan_invalid")
-            plan = PLAN_ADAPTER.validate_python(revision.spec_json)
+            inputs = load_revision_inputs(session, claim.project_id, claim.edit_spec_revision_id)
             if (
-                plan.schema_version != revision.schema_version
-                or plan.source_media_id != revision.source_media_id
+                not 1 <= claim.duration_ms <= 8000
+                or claim.preview_start_ms < inputs.plan.trim.start_ms
+                or claim.preview_start_ms + claim.duration_ms > inputs.plan.trim.end_ms
             ):
                 raise PreviewProcessError("preview_plan_invalid")
-            source = session.get(MediaAsset, plan.source_media_id)
-            if (
-                source is None
-                or source.project_id != claim.project_id
-                or source.kind != "source_video"
-                or source.mime_detected != "video/mp4"
-                or plan.trim.end_ms > source.duration_ms
-                or plan.trim.end_ms - plan.trim.start_ms < min(100, source.duration_ms)
-                or not 1 <= claim.duration_ms <= 8000
-                or claim.preview_start_ms < plan.trim.start_ms
-                or claim.preview_start_ms + claim.duration_ms > plan.trim.end_ms
-            ):
-                raise PreviewProcessError("preview_plan_invalid")
-            stream_index = source.probe_metadata.get("video_stream_index")
-            if type(stream_index) is not int or not 0 <= stream_index <= 127:
-                raise PreviewProcessError("preview_source_unavailable")
-            background = None
-            if isinstance(plan, EditSpecV2) and plan.audio.background_audio_id is not None:
-                audio = session.get(AudioAsset, plan.audio.background_audio_id)
-                if (
-                    audio is None
-                    or audio.project_id != claim.project_id
-                    or audio.mime_detected != "audio/mpeg"
-                    or audio.codec != "mp3"
-                ):
-                    raise PreviewProcessError("preview_audio_unavailable")
-                background = InputAsset(
-                    audio.id, audio.storage_key, audio.byte_size, audio.checksum_sha256
-                )
-            return PreviewInputs(
-                plan,
-                InputAsset(source.id, source.storage_key, source.byte_size, source.checksum_sha256),
-                background,
-                stream_index,
-                source.has_audio,
-            )
+            return inputs
 
     @staticmethod
     def verify_input(opened, asset: InputAsset, runner: ProcessRunner) -> None:

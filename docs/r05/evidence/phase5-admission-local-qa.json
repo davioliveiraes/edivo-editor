@@ -1,0 +1,38 @@
+{
+  "release": "R05",
+  "gate": "R05.5",
+  "purpose": "Global render admission regression",
+  "recorded_at": "2026-10-23T01:47:03.810324+00:00",
+  "status": "passed",
+  "execution": "Host Python 3.12 existing backend/.venv, escalated TestClient execution",
+  "command_argv": [
+    "backend/.venv/bin/pytest",
+    "-q",
+    "backend/tests/test_renders.py",
+    "backend/tests/test_render_repository.py",
+    "backend/tests/test_render_resources_storage.py",
+    "backend/tests/test_render_postgres.py"
+  ],
+  "tool_cell_id": "145",
+  "exec_session_id": 66321,
+  "exit_code": 0,
+  "passed": 198,
+  "skipped": 13,
+  "warnings": 1,
+  "pytest_seconds": 17.53,
+  "new_distinct_default_cases": 9,
+  "new_opt_in_postgresql_cases": 1,
+  "new_postgresql_case_executed": false,
+  "log": "docs/r05/evidence/phase5-admission-local-qa.log",
+  "result_received_without_rerun": true,
+  "initial_tool_state": "Initial functions.exec yielded without stdout; wait later supplied session_id and completed result was collected.",
+  "docker_runtime_used": false,
+  "ffmpeg_executed": false,
+  "count_policy": "Focused passes overlap final default suite; never add these 198 to the full regression total. PostgreSQL skip is not a pass.",
+  "quality": {
+    "ruff_check": "passed",
+    "ruff_format": "passed",
+    "files": 7
+  },
+  "source_freeze": "Production and tests handed off to root before fullCompose attempt 2; no source edits since."
+}

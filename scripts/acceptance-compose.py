@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Execute a regressão operacional R01 nas evoluções autorizadas R02–R04.
+"""Execute a regressão operacional R01 nas evoluções autorizadas R02–R05.
 
 Requer Docker operacional e .env preparado. Durante os casos negativos, o banco
 e o worker desta stack param brevemente e são restaurados mesmo em falhas.
@@ -21,6 +21,8 @@ from urllib.request import urlopen
 
 ROOT = Path(__file__).resolve().parents[1]
 COMPOSE = ["docker", "compose"]
+LOG_DIRECTORY: Path | None = None
+COMMAND_NUMBER = 0
 
 
 class AcceptanceError(Exception):
@@ -28,18 +30,48 @@ class AcceptanceError(Exception):
 
 
 def command(args: list[str], *, data: str | None = None, timeout: int = 180) -> str:
-    result = subprocess.run(
-        args,
-        cwd=ROOT,
-        input=data,
-        capture_output=True,
-        text=True,
-        timeout=timeout,
-        check=False,
-    )
+    global COMMAND_NUMBER
+    COMMAND_NUMBER += 1
+
+    def retain(
+        stdout: str | bytes | None, stderr: str | bytes | None, exit_code: int
+    ) -> None:
+        if LOG_DIRECTORY is None:
+            return
+        name = f"{COMMAND_NUMBER:03d}-{Path(args[0]).name}"
+        for suffix, content in (("stdout", stdout), ("stderr", stderr)):
+            if isinstance(content, bytes):
+                content = content.decode("utf-8", errors="replace")
+            path = LOG_DIRECTORY / f"{name}.{suffix}.log"
+            descriptor = os.open(path, os.O_WRONLY | os.O_CREAT | os.O_EXCL, 0o600)
+            with os.fdopen(descriptor, "w", encoding="utf-8") as output:
+                output.write(content or "")
+        with (LOG_DIRECTORY / "commands.jsonl").open("a", encoding="utf-8") as output:
+            # Commands never contain a database URL. Python stdin and inherited
+            # environment are deliberately absent from this evidence record.
+            output.write(
+                json.dumps({"argv": args, "exit_code": exit_code, "log": name}) + "\n"
+            )
+
+    try:
+        result = subprocess.run(
+            args,
+            cwd=ROOT,
+            input=data,
+            capture_output=True,
+            text=True,
+            timeout=timeout,
+            check=False,
+        )
+    except subprocess.TimeoutExpired as error:
+        retain(error.stdout, error.stderr, 124)
+        raise
+    retain(result.stdout, result.stderr, result.returncode)
     if result.returncode:
         # A saída bruta pode conter configurações privadas de bibliotecas.
-        raise AcceptanceError(f"Comando falhou (exit {result.returncode}): {' '.join(args[:7])}")
+        raise AcceptanceError(
+            f"Comando falhou (exit {result.returncode}): {' '.join(args[:7])}"
+        )
     return result.stdout.strip()
 
 
@@ -59,7 +91,9 @@ def configured_port(name: str, default: int) -> int:
     try:
         port = int(value)
     except ValueError:
-        raise AcceptanceError(f"Porta {name} inválida; use um inteiro entre 1 e 65535.") from None
+        raise AcceptanceError(
+            f"Porta {name} inválida; use um inteiro entre 1 e 65535."
+        ) from None
     require(1 <= port <= 65535, f"Porta {name} fora do intervalo permitido.")
     return port
 
@@ -115,13 +149,30 @@ engine.dispose()
 
 
 def main() -> int:
+    global LOG_DIRECTORY
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument(
         "--skip-build", action="store_true", help="Reutilizar imagens já construídas."
     )
+    parser.add_argument(
+        "--logs-dir",
+        type=Path,
+        help="Novo diretório em docs/r05/evidence para logs completos.",
+    )
     args = parser.parse_args()
+    if args.logs_dir:
+        destination = args.logs_dir.resolve()
+        evidence = (ROOT / "docs/r05/evidence").resolve()
+        if destination.parent != evidence or destination.exists():
+            parser.error(
+                "--logs-dir deve ser um diretório novo diretamente em docs/r05/evidence."
+            )
+        destination.mkdir(mode=0o700)
+        LOG_DIRECTORY = destination
     if not (ROOT / ".env").is_file():
-        print("Execute python3 scripts/setup-local.py antes do aceite.", file=sys.stderr)
+        print(
+            "Execute python3 scripts/setup-local.py antes do aceite.", file=sys.stderr
+        )
         return 1
     restore_database = False
     restore_worker = False
@@ -175,11 +226,14 @@ def main() -> int:
             require(status == 200, f"Endpoint {path} não retornou HTTP 200.")
             if path == "capabilities":
                 require(
-                    isinstance(response, dict) and response.get("status") == "available",
+                    isinstance(response, dict)
+                    and response.get("status") == "available",
                     "Capabilities identificou dependência FFmpeg indisponível.",
                 )
             passed(f"api_{path}_200", response)
-        require(get("/", port=frontend_port)[0] == 200, "Frontend não respondeu HTTP 200.")
+        require(
+            get("/", port=frontend_port)[0] == 200, "Frontend não respondeu HTTP 200."
+        )
         require(
             get("/api/v1/system/health", port=frontend_port)[0] == 200,
             "Proxy Vite/API indisponível.",
@@ -204,9 +258,22 @@ def main() -> int:
                 "preview_jobs",
                 "projects",
             ],
+            "0005_r05_render_exports": [
+                "alembic_version",
+                "audio_assets",
+                "edit_spec_revisions",
+                "media_assets",
+                "preview_jobs",
+                "projects",
+                "render_jobs",
+            ],
         }
-        require(baseline["revision"] in approved_schemas, "Revisão Alembic não autorizada.")
-        require(baseline["postgres"].startswith("16."), "PostgreSQL precisa ser major 16.")
+        require(
+            baseline["revision"] in approved_schemas, "Revisão Alembic não autorizada."
+        )
+        require(
+            baseline["postgres"].startswith("16."), "PostgreSQL precisa ser major 16."
+        )
         require(
             baseline["tables"] == approved_schemas[baseline["revision"]],
             "Foram encontradas tabelas fora do escopo autorizado.",
@@ -217,6 +284,28 @@ def main() -> int:
             "Executar a migração novamente alterou o baseline.",
         )
         passed("alembic_baseline_and_repeatability", baseline)
+        active_jobs = json.loads(
+            execute_python(
+                "api",
+                "import json\nfrom sqlalchemy import text\n"
+                "from app.core.config import Settings\nfrom app.db.session import Database\n"
+                "database=Database(Settings())\n"
+                "try:\n"
+                "    with database.sessions() as session:\n"
+                "        counts={}\n"
+                "        for table in ('preview_jobs','render_jobs'):\n"
+                "            exists=session.scalar(text('SELECT to_regclass(:name)'), {'name':table})\n"
+                "            counts[table]=session.scalar(text('SELECT count(*) FROM '+table+"
+                "\" WHERE status IN ('queued','running')\")) if exists else 0\n"
+                "    print(json.dumps(counts))\n"
+                "finally:\n    database.close()\n",
+            )
+        )
+        require(
+            not any(active_jobs.values()),
+            "Aguarde os jobs ativos antes de reiniciar serviços.",
+        )
+        passed("idle_queue_before_operational_restart", active_jobs)
         compose("restart", "db")
         wait_ready()
         require(
@@ -296,13 +385,16 @@ def main() -> int:
             if service in expected:
                 internal, host = expected[service]
                 require(
-                    published == {internal: [{"HostIp": "127.0.0.1", "HostPort": host}]},
+                    published
+                    == {internal: [{"HostIp": "127.0.0.1", "HostPort": host}]},
                     f"Portas inesperadas no serviço {service}.",
                 )
             else:
                 require(not published, f"Serviço {service} publicou portas no host.")
             mounts = json.loads(
-                command(["docker", "inspect", "--format", "{{json .Mounts}}", container])
+                command(
+                    ["docker", "inspect", "--format", "{{json .Mounts}}", container]
+                )
             )
             if service == "db":
                 require(
@@ -318,7 +410,8 @@ def main() -> int:
                 storage_mounts = [
                     mount
                     for mount in mounts
-                    if mount["Destination"] == "/data/storage" and mount["Type"] == "bind"
+                    if mount["Destination"] == "/data/storage"
+                    and mount["Type"] == "bind"
                 ]
                 require(len(storage_mounts) == 1, "Storage precisa ser um bind mount.")
                 storage_sources.append(storage_mounts[0]["Source"])
@@ -387,7 +480,9 @@ with TestClient(create_app()) as client:
         )
         # A aplicação também escreve logs JSON; guardar somente o resultado do check.
         storage_lines = [
-            json.loads(line) for line in storage_result.splitlines() if line.startswith("{")
+            json.loads(line)
+            for line in storage_result.splitlines()
+            if line.startswith("{")
         ]
         passed(
             "storage_inaccessible_ready_503",
@@ -396,27 +491,38 @@ with TestClient(create_app()) as client:
 
         worker_id = compose("ps", "--quiet", "worker")
         logs = compose("logs", "--no-color", "worker")
-        require("worker_ready_idle" in logs, "Worker não registrou startup pronto e ocioso.")
+        require(
+            "worker_ready_idle" in logs, "Worker não registrou startup pronto e ocioso."
+        )
         stats = json.loads(
-            command(["docker", "stats", "--no-stream", "--format", "{{json .}}", worker_id])
+            command(
+                ["docker", "stats", "--no-stream", "--format", "{{json .}}", worker_id]
+            )
         )
         cpu = float(stats["CPUPerc"].rstrip("%"))
         require(cpu < 5, "CPU do worker ocioso ficou acima de 5% na amostra.")
         passed("worker_idle", {"cpu_percent_sample": cpu})
         restore_worker = True
         compose("stop", "worker")
-        exit_code = command(["docker", "inspect", "--format", "{{.State.ExitCode}}", worker_id])
+        exit_code = command(
+            ["docker", "inspect", "--format", "{{.State.ExitCode}}", worker_id]
+        )
         stopped_logs = compose("logs", "--no-color", "worker")
         require(
-            exit_code == "0" and "worker_stopped" in stopped_logs and "SIGTERM" in stopped_logs,
+            exit_code == "0"
+            and "worker_stopped" in stopped_logs
+            and "SIGTERM" in stopped_logs,
             "Worker não encerrou com SIGTERM e exit 0.",
         )
         passed("worker_sigterm_exit_0")
         compose("start", "worker")
         restore_worker = False
 
+        pytest_arguments = ("exec", "-T", "api", "pytest")
+        if LOG_DIRECTORY is not None:
+            pytest_arguments += ("--junitxml=/tmp/edivo-r05-backend-default.xml",)
         for target, argv in (
-            ("pytest", ("exec", "-T", "api", "pytest")),
+            ("pytest", pytest_arguments),
             ("ruff_check", ("exec", "-T", "api", "ruff", "check", ".")),
             ("ruff_format", ("exec", "-T", "api", "ruff", "format", "--check", ".")),
             ("vitest", ("exec", "-T", "frontend", "npm", "run", "test", "--", "--run")),
@@ -424,7 +530,13 @@ with TestClient(create_app()) as client:
             ("prettier", ("exec", "-T", "frontend", "npm", "run", "format:check")),
             ("frontend_build", ("exec", "-T", "frontend", "npm", "run", "build")),
         ):
-            output = compose(*argv, timeout=240)
+            output = compose(*argv, timeout=900)
+            if target == "pytest" and LOG_DIRECTORY is not None:
+                report = compose(
+                    "exec", "-T", "api", "cat", "/tmp/edivo-r05-backend-default.xml"
+                )
+                with (LOG_DIRECTORY / "backend-default.xml").open("x") as destination:
+                    destination.write(report + "\n")
             passed(target, output)
 
         compose("ps", "--all")

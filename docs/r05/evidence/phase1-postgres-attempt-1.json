@@ -1,0 +1,8 @@
+{
+  "started_at": "2026-10-22T01:31:51.161336+00:00",
+  "command": "docker compose exec -T api python - [private temporary pytest copy; EDIVO_QA_RENDER_POSTGRES=1; EDIVO_QA_DATABASE_URL copied privately]",
+  "exit_code": 0,
+  "log": "phase1-postgres-attempt-1.log",
+  "secrets_printed": false,
+  "services_restarted": false
+}

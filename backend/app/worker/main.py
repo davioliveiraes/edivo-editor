@@ -1,4 +1,4 @@
-"""Independent preview worker with startup diagnostics and graceful signal handling."""
+"""Independent serial preview/export worker with diagnostics and graceful signals."""
 
 import logging
 import signal
@@ -12,8 +12,9 @@ from app.core.logging import configure_logging
 from app.db.session import Database
 from app.integrations.ffmpeg.capabilities import CapabilityDetector
 from app.services.readiness import check_dependencies
-from app.worker.preview_worker import PreviewWorker
 from app.worker.processor import PreviewProcessor
+from app.worker.render_processor import RenderProcessor
+from app.worker.scheduler import WorkerScheduler
 
 logger = logging.getLogger("edivo.worker")
 
@@ -50,8 +51,11 @@ def run() -> int:
             logger.error("worker_startup_failed_dependencies_unavailable")
             return 1
         logger.info("worker_ready_idle")
-        processor = PreviewProcessor(settings, database.sessions, stopped)
-        PreviewWorker(settings, database.sessions, stopped, processor).run()
+        preview_processor = PreviewProcessor(settings, database.sessions, stopped)
+        render_processor = RenderProcessor(settings, database.sessions, stopped)
+        WorkerScheduler(
+            settings, database.sessions, stopped, preview_processor, render_processor
+        ).run()
         return 0
     except Exception:
         logger.error("worker_startup_failed")

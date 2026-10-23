@@ -1,12 +1,13 @@
-# Edivo — arquitetura executável e evolução R04
+# Edivo — arquitetura executável e evolução R05
 
-As fontes de planejamento são os quatro documentos originais preservados em
-`docs/`, complementados pelos contratos operacionais R02/R03/R04. Este documento descreve
-a fundação e a evolução autorizada; os resultados e critérios de aceite ficam
-em `r01/acceptance.md`, `r02/acceptance.md`, `r03/acceptance.md` (históricos)
-e `r04/acceptance.md`. A R04 está concluída tecnicamente, com os critérios
-essenciais validados e limitações registradas na
-[regressão final consolidada](r04/evidence/final-regression-summary.json).
+R01–R04 foram aceitas e permanecem preservadas. A R05 está **concluída**, com
+gates R05.0–R05.5 e 22 critérios verificados: worker integrado, interface,
+regressão completa, Chromium, persistência após reinício e auditoria final.
+A especificação
+[R05](R05_EDIVO_ESPECIFICACAO_OPERACIONAL.md) e a
+[matriz de compatibilidade](r05/compatibility.md) reconciliam os contratos reais.
+O [aceite R05](r05/acceptance.md) e o [QA](r05/qa-results.json) registram os resultados.
+Relatórios R01–R04 continuam históricos e não são reescritos pela nova etapa.
 
 ```mermaid
 flowchart LR
@@ -14,7 +15,7 @@ flowchart LR
   frontend -->|proxy /api| api[FastAPI]
   api --> db[(PostgreSQL 16)]
   api --> storage[Storage local]
-  worker[Worker Python de prévias] --> db
+  worker[Worker Python: scheduler serial] --> db
   worker --> storage
   api --> tools[FFmpeg / FFprobe]
   worker --> tools
@@ -22,14 +23,15 @@ flowchart LR
 ```
 
 O backend é um monólito modular. `app/api/v1` contém contratos HTTP de sistema,
-projetos, mídias, MP3, EditSpec e prévias. Schemas validam entradas/saídas;
+projetos, mídias, MP3, EditSpec, prévias e exports. Schemas validam entradas/saídas;
 serviços coordenam regras e transações; repositórios consultam os modelos
 SQLAlchemy. `app/core` concentra
 settings, erros, limite ASGI de entrada e logging; `app/db` mantém engine,
 sessões e metadata; a integração FFmpeg detecta capacidades e inspeciona MP4
 por subprocessos com argumentos controlados, timeout e saída limitada.
 `app/worker/main.py` possui ciclo de vida próprio e compartilha configuração
-com a API. Processa um PreviewJob por vez, sem codificação na requisição HTTP.
+com a API. Um scheduler escolhe PreviewJob ou RenderJob e executa um por vez, sem
+codificação na requisição HTTP.
 
 `health` mede disponibilidade HTTP e não consulta banco/storage. `ready`
 executa uma consulta PostgreSQL e verifica escrita/leitura/remoção de um
@@ -127,7 +129,7 @@ Rotação/display matrix, SAR e codecs dependem do decoder HTML5. VFR/keyframes
 e precisão temporal do navegador impedem garantia frame-perfect. A representação
 CSS continua local. A R04 acrescenta prévia curta codificada no worker, com
 enquadramento correspondente, autorrotação, SAR 1 e FPS 24. API e worker mantêm
-os originais 0400; não há exportação final.
+os originais 0400; a exportação completa R05 usa o mesmo núcleo, com outro perfil.
 
 O arquivo `.env` é local e ignorado, criado com senha aleatória e modo 0600 por
 `scripts/setup-local.py`. Logs e erros não devem incluir DSNs, senhas, payloads
@@ -214,5 +216,234 @@ ou frame. A [regressão final](r04/evidence/final-regression-summary.json) regis
 frontend e lint/build aprovados. O harness bruto interrompido no Vitest permanece
 preservado, junto das duas reexecuções aprovadas sem alteração de fontes.
 
-A R05 não foi iniciada. Renderização completa, exportação, downloads finais,
-histórico de exportações e cancelamento avançado exigem nova autorização.
+R05 acrescenta exportações completas e cancelamento local conforme descrito
+abaixo. A validação histórica R04 não comprova automaticamente a nova interface.
+Chromium R05 foi validado separadamente, inclusive na imagem final após reinício;
+nenhuma validação humana de áudio é presumida. R06 e integrações de IA não foram iniciadas.
+
+## RenderJob e API R05
+
+`0005_r05_render_exports` depende de `0004_r04_text_audio_previews` e cria somente
+`render_jobs`. Não altera tabelas/revisões/triggers nem migrations históricas.
+RenderJob mantém UUIDs de projeto/revisão, perfil e versão do motor, identidade
+idempotente/fingerprint, estado/estágio, tentativas, lease/token/heartbeat,
+intenção de cancelamento, progresso, datas UTC, erro seguro e metadados reais
+do artefato. FKs RESTRICT, CHECKs de status/perfil/tentativas/completed e índices
+de fila, lease, equivalência e histórico reforçam os contratos. O índice único
+parcial permite só um render queued/running por projeto.
+
+O snapshot EditSpec salvo é a única fonte do plano. V1 recebe defaults neutros
+em memória e v2 mantém textos/áudio exatamente salvos; nenhum snapshot é
+convertido no banco. Render continua na revisão original se houver novo save.
+Revisões permanecem append-only e saves idênticos permanecem no-op com a revisão
+esperada correta. Não há save implícito na API de render.
+
+`schemas/renders.py`, `repositories/render_jobs.py`, `services/renders.py` e
+`api/v1/renders.py` mantêm a separação do monólito. Sob o namespace do projeto:
+
+| Método | Rota                          | Comportamento                                                             |
+| ------ | ----------------------------- | ------------------------------------------------------------------------- |
+| POST   | `/renders`                    | 202 ativo; 200 reuso íntegro/replay terminal conhecido                    |
+| GET    | `/renders`                    | Página de histórico, filtro status opcional                               |
+| GET    | `/renders/{render_id}`        | Estado, progresso, revisão e metadados públicos                           |
+| POST   | `/renders/{render_id}/cancel` | Intenção running 202, queued/já canceled 200, terminal não cancelável 409 |
+| GET    | `/renders/{render_id}/file`   | Download privado completed íntegro, 200/206/416                           |
+| HEAD   | `/renders/{render_id}/file`   | Cabeçalhos equivalentes e corpo vazio                                     |
+
+A entrada usa `edit_spec_revision_id`; saída usa `revision_id`, `revision_number`
+e URLs relativas, coerentes com PreviewJob. Nunca retorna storage key, token,
+lease, path, argv ou credenciais. Erros mantêm `{code,message,request_id}` e
+`X-Request-ID`. Projetos excluídos e vínculos de outro projeto retornam 404.
+
+Histórico ordena `created_at DESC,id DESC`, padrão 20/0, limit 1–100 e offset >= 0.
+Verifica presença/modo/tamanho sem reler até 2 GiB por item. Consulta individual,
+reuso e download conferem SHA-256 completo. Logo, a disponibilidade indicada na
+lista não substitui a validação integral ao abrir o resultado. Artefato completed
+corrompido/ausente fica indisponível, com `render_artifact_unavailable`; seu estado
+terminal e metadados históricos não são reescritos. Download e replay da mesma chave retornam 503; solicitação sem chave pode
+ignorar esse equivalente inválido e criar outro job. GET de status 200 informa erro seguro e `artifact_available=false`.
+
+Uma chave UUID explícita é permanente por projeto. Mesmos parâmetros retornam o
+mesmo job; divergência causa `idempotency_conflict` 409. Failed/canceled não
+reabrem: replay retorna 200 e uma nova solicitação exige nova chave. Novo UUID de
+chave não é associado silenciosamente ao job de outra chave. Sem chave, pode
+reutilizar fingerprint equivalente ativo/completed íntegro. Fingerprint inclui
+projeto, revisão, perfil e motor `r05-1`, que representa os parâmetros efetivos
+fixos; mesma chave com motor incompatível retorna `render_engine_conflict` 409.
+O limite ativo retorna `render_active_limit` 409, impedindo fila ilimitada por
+projeto quando o worker estiver offline.
+
+A admissão também limita a soma global de renders queued/running a 20 por
+padrão (`EDIVO_RENDER_MAX_ACTIVE_TOTAL`, 1–1000). Após replay/reuso, novas
+criações obtêm um advisory lock transacional PostgreSQL exclusivo do namespace
+Edivo render e verificam COUNT/INSERT na mesma transação, mantendo a ordem
+Project→advisory. Não há novo serviço ou fila. Excesso retorna
+`409 render_queue_full`; jobs ativos de projetos excluídos contam até a
+recuperação existente marcá-los failed. Estados terminais liberam capacidade.
+
+## Compositor e supervisão compartilhados
+
+`ffmpeg/preview.py` possui um único `_render_composition`, `CompositionProfile`,
+wrappers `render_preview`/`render_final` e o mesmo validador completo. A prévia
+preserva 24 fps, veryfast/CRF28/AAC 128k, dimensões reduzidas e teto 8 s. O final
+compõe diretamente todo o trim, sem concatenação de prévias, com estas saídas:
+
+| Preset | Resolução final |
+| ------ | --------------- |
+| 9:16   | 1080×1920       |
+| 1:1    | 1080×1080       |
+| 4:5    | 1080×1350       |
+| 16:9   | 1920×1080       |
+
+Final sempre H.264/libx264, yuv420p, CFR 30, SAR 1:1 e MP4 faststart. Perfil
+standard: veryfast/CRF23/AAC160k; high: medium/CRF20/AAC192k. AAC 48 kHz estéreo
+quando houver áudio; fonte silenciosa sem música pode produzir vídeo sem áudio.
+Respeita autorrotação, DAR/SAR, VFR, cover/contain, focal, textos e controles
+salvos. Tempos de fonte são absolutos; música inicia no zero relativo do trim
+e fades seguem o trim inteiro. A tolerância medida é 1/30 s + 1 ms, cerca de 34,333 ms;
+não se promete seek/frame-perfect nem paridade de rasterização CSS/FreeType.
+
+Inputs continuam fixados em descritores NOFOLLOW, SHA-256/0400 conferidos antes
+de executar. Argv é allowlisted, sem shell, com `-nostdin`, protocolos locais,
+fontes aprovadas e textfiles UTF-8 privados sem expansão. `ProcessPolicy` separa
+orçamentos de prévia/render sem duplicar o supervisor. Defaults finais: prazo
+máximo global 3600 s, CPU 3600 s por processo, AS 1 GiB, duas threads, resultado até 2 GiB,
+stderr/output 256 KiB e progresso 16 MiB consumido incrementalmente. Esses tetos não
+são SLA de desempenho. Settings valida limites e valores finitos; todas as
+variáveis `EDIVO_RENDER_*` constam no README e `.env.example`.
+
+O ambiente controlado dos subprocessos render inclui `MALLOC_ARENA_MAX=2`,
+constante interna para limitar as arenas glibc sob o teto de AS, sem aumentar
+recursos ou mudar os perfis. Prévias mantêm seu ambiente anterior. O
+[diagnóstico high/4:5](r05/compatibility.md#reserva-de-memória-do-alocador--diagnóstico-r053)
+preserva a falha original de alocação e a repetição isolada validada, distinguindo
+reserva virtual de RSS. Isso não substitui a validação HTTP/publicação do job.
+
+`FFmpegProgress` interpreta linhas limitadas sem acumular stdout indefinidamente.
+FFmpeg 5.1.9 foi medido com 1 s/30 frames: `out_time_us` e o alias `out_time_ms`
+ambos 1000000, em microssegundos. O worker persiste avanço monotônico por tentativa
+aproximadamente a cada 1 s; percentual existe só em encoding e é limitado a 99.
+Validating/publishing são indeterminados; 100 só aparece após completed persistido.
+
+A validação exige tamanho positivo/dentro do teto, container MP4, H.264/yuv420p,
+dimensões/FPS/SAR/duração esperados, AAC/presença de áudio coerentes, faststart,
+decode integral com contagem de frames e SHA-256. Exit code zero não basta.
+`amix normalize=0` conserva o comportamento R04: ganhos altos podem clipar
+fontes arbitrárias. Métricas sintéticas de RMS/peak não substituem escuta humana.
+
+## Scheduler, cancelamento e publicação R05
+
+`worker/scheduler.py` seleciona candidatos PreviewJob/RenderJob em uma transação
+curta com SKIP LOCKED e ordem fixa das filas; escolhe FIFO entre candidatos
+atualmente elegíveis/desbloqueados. Confirma o claim antes de iniciar o processor.
+Não existe segundo loop desconectado nem preempção; um FFmpeg por worker, um
+worker Compose por padrão. Cgroup 2 CPUs/1536 MiB/128 PIDs, Tini, usuário sem root e
+capabilities removidas continuam preservados. Espera ociosa usa Event.
+
+`RenderWorker`/`RenderLeaseController` reutilizam lease/token e supervisão do
+worker R04. Transições CAS exigem running, token, projeto ativo e lease válido,
+com `clock_timestamp()` fresco. Defaults: lease 30 s, heartbeat 5 s, consulta de
+cancelamento 0,5 s, grace 2 s e até duas tentativas. Cada nova tentativa zera seu
+progresso; estados terminais não retornam a ativos. SIGTERM/SIGINT interrompe
+somente o grupo pertencente ao job e permite retry finito; perda de posse para
+imediatamente e não autoriza publicar. Crash requer reconciliação por lease,
+sem adoção/sobrescrita de canônicos encontrados.
+
+A API nunca sinaliza processos. Queued→canceled é atômico. Em running persiste
+`cancel_requested_at`; o supervisor observa a intenção, termina seu próprio
+grupo SIGTERM/grace/SIGKILL e só após encerramento/cleanup confirma canceled.
+Criação, cancelamento e publicação respeitam Project→Job; o claim de fila usa
+locks SKIP LOCKED dos candidatos. Cancel persistido antes da finalização bloqueia
+completed; se a publicação já confirmou completed, o cancelamento recebe 409.
+
+`RenderProcessor` resolve o snapshot e mídias autorizadas, cria workspace privado
+por job/token, compõe/valida, revalida hash e publica sem overwrite. Antes de
+executar reserva espaço para o teto configurado mais a margem livre; falta de
+espaço falha sanitizada e não apaga mídia. Namespace final:
+`renders/{project_uuid}/{render_uuid}/final.mp4`, modo 0400. A transação curta de
+publicação bloqueia Project→RenderJob e revalida posse/cancelamento antes/depois
+da promoção exclusiva. Completed só é anunciado após commit confirmado.
+
+Commit incerto preserva artefatos para reconciliação conservadora. Só temporários
+inequivocamente pertencentes à tentativa são limpos; originais, prévias, exports
+concluídos e arquivos desconhecidos não são apagados. Auditoria
+`scripts/audit-storage-r05.py` reconcilia somente por leitura, incluindo espaço
+e potenciais órfãos. `scripts/r05-preservation.py` compara baseline de documentos,
+migrations/locks, rows históricos, trigger, SHA/modos, Git e ObraControl.
+
+Download usa o leitor por FD existente, GET/HEAD e Range 200/206/416, com
+`video/mp4`, `private, no-store`, `nosniff` e attachment. Filename é gerado como
+`edivo-r8-9x16-standard.mp4` a partir de campos allowlisted; nenhum nome de
+upload entra nesse header. Não existe StaticFiles público ou endpoint genérico.
+
+## Exportação no editor React
+
+`features/editor/export-panel.tsx` integra-se ao `EditorWorkspace` existente,
+mantendo player, timeline, textos, áudio, prévias, dirty state e hash routing.
+`lib/api/renders.ts` contém contratos tipados e valida respostas por identidade,
+projeto, revisão/perfil, estados, metadados e URLs relativas do namespace correto.
+Nenhuma URL arbitrária retornada é aceita como fonte do player/download.
+
+Solicitar render exige revisão salva, draft limpo e ação explícita. O perfil
+é standard/high, com resolução derivada do canvas da revisão. Antes do POST,
+a identidade da requisição é persistida por projeto; resposta incerta conserva
+a chave para repetição explícita idempotente. Reload não repete POST nem salva
+o draft automaticamente. Falha de conectividade é distinta de job failed.
+
+Monitoramento ativo e resultado selecionado possuem referências independentes:
+ver um resultado anterior não interrompe polling do trabalho atual. IDs locais
+são revalidados no servidor; quando ausentes, o histórico permite recuperar
+o job. Polling é serial, cerca de 2 s, com AbortController/deadline e cleanup de
+timer ao desmontar, trocar ID ou atingir terminal. A falha de consulta apresenta
+recuperação explícita, preservando o ID. Não utiliza WebSocket.
+
+Somente encoding medido apresenta progress bar; demais estágios são
+indeterminados. Cancelamento exige confirmação em modal e acompanha a intenção
+até resposta real do worker. Histórico paginado em 20 itens mantém terminais,
+identifica revisão anterior e oferece nova tentativa explícita com nova chave.
+Um resultado completed disponível possui vídeo HTML5 e link privado attachment;
+codec/rede recebem feedback e opção de recarregar. Os três players compartilham
+pausa mútua por eventos nativos. CSS preserva temas e reorganiza o painel em telas
+menores; testes de unidade não substituem a validação real em Chromium.
+
+O gate R05.4 passou inicialmente com 312 testes frontend; a correção da admissão
+global acrescentou um caso de cliente HTTP. A [regressão final Docker](r05/evidence/full-compose-final-summary.json)
+passou com **313 frontend**, ESLint, Prettier e build TypeScript/Vite.
+A [união distinta JUnit](r05/evidence/backend-distinct-final-counts.json) confirmou
+**1140 backend**: 1110 padrão e 30 PG opt-in, sem overlap nem reexecuções
+somadas. Os nove testes Python host do harness do navegador ficam separados,
+assim como 29 checks operacionais Compose, HTTP/FFmpeg e Chromium.
+
+A [queda real do PostgreSQL durante encoding](r05/evidence/db-outage-attempt-1/report.json)
+passou em 37 verificações, com filas ociosas e worker principal previamente
+parado pelo operador. Uma tentativa dedicada perdeu a confirmação de posse e
+encerrou seu próprio subprocesso sem artefato; após restaurar o mesmo banco, uma segunda
+tentativa com token novo concluiu o render de 12 s, validado integralmente.
+O original manteve SHA/0400/mtime. Falta de espaço, fsync e COMMIT incerto ainda
+usam injeção de falhas; essa distinção permanece explícita nas evidências.
+
+O [Chromium 145 real](r05/evidence/browser-attempt-1/r05-export-1792717682595939151.json)
+passou em 15 verificações, incluindo export completo de 12 s, progresso medido,
+play/seek/pause nativos, download/SHA, Range e cancelamento durante encoding.
+A [verificação na imagem final](r05/evidence/browser-attempt-3/r05-verify-1792720452716863901.json)
+passou em cinco após reinício, com revisão, histórico e arquivo preservados.
+Desktop e mobile emulados 375/390 px, temas e teclado foram exercitados; não
+houve cobertura de outros navegadores/dispositivos físicos ou escuta humana.
+
+A [verificação final integrada](r05/evidence/post-admission-verification-summary.json)
+confirmou renders, prévia R04, Chromium e preservação após reinício. A
+[auditoria de storage](r05/evidence/storage-admission-final.json) conferiu 197 MP4,
+dez MP3, oito prévias e 14 arquivos finais, com zero temporários, arquivos
+desconhecidos ou divergências. A [preservação do baseline](r05/evidence/preservation-admission-final.json)
+conferiu 165 arquivos históricos, 94 artefatos anteriores, rows/revisões/trigger,
+locks, Git e cinco containers ObraControl. [Hashes das fontes no runtime](r05/evidence/final-runtime-source-hashes.json)
+correspondem ao checkout validado em API, worker e frontend.
+
+## Gates e continuidade
+
+A auditoria, migration/API, compositor, scheduler/cancelamento, UI/histórico e
+QA final passaram pelos gates R05.0–R05.5, com **22/22 critérios** e evidências
+separadas. Negativas iniciais e suas resoluções permanecem na cronologia.
+O sistema está tecnicamente pronto para R06, que não foi iniciada e requer
+nova autorização. Heditor, LLM/agentes, prompts, Higgsfield, filas
+distribuídas, Redis/Celery, WebSocket, 4K e novos formatos não entram na R05.

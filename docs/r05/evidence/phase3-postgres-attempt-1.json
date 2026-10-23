@@ -1,0 +1,32 @@
+{
+  "release": "R05",
+  "gate": "R05.3",
+  "recorded_at": "2026-10-22T14:17:18.044230+00:00",
+  "command_argv": [
+    "docker",
+    "compose",
+    "exec",
+    "-T",
+    "api",
+    "python",
+    "-c",
+    "import os\nos.environ[\"EDIVO_QA_DATABASE_URL\"] = os.environ[\"EDIVO_DATABASE_URL\"]\nos.environ[\"EDIVO_QA_QUEUE_POSTGRES\"] = \"1\"\nos.environ[\"EDIVO_QA_RENDER_POSTGRES\"] = \"1\"\nos.environ[\"EDIVO_QA_WORKER_POSTGRES\"] = \"1\"\nimport pytest\nraise SystemExit(pytest.main([\"-q\", \"-x\", \"tests/test_preview_queue_postgres.py\", \"tests/test_render_postgres.py\", \"tests/test_render_publication_postgres.py\", \"tests/test_worker_scheduler_postgres.py\"]))\n"
+  ],
+  "exit_code": 0,
+  "seconds": 19.085,
+  "status": "passed",
+  "log": "phase3-postgres-attempt-1.log",
+  "log_sha256": "c56f9522ba02c0dc20d83fba7106f2fb1f30dd923707c9d5aa2d14f0d7250612",
+  "scope": "Explicit PostgreSQL opt-in tests; synthetic project-scoped fixtures only; principal worker stopped; no lifecycle changes.",
+  "passed": 29,
+  "warnings": 1,
+  "pytest_seconds": 15.22,
+  "distinct_suites": {
+    "test_preview_queue_postgres.py": 8,
+    "test_render_postgres.py": 12,
+    "test_render_publication_postgres.py": 2,
+    "test_worker_scheduler_postgres.py": 7
+  },
+  "source_verification": "phase3-worker-source-hashes.json",
+  "note": "The earlier twelve phase1 PostgreSQL cases are a regression rerun here, not twelve additional distinct tests in a release total."
+}

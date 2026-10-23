@@ -1,0 +1,131 @@
+{
+  "status": "failed",
+  "created_at": "2026-10-22T14:55:37.012588+00:00",
+  "run_id": "942c6a15e10e407aa0a38078639a2192",
+  "checks": [
+    {
+      "check": "application_worker_already_stopped",
+      "passed": true
+    },
+    {
+      "check": "all_queues_initially_empty",
+      "passed": true
+    },
+    {
+      "check": "synthetic_project_created",
+      "passed": true
+    },
+    {
+      "check": "real_mp4_imported",
+      "passed": true
+    },
+    {
+      "check": "immutable_v1_revision_saved",
+      "passed": true
+    },
+    {
+      "check": "render_queued_from_saved_revision",
+      "passed": true
+    },
+    {
+      "check": "container_ownership_confirmed",
+      "passed": true,
+      "container_id": "92f7d41a507e9373cde593808c83d0839eb39858be6d5a67c88588dd7e580936"
+    },
+    {
+      "check": "real_ffmpeg_in_encoding_attempt",
+      "passed": true
+    },
+    {
+      "check": "container_ownership_confirmed",
+      "passed": true,
+      "container_id": "92f7d41a507e9373cde593808c83d0839eb39858be6d5a67c88588dd7e580936"
+    },
+    {
+      "check": "dedicated_worker_exit",
+      "passed": true,
+      "case": "sigterm",
+      "exit_code": 0
+    },
+    {
+      "check": "dedicated_worker_removed",
+      "passed": true,
+      "case": "sigterm"
+    },
+    {
+      "check": "sigterm_requeues_after_child_stops",
+      "passed": true
+    },
+    {
+      "check": "container_ownership_confirmed",
+      "passed": true,
+      "container_id": "fda43543e4d83bc662b429153277548087cfb5eee7f46d38e7ea440d65e17fac"
+    },
+    {
+      "check": "real_ffmpeg_in_encoding_attempt",
+      "passed": true
+    },
+    {
+      "check": "sigterm_retry_uses_new_fencing_token",
+      "passed": true
+    },
+    {
+      "check": "dedicated_worker_exit",
+      "passed": true,
+      "case": "sigterm-retry",
+      "exit_code": 0
+    },
+    {
+      "check": "dedicated_worker_removed",
+      "passed": true,
+      "case": "sigterm-retry"
+    },
+    {
+      "check": "completed_only_after_valid_artifact",
+      "passed": false
+    }
+  ],
+  "jobs": [
+    {
+      "id": "3710f761-61a7-44c5-ae35-20f69c287c65",
+      "status_url": "/api/v1/projects/027008f4-2c0b-4a6e-a56f-d0cec3648969/renders/3710f761-61a7-44c5-ae35-20f69c287c65"
+    }
+  ],
+  "containers": [
+    {
+      "name": "edivo-r05-control-942c6a15e10e-sigterm-d6e153b6",
+      "id": "92f7d41a507e9373cde593808c83d0839eb39858be6d5a67c88588dd7e580936",
+      "case": "sigterm"
+    },
+    {
+      "name": "edivo-r05-control-942c6a15e10e-sigterm-retry-2137be67",
+      "id": "fda43543e4d83bc662b429153277548087cfb5eee7f46d38e7ea440d65e17fac",
+      "case": "sigterm-retry"
+    }
+  ],
+  "application_worker_signalled": false,
+  "other_projects_mutated": false,
+  "limitations": [
+    "POSIX container QA, not a multi-host or distributed-queue test."
+  ],
+  "project_id": "027008f4-2c0b-4a6e-a56f-d0cec3648969",
+  "original_before": {
+    "8aeab704-886a-4e83-bd78-565aab4a2cad": {
+      "sha256": "7ce64b63d0e61d2d47455b628e724019472edf06338ff337042e9bb603e4c157",
+      "bytes": 1495271,
+      "mode": "0400",
+      "mtime_ns": 1792680940003516264
+    }
+  },
+  "revision_id": "a39d5952-9844-4ffe-a72d-fb0db7dce610",
+  "failure": "completed_only_after_valid_artifact",
+  "all_dedicated_containers_gone": true,
+  "cleanup_cancellations": [
+    {
+      "id": "3710f761-61a7-44c5-ae35-20f69c287c65",
+      "http_status": 202,
+      "status": "running",
+      "cancel_requested_at": "2026-10-22T14:56:13.514556Z"
+    }
+  ]
+}

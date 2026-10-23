@@ -1,0 +1,60 @@
+{
+  "stage": "R05.1",
+  "status": "real_database_gate_passed",
+  "recorded_at": "2026-10-22T01:39:30.061717+00:00",
+  "new_standard_cases_distinct": 123,
+  "new_real_postgresql_cases_distinct": 12,
+  "real_postgresql_result": {
+    "passed": 12,
+    "failed": 0,
+    "duration_seconds": 4.45,
+    "log": "phase1-postgres-attempt-1.log",
+    "execution": "Private temporary copy in API runtime; EDIVO_QA_RENDER_POSTGRES=1 and database alias copied privately; no conftest mocks"
+  },
+  "standard_regression": {
+    "passed": 415,
+    "failed": 0,
+    "duration_seconds": 44.47,
+    "log": "phase1-regression-final.log",
+    "includes_the_123_new_standard_cases": true
+  },
+  "alembic": {
+    "revision": "0005_r05_render_exports",
+    "current_exit_code": 0,
+    "upgrade_head_exits": [
+      0,
+      0
+    ],
+    "check_exit_code": 0,
+    "drift": "No new upgrade operations detected.",
+    "log": "phase1-alembic-http-attempt-1.log"
+  },
+  "http": {
+    "health": 200,
+    "ready": 200,
+    "database": "ok",
+    "storage": "ok"
+  },
+  "source_identity": {
+    "passed": true,
+    "production_files_matched": 5,
+    "evidence": "phase1-api-source-hashes.json"
+  },
+  "quality": {
+    "ruff_check": 0,
+    "ruff_format_check": 0,
+    "files_formatted": 90
+  },
+  "operational_notes": [
+    "Root also executed Alembic head/check. This agent had already submitted its authorized sequential Alembic runner when root asked it to avoid duplicate no-op upgrades. Those head upgrades were no-ops and are retained as operational repetitions, never distinct test cases.",
+    "No services restarted or containers built by this agent; root coordinated API build/up and initial migration.",
+    "PostgreSQL tests generated synthetic fixtures only; they preserved originals and revisions, terminalized only their own active jobs and soft-deleted their own projects.",
+    "The started_at field in phase1-postgres-attempt-1.json was recorded when the subprocess returned; it is a completion record rather than a precise test-start measurement.",
+    "Full production rendering, real worker cancellation and completed/publication races remain future R05.2/R05.3 gates; no such success is claimed here."
+  ],
+  "preservation": {
+    "performed_by": "root",
+    "evidence": "preservation-after-migration.json"
+  },
+  "unit_execution_history": "phase1-unit-summary.json"
+}

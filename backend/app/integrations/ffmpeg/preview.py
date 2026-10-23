@@ -1,4 +1,4 @@
-"""Compose and fully validate a short preview from a frozen, typed editing plan.
+"""One compositor and full validator for preview and final immutable editing plans.
 
 No database access, publication or shell execution belongs here. Inputs are
 already-authorized pinned descriptors. Only this module's allowlisted filters
@@ -15,19 +15,53 @@ from collections.abc import Callable
 from dataclasses import dataclass
 from fractions import Fraction
 from pathlib import Path
-from typing import Any
+from typing import Any, Literal
 
 from app.core.config import Settings
 from app.integrations.ffmpeg.font_metrics import FONT_PATH, FontLayoutError, FontMetrics
+from app.integrations.ffmpeg.progress import FFmpegProgress
 from app.schemas.edit_spec import AudioSpec, EditSpecV1, EditSpecV2
 from app.worker.supervisor import PreviewProcessError, ProcessRunner
 
 PROFILE_SIZES = {"9:16": (540, 960), "1:1": (540, 540), "4:5": (544, 680), "16:9": (960, 540)}
 FPS = 24
+FINAL_PROFILE_SIZES = {
+    "9:16": (1080, 1920),
+    "1:1": (1080, 1080),
+    "4:5": (1080, 1350),
+    "16:9": (1920, 1080),
+}
+FINAL_FPS = 30
 # CFR output quantizes a very short window to at least one frame. MP4 duration
 # also rounds to milliseconds: e.g. a 1 ms request is one 41.667 ms video frame.
 DURATION_TOLERANCE_SECONDS = 1 / FPS + 0.001
 _MAX_ALLOC = "67108864"
+
+
+@dataclass(frozen=True)
+class CompositionProfile:
+    """Application-owned output parameters; no profile field is an HTTP argv."""
+
+    name: str
+    fps: int
+    encoder_preset: str
+    crf: int
+    audio_bitrate: str
+    final: bool = False
+
+    def dimensions(self, preset: str) -> tuple[int, int]:
+        return (FINAL_PROFILE_SIZES if self.final else PROFILE_SIZES)[preset]
+
+    @property
+    def duration_tolerance_seconds(self) -> float:
+        return 1 / self.fps + 0.001
+
+
+PREVIEW_PROFILE = CompositionProfile("preview", FPS, "veryfast", 28, "128k")
+FINAL_PROFILES = {
+    "standard": CompositionProfile("standard", FINAL_FPS, "veryfast", 23, "160k", True),
+    "high": CompositionProfile("high", FINAL_FPS, "medium", 20, "192k", True),
+}
 
 
 @dataclass(frozen=True)
@@ -46,7 +80,8 @@ def _number(value: float) -> str:
     return format(value, ".12g")
 
 
-def _common(settings: Settings) -> list[str]:
+def _common(settings: Settings, threads: int | None = None) -> list[str]:
+    threads = settings.preview_threads if threads is None else threads
     return [
         settings.ffmpeg_bin,
         "-hide_banner",
@@ -57,18 +92,19 @@ def _common(settings: Settings) -> list[str]:
         "-max_alloc",
         _MAX_ALLOC,
         "-threads",
-        str(settings.preview_threads),
+        str(threads),
         "-filter_threads",
-        str(settings.preview_threads),
+        str(threads),
         "-filter_complex_threads",
-        str(settings.preview_threads),
+        str(threads),
     ]
 
 
-def _input_options(settings: Settings, kind: str) -> list[str]:
+def _input_options(settings: Settings, kind: str, threads: int | None = None) -> list[str]:
+    threads = settings.preview_threads if threads is None else threads
     options = [
         "-threads",
-        str(settings.preview_threads),
+        str(threads),
         "-err_detect",
         "explode",
         "-protocol_whitelist",
@@ -85,8 +121,10 @@ def _input_options(settings: Settings, kind: str) -> list[str]:
     return [*options, "-f", kind]
 
 
-def framing_filter(plan: EditSpecV1 | EditSpecV2) -> str:
-    width, height = PROFILE_SIZES[plan.canvas.preset]
+def framing_filter(
+    plan: EditSpecV1 | EditSpecV2, *, composition: CompositionProfile = PREVIEW_PROFILE
+) -> str:
+    width, height = composition.dimensions(plan.canvas.preset)
     ratio = f"{width}/{height}"
     # Scale expressions use display aspect ratio, after FFmpeg's autorotation.
     # force_original_aspect_ratio alone would use coded dimensions for SAR != 1.
@@ -129,10 +167,11 @@ def _text_filters(
     duration_ms: int,
     workspace: Path,
     runner: ProcessRunner,
+    composition: CompositionProfile = PREVIEW_PROFILE,
 ) -> list[str]:
     if not isinstance(plan, EditSpecV2) or not plan.text_overlays:
         return []
-    width, height = PROFILE_SIZES[plan.canvas.preset]
+    width, height = composition.dimensions(plan.canvas.preset)
     filters = []
     with FontMetrics() as font:
         for index, overlay in enumerate(plan.text_overlays):
@@ -223,7 +262,12 @@ def _finite_duration(value: object) -> float:
 
 
 def validate_metadata(
-    payload: object, preset: str, duration_ms: int, expects_audio: bool
+    payload: object,
+    preset: str,
+    duration_ms: int,
+    expects_audio: bool,
+    *,
+    composition: CompositionProfile = PREVIEW_PROFILE,
 ) -> dict[str, Any]:
     """Return only controlled fields; never publish tags, paths or raw probe JSON."""
     try:
@@ -237,14 +281,14 @@ def validate_metadata(
         if len(streams) != 1 + int(expects_audio) or "mp4" not in info["format_name"].split(","):
             raise ValueError
         video = videos[0]
-        width, height = PROFILE_SIZES[preset]
+        width, height = composition.dimensions(preset)
         start_times = (float(info.get("start_time", 0)), float(video.get("start_time", 0)))
         if (
             video.get("codec_name") != "h264"
             or video.get("pix_fmt") != "yuv420p"
             or video.get("width") != width
             or video.get("height") != height
-            or Fraction(video["avg_frame_rate"]) != FPS
+            or Fraction(video["avg_frame_rate"]) != composition.fps
             or video.get("sample_aspect_ratio") != "1:1"
             or int(video["nb_frames"]) < 1
         ):
@@ -257,9 +301,9 @@ def validate_metadata(
             _finite_duration(video["duration"]),
         )
         if (
-            abs(duration - requested) > DURATION_TOLERANCE_SECONDS
-            or abs(video_duration - requested) > DURATION_TOLERANCE_SECONDS
-            or duration > 8.001
+            abs(duration - requested) > composition.duration_tolerance_seconds
+            or abs(video_duration - requested) > composition.duration_tolerance_seconds
+            or (not composition.final and duration > 8.001)
             or any(not math.isfinite(value) or abs(value) > 0.001 for value in start_times)
         ):
             raise ValueError
@@ -267,7 +311,8 @@ def validate_metadata(
             audios[0].get("codec_name") != "aac"
             or audios[0].get("sample_rate") != "48000"
             or audios[0].get("channels") != 2
-            or abs(_finite_duration(audios[0]["duration"]) - requested) > DURATION_TOLERANCE_SECONDS
+            or abs(_finite_duration(audios[0]["duration"]) - requested)
+            > composition.duration_tolerance_seconds
         ):
             raise ValueError
         return {
@@ -275,7 +320,7 @@ def validate_metadata(
             "requested_duration_ms": duration_ms,
             "width": width,
             "height": height,
-            "fps_num": FPS,
+            "fps_num": composition.fps,
             "fps_den": 1,
             "video_codec": "h264",
             "pixel_format": "yuv420p",
@@ -320,15 +365,20 @@ def validate_artifact(
     duration_ms: int,
     expects_audio: bool,
     runner: ProcessRunner,
+    composition: CompositionProfile = PREVIEW_PROFILE,
 ) -> PreviewArtifact:
     """Probe, decode every output packet, verify frames, then hash the pinned file."""
     try:
+        maximum_bytes = (
+            settings.render_max_output_bytes if composition.final else settings.preview_max_bytes
+        )
+        threads = settings.render_threads if composition.final else settings.preview_threads
         descriptor = os.open(path, os.O_RDONLY | os.O_CLOEXEC | os.O_NOFOLLOW | os.O_NONBLOCK)
         with os.fdopen(descriptor, "rb") as file:
             metadata = os.fstat(file.fileno())
             if (
                 not stat.S_ISREG(metadata.st_mode)
-                or not 0 < metadata.st_size <= settings.preview_max_bytes
+                or not 0 < metadata.st_size <= maximum_bytes
                 or not _faststart(file, metadata.st_size)
             ):
                 raise PreviewProcessError("preview_validation_failed")
@@ -341,7 +391,7 @@ def validate_artifact(
                     "error",
                     "-max_alloc",
                     _MAX_ALLOC,
-                    *_input_options(settings, "mov"),
+                    *_input_options(settings, "mov", threads),
                     "-show_entries",
                     "format=format_name,duration,start_time:"
                     "stream=index,codec_type,codec_name,width,height,pix_fmt,avg_frame_rate,"
@@ -360,11 +410,20 @@ def validate_artifact(
                 payload = json.loads(probe.stdout)
             except (ValueError, UnicodeError):
                 raise PreviewProcessError("preview_validation_failed") from None
-            controlled = validate_metadata(payload, preset, duration_ms, expects_audio)
+            controlled = validate_metadata(
+                payload, preset, duration_ms, expects_audio, composition=composition
+            )
+            decode_options = {}
+            if composition.final:
+                decode_progress = FFmpegProgress(duration_ms, lambda _encoded_ms: None)
+                decode_options = {
+                    "stdout_consumer": decode_progress.feed,
+                    "stdout_limit": settings.render_progress_output_bytes,
+                }
             decoded = runner.run(
                 [
-                    *_common(settings),
-                    *_input_options(settings, "mov"),
+                    *_common(settings, threads),
+                    *_input_options(settings, "mov", threads),
                     "-i",
                     input_path,
                     "-map",
@@ -372,7 +431,7 @@ def validate_artifact(
                     "-map",
                     "0:a:0?",
                     "-threads",
-                    str(settings.preview_threads),
+                    str(threads),
                     "-fps_mode",
                     "passthrough",
                     "-f",
@@ -382,21 +441,23 @@ def validate_artifact(
                     "pipe:1",
                 ],
                 pass_fds=(file.fileno(),),
+                **decode_options,
             )
-            progress = dict(
-                line.split("=", 1)
-                for line in decoded.stdout.decode("ascii", errors="replace").splitlines()
-                if "=" in line
-            )
-            if (
-                decoded.returncode
-                or progress.get("progress") != "end"
-                or not progress.get("frame", "").strip().isdigit()
-                or int(progress["frame"]) != controlled["frame_count"]
-                or int(progress["frame"]) < 1
-            ):
+            if composition.final:
+                decode_progress.finish()
+                ended, frames = decode_progress.ended, decode_progress.frame_count
+            else:
+                progress = dict(
+                    line.split("=", 1)
+                    for line in decoded.stdout.decode("ascii", errors="replace").splitlines()
+                    if "=" in line
+                )
+                ended = progress.get("progress") == "end"
+                frame_value = progress.get("frame", "").strip()
+                frames = int(frame_value) if frame_value.isdigit() else 0
+            if decoded.returncode or not ended or frames != controlled["frame_count"] or frames < 1:
                 raise PreviewProcessError("preview_validation_failed")
-            controlled["decoded_frames"] = int(progress["frame"])
+            controlled["decoded_frames"] = frames
             file.seek(0)
             checksum = hashlib.sha256()
             count = 0
@@ -427,9 +488,89 @@ def render_preview(
     runner: ProcessRunner,
     set_stage: Callable[[str], None],
 ) -> PreviewArtifact:
+    """R04-compatible short window, output profile and errors."""
+    return _render_composition(
+        settings,
+        plan,
+        source_fd=source_fd,
+        source_video_stream_index=source_video_stream_index,
+        source_has_audio=source_has_audio,
+        background_fd=background_fd,
+        preview_start_ms=preview_start_ms,
+        duration_ms=duration_ms,
+        workspace=workspace,
+        runner=runner,
+        set_stage=set_stage,
+        composition=PREVIEW_PROFILE,
+    )
+
+
+def render_final(
+    settings: Settings,
+    plan: EditSpecV1 | EditSpecV2,
+    *,
+    source_fd: int,
+    source_video_stream_index: int,
+    source_has_audio: bool,
+    background_fd: int | None,
+    workspace: Path,
+    runner: ProcessRunner,
+    set_stage: Callable[[str], None],
+    profile: Literal["standard", "high"],
+    set_progress: Callable[[int], None],
+) -> PreviewArtifact:
+    """Compose the complete saved trim directly; preview size/window are irrelevant.
+
+    The caller provides the render supervision policy, authorized descriptors,
+    and fenced callbacks. This layer never publishes or writes database state.
+    """
+    if profile not in FINAL_PROFILES:
+        raise PreviewProcessError("render_invalid_plan")
+    try:
+        return _render_composition(
+            settings,
+            plan,
+            source_fd=source_fd,
+            source_video_stream_index=source_video_stream_index,
+            source_has_audio=source_has_audio,
+            background_fd=background_fd,
+            preview_start_ms=plan.trim.start_ms,
+            duration_ms=plan.trim.end_ms - plan.trim.start_ms,
+            workspace=workspace,
+            runner=runner,
+            set_stage=set_stage,
+            composition=FINAL_PROFILES[profile],
+            set_progress=set_progress,
+        )
+    except PreviewProcessError as error:
+        # Control-flow subclasses (stop, lost lease, cancellation) retain their
+        # identity so the worker can perform the right transactional transition.
+        if type(error) is PreviewProcessError and error.code.startswith("preview_"):
+            raise PreviewProcessError("render_" + error.code.removeprefix("preview_")) from None
+        raise
+
+
+def _render_composition(
+    settings: Settings,
+    plan: EditSpecV1 | EditSpecV2,
+    *,
+    source_fd: int,
+    source_video_stream_index: int,
+    source_has_audio: bool,
+    background_fd: int | None,
+    preview_start_ms: int,
+    duration_ms: int,
+    workspace: Path,
+    runner: ProcessRunner,
+    set_stage: Callable[[str], None],
+    composition: CompositionProfile,
+    set_progress: Callable[[int], None] | None = None,
+) -> PreviewArtifact:
     if (
         type(duration_ms) is not int
-        or not 1 <= duration_ms <= 8000
+        or not 1
+        <= duration_ms
+        <= (settings.media_max_duration_seconds * 1000 if composition.final else 8000)
         or type(preview_start_ms) is not int
         or preview_start_ms < plan.trim.start_ms
         or preview_start_ms + duration_ms > plan.trim.end_ms
@@ -443,17 +584,20 @@ def render_preview(
     if expects_music != (background_fd is not None):
         raise PreviewProcessError("preview_source_unavailable")
     expects_audio = source_has_audio or expects_music
-    output = workspace / "preview.part"
+    output = workspace / ("final.part" if composition.final else "preview.part")
+    threads = settings.render_threads if composition.final else settings.preview_threads
     try:
         runner.check()
-        text_filters = _text_filters(plan, preview_start_ms, duration_ms, workspace, runner)
+        text_filters = _text_filters(
+            plan, preview_start_ms, duration_ms, workspace, runner, composition
+        )
         seconds = _seconds(duration_ms)
         argv = [
-            *_common(settings),
+            *_common(settings, threads),
             "-ss",
             _seconds(preview_start_ms),
             "-noaccurate_seek",
-            *_input_options(settings, "mov"),
+            *_input_options(settings, "mov", threads),
             "-i",
             f"/proc/self/fd/{source_fd}",
         ]
@@ -464,7 +608,7 @@ def render_preview(
             argv += [
                 "-t",
                 _seconds(preview_start_ms - plan.trim.start_ms + duration_ms),
-                *_input_options(settings, "mp3"),
+                *_input_options(settings, "mp3", threads),
                 "-i",
                 f"/proc/self/fd/{background_fd}",
             ]
@@ -474,11 +618,11 @@ def render_preview(
             # Accurate-seek discards that frame at the very end of a source,
             # which otherwise turns a valid final 1 ms window into audio-only.
             # Audio independently discards negative preroll via first_pts=0.
-            f"fps=fps={FPS}:start_time=0:round=up:eof_action=pass",
+            f"fps=fps={composition.fps}:start_time=0:round=up:eof_action=pass",
             "trim=start=0",
             f"trim=duration={seconds}",
             "setpts=PTS-STARTPTS",
-            framing_filter(plan),
+            framing_filter(plan, composition=composition),
             "format=yuv420p",
             *text_filters,
         ]
@@ -495,7 +639,7 @@ def render_preview(
                 "-c:a",
                 "aac",
                 "-b:a",
-                "128k",
+                composition.audio_bitrate,
                 "-ar",
                 "48000",
                 "-ac",
@@ -515,15 +659,15 @@ def render_preview(
             "-c:v",
             "libx264",
             "-threads",
-            str(settings.preview_threads),
+            str(threads),
             "-preset",
-            "veryfast",
+            composition.encoder_preset,
             "-crf",
-            "28",
+            str(composition.crf),
             "-pix_fmt",
             "yuv420p",
             "-r",
-            str(FPS),
+            str(composition.fps),
             "-fps_mode",
             "cfr",
             "-t",
@@ -537,9 +681,21 @@ def render_preview(
             "-n",
             str(output),
         ]
+        run_options = {}
+        if composition.final:
+            progress = FFmpegProgress(duration_ms, set_progress)
+            # Global output controls avoid retaining unbounded progress history.
+            # The installed encoder reports media timestamps in microseconds.
+            argv += ["-progress", "pipe:1", "-stats_period", "0.5"]
+            run_options = {
+                "stdout_consumer": progress.feed,
+                "stdout_limit": settings.render_progress_output_bytes,
+            }
         set_stage("encoding")
-        result = runner.run(argv, pass_fds=tuple(descriptors), cwd=workspace)
-        if result.returncode:
+        result = runner.run(argv, pass_fds=tuple(descriptors), cwd=workspace, **run_options)
+        if composition.final:
+            progress.finish()
+        if result.returncode or (composition.final and not progress.ended):
             raise PreviewProcessError("preview_encoding_failed")
         set_stage("validating")
         return validate_artifact(
@@ -549,6 +705,7 @@ def render_preview(
             duration_ms=duration_ms,
             expects_audio=expects_audio,
             runner=runner,
+            composition=composition,
         )
     except FontLayoutError as error:
         raise PreviewProcessError(str(error)) from None

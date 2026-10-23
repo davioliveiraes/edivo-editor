@@ -76,6 +76,7 @@ function server(initial: EditSpecRevision | null = null, audios: AudioAsset[] = 
   let audioFail = 0;
   const puts: Record<string, unknown>[] = [];
   const fetchMock = vi.fn(async (url: string, options?: RequestInit) => {
+    if (url.includes('/renders?')) return json(page([]));
     if (url.endsWith('/edit-spec')) {
       if (options?.method === 'PUT') {
         const payload = JSON.parse(options.body as string) as Record<string, unknown>;

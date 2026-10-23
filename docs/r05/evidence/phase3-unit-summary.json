@@ -1,0 +1,91 @@
+{
+  "release": "R05",
+  "gate": "R05.3",
+  "scope": "Targeted worker/scheduler/processor units and R04 regressions; PostgreSQL and real-process QA are separate.",
+  "production_source_status": "frozen_for_coordinated_runtime_build",
+  "automated_checks": [
+    {
+      "command": ".venv/bin/pytest -q tests/test_preview_queue.py tests/test_preview_processor.py tests/test_worker.py tests/test_render_repository.py",
+      "cwd": "backend",
+      "status": "interrupted_sandbox_blocked",
+      "exit_code": 130,
+      "detail": "Initial sandbox invocation stopped after sixteen progress dots without completion; interrupted only this pytest session and reran outside the sandbox. No passing count is inferred from dots."
+    },
+    {
+      "command": ".venv/bin/pytest -q tests/test_preview_queue.py tests/test_preview_processor.py tests/test_worker.py tests/test_render_repository.py tests/test_render_worker.py tests/test_worker_scheduler.py",
+      "cwd": "backend",
+      "status": "passed",
+      "exit_code": 0,
+      "passed": 82,
+      "warnings": 1,
+      "seconds": 3.34,
+      "outside_sandbox": true,
+      "evidence": "phase3-unit-attempt-1.log"
+    },
+    {
+      "command": ".venv/bin/pytest -q tests/test_preview_queue.py tests/test_preview_processor.py tests/test_worker.py tests/test_render_repository.py tests/test_render_worker.py tests/test_worker_scheduler.py tests/test_render_processor.py",
+      "cwd": "backend",
+      "status": "passed",
+      "exit_code": 0,
+      "passed": 106,
+      "warnings": 1,
+      "seconds": 2.3,
+      "outside_sandbox": true,
+      "evidence": "phase3-unit-attempt-2.log"
+    },
+    {
+      "command": ".venv/bin/pytest -q --collect-only tests/test_render_worker.py tests/test_worker_scheduler.py tests/test_render_processor.py",
+      "cwd": "backend",
+      "status": "passed",
+      "collected": 52,
+      "evidence": "phase3-new-test-collection.log",
+      "note": "These fifty-two new unit cases are already included in the 106-case run, not additional passes."
+    },
+    {
+      "command": ".venv/bin/ruff check app/worker app/repositories/preview_jobs.py app/repositories/render_jobs.py tests/test_render_processor.py tests/test_render_worker.py tests/test_worker_scheduler.py tests/test_worker_scheduler_postgres.py tests/test_worker.py",
+      "cwd": "backend",
+      "status": "passed"
+    },
+    {
+      "command": ".venv/bin/ruff format --check app/worker app/repositories/preview_jobs.py app/repositories/render_jobs.py tests/test_render_processor.py tests/test_render_worker.py tests/test_worker_scheduler.py tests/test_worker.py",
+      "cwd": "backend",
+      "status": "passed",
+      "formatted_files": 14
+    },
+    {
+      "command": ".venv/bin/pytest -q --collect-only tests/test_worker_scheduler_postgres.py",
+      "cwd": "backend",
+      "status": "collection_only",
+      "collected": 7,
+      "execution": "passed_in_phase3-postgres-attempt-1.json"
+    }
+  ],
+  "negative_attempts": [
+    {
+      "command": "Initial targeted Ruff check/format",
+      "status": "corrected",
+      "details": "One Yoda-condition expression, one overlong line and two formatting suggestions were corrected before the passing checks; no behavioral failure was hidden."
+    }
+  ],
+  "verified_unit_behaviors": [
+    "Shared FIFO selection and exact locked claims, commit before processor, idle wait and uncertain claim commit",
+    "Cancellation control distinct from lease loss, throttled monotonic progress and final flush before validation",
+    "No state mutation by a stale attempt, finite retry on interruption, sanitized deterministic failures",
+    "Cancellation finalization only after processor and child supervision unwind",
+    "Immutable v1 snapshot and complete trim passed to the compositor; v2 audio uses its separate inventory",
+    "SHA-256, private modes, absent source, symlink, FIFO/nonregular output, artifact mismatch and full output budget",
+    "No overwrite/adoption of canonical artifacts, workspace cleanup and preservation after lease loss or uncertain commit"
+  ],
+  "limitations": [
+    "Injected renderer artifacts are unit-only byte fixtures, not evidence of encoded media validity.",
+    "SQLite unit tests do not establish PostgreSQL locks, process signals or real FFmpeg output; those checks are coordinated separately.",
+    "A preexisting upstream Starlette/TestClient-httpx deprecation warning remains; dependencies were preserved."
+  ],
+  "postgresql": {
+    "status": "passed",
+    "distinct_cases_in_run": 29,
+    "evidence": "phase3-postgres-attempt-1.json",
+    "read_only_source_verification": "phase3-worker-source-hashes.json",
+    "real_process_control": "coordinated_separately_by_main_agent"
+  }
+}

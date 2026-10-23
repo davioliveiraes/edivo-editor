@@ -1,0 +1,53 @@
+{
+  "status": "passed",
+  "recorded_at": "2026-10-23T01:54:15.778882+00:00",
+  "baseline_recorded_at": "2026-10-22T00:14:53.324254+00:00",
+  "read_only_application_data": true,
+  "additions_allowed": true,
+  "historical_file_count": 165,
+  "changed_historical_files": [],
+  "baseline_database_rows": {
+    "projects": 80,
+    "media_assets": 83,
+    "audio_assets": 6,
+    "edit_spec_revisions": 60,
+    "preview_jobs": 49
+  },
+  "current_database_rows": {
+    "projects": 196,
+    "media_assets": 197,
+    "audio_assets": 10,
+    "edit_spec_revisions": 174,
+    "preview_jobs": 97
+  },
+  "changed_database_rows": {
+    "projects": [],
+    "media_assets": [],
+    "audio_assets": [],
+    "edit_spec_revisions": [],
+    "preview_jobs": []
+  },
+  "baseline_artifacts": {
+    "mp4": 83,
+    "mp3": 6,
+    "preview": 5
+  },
+  "changed_artifact_ids": {
+    "mp4": [],
+    "mp3": [],
+    "preview": []
+  },
+  "unreadable_artifact_ids": {
+    "mp4": [],
+    "mp3": [],
+    "preview": []
+  },
+  "revision_trigger_unchanged": true,
+  "alembic_baseline": "0004_r04_text_audio_previews",
+  "alembic_current": "0005_r05_render_exports",
+  "obra_container_count": 5,
+  "changed_obra_containers": [],
+  "git_head_unchanged": true,
+  "git_head": "5bdff6426437cfa6c82b43591f0c8a8ed4c9bac9",
+  "env_mode_unchanged": true
+}

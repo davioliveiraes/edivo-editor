@@ -1,0 +1,60 @@
+{
+  "status": "passed",
+  "stage": "queue",
+  "created_at": "2026-10-22T17:13:41.159175+00:00",
+  "checks": [
+    {
+      "check": "preview_seed_is_new",
+      "passed": true
+    },
+    {
+      "check": "bounded_http_response",
+      "passed": true
+    },
+    {
+      "check": "request_id_present",
+      "passed": true
+    },
+    {
+      "check": "existing_latest_revision_preserved",
+      "passed": true
+    },
+    {
+      "check": "bounded_http_response",
+      "passed": true
+    },
+    {
+      "check": "request_id_present",
+      "passed": true
+    },
+    {
+      "check": "real_preview_queued_from_saved_v2",
+      "passed": true
+    }
+  ],
+  "service_lifecycle_performed": false,
+  "direct_database_mutation": false,
+  "browser_used": false,
+  "job": {
+    "id": "2bd24155-09d5-45c7-aa99-1d9952142be5",
+    "project_id": "3f4bc7e0-3b4e-4db6-a812-18b581a398e3",
+    "revision_id": "0f4c7a80-714d-40a5-a25d-61c1c2451ce1",
+    "revision_number": 2,
+    "preview_start_ms": 3000,
+    "duration_ms": 4000,
+    "status": "queued",
+    "stage": "queued",
+    "attempts": 0,
+    "created_at": "2026-10-22T17:13:41.285737Z",
+    "started_at": null,
+    "finished_at": null,
+    "error_code": null,
+    "artifact_available": false,
+    "checksum_sha256": null,
+    "byte_size": null,
+    "status_url": "/api/v1/projects/3f4bc7e0-3b4e-4db6-a812-18b581a398e3/previews/2bd24155-09d5-45c7-aa99-1d9952142be5",
+    "file_url": null
+  },
+  "project_id": "3f4bc7e0-3b4e-4db6-a812-18b581a398e3",
+  "elapsed_seconds": 0.149
+}

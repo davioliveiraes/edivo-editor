@@ -1,0 +1,682 @@
+{
+  "status": "passed",
+  "created_at": "2026-10-22T15:43:49.200442+00:00",
+  "run_id": "ec543d61125e417fac4d82bc793b2378",
+  "checks": [
+    {
+      "check": "application_worker_already_stopped",
+      "passed": true
+    },
+    {
+      "check": "all_queues_initially_empty",
+      "passed": true
+    },
+    {
+      "check": "synthetic_project_created",
+      "passed": true
+    },
+    {
+      "check": "real_mp4_imported",
+      "passed": true
+    },
+    {
+      "check": "immutable_v1_revision_saved",
+      "passed": true
+    },
+    {
+      "check": "render_queued_from_saved_revision",
+      "passed": true
+    },
+    {
+      "check": "container_ownership_confirmed",
+      "passed": true,
+      "container_id": "aef4e69947c1498104800aa20913ee39ae90b5da8b62b62220bdae93b9164932"
+    },
+    {
+      "check": "real_ffmpeg_in_encoding_attempt",
+      "passed": true
+    },
+    {
+      "check": "container_ownership_confirmed",
+      "passed": true,
+      "container_id": "aef4e69947c1498104800aa20913ee39ae90b5da8b62b62220bdae93b9164932"
+    },
+    {
+      "check": "dedicated_worker_exit",
+      "passed": true,
+      "case": "sigterm",
+      "exit_code": 0
+    },
+    {
+      "check": "dedicated_worker_removed",
+      "passed": true,
+      "case": "sigterm"
+    },
+    {
+      "check": "sigterm_requeues_after_child_stops",
+      "passed": true
+    },
+    {
+      "check": "container_ownership_confirmed",
+      "passed": true,
+      "container_id": "5476b01cc6e446daf77be568885de683b27e7497e743026ff6df27166a46b255"
+    },
+    {
+      "check": "real_ffmpeg_in_encoding_attempt",
+      "passed": true
+    },
+    {
+      "check": "sigterm_retry_uses_new_fencing_token",
+      "passed": true
+    },
+    {
+      "check": "dedicated_worker_exit",
+      "passed": true,
+      "case": "sigterm-retry",
+      "exit_code": 0
+    },
+    {
+      "check": "dedicated_worker_removed",
+      "passed": true,
+      "case": "sigterm-retry"
+    },
+    {
+      "check": "completed_only_after_valid_artifact",
+      "passed": true
+    },
+    {
+      "check": "completed_real_mp4_sha_and_decode",
+      "passed": true
+    },
+    {
+      "check": "render_queued_from_saved_revision",
+      "passed": true
+    },
+    {
+      "check": "container_ownership_confirmed",
+      "passed": true,
+      "container_id": "523249b3f818524819d4073aeb66a8c517572df1286eecd56bb3358f3fb58cb9"
+    },
+    {
+      "check": "dedicated_worker_exit",
+      "passed": true,
+      "case": "clone",
+      "exit_code": 0
+    },
+    {
+      "check": "dedicated_worker_removed",
+      "passed": true,
+      "case": "clone"
+    },
+    {
+      "check": "container_ownership_confirmed",
+      "passed": true,
+      "container_id": "1283c8c1fa1002a577af8a3dd48ba75c56723be3ecfdde5d57c20724aaabd176"
+    },
+    {
+      "check": "real_ffmpeg_in_encoding_attempt",
+      "passed": true
+    },
+    {
+      "check": "container_ownership_confirmed",
+      "passed": true,
+      "container_id": "1283c8c1fa1002a577af8a3dd48ba75c56723be3ecfdde5d57c20724aaabd176"
+    },
+    {
+      "check": "dedicated_worker_exit",
+      "passed": true,
+      "case": "crash",
+      "exit_code": 137
+    },
+    {
+      "check": "dedicated_worker_removed",
+      "passed": true,
+      "case": "crash"
+    },
+    {
+      "check": "crash_old_attempt_never_publishes",
+      "passed": true
+    },
+    {
+      "check": "container_ownership_confirmed",
+      "passed": true,
+      "container_id": "a54a6a48e4e3f91907e7647a45206c0b5ec4b9be15e2c6d7cc04f79c9726b6c0"
+    },
+    {
+      "check": "real_ffmpeg_in_encoding_attempt",
+      "passed": true
+    },
+    {
+      "check": "crash_retry_uses_new_fencing_token",
+      "passed": true
+    },
+    {
+      "check": "dedicated_worker_exit",
+      "passed": true,
+      "case": "crash-retry",
+      "exit_code": 0
+    },
+    {
+      "check": "dedicated_worker_removed",
+      "passed": true,
+      "case": "crash-retry"
+    },
+    {
+      "check": "completed_only_after_valid_artifact",
+      "passed": true
+    },
+    {
+      "check": "completed_real_mp4_sha_and_decode",
+      "passed": true
+    },
+    {
+      "check": "render_queued_from_saved_revision",
+      "passed": true
+    },
+    {
+      "check": "container_ownership_confirmed",
+      "passed": true,
+      "container_id": "0920c8faedf3511ff348fbc60d42d7ba7099594058b7a40164a5379643555a71"
+    },
+    {
+      "check": "dedicated_worker_exit",
+      "passed": true,
+      "case": "clone",
+      "exit_code": 0
+    },
+    {
+      "check": "dedicated_worker_removed",
+      "passed": true,
+      "case": "clone"
+    },
+    {
+      "check": "container_ownership_confirmed",
+      "passed": true,
+      "container_id": "fcf3443fb40a4560f990807fd742d62993b8e94726bfcf369d1a99890311295a"
+    },
+    {
+      "check": "real_ffmpeg_in_encoding_attempt",
+      "passed": true
+    },
+    {
+      "check": "dedicated_worker_exit",
+      "passed": true,
+      "case": "lease",
+      "exit_code": 0
+    },
+    {
+      "check": "dedicated_worker_removed",
+      "passed": true,
+      "case": "lease"
+    },
+    {
+      "check": "expired_owner_observes_fencing",
+      "passed": true
+    },
+    {
+      "check": "lease_old_attempt_never_publishes",
+      "passed": true
+    },
+    {
+      "check": "container_ownership_confirmed",
+      "passed": true,
+      "container_id": "031eeeb6a6401f737e9f7e97c253493186a4702d0dfd5080da3993a641a452b7"
+    },
+    {
+      "check": "real_ffmpeg_in_encoding_attempt",
+      "passed": true
+    },
+    {
+      "check": "lease_retry_uses_new_fencing_token",
+      "passed": true
+    },
+    {
+      "check": "dedicated_worker_exit",
+      "passed": true,
+      "case": "lease-retry",
+      "exit_code": 0
+    },
+    {
+      "check": "dedicated_worker_removed",
+      "passed": true,
+      "case": "lease-retry"
+    },
+    {
+      "check": "completed_only_after_valid_artifact",
+      "passed": true
+    },
+    {
+      "check": "completed_real_mp4_sha_and_decode",
+      "passed": true
+    },
+    {
+      "check": "render_queued_from_saved_revision",
+      "passed": true
+    },
+    {
+      "check": "container_ownership_confirmed",
+      "passed": true,
+      "container_id": "875ac8f7b5e8880e4b3d9999d141378d7b8330137c2dbafaadd217f0467a80cb"
+    },
+    {
+      "check": "dedicated_worker_exit",
+      "passed": true,
+      "case": "timeout",
+      "exit_code": 0
+    },
+    {
+      "check": "dedicated_worker_removed",
+      "passed": true,
+      "case": "timeout"
+    },
+    {
+      "check": "real_ffmpeg_timeout_is_terminal",
+      "passed": true
+    },
+    {
+      "check": "render_queued_from_saved_revision",
+      "passed": true
+    },
+    {
+      "check": "container_ownership_confirmed",
+      "passed": true,
+      "container_id": "c5144be93923f59365ab35e8d3ca9cdf20684ff05c651d4068372a21b995703c"
+    },
+    {
+      "check": "container_ownership_confirmed",
+      "passed": true,
+      "container_id": "eb1412845e8b98d594322de0e10b887cfa831ef00c095a87d917671049ded546"
+    },
+    {
+      "check": "dedicated_worker_exit",
+      "passed": true,
+      "case": "race-a",
+      "exit_code": 0
+    },
+    {
+      "check": "dedicated_worker_removed",
+      "passed": true,
+      "case": "race-a"
+    },
+    {
+      "check": "dedicated_worker_exit",
+      "passed": true,
+      "case": "race-b",
+      "exit_code": 0
+    },
+    {
+      "check": "dedicated_worker_removed",
+      "passed": true,
+      "case": "race-b"
+    },
+    {
+      "check": "two_workers_one_real_claim",
+      "passed": true
+    },
+    {
+      "check": "completed_only_after_valid_artifact",
+      "passed": true
+    },
+    {
+      "check": "completed_real_mp4_sha_and_decode",
+      "passed": true
+    },
+    {
+      "check": "synthetic_original_sha_mode_mtime_unchanged",
+      "passed": true
+    },
+    {
+      "check": "all_queues_finally_empty",
+      "passed": true
+    }
+  ],
+  "jobs": [
+    {
+      "id": "e1b9d436-0e3a-4dba-b297-36cd3d181f5e",
+      "status_url": "/api/v1/projects/6b58401a-2abe-4437-8714-c53621ff8356/renders/e1b9d436-0e3a-4dba-b297-36cd3d181f5e",
+      "result": {
+        "id": "e1b9d436-0e3a-4dba-b297-36cd3d181f5e",
+        "project_id": "6b58401a-2abe-4437-8714-c53621ff8356",
+        "revision_id": "1f630c02-157e-4777-a089-164996ffb37b",
+        "revision_number": 1,
+        "profile": "high",
+        "preset": "9:16",
+        "render_engine_version": "r05-1",
+        "status": "completed",
+        "stage": "completed",
+        "attempts": 2,
+        "max_attempts": 2,
+        "progress_encoded_ms": 11900,
+        "progress_percent": 100,
+        "cancel_requested_at": null,
+        "created_at": "2026-10-22T15:43:55.860681Z",
+        "updated_at": "2026-10-22T15:44:20.349993Z",
+        "started_at": "2026-10-22T15:43:59.341826Z",
+        "finished_at": "2026-10-22T15:44:20.349993Z",
+        "error_code": null,
+        "artifact_available": true,
+        "checksum_sha256": "44ee1a27e402e35f64682f47b2ea3d62480d4c8ab90caebbef2370ed6b958429",
+        "byte_size": 2693132,
+        "duration_ms": 12000,
+        "width": 1080,
+        "height": 1920,
+        "fps_num": 30,
+        "fps_den": 1,
+        "video_codec": "h264",
+        "audio_codec": null,
+        "status_url": "/api/v1/projects/6b58401a-2abe-4437-8714-c53621ff8356/renders/e1b9d436-0e3a-4dba-b297-36cd3d181f5e",
+        "file_url": "/api/v1/projects/6b58401a-2abe-4437-8714-c53621ff8356/renders/e1b9d436-0e3a-4dba-b297-36cd3d181f5e/file"
+      },
+      "artifact": {
+        "sha256": "44ee1a27e402e35f64682f47b2ea3d62480d4c8ab90caebbef2370ed6b958429",
+        "bytes": 2693132,
+        "mode": "0o400",
+        "full_decode_passed": true,
+        "duration_seconds": 12.0,
+        "streams": [
+          {
+            "codec_type": "video",
+            "codec_name": "h264",
+            "width": 1080,
+            "height": 1920,
+            "pix_fmt": "yuv420p",
+            "r_frame_rate": "30/1",
+            "sample_aspect_ratio": "1:1"
+          }
+        ]
+      }
+    },
+    {
+      "id": "459b9d32-7379-4a46-b69b-2f79031b7d32",
+      "status_url": "/api/v1/projects/6b58401a-2abe-4437-8714-c53621ff8356/renders/459b9d32-7379-4a46-b69b-2f79031b7d32",
+      "result": {
+        "id": "459b9d32-7379-4a46-b69b-2f79031b7d32",
+        "project_id": "6b58401a-2abe-4437-8714-c53621ff8356",
+        "revision_id": "1f630c02-157e-4777-a089-164996ffb37b",
+        "revision_number": 1,
+        "profile": "high",
+        "preset": "9:16",
+        "render_engine_version": "r05-1",
+        "status": "completed",
+        "stage": "completed",
+        "attempts": 2,
+        "max_attempts": 2,
+        "progress_encoded_ms": 11900,
+        "progress_percent": 100,
+        "cancel_requested_at": null,
+        "created_at": "2026-10-22T15:44:24.534305Z",
+        "updated_at": "2026-10-22T15:45:07.524320Z",
+        "started_at": "2026-10-22T15:44:33.934374Z",
+        "finished_at": "2026-10-22T15:45:07.524320Z",
+        "error_code": null,
+        "artifact_available": true,
+        "checksum_sha256": "44ee1a27e402e35f64682f47b2ea3d62480d4c8ab90caebbef2370ed6b958429",
+        "byte_size": 2693132,
+        "duration_ms": 12000,
+        "width": 1080,
+        "height": 1920,
+        "fps_num": 30,
+        "fps_den": 1,
+        "video_codec": "h264",
+        "audio_codec": null,
+        "status_url": "/api/v1/projects/6b58401a-2abe-4437-8714-c53621ff8356/renders/459b9d32-7379-4a46-b69b-2f79031b7d32",
+        "file_url": "/api/v1/projects/6b58401a-2abe-4437-8714-c53621ff8356/renders/459b9d32-7379-4a46-b69b-2f79031b7d32/file"
+      },
+      "artifact": {
+        "sha256": "44ee1a27e402e35f64682f47b2ea3d62480d4c8ab90caebbef2370ed6b958429",
+        "bytes": 2693132,
+        "mode": "0o400",
+        "full_decode_passed": true,
+        "duration_seconds": 12.0,
+        "streams": [
+          {
+            "codec_type": "video",
+            "codec_name": "h264",
+            "width": 1080,
+            "height": 1920,
+            "pix_fmt": "yuv420p",
+            "r_frame_rate": "30/1",
+            "sample_aspect_ratio": "1:1"
+          }
+        ]
+      },
+      "first_claim_token_sha256": "755abf1015bf119ef23396679438d8a4e3804c97484c037715b5944d2159b449"
+    },
+    {
+      "id": "4e7b6671-5161-471e-8647-31b4c5a9f372",
+      "status_url": "/api/v1/projects/6b58401a-2abe-4437-8714-c53621ff8356/renders/4e7b6671-5161-471e-8647-31b4c5a9f372",
+      "result": {
+        "id": "4e7b6671-5161-471e-8647-31b4c5a9f372",
+        "project_id": "6b58401a-2abe-4437-8714-c53621ff8356",
+        "revision_id": "1f630c02-157e-4777-a089-164996ffb37b",
+        "revision_number": 1,
+        "profile": "high",
+        "preset": "9:16",
+        "render_engine_version": "r05-1",
+        "status": "completed",
+        "stage": "completed",
+        "attempts": 2,
+        "max_attempts": 2,
+        "progress_encoded_ms": 11900,
+        "progress_percent": 100,
+        "cancel_requested_at": null,
+        "created_at": "2026-10-22T15:45:11.421836Z",
+        "updated_at": "2026-10-22T15:45:43.935124Z",
+        "started_at": "2026-10-22T15:45:17.974588Z",
+        "finished_at": "2026-10-22T15:45:43.935124Z",
+        "error_code": null,
+        "artifact_available": true,
+        "checksum_sha256": "44ee1a27e402e35f64682f47b2ea3d62480d4c8ab90caebbef2370ed6b958429",
+        "byte_size": 2693132,
+        "duration_ms": 12000,
+        "width": 1080,
+        "height": 1920,
+        "fps_num": 30,
+        "fps_den": 1,
+        "video_codec": "h264",
+        "audio_codec": null,
+        "status_url": "/api/v1/projects/6b58401a-2abe-4437-8714-c53621ff8356/renders/4e7b6671-5161-471e-8647-31b4c5a9f372",
+        "file_url": "/api/v1/projects/6b58401a-2abe-4437-8714-c53621ff8356/renders/4e7b6671-5161-471e-8647-31b4c5a9f372/file"
+      },
+      "artifact": {
+        "sha256": "44ee1a27e402e35f64682f47b2ea3d62480d4c8ab90caebbef2370ed6b958429",
+        "bytes": 2693132,
+        "mode": "0o400",
+        "full_decode_passed": true,
+        "duration_seconds": 12.0,
+        "streams": [
+          {
+            "codec_type": "video",
+            "codec_name": "h264",
+            "width": 1080,
+            "height": 1920,
+            "pix_fmt": "yuv420p",
+            "r_frame_rate": "30/1",
+            "sample_aspect_ratio": "1:1"
+          }
+        ]
+      },
+      "first_claim_token_sha256": "2a11f3db2c398aa1241571b98a68dd8e5fa16a60c0c5c5ecf02d70393df87de6"
+    },
+    {
+      "id": "3518be22-06b1-40d1-a8d6-dee5208c59b2",
+      "status_url": "/api/v1/projects/6b58401a-2abe-4437-8714-c53621ff8356/renders/3518be22-06b1-40d1-a8d6-dee5208c59b2",
+      "result": {
+        "id": "3518be22-06b1-40d1-a8d6-dee5208c59b2",
+        "claim_token": null,
+        "status": "failed",
+        "stage": "failed",
+        "error_code": "render_timeout",
+        "lease_expires_at": null,
+        "attempts": 1,
+        "published": false
+      }
+    },
+    {
+      "id": "7c776003-d3c2-4c71-81d1-557582804aed",
+      "status_url": "/api/v1/projects/6b58401a-2abe-4437-8714-c53621ff8356/renders/7c776003-d3c2-4c71-81d1-557582804aed",
+      "result": {
+        "id": "7c776003-d3c2-4c71-81d1-557582804aed",
+        "project_id": "6b58401a-2abe-4437-8714-c53621ff8356",
+        "revision_id": "1f630c02-157e-4777-a089-164996ffb37b",
+        "revision_number": 1,
+        "profile": "high",
+        "preset": "9:16",
+        "render_engine_version": "r05-1",
+        "status": "completed",
+        "stage": "completed",
+        "attempts": 1,
+        "max_attempts": 2,
+        "progress_encoded_ms": 11900,
+        "progress_percent": 100,
+        "cancel_requested_at": null,
+        "created_at": "2026-10-22T15:45:54.478409Z",
+        "updated_at": "2026-10-22T15:46:13.291773Z",
+        "started_at": "2026-10-22T15:45:57.766218Z",
+        "finished_at": "2026-10-22T15:46:13.291773Z",
+        "error_code": null,
+        "artifact_available": true,
+        "checksum_sha256": "44ee1a27e402e35f64682f47b2ea3d62480d4c8ab90caebbef2370ed6b958429",
+        "byte_size": 2693132,
+        "duration_ms": 12000,
+        "width": 1080,
+        "height": 1920,
+        "fps_num": 30,
+        "fps_den": 1,
+        "video_codec": "h264",
+        "audio_codec": null,
+        "status_url": "/api/v1/projects/6b58401a-2abe-4437-8714-c53621ff8356/renders/7c776003-d3c2-4c71-81d1-557582804aed",
+        "file_url": "/api/v1/projects/6b58401a-2abe-4437-8714-c53621ff8356/renders/7c776003-d3c2-4c71-81d1-557582804aed/file"
+      },
+      "artifact": {
+        "sha256": "44ee1a27e402e35f64682f47b2ea3d62480d4c8ab90caebbef2370ed6b958429",
+        "bytes": 2693132,
+        "mode": "0o400",
+        "full_decode_passed": true,
+        "duration_seconds": 12.0,
+        "streams": [
+          {
+            "codec_type": "video",
+            "codec_name": "h264",
+            "width": 1080,
+            "height": 1920,
+            "pix_fmt": "yuv420p",
+            "r_frame_rate": "30/1",
+            "sample_aspect_ratio": "1:1"
+          }
+        ]
+      }
+    }
+  ],
+  "containers": [
+    {
+      "name": "edivo-r05-control-ec543d61125e-sigterm-e569dc36",
+      "id": "aef4e69947c1498104800aa20913ee39ae90b5da8b62b62220bdae93b9164932",
+      "case": "sigterm"
+    },
+    {
+      "name": "edivo-r05-control-ec543d61125e-sigterm-retry-55f77797",
+      "id": "5476b01cc6e446daf77be568885de683b27e7497e743026ff6df27166a46b255",
+      "case": "sigterm-retry"
+    },
+    {
+      "name": "edivo-r05-control-ec543d61125e-clone-83f284c2",
+      "id": "523249b3f818524819d4073aeb66a8c517572df1286eecd56bb3358f3fb58cb9",
+      "case": "clone",
+      "service": "api"
+    },
+    {
+      "name": "edivo-r05-control-ec543d61125e-crash-ec49e682",
+      "id": "1283c8c1fa1002a577af8a3dd48ba75c56723be3ecfdde5d57c20724aaabd176",
+      "case": "crash"
+    },
+    {
+      "name": "edivo-r05-control-ec543d61125e-crash-retry-f21b89d6",
+      "id": "a54a6a48e4e3f91907e7647a45206c0b5ec4b9be15e2c6d7cc04f79c9726b6c0",
+      "case": "crash-retry"
+    },
+    {
+      "name": "edivo-r05-control-ec543d61125e-clone-f9957e0b",
+      "id": "0920c8faedf3511ff348fbc60d42d7ba7099594058b7a40164a5379643555a71",
+      "case": "clone",
+      "service": "api"
+    },
+    {
+      "name": "edivo-r05-control-ec543d61125e-lease-53d702a2",
+      "id": "fcf3443fb40a4560f990807fd742d62993b8e94726bfcf369d1a99890311295a",
+      "case": "lease"
+    },
+    {
+      "name": "edivo-r05-control-ec543d61125e-lease-retry-d6076e3b",
+      "id": "031eeeb6a6401f737e9f7e97c253493186a4702d0dfd5080da3993a641a452b7",
+      "case": "lease-retry"
+    },
+    {
+      "name": "edivo-r05-control-ec543d61125e-timeout-5da70643",
+      "id": "875ac8f7b5e8880e4b3d9999d141378d7b8330137c2dbafaadd217f0467a80cb",
+      "case": "timeout"
+    },
+    {
+      "name": "edivo-r05-control-ec543d61125e-race-a-a2d3f108",
+      "id": "c5144be93923f59365ab35e8d3ca9cdf20684ff05c651d4068372a21b995703c",
+      "case": "race-a"
+    },
+    {
+      "name": "edivo-r05-control-ec543d61125e-race-b-4be93cb1",
+      "id": "eb1412845e8b98d594322de0e10b887cfa831ef00c095a87d917671049ded546",
+      "case": "race-b"
+    }
+  ],
+  "application_worker_signalled": false,
+  "other_projects_mutated": false,
+  "limitations": [
+    "POSIX container QA, not a multi-host or distributed-queue test."
+  ],
+  "project_id": "6b58401a-2abe-4437-8714-c53621ff8356",
+  "original_before": {
+    "91896682-dc5d-40a3-8ebd-98399b0d5c04": {
+      "sha256": "7ce64b63d0e61d2d47455b628e724019472edf06338ff337042e9bb603e4c157",
+      "bytes": 1495271,
+      "mode": "0400",
+      "mtime_ns": 1792683831422724478
+    }
+  },
+  "revision_id": "1f630c02-157e-4777-a089-164996ffb37b",
+  "isolated_clones": [
+    {
+      "asset_id": "91896682-dc5d-40a3-8ebd-98399b0d5c04",
+      "sha256": "7ce64b63d0e61d2d47455b628e724019472edf06338ff337042e9bb603e4c157",
+      "bytes": 1495271,
+      "mode": "0400"
+    },
+    {
+      "asset_id": "91896682-dc5d-40a3-8ebd-98399b0d5c04",
+      "sha256": "7ce64b63d0e61d2d47455b628e724019472edf06338ff337042e9bb603e4c157",
+      "bytes": 1495271,
+      "mode": "0400"
+    }
+  ],
+  "original_after": {
+    "91896682-dc5d-40a3-8ebd-98399b0d5c04": {
+      "sha256": "7ce64b63d0e61d2d47455b628e724019472edf06338ff337042e9bb603e4c157",
+      "bytes": 1495271,
+      "mode": "0400",
+      "mtime_ns": 1792683831422724478
+    }
+  },
+  "all_dedicated_containers_gone": true,
+  "isolated_tree_cleanup": [
+    {
+      "owned_tree": "edivo-r05-control-owned-ec543d61-kr82bu_f",
+      "removed": true
+    },
+    {
+      "owned_tree": "edivo-r05-control-owned-ec543d61-r4r5z6bw",
+      "removed": true
+    },
+    {
+      "owned_tree": "edivo-r05-control-owned-ec543d61-sksxoivb",
+      "removed": true
+    }
+  ]
+}

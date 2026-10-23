@@ -1,0 +1,63 @@
+{
+  "status": "failed",
+  "created_at": "2026-10-22T14:47:19.932736+00:00",
+  "run_id": "97e18ce4c030476a87062a9ea01e96bc",
+  "checks": [
+    {
+      "check": "application_worker_already_stopped",
+      "passed": true
+    },
+    {
+      "check": "all_queues_initially_empty",
+      "passed": true
+    },
+    {
+      "check": "synthetic_project_created",
+      "passed": true
+    },
+    {
+      "check": "real_mp4_imported",
+      "passed": true
+    },
+    {
+      "check": "immutable_v1_revision_saved",
+      "passed": true
+    },
+    {
+      "check": "render_queued_from_saved_revision",
+      "passed": true
+    }
+  ],
+  "jobs": [
+    {
+      "id": "7c4e6fe9-7336-4cf4-9589-5cf03db7a5fb",
+      "status_url": "/api/v1/projects/a30c8614-29df-47a3-9fd2-15c0fee19054/renders/7c4e6fe9-7336-4cf4-9589-5cf03db7a5fb"
+    }
+  ],
+  "containers": [],
+  "application_worker_signalled": false,
+  "other_projects_mutated": false,
+  "limitations": [
+    "POSIX container QA, not a multi-host or distributed-queue test."
+  ],
+  "project_id": "a30c8614-29df-47a3-9fd2-15c0fee19054",
+  "original_before": {
+    "c5a4d93b-4750-4505-aa68-e6d952258243": {
+      "sha256": "7ce64b63d0e61d2d47455b628e724019472edf06338ff337042e9bb603e4c157",
+      "bytes": 1495271,
+      "mode": "0400",
+      "mtime_ns": 1792680448354749518
+    }
+  },
+  "revision_id": "8546a74a-3bd1-4d4a-93d2-d7ddb5021155",
+  "failure": "container_inspection_unavailable",
+  "all_dedicated_containers_gone": false,
+  "cleanup_cancellations": [
+    {
+      "id": "7c4e6fe9-7336-4cf4-9589-5cf03db7a5fb",
+      "http_status": 200,
+      "status": "canceled",
+      "cancel_requested_at": "2026-10-22T14:47:34.945337Z"
+    }
+  ]
+}

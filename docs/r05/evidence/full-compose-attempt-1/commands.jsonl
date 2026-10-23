@@ -1,0 +1,61 @@
+{"argv": ["docker", "compose", "version"], "exit_code": 0, "log": "001-docker"}
+{"argv": ["docker", "compose", "config", "--quiet"], "exit_code": 0, "log": "002-docker"}
+{"argv": ["docker", "compose", "build", "api", "frontend"], "exit_code": 0, "log": "003-docker"}
+{"argv": ["docker", "compose", "up", "-d", "--wait", "--wait-timeout", "180"], "exit_code": 0, "log": "004-docker"}
+{"argv": ["docker", "compose", "exec", "-T", "api", "python", "-"], "exit_code": 0, "log": "005-docker"}
+{"argv": ["docker", "compose", "exec", "-T", "api", "uv", "--version"], "exit_code": 0, "log": "006-docker"}
+{"argv": ["docker", "compose", "exec", "-T", "frontend", "node", "--version"], "exit_code": 0, "log": "007-docker"}
+{"argv": ["docker", "compose", "exec", "-T", "frontend", "npm", "--version"], "exit_code": 0, "log": "008-docker"}
+{"argv": ["docker", "compose", "exec", "-T", "api", "python", "-"], "exit_code": 0, "log": "009-docker"}
+{"argv": ["docker", "compose", "exec", "-T", "api", "alembic", "upgrade", "head"], "exit_code": 0, "log": "010-docker"}
+{"argv": ["docker", "compose", "exec", "-T", "api", "python", "-"], "exit_code": 0, "log": "011-docker"}
+{"argv": ["docker", "compose", "exec", "-T", "api", "python", "-"], "exit_code": 0, "log": "012-docker"}
+{"argv": ["docker", "compose", "restart", "db"], "exit_code": 0, "log": "013-docker"}
+{"argv": ["docker", "compose", "exec", "-T", "api", "python", "-"], "exit_code": 0, "log": "014-docker"}
+{"argv": ["docker", "compose", "exec", "-T", "api", "python", "-"], "exit_code": 0, "log": "015-docker"}
+{"argv": ["docker", "compose", "exec", "-T", "worker", "python", "-"], "exit_code": 0, "log": "016-docker"}
+{"argv": ["docker", "compose", "restart", "api", "worker"], "exit_code": 0, "log": "017-docker"}
+{"argv": ["docker", "compose", "exec", "-T", "api", "python", "-"], "exit_code": 0, "log": "018-docker"}
+{"argv": ["docker", "compose", "exec", "-T", "worker", "python", "-"], "exit_code": 0, "log": "019-docker"}
+{"argv": ["docker", "compose", "exec", "-T", "api", "python", "-"], "exit_code": 0, "log": "020-docker"}
+{"argv": ["docker", "compose", "exec", "-T", "api", "python", "-"], "exit_code": 0, "log": "021-docker"}
+{"argv": ["docker", "compose", "exec", "-T", "worker", "python", "-"], "exit_code": 0, "log": "022-docker"}
+{"argv": ["docker", "compose", "ps", "--all", "--quiet", "db"], "exit_code": 0, "log": "023-docker"}
+{"argv": ["docker", "inspect", "--format", "{{json .NetworkSettings.Ports}}", "3f51b3c28b54e5fcf22ae33fdedccd98e972e11314dbd7bba3d87c96c8434e89"], "exit_code": 0, "log": "024-docker"}
+{"argv": ["docker", "inspect", "--format", "{{json .Mounts}}", "3f51b3c28b54e5fcf22ae33fdedccd98e972e11314dbd7bba3d87c96c8434e89"], "exit_code": 0, "log": "025-docker"}
+{"argv": ["docker", "inspect", "--format", "{\"tag\":{{json .Config.Image}},\"image_id\":{{json .Image}}}", "3f51b3c28b54e5fcf22ae33fdedccd98e972e11314dbd7bba3d87c96c8434e89"], "exit_code": 0, "log": "026-docker"}
+{"argv": ["docker", "compose", "ps", "--all", "--quiet", "migrate"], "exit_code": 0, "log": "027-docker"}
+{"argv": ["docker", "inspect", "--format", "{{json .NetworkSettings.Ports}}", "ff26b5e11178e6c352f2824b1e13c299cbdbe9d4f4d8968ef4b4bde0657e1d1c"], "exit_code": 0, "log": "028-docker"}
+{"argv": ["docker", "inspect", "--format", "{{json .Mounts}}", "ff26b5e11178e6c352f2824b1e13c299cbdbe9d4f4d8968ef4b4bde0657e1d1c"], "exit_code": 0, "log": "029-docker"}
+{"argv": ["docker", "inspect", "--format", "{\"tag\":{{json .Config.Image}},\"image_id\":{{json .Image}}}", "ff26b5e11178e6c352f2824b1e13c299cbdbe9d4f4d8968ef4b4bde0657e1d1c"], "exit_code": 0, "log": "030-docker"}
+{"argv": ["docker", "compose", "ps", "--all", "--quiet", "api"], "exit_code": 0, "log": "031-docker"}
+{"argv": ["docker", "inspect", "--format", "{{json .NetworkSettings.Ports}}", "0f5bf5503dcb64d4795aad4c8e259f37c8f3f0b860704b704389da194a3ed1a5"], "exit_code": 0, "log": "032-docker"}
+{"argv": ["docker", "inspect", "--format", "{{json .Mounts}}", "0f5bf5503dcb64d4795aad4c8e259f37c8f3f0b860704b704389da194a3ed1a5"], "exit_code": 0, "log": "033-docker"}
+{"argv": ["docker", "inspect", "--format", "{\"tag\":{{json .Config.Image}},\"image_id\":{{json .Image}}}", "0f5bf5503dcb64d4795aad4c8e259f37c8f3f0b860704b704389da194a3ed1a5"], "exit_code": 0, "log": "034-docker"}
+{"argv": ["docker", "compose", "ps", "--all", "--quiet", "worker"], "exit_code": 0, "log": "035-docker"}
+{"argv": ["docker", "inspect", "--format", "{{json .NetworkSettings.Ports}}", "714ecc26b973624afc2392e12e812c8aca870d2eafb036c456466b89e787b419"], "exit_code": 0, "log": "036-docker"}
+{"argv": ["docker", "inspect", "--format", "{{json .Mounts}}", "714ecc26b973624afc2392e12e812c8aca870d2eafb036c456466b89e787b419"], "exit_code": 0, "log": "037-docker"}
+{"argv": ["docker", "inspect", "--format", "{\"tag\":{{json .Config.Image}},\"image_id\":{{json .Image}}}", "714ecc26b973624afc2392e12e812c8aca870d2eafb036c456466b89e787b419"], "exit_code": 0, "log": "038-docker"}
+{"argv": ["docker", "compose", "ps", "--all", "--quiet", "frontend"], "exit_code": 0, "log": "039-docker"}
+{"argv": ["docker", "inspect", "--format", "{{json .NetworkSettings.Ports}}", "fd39f45df581899e8c19e204e94288e214f711a646e51d643b66dac4d5e69a2c"], "exit_code": 0, "log": "040-docker"}
+{"argv": ["docker", "inspect", "--format", "{{json .Mounts}}", "fd39f45df581899e8c19e204e94288e214f711a646e51d643b66dac4d5e69a2c"], "exit_code": 0, "log": "041-docker"}
+{"argv": ["docker", "inspect", "--format", "{\"tag\":{{json .Config.Image}},\"image_id\":{{json .Image}}}", "fd39f45df581899e8c19e204e94288e214f711a646e51d643b66dac4d5e69a2c"], "exit_code": 0, "log": "042-docker"}
+{"argv": ["docker", "compose", "stop", "db"], "exit_code": 0, "log": "043-docker"}
+{"argv": ["docker", "compose", "start", "db"], "exit_code": 0, "log": "044-docker"}
+{"argv": ["docker", "compose", "run", "--rm", "--no-deps", "-T", "-e", "EDIVO_STORAGE_ROOT=/proc/edivo-r01-unavailable", "api", "python", "-"], "exit_code": 0, "log": "045-docker"}
+{"argv": ["docker", "compose", "ps", "--quiet", "worker"], "exit_code": 0, "log": "046-docker"}
+{"argv": ["docker", "compose", "logs", "--no-color", "worker"], "exit_code": 0, "log": "047-docker"}
+{"argv": ["docker", "stats", "--no-stream", "--format", "{{json .}}", "714ecc26b973624afc2392e12e812c8aca870d2eafb036c456466b89e787b419"], "exit_code": 0, "log": "048-docker"}
+{"argv": ["docker", "compose", "stop", "worker"], "exit_code": 0, "log": "049-docker"}
+{"argv": ["docker", "inspect", "--format", "{{.State.ExitCode}}", "714ecc26b973624afc2392e12e812c8aca870d2eafb036c456466b89e787b419"], "exit_code": 0, "log": "050-docker"}
+{"argv": ["docker", "compose", "logs", "--no-color", "worker"], "exit_code": 0, "log": "051-docker"}
+{"argv": ["docker", "compose", "start", "worker"], "exit_code": 0, "log": "052-docker"}
+{"argv": ["docker", "compose", "exec", "-T", "api", "pytest", "--junitxml=/tmp/edivo-r05-backend-default.xml"], "exit_code": 0, "log": "053-docker"}
+{"argv": ["docker", "compose", "exec", "-T", "api", "cat", "/tmp/edivo-r05-backend-default.xml"], "exit_code": 0, "log": "054-docker"}
+{"argv": ["docker", "compose", "exec", "-T", "api", "ruff", "check", "."], "exit_code": 0, "log": "055-docker"}
+{"argv": ["docker", "compose", "exec", "-T", "api", "ruff", "format", "--check", "."], "exit_code": 0, "log": "056-docker"}
+{"argv": ["docker", "compose", "exec", "-T", "frontend", "npm", "run", "test", "--", "--run"], "exit_code": 0, "log": "057-docker"}
+{"argv": ["docker", "compose", "exec", "-T", "frontend", "npm", "run", "lint"], "exit_code": 0, "log": "058-docker"}
+{"argv": ["docker", "compose", "exec", "-T", "frontend", "npm", "run", "format:check"], "exit_code": 0, "log": "059-docker"}
+{"argv": ["docker", "compose", "exec", "-T", "frontend", "npm", "run", "build"], "exit_code": 0, "log": "060-docker"}
+{"argv": ["docker", "compose", "ps", "--all"], "exit_code": 0, "log": "061-docker"}

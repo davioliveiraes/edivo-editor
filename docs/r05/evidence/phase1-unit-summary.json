@@ -1,0 +1,81 @@
+{
+  "stage": "R05.1",
+  "status": "unit_gate_passed_pending_real_database_validation",
+  "production_sources_frozen": true,
+  "migration": {
+    "revision": "0005_r05_render_exports",
+    "down_revision": "0004_r04_text_audio_previews",
+    "applied_by_this_agent": false
+  },
+  "checks": [
+    {
+      "command": ".venv/bin/pytest -q tests/test_renders.py",
+      "exit_code": 0,
+      "passed": 50,
+      "duration_seconds": 6.49,
+      "log": "phase1-api-attempt-1.log",
+      "distinct_total": false
+    },
+    {
+      "command": ".venv/bin/pytest -q tests/test_renders.py tests/test_render_job_model.py tests/test_render_repository.py",
+      "exit_code": 0,
+      "passed": 116,
+      "duration_seconds": 6.32,
+      "log": "phase1-api-model-repository-attempt-2.log",
+      "distinct_total": false
+    },
+    {
+      "command": ".venv/bin/pytest -q tests/test_renders.py tests/test_render_job_model.py tests/test_render_repository.py tests/test_projects.py tests/test_edit_spec.py tests/test_edit_spec_v2.py tests/test_previews.py tests/test_media_stream.py tests/test_system.py",
+      "exit_code": 1,
+      "passed": 409,
+      "failed": 1,
+      "duration_seconds": 25.34,
+      "log": "phase1-regression-attempt-3.log",
+      "reason": "R04 exact route allowlist rejected four newly authorized R05 routes; preserved failed evidence"
+    },
+    {
+      "command": ".venv/bin/pytest -q tests/test_renders.py tests/test_render_job_model.py tests/test_render_repository.py tests/test_render_postgres.py",
+      "exit_code": 0,
+      "passed": 123,
+      "skipped": 12,
+      "duration_seconds": 9.9,
+      "log": "phase1-api-model-repository-final.log",
+      "reason": "PostgreSQL opt-in cases intentionally not enabled on host"
+    },
+    {
+      "command": ".venv/bin/pytest -q tests/test_renders.py tests/test_render_job_model.py tests/test_render_repository.py tests/test_projects.py tests/test_edit_spec.py tests/test_edit_spec_v2.py tests/test_previews.py tests/test_media_stream.py tests/test_system.py",
+      "exit_code": 0,
+      "passed": 415,
+      "duration_seconds": 44.47,
+      "log": "phase1-regression-final.log",
+      "includes_new_and_existing_cases": true
+    },
+    {
+      "command": ".venv/bin/ruff check .",
+      "cwd": "backend",
+      "exit_code": 0,
+      "log": "phase1-ruff-check.log"
+    },
+    {
+      "command": ".venv/bin/ruff format --check .",
+      "cwd": "backend",
+      "exit_code": 0,
+      "files_formatted": 90,
+      "log": "phase1-ruff-format.log"
+    }
+  ],
+  "new_standard_test_cases_distinct": 123,
+  "new_postgresql_test_cases_not_yet_executed": 12,
+  "regression_cases_distinct_in_final_selection": 415,
+  "counts_are_not_added_across_duplicate_executions": true,
+  "warnings": [
+    "One upstream Starlette/httpx deprecation warning per pytest execution; existing lock dependencies unchanged"
+  ],
+  "repairs": [
+    "Extended only test_system exact scope allowlist with four authorized renders routes; assertion remains strict"
+  ],
+  "notes": [
+    "No worker/compositor/rendering integration claimed by these unit tests",
+    "No migrations, Docker restarts or PostgreSQL writes performed by this agent during implementation"
+  ]
+}

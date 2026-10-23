@@ -1,0 +1,1772 @@
+{
+  "created_at": "2026-10-22T12:02:01.794311+00:00",
+  "database_or_http_used": false,
+  "human_auditory_inspection_performed": false,
+  "manual_visual_inspection_performed": false,
+  "font_sha256": "abdc775b21b1bc470d50c97e790d276f2054b7504e56e5bd3e64f48d68582322",
+  "fixtures_directory": "/work/fixtures",
+  "artifacts_directory": "/work/artifacts",
+  "limitations": [
+    "Automated RMS/peak and pixels do not imply human listening.",
+    "CFR30 quantization tolerance is one frame +1ms.",
+    "QA artifacts are synthetic and not application exports."
+  ],
+  "fixtures": {
+    "black.mp4": {
+      "sha256": "ff1346cfc7d100d0ff80f43b7d6aa22d7ba5b9a64ab4f74c52cbb416de9ecdbd",
+      "mode": "0o400",
+      "mtime_ns": 1792670524984381816
+    },
+    "long.mp3": {
+      "sha256": "47475d1bc1a5bbee597202ad7f03f70025024797a384c254184edd48ff5759b9",
+      "mode": "0o400",
+      "mtime_ns": 1792670525912520946
+    },
+    "rotated.mp4": {
+      "sha256": "87e85645ddbb41bc3e1ddfc68034a7b49e81a5ab8f6a0b237ba591e44ad1d542",
+      "mode": "0o400",
+      "mtime_ns": 1792670525271888191
+    },
+    "short.mp3": {
+      "sha256": "7055fd0edb521ce6b00b877d1cdd0a50ab055637e0a99c5958d9cf4ecb70bf63",
+      "mode": "0o400",
+      "mtime_ns": 1792670525532716300
+    },
+    "vfr.mp4": {
+      "sha256": "08b48a3253153d1ee91bf2b5078b85598538ef4774e179727ffa6f155c417b73",
+      "mode": "0o400",
+      "mtime_ns": 1792670524689407740
+    },
+    "vertical.mp4": {
+      "sha256": "003c84dc80e1ab03dd0d2d0dbe065a138bbaf8f4a991d654ee3d6228f3694e4d",
+      "mode": "0o400",
+      "mtime_ns": 1792670523467246209
+    },
+    "square.mp4": {
+      "sha256": "0955274e49a1ebcc5dda2b6bbc2e7256fbfe6b1faa7ea2ce43410fd3fb714ee6",
+      "mode": "0o400",
+      "mtime_ns": 1792670523773654229
+    },
+    "sar.mp4": {
+      "sha256": "272029670c4ba62a84be18bc14345b264472fa04475ccfc2c692051c35cdff12",
+      "mode": "0o400",
+      "mtime_ns": 1792670524260302260
+    },
+    "horizontal.mp4": {
+      "sha256": "a220876b0e90f28f91e984a45054caf3c92c27e980bda4c9d95de860a041dc3e",
+      "mode": "0o400",
+      "mtime_ns": 1792670523085137386
+    }
+  },
+  "font_runtime_sha256": "abdc775b21b1bc470d50c97e790d276f2054b7504e56e5bd3e64f48d68582322",
+  "status": "passed",
+  "cases": [
+    {
+      "name": "9x16-standard",
+      "source": "horizontal.mp4",
+      "music": null,
+      "profile": "standard",
+      "schema_version": 2,
+      "saved_spec": {
+        "source_media_id": "458dfe65-3832-4094-91c1-e6a1c28ea422",
+        "trim": {
+          "start_ms": 2000,
+          "end_ms": 3000
+        },
+        "canvas": {
+          "preset": "9:16",
+          "fit": "contain",
+          "focal_x": 0.25,
+          "focal_y": 0.75
+        },
+        "schema_version": 2,
+        "text_overlays": [],
+        "audio": {
+          "source_volume": 1.0,
+          "background_audio_id": null,
+          "background_volume": 0.15,
+          "background_loop": false,
+          "fade_in_ms": 0,
+          "fade_out_ms": 0
+        }
+      },
+      "path": "/work/artifacts/9x16-standard/final.part",
+      "metadata": {
+        "duration_ms": 1000,
+        "requested_duration_ms": 1000,
+        "width": 1080,
+        "height": 1920,
+        "fps_num": 30,
+        "fps_den": 1,
+        "video_codec": "h264",
+        "pixel_format": "yuv420p",
+        "sample_aspect_ratio": "1:1",
+        "has_audio": true,
+        "audio_codec": "aac",
+        "frame_count": 30,
+        "decoded_frames": 30
+      },
+      "sha256": "42436de2bdea01497ba3f51f53e644a5479d7c0a8621e1c9f86958162ef0fb2c",
+      "bytes": 190476,
+      "stages": [
+        "encoding",
+        "validating"
+      ],
+      "encoded_ms_observations": [
+        0,
+        469,
+        1000
+      ],
+      "elapsed_seconds": 1.551
+    },
+    {
+      "name": "9x16-high",
+      "source": "horizontal.mp4",
+      "music": null,
+      "profile": "high",
+      "schema_version": 2,
+      "saved_spec": {
+        "source_media_id": "ba914c98-8efc-49ad-9c0d-0c30042af2d3",
+        "trim": {
+          "start_ms": 2000,
+          "end_ms": 3000
+        },
+        "canvas": {
+          "preset": "9:16",
+          "fit": "contain",
+          "focal_x": 0.25,
+          "focal_y": 0.75
+        },
+        "schema_version": 2,
+        "text_overlays": [],
+        "audio": {
+          "source_volume": 1.0,
+          "background_audio_id": null,
+          "background_volume": 0.15,
+          "background_loop": false,
+          "fade_in_ms": 0,
+          "fade_out_ms": 0
+        }
+      },
+      "path": "/work/artifacts/9x16-high/final.part",
+      "metadata": {
+        "duration_ms": 1000,
+        "requested_duration_ms": 1000,
+        "width": 1080,
+        "height": 1920,
+        "fps_num": 30,
+        "fps_den": 1,
+        "video_codec": "h264",
+        "pixel_format": "yuv420p",
+        "sample_aspect_ratio": "1:1",
+        "has_audio": true,
+        "audio_codec": "aac",
+        "frame_count": 30,
+        "decoded_frames": 30
+      },
+      "sha256": "aee0846f051cf9e2d22aa6d29aafd34d23a1600b85f9eeeee4ad907d2c2b29a7",
+      "bytes": 264518,
+      "stages": [
+        "encoding",
+        "validating"
+      ],
+      "encoded_ms_observations": [
+        0,
+        1000
+      ],
+      "elapsed_seconds": 1.808
+    },
+    {
+      "name": "1x1-standard",
+      "source": "horizontal.mp4",
+      "music": null,
+      "profile": "standard",
+      "schema_version": 2,
+      "saved_spec": {
+        "source_media_id": "84d0ed71-68b6-4fb7-9598-5ecc9c835451",
+        "trim": {
+          "start_ms": 2000,
+          "end_ms": 3000
+        },
+        "canvas": {
+          "preset": "1:1",
+          "fit": "contain",
+          "focal_x": 0.25,
+          "focal_y": 0.75
+        },
+        "schema_version": 2,
+        "text_overlays": [],
+        "audio": {
+          "source_volume": 1.0,
+          "background_audio_id": null,
+          "background_volume": 0.15,
+          "background_loop": false,
+          "fade_in_ms": 0,
+          "fade_out_ms": 0
+        }
+      },
+      "path": "/work/artifacts/1x1-standard/final.part",
+      "metadata": {
+        "duration_ms": 1000,
+        "requested_duration_ms": 1000,
+        "width": 1080,
+        "height": 1080,
+        "fps_num": 30,
+        "fps_den": 1,
+        "video_codec": "h264",
+        "pixel_format": "yuv420p",
+        "sample_aspect_ratio": "1:1",
+        "has_audio": true,
+        "audio_codec": "aac",
+        "frame_count": 30,
+        "decoded_frames": 30
+      },
+      "sha256": "5233309c9fdb030f2af1e576ace3086d2d4e5447db13c18de7ed3b8d8049f6ce",
+      "bytes": 189494,
+      "stages": [
+        "encoding",
+        "validating"
+      ],
+      "encoded_ms_observations": [
+        0,
+        1000
+      ],
+      "elapsed_seconds": 1.361
+    },
+    {
+      "name": "1x1-high",
+      "source": "horizontal.mp4",
+      "music": null,
+      "profile": "high",
+      "schema_version": 2,
+      "saved_spec": {
+        "source_media_id": "40d40ad6-89bb-4e96-9ba1-aef66b19dade",
+        "trim": {
+          "start_ms": 2000,
+          "end_ms": 3000
+        },
+        "canvas": {
+          "preset": "1:1",
+          "fit": "contain",
+          "focal_x": 0.25,
+          "focal_y": 0.75
+        },
+        "schema_version": 2,
+        "text_overlays": [],
+        "audio": {
+          "source_volume": 1.0,
+          "background_audio_id": null,
+          "background_volume": 0.15,
+          "background_loop": false,
+          "fade_in_ms": 0,
+          "fade_out_ms": 0
+        }
+      },
+      "path": "/work/artifacts/1x1-high/final.part",
+      "metadata": {
+        "duration_ms": 1000,
+        "requested_duration_ms": 1000,
+        "width": 1080,
+        "height": 1080,
+        "fps_num": 30,
+        "fps_den": 1,
+        "video_codec": "h264",
+        "pixel_format": "yuv420p",
+        "sample_aspect_ratio": "1:1",
+        "has_audio": true,
+        "audio_codec": "aac",
+        "frame_count": 30,
+        "decoded_frames": 30
+      },
+      "sha256": "4627d26e383453be15bc0ac5b1956811388acdedc46f8f0d7b22dd13179dfcbf",
+      "bytes": 264354,
+      "stages": [
+        "encoding",
+        "validating"
+      ],
+      "encoded_ms_observations": [
+        0,
+        1000
+      ],
+      "elapsed_seconds": 1.211
+    },
+    {
+      "name": "4x5-standard",
+      "source": "horizontal.mp4",
+      "music": null,
+      "profile": "standard",
+      "schema_version": 2,
+      "saved_spec": {
+        "source_media_id": "6ed3b2d6-91ff-4cbe-a80a-0f70b2d137cd",
+        "trim": {
+          "start_ms": 2000,
+          "end_ms": 3000
+        },
+        "canvas": {
+          "preset": "4:5",
+          "fit": "contain",
+          "focal_x": 0.25,
+          "focal_y": 0.75
+        },
+        "schema_version": 2,
+        "text_overlays": [],
+        "audio": {
+          "source_volume": 1.0,
+          "background_audio_id": null,
+          "background_volume": 0.15,
+          "background_loop": false,
+          "fade_in_ms": 0,
+          "fade_out_ms": 0
+        }
+      },
+      "path": "/work/artifacts/4x5-standard/final.part",
+      "metadata": {
+        "duration_ms": 1000,
+        "requested_duration_ms": 1000,
+        "width": 1080,
+        "height": 1350,
+        "fps_num": 30,
+        "fps_den": 1,
+        "video_codec": "h264",
+        "pixel_format": "yuv420p",
+        "sample_aspect_ratio": "1:1",
+        "has_audio": true,
+        "audio_codec": "aac",
+        "frame_count": 30,
+        "decoded_frames": 30
+      },
+      "sha256": "9d9b42fcd99be729fbd906e430fb17e6923291df6b375a6b28a8d9b3408db3e0",
+      "bytes": 190006,
+      "stages": [
+        "encoding",
+        "validating"
+      ],
+      "encoded_ms_observations": [
+        0,
+        1000
+      ],
+      "elapsed_seconds": 1.399
+    },
+    {
+      "name": "4x5-high",
+      "source": "horizontal.mp4",
+      "music": null,
+      "profile": "high",
+      "schema_version": 2,
+      "saved_spec": {
+        "source_media_id": "e44965de-df87-4f0d-9700-e472c4c43936",
+        "trim": {
+          "start_ms": 2000,
+          "end_ms": 3000
+        },
+        "canvas": {
+          "preset": "4:5",
+          "fit": "contain",
+          "focal_x": 0.25,
+          "focal_y": 0.75
+        },
+        "schema_version": 2,
+        "text_overlays": [],
+        "audio": {
+          "source_volume": 1.0,
+          "background_audio_id": null,
+          "background_volume": 0.15,
+          "background_loop": false,
+          "fade_in_ms": 0,
+          "fade_out_ms": 0
+        }
+      },
+      "path": "/work/artifacts/4x5-high/final.part",
+      "metadata": {
+        "duration_ms": 1000,
+        "requested_duration_ms": 1000,
+        "width": 1080,
+        "height": 1350,
+        "fps_num": 30,
+        "fps_den": 1,
+        "video_codec": "h264",
+        "pixel_format": "yuv420p",
+        "sample_aspect_ratio": "1:1",
+        "has_audio": true,
+        "audio_codec": "aac",
+        "frame_count": 30,
+        "decoded_frames": 30
+      },
+      "sha256": "5784aee4c1a09949af05f8569df9c008ecdedcd11b014b94dd01ecc1428e5416",
+      "bytes": 263794,
+      "stages": [
+        "encoding",
+        "validating"
+      ],
+      "encoded_ms_observations": [
+        0,
+        1000
+      ],
+      "elapsed_seconds": 1.597
+    },
+    {
+      "name": "16x9-standard",
+      "source": "horizontal.mp4",
+      "music": null,
+      "profile": "standard",
+      "schema_version": 2,
+      "saved_spec": {
+        "source_media_id": "09df8144-43c7-4db4-a989-4e730eb9f30f",
+        "trim": {
+          "start_ms": 2000,
+          "end_ms": 3000
+        },
+        "canvas": {
+          "preset": "16:9",
+          "fit": "contain",
+          "focal_x": 0.25,
+          "focal_y": 0.75
+        },
+        "schema_version": 2,
+        "text_overlays": [],
+        "audio": {
+          "source_volume": 1.0,
+          "background_audio_id": null,
+          "background_volume": 0.15,
+          "background_loop": false,
+          "fade_in_ms": 0,
+          "fade_out_ms": 0
+        }
+      },
+      "path": "/work/artifacts/16x9-standard/final.part",
+      "metadata": {
+        "duration_ms": 1000,
+        "requested_duration_ms": 1000,
+        "width": 1920,
+        "height": 1080,
+        "fps_num": 30,
+        "fps_den": 1,
+        "video_codec": "h264",
+        "pixel_format": "yuv420p",
+        "sample_aspect_ratio": "1:1",
+        "has_audio": true,
+        "audio_codec": "aac",
+        "frame_count": 30,
+        "decoded_frames": 30
+      },
+      "sha256": "b9778802b30da0fa549d9a73ef71987d08b59a8728c7552671fbc845c6555e72",
+      "bytes": 382736,
+      "stages": [
+        "encoding",
+        "validating"
+      ],
+      "encoded_ms_observations": [
+        0,
+        768,
+        1000
+      ],
+      "elapsed_seconds": 1.489
+    },
+    {
+      "name": "16x9-high",
+      "source": "horizontal.mp4",
+      "music": null,
+      "profile": "high",
+      "schema_version": 2,
+      "saved_spec": {
+        "source_media_id": "7a44e8fe-f3a1-4e5d-b824-ed57c207cff4",
+        "trim": {
+          "start_ms": 2000,
+          "end_ms": 3000
+        },
+        "canvas": {
+          "preset": "16:9",
+          "fit": "contain",
+          "focal_x": 0.25,
+          "focal_y": 0.75
+        },
+        "schema_version": 2,
+        "text_overlays": [],
+        "audio": {
+          "source_volume": 1.0,
+          "background_audio_id": null,
+          "background_volume": 0.15,
+          "background_loop": false,
+          "fade_in_ms": 0,
+          "fade_out_ms": 0
+        }
+      },
+      "path": "/work/artifacts/16x9-high/final.part",
+      "metadata": {
+        "duration_ms": 1000,
+        "requested_duration_ms": 1000,
+        "width": 1920,
+        "height": 1080,
+        "fps_num": 30,
+        "fps_den": 1,
+        "video_codec": "h264",
+        "pixel_format": "yuv420p",
+        "sample_aspect_ratio": "1:1",
+        "has_audio": true,
+        "audio_codec": "aac",
+        "frame_count": 30,
+        "decoded_frames": 30
+      },
+      "sha256": "1928ac0a517e89116b9fd81d59b40acfbe49cfed00d901314714c82791c90d9d",
+      "bytes": 525332,
+      "stages": [
+        "encoding",
+        "validating"
+      ],
+      "encoded_ms_observations": [
+        0,
+        1000
+      ],
+      "elapsed_seconds": 2.135
+    },
+    {
+      "name": "complete-12s-text-music",
+      "source": "black.mp4",
+      "music": "short.mp3",
+      "profile": "standard",
+      "schema_version": 2,
+      "saved_spec": {
+        "source_media_id": "13262dc6-0119-4a3c-a9e5-636e103e7b1f",
+        "trim": {
+          "start_ms": 2000,
+          "end_ms": 14000
+        },
+        "canvas": {
+          "preset": "9:16",
+          "fit": "cover",
+          "focal_x": 0.25,
+          "focal_y": 0.75
+        },
+        "schema_version": 2,
+        "text_overlays": [
+          {
+            "id": "115ba3da-e296-4827-b662-76474e167395",
+            "text": "Olá: 'Edivo' \\ 100%\nTexto seguro",
+            "start_ms": 2000,
+            "end_ms": 14000,
+            "position": "top",
+            "style": "white_outline",
+            "size": "small"
+          },
+          {
+            "id": "8a0c503b-0a8d-4a56-b846-40ebbbf6b036",
+            "text": "Ação — composição\nLocal e privada",
+            "start_ms": 2000,
+            "end_ms": 14000,
+            "position": "center",
+            "style": "blue_outline",
+            "size": "medium"
+          },
+          {
+            "id": "3c465807-b975-4435-9929-1b599232b2ab",
+            "text": "Coração e café\nR05 completa",
+            "start_ms": 2000,
+            "end_ms": 14000,
+            "position": "bottom",
+            "style": "white_plain",
+            "size": "large"
+          }
+        ],
+        "audio": {
+          "source_volume": 0.7,
+          "background_audio_id": "a735bdbc-ddb2-40ed-9383-21b2c7c5ad4d",
+          "background_volume": 0.3,
+          "background_loop": true,
+          "fade_in_ms": 1500,
+          "fade_out_ms": 2000
+        }
+      },
+      "path": "/work/artifacts/complete-12s-text-music/final.part",
+      "metadata": {
+        "duration_ms": 12000,
+        "requested_duration_ms": 12000,
+        "width": 1080,
+        "height": 1920,
+        "fps_num": 30,
+        "fps_den": 1,
+        "video_codec": "h264",
+        "pixel_format": "yuv420p",
+        "sample_aspect_ratio": "1:1",
+        "has_audio": true,
+        "audio_codec": "aac",
+        "frame_count": 360,
+        "decoded_frames": 360
+      },
+      "sha256": "140267f08b5e5c32d1ca8838b01b8ae5039547cdc04fc9d4bbd4b8e8bd998aa8",
+      "bytes": 343652,
+      "stages": [
+        "encoding",
+        "validating"
+      ],
+      "encoded_ms_observations": [
+        0,
+        1685,
+        2880,
+        3712,
+        4288,
+        5546,
+        6848,
+        7680,
+        8469,
+        9429,
+        10368,
+        11712,
+        12000
+      ],
+      "elapsed_seconds": 7.477
+    },
+    {
+      "name": "music-no-loop",
+      "source": "black.mp4",
+      "music": "short.mp3",
+      "profile": "standard",
+      "schema_version": 2,
+      "saved_spec": {
+        "source_media_id": "564e237c-353e-4729-99c5-d8d93a1f4402",
+        "trim": {
+          "start_ms": 2000,
+          "end_ms": 14000
+        },
+        "canvas": {
+          "preset": "9:16",
+          "fit": "cover",
+          "focal_x": 0.25,
+          "focal_y": 0.75
+        },
+        "schema_version": 2,
+        "text_overlays": [],
+        "audio": {
+          "source_volume": 1.0,
+          "background_audio_id": "67cb9717-565b-46f4-933f-f0d32ccfcaab",
+          "background_volume": 0.3,
+          "background_loop": false,
+          "fade_in_ms": 0,
+          "fade_out_ms": 0
+        }
+      },
+      "path": "/work/artifacts/music-no-loop/final.part",
+      "metadata": {
+        "duration_ms": 12000,
+        "requested_duration_ms": 12000,
+        "width": 1080,
+        "height": 1920,
+        "fps_num": 30,
+        "fps_den": 1,
+        "video_codec": "h264",
+        "pixel_format": "yuv420p",
+        "sample_aspect_ratio": "1:1",
+        "has_audio": true,
+        "audio_codec": "aac",
+        "frame_count": 360,
+        "decoded_frames": 360
+      },
+      "sha256": "c02ad822d2cbf1bd87e90c87f5450388ee3b3d0d796650de7313810f1e17b06f",
+      "bytes": 83847,
+      "stages": [
+        "encoding",
+        "validating"
+      ],
+      "encoded_ms_observations": [
+        0,
+        149,
+        981,
+        2026,
+        3050,
+        4437,
+        5504,
+        6208,
+        6869,
+        7658,
+        8533,
+        9642,
+        10837,
+        12000
+      ],
+      "elapsed_seconds": 8.122
+    },
+    {
+      "name": "v1-complete-no-audio",
+      "source": "square.mp4",
+      "music": null,
+      "profile": "standard",
+      "schema_version": 1,
+      "saved_spec": {
+        "source_media_id": "f36be4d7-6128-4f79-ac57-995a13ddf56c",
+        "trim": {
+          "start_ms": 2000,
+          "end_ms": 14000
+        },
+        "canvas": {
+          "preset": "9:16",
+          "fit": "cover",
+          "focal_x": 0.25,
+          "focal_y": 0.75
+        },
+        "schema_version": 1
+      },
+      "path": "/work/artifacts/v1-complete-no-audio/final.part",
+      "metadata": {
+        "duration_ms": 12000,
+        "requested_duration_ms": 12000,
+        "width": 1080,
+        "height": 1920,
+        "fps_num": 30,
+        "fps_den": 1,
+        "video_codec": "h264",
+        "pixel_format": "yuv420p",
+        "sample_aspect_ratio": "1:1",
+        "has_audio": false,
+        "audio_codec": null,
+        "frame_count": 360,
+        "decoded_frames": 360
+      },
+      "sha256": "a603b3610e0d27b92d58242944e296d687e3f8d080b89f1c0bed42755a9b200b",
+      "bytes": 3400358,
+      "stages": [
+        "encoding",
+        "validating"
+      ],
+      "encoded_ms_observations": [
+        0,
+        33,
+        566,
+        1266,
+        1833,
+        2366,
+        3166,
+        3566,
+        3933,
+        4266,
+        4800,
+        5166,
+        5400,
+        5866,
+        6366,
+        6800,
+        7433,
+        7966,
+        8366,
+        8666,
+        9066,
+        9633,
+        10366,
+        11066,
+        11900
+      ],
+      "elapsed_seconds": 14.26
+    },
+    {
+      "name": "long-music",
+      "source": "horizontal.mp4",
+      "music": "long.mp3",
+      "profile": "standard",
+      "schema_version": 2,
+      "saved_spec": {
+        "source_media_id": "6f0c7ca3-a4d9-4a95-b529-118f67980e8a",
+        "trim": {
+          "start_ms": 2000,
+          "end_ms": 3000
+        },
+        "canvas": {
+          "preset": "9:16",
+          "fit": "cover",
+          "focal_x": 0.25,
+          "focal_y": 0.75
+        },
+        "schema_version": 2,
+        "text_overlays": [],
+        "audio": {
+          "source_volume": 1.0,
+          "background_audio_id": "4a32c067-ecfd-498c-834e-a066d5dd0705",
+          "background_volume": 0.15,
+          "background_loop": false,
+          "fade_in_ms": 0,
+          "fade_out_ms": 0
+        }
+      },
+      "path": "/work/artifacts/long-music/final.part",
+      "metadata": {
+        "duration_ms": 1000,
+        "requested_duration_ms": 1000,
+        "width": 1080,
+        "height": 1920,
+        "fps_num": 30,
+        "fps_den": 1,
+        "video_codec": "h264",
+        "pixel_format": "yuv420p",
+        "sample_aspect_ratio": "1:1",
+        "has_audio": true,
+        "audio_codec": "aac",
+        "frame_count": 30,
+        "decoded_frames": 30
+      },
+      "sha256": "883296061b2c5e0f4ed54624ddd31d829f7c53247d5b0eb676f66eea9d9f4e6c",
+      "bytes": 248461,
+      "stages": [
+        "encoding",
+        "validating"
+      ],
+      "encoded_ms_observations": [
+        0,
+        704,
+        1000
+      ],
+      "elapsed_seconds": 1.841
+    },
+    {
+      "name": "vertical-cover",
+      "source": "vertical.mp4",
+      "music": null,
+      "profile": "standard",
+      "schema_version": 2,
+      "saved_spec": {
+        "source_media_id": "2c5d4cac-fac7-487f-8134-d26d11bd231d",
+        "trim": {
+          "start_ms": 2000,
+          "end_ms": 2400
+        },
+        "canvas": {
+          "preset": "9:16",
+          "fit": "cover",
+          "focal_x": 0.25,
+          "focal_y": 0.75
+        },
+        "schema_version": 2,
+        "text_overlays": [],
+        "audio": {
+          "source_volume": 1.0,
+          "background_audio_id": null,
+          "background_volume": 0.15,
+          "background_loop": false,
+          "fade_in_ms": 0,
+          "fade_out_ms": 0
+        }
+      },
+      "path": "/work/artifacts/vertical-cover/final.part",
+      "metadata": {
+        "duration_ms": 400,
+        "requested_duration_ms": 400,
+        "width": 1080,
+        "height": 1920,
+        "fps_num": 30,
+        "fps_den": 1,
+        "video_codec": "h264",
+        "pixel_format": "yuv420p",
+        "sample_aspect_ratio": "1:1",
+        "has_audio": false,
+        "audio_codec": null,
+        "frame_count": 12,
+        "decoded_frames": 12
+      },
+      "sha256": "f7d8308ccc926691178c57f2076ced2da6a49f11ccba3c88ca2052e5555d0693",
+      "bytes": 136827,
+      "stages": [
+        "encoding",
+        "validating"
+      ],
+      "encoded_ms_observations": [
+        0,
+        300
+      ],
+      "elapsed_seconds": 1.261
+    },
+    {
+      "name": "vertical-contain",
+      "source": "vertical.mp4",
+      "music": null,
+      "profile": "standard",
+      "schema_version": 2,
+      "saved_spec": {
+        "source_media_id": "a299a24b-5b4c-445f-bfa5-376ae2b54083",
+        "trim": {
+          "start_ms": 2000,
+          "end_ms": 2400
+        },
+        "canvas": {
+          "preset": "9:16",
+          "fit": "contain",
+          "focal_x": 0.25,
+          "focal_y": 0.75
+        },
+        "schema_version": 2,
+        "text_overlays": [],
+        "audio": {
+          "source_volume": 1.0,
+          "background_audio_id": null,
+          "background_volume": 0.15,
+          "background_loop": false,
+          "fade_in_ms": 0,
+          "fade_out_ms": 0
+        }
+      },
+      "path": "/work/artifacts/vertical-contain/final.part",
+      "metadata": {
+        "duration_ms": 400,
+        "requested_duration_ms": 400,
+        "width": 1080,
+        "height": 1920,
+        "fps_num": 30,
+        "fps_den": 1,
+        "video_codec": "h264",
+        "pixel_format": "yuv420p",
+        "sample_aspect_ratio": "1:1",
+        "has_audio": false,
+        "audio_codec": null,
+        "frame_count": 12,
+        "decoded_frames": 12
+      },
+      "sha256": "f7d8308ccc926691178c57f2076ced2da6a49f11ccba3c88ca2052e5555d0693",
+      "bytes": 136827,
+      "stages": [
+        "encoding",
+        "validating"
+      ],
+      "encoded_ms_observations": [
+        0,
+        300
+      ],
+      "elapsed_seconds": 1.081
+    },
+    {
+      "name": "square-cover",
+      "source": "square.mp4",
+      "music": null,
+      "profile": "standard",
+      "schema_version": 2,
+      "saved_spec": {
+        "source_media_id": "8de6c603-fdca-4804-b5e9-97e67ec293d1",
+        "trim": {
+          "start_ms": 2000,
+          "end_ms": 2400
+        },
+        "canvas": {
+          "preset": "9:16",
+          "fit": "cover",
+          "focal_x": 0.25,
+          "focal_y": 0.75
+        },
+        "schema_version": 2,
+        "text_overlays": [],
+        "audio": {
+          "source_volume": 1.0,
+          "background_audio_id": null,
+          "background_volume": 0.15,
+          "background_loop": false,
+          "fade_in_ms": 0,
+          "fade_out_ms": 0
+        }
+      },
+      "path": "/work/artifacts/square-cover/final.part",
+      "metadata": {
+        "duration_ms": 400,
+        "requested_duration_ms": 400,
+        "width": 1080,
+        "height": 1920,
+        "fps_num": 30,
+        "fps_den": 1,
+        "video_codec": "h264",
+        "pixel_format": "yuv420p",
+        "sample_aspect_ratio": "1:1",
+        "has_audio": false,
+        "audio_codec": null,
+        "frame_count": 12,
+        "decoded_frames": 12
+      },
+      "sha256": "b2391387fece30c0693b4cd5d762516e7b8dbf830b407659041bb45a9cfbd33a",
+      "bytes": 119477,
+      "stages": [
+        "encoding",
+        "validating"
+      ],
+      "encoded_ms_observations": [
+        0,
+        300
+      ],
+      "elapsed_seconds": 1.375
+    },
+    {
+      "name": "square-contain",
+      "source": "square.mp4",
+      "music": null,
+      "profile": "standard",
+      "schema_version": 2,
+      "saved_spec": {
+        "source_media_id": "c7c8425d-49d5-4907-b6c5-53498616c3fc",
+        "trim": {
+          "start_ms": 2000,
+          "end_ms": 2400
+        },
+        "canvas": {
+          "preset": "9:16",
+          "fit": "contain",
+          "focal_x": 0.25,
+          "focal_y": 0.75
+        },
+        "schema_version": 2,
+        "text_overlays": [],
+        "audio": {
+          "source_volume": 1.0,
+          "background_audio_id": null,
+          "background_volume": 0.15,
+          "background_loop": false,
+          "fade_in_ms": 0,
+          "fade_out_ms": 0
+        }
+      },
+      "path": "/work/artifacts/square-contain/final.part",
+      "metadata": {
+        "duration_ms": 400,
+        "requested_duration_ms": 400,
+        "width": 1080,
+        "height": 1920,
+        "fps_num": 30,
+        "fps_den": 1,
+        "video_codec": "h264",
+        "pixel_format": "yuv420p",
+        "sample_aspect_ratio": "1:1",
+        "has_audio": false,
+        "audio_codec": null,
+        "frame_count": 12,
+        "decoded_frames": 12
+      },
+      "sha256": "39f7391715c9bddfa94633defe23366af90332fe458e34bd21662288b23fd404",
+      "bytes": 104637,
+      "stages": [
+        "encoding",
+        "validating"
+      ],
+      "encoded_ms_observations": [
+        0,
+        300
+      ],
+      "elapsed_seconds": 0.723
+    },
+    {
+      "name": "sar-cover",
+      "source": "sar.mp4",
+      "music": null,
+      "profile": "standard",
+      "schema_version": 2,
+      "saved_spec": {
+        "source_media_id": "3e42a23a-6347-4e1b-8d54-f60075f88831",
+        "trim": {
+          "start_ms": 2000,
+          "end_ms": 2400
+        },
+        "canvas": {
+          "preset": "9:16",
+          "fit": "cover",
+          "focal_x": 0.25,
+          "focal_y": 0.75
+        },
+        "schema_version": 2,
+        "text_overlays": [],
+        "audio": {
+          "source_volume": 1.0,
+          "background_audio_id": null,
+          "background_volume": 0.15,
+          "background_loop": false,
+          "fade_in_ms": 0,
+          "fade_out_ms": 0
+        }
+      },
+      "path": "/work/artifacts/sar-cover/final.part",
+      "metadata": {
+        "duration_ms": 400,
+        "requested_duration_ms": 400,
+        "width": 1080,
+        "height": 1920,
+        "fps_num": 30,
+        "fps_den": 1,
+        "video_codec": "h264",
+        "pixel_format": "yuv420p",
+        "sample_aspect_ratio": "1:1",
+        "has_audio": false,
+        "audio_codec": null,
+        "frame_count": 12,
+        "decoded_frames": 12
+      },
+      "sha256": "8498a2e49f048055769d87ac3095877fa989f71536b97b0fcfe2aca1457ef9cb",
+      "bytes": 91545,
+      "stages": [
+        "encoding",
+        "validating"
+      ],
+      "encoded_ms_observations": [
+        0,
+        300
+      ],
+      "elapsed_seconds": 1.193
+    },
+    {
+      "name": "sar-contain",
+      "source": "sar.mp4",
+      "music": null,
+      "profile": "standard",
+      "schema_version": 2,
+      "saved_spec": {
+        "source_media_id": "b0cbc5c8-314b-43af-85de-a1c7817204b5",
+        "trim": {
+          "start_ms": 2000,
+          "end_ms": 2400
+        },
+        "canvas": {
+          "preset": "9:16",
+          "fit": "contain",
+          "focal_x": 0.25,
+          "focal_y": 0.75
+        },
+        "schema_version": 2,
+        "text_overlays": [],
+        "audio": {
+          "source_volume": 1.0,
+          "background_audio_id": null,
+          "background_volume": 0.15,
+          "background_loop": false,
+          "fade_in_ms": 0,
+          "fade_out_ms": 0
+        }
+      },
+      "path": "/work/artifacts/sar-contain/final.part",
+      "metadata": {
+        "duration_ms": 400,
+        "requested_duration_ms": 400,
+        "width": 1080,
+        "height": 1920,
+        "fps_num": 30,
+        "fps_den": 1,
+        "video_codec": "h264",
+        "pixel_format": "yuv420p",
+        "sample_aspect_ratio": "1:1",
+        "has_audio": false,
+        "audio_codec": null,
+        "frame_count": 12,
+        "decoded_frames": 12
+      },
+      "sha256": "9a90993393a7182fd3534273925ec9c94b130fb49877f5021390c54b8266d914",
+      "bytes": 46676,
+      "stages": [
+        "encoding",
+        "validating"
+      ],
+      "encoded_ms_observations": [
+        0,
+        300
+      ],
+      "elapsed_seconds": 0.988
+    },
+    {
+      "name": "vfr-cover",
+      "source": "vfr.mp4",
+      "music": null,
+      "profile": "standard",
+      "schema_version": 2,
+      "saved_spec": {
+        "source_media_id": "805afa7a-7b0d-4ec6-8a02-80c2e21189f8",
+        "trim": {
+          "start_ms": 2000,
+          "end_ms": 2400
+        },
+        "canvas": {
+          "preset": "9:16",
+          "fit": "cover",
+          "focal_x": 0.25,
+          "focal_y": 0.75
+        },
+        "schema_version": 2,
+        "text_overlays": [],
+        "audio": {
+          "source_volume": 1.0,
+          "background_audio_id": null,
+          "background_volume": 0.15,
+          "background_loop": false,
+          "fade_in_ms": 0,
+          "fade_out_ms": 0
+        }
+      },
+      "path": "/work/artifacts/vfr-cover/final.part",
+      "metadata": {
+        "duration_ms": 400,
+        "requested_duration_ms": 400,
+        "width": 1080,
+        "height": 1920,
+        "fps_num": 30,
+        "fps_den": 1,
+        "video_codec": "h264",
+        "pixel_format": "yuv420p",
+        "sample_aspect_ratio": "1:1",
+        "has_audio": false,
+        "audio_codec": null,
+        "frame_count": 12,
+        "decoded_frames": 12
+      },
+      "sha256": "b1e7084be6d01320b25f9bf5d81bbc7af8bd44ba7ce1b3cead9e393f4c83eb78",
+      "bytes": 63593,
+      "stages": [
+        "encoding",
+        "validating"
+      ],
+      "encoded_ms_observations": [
+        0,
+        300
+      ],
+      "elapsed_seconds": 1.172
+    },
+    {
+      "name": "vfr-contain",
+      "source": "vfr.mp4",
+      "music": null,
+      "profile": "standard",
+      "schema_version": 2,
+      "saved_spec": {
+        "source_media_id": "f34a7d57-f1eb-49f5-846c-30387db5b449",
+        "trim": {
+          "start_ms": 2000,
+          "end_ms": 2400
+        },
+        "canvas": {
+          "preset": "9:16",
+          "fit": "contain",
+          "focal_x": 0.25,
+          "focal_y": 0.75
+        },
+        "schema_version": 2,
+        "text_overlays": [],
+        "audio": {
+          "source_volume": 1.0,
+          "background_audio_id": null,
+          "background_volume": 0.15,
+          "background_loop": false,
+          "fade_in_ms": 0,
+          "fade_out_ms": 0
+        }
+      },
+      "path": "/work/artifacts/vfr-contain/final.part",
+      "metadata": {
+        "duration_ms": 400,
+        "requested_duration_ms": 400,
+        "width": 1080,
+        "height": 1920,
+        "fps_num": 30,
+        "fps_den": 1,
+        "video_codec": "h264",
+        "pixel_format": "yuv420p",
+        "sample_aspect_ratio": "1:1",
+        "has_audio": false,
+        "audio_codec": null,
+        "frame_count": 12,
+        "decoded_frames": 12
+      },
+      "sha256": "45d78bbc142ba1ad737469b41de05e6ee87918ef1196dbbe7590af9dfef3750a",
+      "bytes": 52061,
+      "stages": [
+        "encoding",
+        "validating"
+      ],
+      "encoded_ms_observations": [
+        0,
+        300
+      ],
+      "elapsed_seconds": 0.715
+    },
+    {
+      "name": "rotated-cover",
+      "source": "rotated.mp4",
+      "music": null,
+      "profile": "standard",
+      "schema_version": 2,
+      "saved_spec": {
+        "source_media_id": "89d5ade9-ca07-482c-b1dd-b77511e018fb",
+        "trim": {
+          "start_ms": 2000,
+          "end_ms": 2400
+        },
+        "canvas": {
+          "preset": "9:16",
+          "fit": "cover",
+          "focal_x": 0.25,
+          "focal_y": 0.75
+        },
+        "schema_version": 2,
+        "text_overlays": [],
+        "audio": {
+          "source_volume": 1.0,
+          "background_audio_id": null,
+          "background_volume": 0.15,
+          "background_loop": false,
+          "fade_in_ms": 0,
+          "fade_out_ms": 0
+        }
+      },
+      "path": "/work/artifacts/rotated-cover/final.part",
+      "metadata": {
+        "duration_ms": 400,
+        "requested_duration_ms": 400,
+        "width": 1080,
+        "height": 1920,
+        "fps_num": 30,
+        "fps_den": 1,
+        "video_codec": "h264",
+        "pixel_format": "yuv420p",
+        "sample_aspect_ratio": "1:1",
+        "has_audio": true,
+        "audio_codec": "aac",
+        "frame_count": 12,
+        "decoded_frames": 12
+      },
+      "sha256": "6c1c22a9a31b1bc24f076d63165cdf88787ee9c6627b495186b72974a54379ff",
+      "bytes": 153337,
+      "stages": [
+        "encoding",
+        "validating"
+      ],
+      "encoded_ms_observations": [
+        0,
+        400
+      ],
+      "elapsed_seconds": 0.908
+    },
+    {
+      "name": "rotated-contain",
+      "source": "rotated.mp4",
+      "music": null,
+      "profile": "standard",
+      "schema_version": 2,
+      "saved_spec": {
+        "source_media_id": "0d09ce63-f7c5-48db-adc5-25f8b6a2b8e6",
+        "trim": {
+          "start_ms": 2000,
+          "end_ms": 2400
+        },
+        "canvas": {
+          "preset": "9:16",
+          "fit": "contain",
+          "focal_x": 0.25,
+          "focal_y": 0.75
+        },
+        "schema_version": 2,
+        "text_overlays": [],
+        "audio": {
+          "source_volume": 1.0,
+          "background_audio_id": null,
+          "background_volume": 0.15,
+          "background_loop": false,
+          "fade_in_ms": 0,
+          "fade_out_ms": 0
+        }
+      },
+      "path": "/work/artifacts/rotated-contain/final.part",
+      "metadata": {
+        "duration_ms": 400,
+        "requested_duration_ms": 400,
+        "width": 1080,
+        "height": 1920,
+        "fps_num": 30,
+        "fps_den": 1,
+        "video_codec": "h264",
+        "pixel_format": "yuv420p",
+        "sample_aspect_ratio": "1:1",
+        "has_audio": true,
+        "audio_codec": "aac",
+        "frame_count": 12,
+        "decoded_frames": 12
+      },
+      "sha256": "6c1c22a9a31b1bc24f076d63165cdf88787ee9c6627b495186b72974a54379ff",
+      "bytes": 153337,
+      "stages": [
+        "encoding",
+        "validating"
+      ],
+      "encoded_ms_observations": [
+        0,
+        400
+      ],
+      "elapsed_seconds": 1.0
+    },
+    {
+      "name": "preview-regression",
+      "source": "horizontal.mp4",
+      "music": null,
+      "profile": "standard",
+      "schema_version": 2,
+      "saved_spec": {
+        "source_media_id": "60040798-09c2-4369-b694-2a246cdb3414",
+        "trim": {
+          "start_ms": 2000,
+          "end_ms": 3000
+        },
+        "canvas": {
+          "preset": "9:16",
+          "fit": "cover",
+          "focal_x": 0.25,
+          "focal_y": 0.75
+        },
+        "schema_version": 2,
+        "text_overlays": [],
+        "audio": {
+          "source_volume": 1.0,
+          "background_audio_id": null,
+          "background_volume": 0.15,
+          "background_loop": false,
+          "fade_in_ms": 0,
+          "fade_out_ms": 0
+        }
+      },
+      "path": "/work/artifacts/preview-regression/preview.part",
+      "metadata": {
+        "duration_ms": 1000,
+        "requested_duration_ms": 1000,
+        "width": 540,
+        "height": 960,
+        "fps_num": 24,
+        "fps_den": 1,
+        "video_codec": "h264",
+        "pixel_format": "yuv420p",
+        "sample_aspect_ratio": "1:1",
+        "has_audio": true,
+        "audio_codec": "aac",
+        "frame_count": 24,
+        "decoded_frames": 24
+      },
+      "sha256": "46db2323060c69e3923d8d59440e62d159c81cdbca7dcab8144831ab0ce6b205",
+      "bytes": 75786,
+      "stages": [
+        "encoding",
+        "validating"
+      ],
+      "encoded_ms_observations": [],
+      "elapsed_seconds": 0.835
+    }
+  ],
+  "checks": [
+    {
+      "name": "ffmpeg_real_progress_alias_is_microseconds",
+      "passed": true
+    },
+    {
+      "name": "9x16-standard_fully_decoded",
+      "passed": true
+    },
+    {
+      "name": "9x16-standard_measured_progress",
+      "passed": true
+    },
+    {
+      "name": "9x16-standard_checksum",
+      "passed": true
+    },
+    {
+      "name": "9x16-high_fully_decoded",
+      "passed": true
+    },
+    {
+      "name": "9x16-high_measured_progress",
+      "passed": true
+    },
+    {
+      "name": "9x16-high_checksum",
+      "passed": true
+    },
+    {
+      "name": "1x1-standard_fully_decoded",
+      "passed": true
+    },
+    {
+      "name": "1x1-standard_measured_progress",
+      "passed": true
+    },
+    {
+      "name": "1x1-standard_checksum",
+      "passed": true
+    },
+    {
+      "name": "1x1-high_fully_decoded",
+      "passed": true
+    },
+    {
+      "name": "1x1-high_measured_progress",
+      "passed": true
+    },
+    {
+      "name": "1x1-high_checksum",
+      "passed": true
+    },
+    {
+      "name": "4x5-standard_fully_decoded",
+      "passed": true
+    },
+    {
+      "name": "4x5-standard_measured_progress",
+      "passed": true
+    },
+    {
+      "name": "4x5-standard_checksum",
+      "passed": true
+    },
+    {
+      "name": "4x5-high_fully_decoded",
+      "passed": true
+    },
+    {
+      "name": "4x5-high_measured_progress",
+      "passed": true
+    },
+    {
+      "name": "4x5-high_checksum",
+      "passed": true
+    },
+    {
+      "name": "16x9-standard_fully_decoded",
+      "passed": true
+    },
+    {
+      "name": "16x9-standard_measured_progress",
+      "passed": true
+    },
+    {
+      "name": "16x9-standard_checksum",
+      "passed": true
+    },
+    {
+      "name": "16x9-high_fully_decoded",
+      "passed": true
+    },
+    {
+      "name": "16x9-high_measured_progress",
+      "passed": true
+    },
+    {
+      "name": "16x9-high_checksum",
+      "passed": true
+    },
+    {
+      "name": "complete-12s-text-music_fully_decoded",
+      "passed": true
+    },
+    {
+      "name": "complete-12s-text-music_measured_progress",
+      "passed": true
+    },
+    {
+      "name": "complete-12s-text-music_checksum",
+      "passed": true
+    },
+    {
+      "name": "complete_trim_over_eight_seconds",
+      "passed": true
+    },
+    {
+      "name": "complete_trim_exact_360_frames",
+      "passed": true
+    },
+    {
+      "name": "looped_music_survives_short_mp3",
+      "passed": true
+    },
+    {
+      "name": "fades_relative_to_complete_trim",
+      "passed": true
+    },
+    {
+      "name": "representative_audio_no_clipped_samples",
+      "passed": true
+    },
+    {
+      "name": "three_text_positions_visible_in_real_encoded_frame",
+      "passed": true
+    },
+    {
+      "name": "music-no-loop_fully_decoded",
+      "passed": true
+    },
+    {
+      "name": "music-no-loop_measured_progress",
+      "passed": true
+    },
+    {
+      "name": "music-no-loop_checksum",
+      "passed": true
+    },
+    {
+      "name": "nonlooped_music_ends_into_silence",
+      "passed": true
+    },
+    {
+      "name": "v1-complete-no-audio_fully_decoded",
+      "passed": true
+    },
+    {
+      "name": "v1-complete-no-audio_measured_progress",
+      "passed": true
+    },
+    {
+      "name": "v1-complete-no-audio_checksum",
+      "passed": true
+    },
+    {
+      "name": "long-music_fully_decoded",
+      "passed": true
+    },
+    {
+      "name": "long-music_measured_progress",
+      "passed": true
+    },
+    {
+      "name": "long-music_checksum",
+      "passed": true
+    },
+    {
+      "name": "vertical-cover_fully_decoded",
+      "passed": true
+    },
+    {
+      "name": "vertical-cover_measured_progress",
+      "passed": true
+    },
+    {
+      "name": "vertical-cover_checksum",
+      "passed": true
+    },
+    {
+      "name": "vertical-contain_fully_decoded",
+      "passed": true
+    },
+    {
+      "name": "vertical-contain_measured_progress",
+      "passed": true
+    },
+    {
+      "name": "vertical-contain_checksum",
+      "passed": true
+    },
+    {
+      "name": "square-cover_fully_decoded",
+      "passed": true
+    },
+    {
+      "name": "square-cover_measured_progress",
+      "passed": true
+    },
+    {
+      "name": "square-cover_checksum",
+      "passed": true
+    },
+    {
+      "name": "square-contain_fully_decoded",
+      "passed": true
+    },
+    {
+      "name": "square-contain_measured_progress",
+      "passed": true
+    },
+    {
+      "name": "square-contain_checksum",
+      "passed": true
+    },
+    {
+      "name": "sar-cover_fully_decoded",
+      "passed": true
+    },
+    {
+      "name": "sar-cover_measured_progress",
+      "passed": true
+    },
+    {
+      "name": "sar-cover_checksum",
+      "passed": true
+    },
+    {
+      "name": "sar-contain_fully_decoded",
+      "passed": true
+    },
+    {
+      "name": "sar-contain_measured_progress",
+      "passed": true
+    },
+    {
+      "name": "sar-contain_checksum",
+      "passed": true
+    },
+    {
+      "name": "vfr-cover_fully_decoded",
+      "passed": true
+    },
+    {
+      "name": "vfr-cover_measured_progress",
+      "passed": true
+    },
+    {
+      "name": "vfr-cover_checksum",
+      "passed": true
+    },
+    {
+      "name": "vfr-contain_fully_decoded",
+      "passed": true
+    },
+    {
+      "name": "vfr-contain_measured_progress",
+      "passed": true
+    },
+    {
+      "name": "vfr-contain_checksum",
+      "passed": true
+    },
+    {
+      "name": "rotated-cover_fully_decoded",
+      "passed": true
+    },
+    {
+      "name": "rotated-cover_measured_progress",
+      "passed": true
+    },
+    {
+      "name": "rotated-cover_checksum",
+      "passed": true
+    },
+    {
+      "name": "rotated-contain_fully_decoded",
+      "passed": true
+    },
+    {
+      "name": "rotated-contain_measured_progress",
+      "passed": true
+    },
+    {
+      "name": "rotated-contain_checksum",
+      "passed": true
+    },
+    {
+      "name": "preview-regression_fully_decoded",
+      "passed": true
+    },
+    {
+      "name": "preview-regression_checksum",
+      "passed": true
+    },
+    {
+      "name": "all_synthetic_originals_sha_mode_mtime_unchanged",
+      "passed": true
+    }
+  ],
+  "audio_and_text_metrics": {
+    "complete_looped_music": {
+      "sample_peak": 0.03583882004022598,
+      "steady_rms": 0.025178471526962485,
+      "first_200ms_rms": 0.0019389618988072783,
+      "last_200ms_rms": 0.0013055591920257288,
+      "human_listening_performed": false
+    },
+    "text_pixels_per_vertical_third": [
+      1093,
+      1628,
+      2502
+    ]
+  },
+  "frames": [
+    {
+      "filename": "complete-12s-text-music.png",
+      "sha256": "cf0c8698945af6ab8a2b96a6beb881b3a8340e4bb89dc46fd971f8b477971477"
+    }
+  ],
+  "elapsed_seconds": 62.025
+}

@@ -17,6 +17,7 @@ from app.api.v1.edit_specs import router as edit_specs_router
 from app.api.v1.media import router as media_router
 from app.api.v1.previews import router as previews_router
 from app.api.v1.projects import router as projects_router
+from app.api.v1.renders import router as renders_router
 from app.api.v1.system import router as system_router
 from app.core.config import Settings, get_settings
 from app.core.errors import AppError
@@ -134,6 +135,7 @@ def create_app(settings: Settings | None = None) -> FastAPI:
     application.include_router(audio_router)
     application.include_router(edit_specs_router)
     application.include_router(previews_router)
+    application.include_router(renders_router)
     return application
 
 

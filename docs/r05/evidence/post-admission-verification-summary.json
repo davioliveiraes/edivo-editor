@@ -1,0 +1,25 @@
+{
+  "status": "passed",
+  "checks": [
+    {
+      "stage": "render-http-admission-final",
+      "exit_code": 0,
+      "log": "docs/r05/evidence/render-http-admission-final.log"
+    },
+    {
+      "stage": "preview-http-admission-final",
+      "exit_code": 0,
+      "log": "docs/r05/evidence/preview-http-admission-final.log"
+    },
+    {
+      "stage": "browser-admission-final",
+      "exit_code": 0,
+      "log": "docs/r05/evidence/browser-admission-final.log"
+    },
+    {
+      "stage": "preservation-admission-final",
+      "exit_code": 0,
+      "log": "docs/r05/evidence/preservation-admission-final.log"
+    }
+  ]
+}

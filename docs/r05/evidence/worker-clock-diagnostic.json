@@ -1,0 +1,234 @@
+{
+  "release": "R05",
+  "recorded_at": "2026-10-22T15:16:19.160484+00:00",
+  "status": "diagnostic_measurements_recorded",
+  "read_only": true,
+  "application_or_lifecycle_mutations": false,
+  "source_report": "docs/r05/evidence/worker-control-attempt-4/report.json",
+  "source_report_status": "failed",
+  "source_report_failure": "expired_owner_observes_fencing",
+  "qa_limits_during_measurement": {
+    "render_lease_seconds": 2,
+    "heartbeat_seconds": 0.2,
+    "control_poll_seconds": 0.1
+  },
+  "cases": [
+    {
+      "case": "crash",
+      "log": "edivo-r05-control-176aef3ce735-crash-5a180867.stdout.log",
+      "log_sha256": "f1a531d5e8050527ad706e80016a22aa4139d5c6f13ea50333c9dc43b1a973d7",
+      "events": 245,
+      "first_utc": "2026-10-22T15:13:33.460062+00:00",
+      "last_utc": "2026-10-22T15:13:35.817283+00:00",
+      "wall_elapsed_seconds": 2.35722065,
+      "monotonic_elapsed_seconds": 2.357220854,
+      "realtime_minus_monotonic_change_seconds": -2.04e-07,
+      "largest_adjacent_realtime_excess_seconds": 0,
+      "positive_realtime_steps": [],
+      "stable_clock_offset_levels_seconds": [
+        {
+          "relative_offset": 0.0,
+          "events": 245
+        }
+      ],
+      "heartbeat_snapshots": 10,
+      "max_database_vs_worker_realtime_difference_seconds": 0.022674084,
+      "max_sql_duration_seconds": 0.023097,
+      "max_successful_callback_duration_seconds": 0.053435,
+      "sql_error_events": 0,
+      "monotonic_pulse_gap_events": 0,
+      "slow_pulse_events": 0,
+      "control_exceptions": [],
+      "stderr_render_lease_lost": false,
+      "stderr_sha256": "03524540e2936182bb3075b75436eafe326bad4d7aa1af1c584a9370120d2bff"
+    },
+    {
+      "case": "crash-retry",
+      "log": "edivo-r05-control-176aef3ce735-crash-retry-987835b8.stdout.log",
+      "log_sha256": "ffb1014ff31bc024fdc0cc35bee3c172da738eb3cd9039a9b9ed9025dbcda9b9",
+      "events": 1119,
+      "first_utc": "2026-10-22T15:13:43.356266+00:00",
+      "last_utc": "2026-10-22T15:13:59.071741+00:00",
+      "wall_elapsed_seconds": 15.715475082,
+      "monotonic_elapsed_seconds": 12.954040372,
+      "realtime_minus_monotonic_change_seconds": 2.76143471,
+      "largest_adjacent_realtime_excess_seconds": 1.5981122,
+      "positive_realtime_steps": [
+        {
+          "wall_elapsed_seconds": 1.166831493,
+          "monotonic_elapsed_seconds": 0.003508261,
+          "excess_realtime_seconds": 1.163323232,
+          "from_event": "sql_probe_end",
+          "to_event": "sql_probe_begin",
+          "from_utc": "2026-10-22T15:13:52.607509+00:00",
+          "to_utc": "2026-10-22T15:13:53.774340+00:00"
+        },
+        {
+          "wall_elapsed_seconds": 1.624554634,
+          "monotonic_elapsed_seconds": 0.026442434,
+          "excess_realtime_seconds": 1.5981122,
+          "from_event": "control_probe_begin",
+          "to_event": "sql_probe_begin",
+          "from_utc": "2026-10-22T15:13:53.913751+00:00",
+          "to_utc": "2026-10-22T15:13:55.538306+00:00"
+        }
+      ],
+      "stable_clock_offset_levels_seconds": [
+        {
+          "relative_offset": 0.0,
+          "events": 791
+        },
+        {
+          "relative_offset": 2.761,
+          "events": 317
+        },
+        {
+          "relative_offset": 1.163,
+          "events": 11
+        }
+      ],
+      "heartbeat_snapshots": 50,
+      "max_database_vs_worker_realtime_difference_seconds": 0.031163216,
+      "max_sql_duration_seconds": 0.036815,
+      "max_successful_callback_duration_seconds": 0.080945,
+      "sql_error_events": 0,
+      "monotonic_pulse_gap_events": 0,
+      "slow_pulse_events": 0,
+      "control_exceptions": [],
+      "stderr_render_lease_lost": false,
+      "stderr_sha256": "27081a547b2b2a25652fbb184d21d382d00aaa67829e854fe23e28a1849a420d"
+    },
+    {
+      "case": "lease",
+      "log": "edivo-r05-control-176aef3ce735-lease-4e85dd50.stdout.log",
+      "log_sha256": "cf1c6198745bfdf87b39e3ea7b9c68bb5e745c68b07a939c94c61ff9768ccc78",
+      "events": 410,
+      "first_utc": "2026-10-22T15:14:10.345657+00:00",
+      "last_utc": "2026-10-22T15:14:15.218014+00:00",
+      "wall_elapsed_seconds": 4.872357368,
+      "monotonic_elapsed_seconds": 4.872357643,
+      "realtime_minus_monotonic_change_seconds": -2.75e-07,
+      "largest_adjacent_realtime_excess_seconds": 0,
+      "positive_realtime_steps": [],
+      "stable_clock_offset_levels_seconds": [
+        {
+          "relative_offset": 0.0,
+          "events": 410
+        }
+      ],
+      "heartbeat_snapshots": 18,
+      "max_database_vs_worker_realtime_difference_seconds": 0.00231719,
+      "max_sql_duration_seconds": 0.034363,
+      "max_successful_callback_duration_seconds": 0.066268,
+      "sql_error_events": 0,
+      "monotonic_pulse_gap_events": 0,
+      "slow_pulse_events": 0,
+      "control_exceptions": [
+        {
+          "operation": "control",
+          "exception_type": "LeaseLost",
+          "duration_seconds": 0.015522,
+          "recorded_at": "2026-10-22T15:14:14.990614+00:00"
+        }
+      ],
+      "stderr_render_lease_lost": true,
+      "stderr_sha256": "00c568905e096812ebe96899cbbb63959daa744ac242f34bb86b46baa02d3287"
+    },
+    {
+      "case": "sigterm",
+      "log": "edivo-r05-control-176aef3ce735-sigterm-01908b48.stdout.log",
+      "log_sha256": "0f887a4e8462bc457dccd94d7d6a6b6f3d25b307e5e4b285c8f410d28a6d058d",
+      "events": 275,
+      "first_utc": "2026-10-22T15:12:54.922630+00:00",
+      "last_utc": "2026-10-22T15:12:58.480574+00:00",
+      "wall_elapsed_seconds": 3.557943821,
+      "monotonic_elapsed_seconds": 3.55794574,
+      "realtime_minus_monotonic_change_seconds": -1.919e-06,
+      "largest_adjacent_realtime_excess_seconds": 0,
+      "positive_realtime_steps": [],
+      "stable_clock_offset_levels_seconds": [
+        {
+          "relative_offset": 0.0,
+          "events": 275
+        }
+      ],
+      "heartbeat_snapshots": 11,
+      "max_database_vs_worker_realtime_difference_seconds": 0.001770496,
+      "max_sql_duration_seconds": 0.031172,
+      "max_successful_callback_duration_seconds": 0.142879,
+      "sql_error_events": 0,
+      "monotonic_pulse_gap_events": 0,
+      "slow_pulse_events": 2,
+      "control_exceptions": [],
+      "stderr_render_lease_lost": false,
+      "stderr_sha256": "4f0cfbd255effdcbd0e84136bb66fa14ddc8f323d6b7a9c79ce9db9a3664f469"
+    },
+    {
+      "case": "sigterm-retry",
+      "log": "edivo-r05-control-176aef3ce735-sigterm-retry-6a2549e9.stdout.log",
+      "log_sha256": "7df96f46b9ffcd2a37db132096c42755c0d32b6e7764f3c90cfe62e7d028431c",
+      "events": 1105,
+      "first_utc": "2026-10-22T15:13:08.018589+00:00",
+      "last_utc": "2026-10-22T15:13:23.565120+00:00",
+      "wall_elapsed_seconds": 15.546530008,
+      "monotonic_elapsed_seconds": 12.846912336,
+      "realtime_minus_monotonic_change_seconds": 2.699617672,
+      "largest_adjacent_realtime_excess_seconds": 1.596027475,
+      "positive_realtime_steps": [
+        {
+          "wall_elapsed_seconds": 1.15447855,
+          "monotonic_elapsed_seconds": 0.050888565,
+          "excess_realtime_seconds": 1.103589985,
+          "from_event": "control_probe_end",
+          "to_event": "control_probe_begin",
+          "from_utc": "2026-10-22T15:13:19.880992+00:00",
+          "to_utc": "2026-10-22T15:13:21.035470+00:00"
+        },
+        {
+          "wall_elapsed_seconds": 1.697966576,
+          "monotonic_elapsed_seconds": 0.101939101,
+          "excess_realtime_seconds": 1.596027475,
+          "from_event": "control_probe_end",
+          "to_event": "control_probe_begin",
+          "from_utc": "2026-10-22T15:13:21.057299+00:00",
+          "to_utc": "2026-10-22T15:13:22.755265+00:00"
+        }
+      ],
+      "stable_clock_offset_levels_seconds": [
+        {
+          "relative_offset": 0.0,
+          "events": 997
+        },
+        {
+          "relative_offset": 2.7,
+          "events": 96
+        },
+        {
+          "relative_offset": 1.104,
+          "events": 12
+        }
+      ],
+      "heartbeat_snapshots": 49,
+      "max_database_vs_worker_realtime_difference_seconds": 0.029132843,
+      "max_sql_duration_seconds": 0.04141,
+      "max_successful_callback_duration_seconds": 0.091059,
+      "sql_error_events": 0,
+      "monotonic_pulse_gap_events": 0,
+      "slow_pulse_events": 1,
+      "control_exceptions": [],
+      "stderr_render_lease_lost": false,
+      "stderr_sha256": "619a51bc84200cc16c996f6304c0832f23774b933931434af5d4cd79148c448f"
+    }
+  ],
+  "maximum_adjacent_realtime_excess_seconds": 1.5981122,
+  "maximum_total_realtime_minus_monotonic_change_seconds": 2.76143471,
+  "observations": [
+    "Multiple consecutive event groups exhibit stable realtime-versus-monotonic offset changes, not merely one slow SQL statement.",
+    "PostgreSQL heartbeat clock snapshots and worker realtime stayed close at sampled observations.",
+    "A two-second test lease is sensitive to the measured realtime advances; fenced stopping is conservative and prevents publication without ownership.",
+    "The exact host/WSL/Docker clock-adjustment mechanism was not identified. No production clock, lease, heartbeat or fencing behavior was changed.",
+    "Attempt2 and attempt3 remain real negative evidence; their precise causes cannot be retrospectively proven because they lack these paired-clock samples.",
+    "Attempt4 itself failed at a harness assertion that inspected stdout for render_lease_lost, while production logging writes that event to stderr. Its complete report is not reclassified as passed.",
+    "Callback and SQL timing probes are QA-only, add some measurement overhead, and do not establish a general performance SLA."
+  ]
+}

@@ -1,0 +1,32 @@
+{
+  "recorded_at": "2026-10-22T01:38:33.254816+00:00",
+  "passed": true,
+  "checks": [
+    {
+      "name": "current",
+      "command": "docker compose exec -T api alembic current",
+      "exit_code": 0
+    },
+    {
+      "name": "upgrade_head_first",
+      "command": "docker compose exec -T api alembic upgrade head",
+      "exit_code": 0
+    },
+    {
+      "name": "upgrade_head_repeat",
+      "command": "docker compose exec -T api alembic upgrade head",
+      "exit_code": 0
+    },
+    {
+      "name": "check",
+      "command": "docker compose exec -T api alembic check",
+      "exit_code": 0
+    },
+    {
+      "name": "http_health_ready",
+      "exit_code": 0
+    }
+  ],
+  "log": "phase1-alembic-http-attempt-1.log",
+  "services_restarted": false
+}

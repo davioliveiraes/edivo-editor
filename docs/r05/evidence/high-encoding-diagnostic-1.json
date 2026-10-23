@@ -1,0 +1,58 @@
+{
+  "diagnostic_only": true,
+  "database_mutated": false,
+  "publication_performed": false,
+  "project_id": "3f4bc7e0-3b4e-4db6-a812-18b581a398e3",
+  "failed_job_id": "79a1e1e9-2692-4337-b6ad-45274f7d8231",
+  "revision_id": "8a8f3f23-4b76-4dd3-a652-10abc70fe61d",
+  "profile": "high",
+  "preset": "4:5",
+  "trim_ms": [
+    1000,
+    13000
+  ],
+  "process_policy": {
+    "timeout_seconds": 3600.0,
+    "limits": {
+      "memory_bytes": 1073741824,
+      "cpu_seconds": 3600,
+      "file_size_bytes": 2147483648,
+      "open_files": 128
+    },
+    "output_bytes": 262144,
+    "heartbeat_seconds": 5.0,
+    "control_seconds": 0.5,
+    "terminate_grace_seconds": 2.0,
+    "error_prefix": "render"
+  },
+  "status": "failed",
+  "error_code": "render_encoding_failed",
+  "stages": [
+    "encoding"
+  ],
+  "encoded_ms": [
+    0,
+    1045,
+    1472
+  ],
+  "inputs_after": {
+    "5490c581-f4ca-4548-8c4d-6e1aac6fbc2e": {
+      "checksum_sha256": "a220876b0e90f28f91e984a45054caf3c92c27e980bda4c9d95de860a041dc3e",
+      "mode": "0400"
+    },
+    "b99c049d-1f73-4133-8113-ab20c678b9a5": {
+      "checksum_sha256": "7055fd0edb521ce6b00b877d1cdd0a50ab055637e0a99c5958d9cf4ecb70bf63",
+      "mode": "0400"
+    }
+  },
+  "failed_job_unchanged": true,
+  "elapsed_seconds": 2.966,
+  "commands": [
+    {
+      "executable": "ffmpeg",
+      "stderr": "x264 [error]: malloc of size 8418816 failed\nError submitting video frame to the encoder\n",
+      "returncode": 1,
+      "captured_stderr_bytes": 88
+    }
+  ]
+}

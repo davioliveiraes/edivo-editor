@@ -1,0 +1,570 @@
+{
+  "status": "passed",
+  "stage": "verify",
+  "created_at": "2026-10-23T01:29:39.850749+00:00",
+  "checks": [
+    {
+      "check": "render_stage_seed_present",
+      "passed": true
+    },
+    {
+      "check": "response_body_bounded",
+      "passed": true
+    },
+    {
+      "check": "request_id_present",
+      "passed": true
+    },
+    {
+      "check": "private_fields_absent",
+      "passed": true
+    },
+    {
+      "check": "revision_persisted_after_restart",
+      "passed": true
+    },
+    {
+      "check": "response_body_bounded",
+      "passed": true
+    },
+    {
+      "check": "request_id_present",
+      "passed": true
+    },
+    {
+      "check": "private_fields_absent",
+      "passed": true
+    },
+    {
+      "check": "history_page_200",
+      "passed": true
+    },
+    {
+      "check": "response_body_bounded",
+      "passed": true
+    },
+    {
+      "check": "request_id_present",
+      "passed": true
+    },
+    {
+      "check": "private_fields_absent",
+      "passed": true
+    },
+    {
+      "check": "history_page_200",
+      "passed": true
+    },
+    {
+      "check": "response_body_bounded",
+      "passed": true
+    },
+    {
+      "check": "request_id_present",
+      "passed": true
+    },
+    {
+      "check": "private_fields_absent",
+      "passed": true
+    },
+    {
+      "check": "history_page_200",
+      "passed": true
+    },
+    {
+      "check": "history_deterministic_no_duplicates",
+      "passed": true
+    },
+    {
+      "check": "history_persisted_after_restart",
+      "passed": true
+    },
+    {
+      "check": "prior_cancel_candidate_state_persisted",
+      "passed": true,
+      "render_id": "79a1e1e9-2692-4337-b6ad-45274f7d8231",
+      "status": "failed",
+      "error_code": "render_encoding_failed"
+    },
+    {
+      "check": "response_body_bounded",
+      "passed": true
+    },
+    {
+      "check": "request_id_present",
+      "passed": true
+    },
+    {
+      "check": "private_fields_absent",
+      "passed": true
+    },
+    {
+      "check": "completed_metadata_persisted",
+      "passed": true
+    },
+    {
+      "check": "response_body_bounded",
+      "passed": true
+    },
+    {
+      "check": "head_private_attachment",
+      "passed": true
+    },
+    {
+      "check": "full_download_200",
+      "passed": true
+    },
+    {
+      "check": "download_sha256_matches_persisted",
+      "passed": true,
+      "render_id": "69f40b33-2edc-4a59-ab42-629949454921",
+      "checksum_sha256": "2f8de00b3e8545f485f09199c899abc0df6ff7f17bb6640d9635400fdb51ba90",
+      "byte_size": 3152917
+    },
+    {
+      "check": "response_body_bounded",
+      "passed": true
+    },
+    {
+      "check": "range_exact_bytes",
+      "passed": true,
+      "range": "bytes=0-31"
+    },
+    {
+      "check": "response_body_bounded",
+      "passed": true
+    },
+    {
+      "check": "range_exact_bytes",
+      "passed": true,
+      "range": "bytes=100-130"
+    },
+    {
+      "check": "response_body_bounded",
+      "passed": true
+    },
+    {
+      "check": "range_exact_bytes",
+      "passed": true,
+      "range": "bytes=3152900-"
+    },
+    {
+      "check": "response_body_bounded",
+      "passed": true
+    },
+    {
+      "check": "range_exact_bytes",
+      "passed": true,
+      "range": "bytes=-17"
+    },
+    {
+      "check": "response_body_bounded",
+      "passed": true
+    },
+    {
+      "check": "range_exact_bytes",
+      "passed": true,
+      "range": "bytes=0-0"
+    },
+    {
+      "check": "response_body_bounded",
+      "passed": true
+    },
+    {
+      "check": "range_head_without_body",
+      "passed": true
+    },
+    {
+      "check": "response_body_bounded",
+      "passed": true
+    },
+    {
+      "check": "range_416",
+      "passed": true,
+      "range": "bytes=3152917-"
+    },
+    {
+      "check": "response_body_bounded",
+      "passed": true
+    },
+    {
+      "check": "range_416",
+      "passed": true,
+      "range": "bytes=0-1,3-4"
+    },
+    {
+      "check": "response_body_bounded",
+      "passed": true
+    },
+    {
+      "check": "range_416",
+      "passed": true,
+      "range": "bytes=invalid"
+    },
+    {
+      "check": "response_body_bounded",
+      "passed": true
+    },
+    {
+      "check": "request_id_present",
+      "passed": true
+    },
+    {
+      "check": "private_fields_absent",
+      "passed": true
+    },
+    {
+      "check": "completed_metadata_persisted",
+      "passed": true
+    },
+    {
+      "check": "response_body_bounded",
+      "passed": true
+    },
+    {
+      "check": "head_private_attachment",
+      "passed": true
+    },
+    {
+      "check": "full_download_200",
+      "passed": true
+    },
+    {
+      "check": "download_sha256_matches_persisted",
+      "passed": true,
+      "render_id": "0eb40bfc-88ea-4dbf-a9b6-0865234d533d",
+      "checksum_sha256": "06ea86d1c01a5648289c95fd9a703d96aa5cc87f37e237f4729bfd2d7deff10a",
+      "byte_size": 2808513
+    },
+    {
+      "check": "response_body_bounded",
+      "passed": true
+    },
+    {
+      "check": "range_exact_bytes",
+      "passed": true,
+      "range": "bytes=0-31"
+    },
+    {
+      "check": "response_body_bounded",
+      "passed": true
+    },
+    {
+      "check": "range_exact_bytes",
+      "passed": true,
+      "range": "bytes=100-130"
+    },
+    {
+      "check": "response_body_bounded",
+      "passed": true
+    },
+    {
+      "check": "range_exact_bytes",
+      "passed": true,
+      "range": "bytes=2808496-"
+    },
+    {
+      "check": "response_body_bounded",
+      "passed": true
+    },
+    {
+      "check": "range_exact_bytes",
+      "passed": true,
+      "range": "bytes=-17"
+    },
+    {
+      "check": "response_body_bounded",
+      "passed": true
+    },
+    {
+      "check": "range_exact_bytes",
+      "passed": true,
+      "range": "bytes=0-0"
+    },
+    {
+      "check": "response_body_bounded",
+      "passed": true
+    },
+    {
+      "check": "range_head_without_body",
+      "passed": true
+    },
+    {
+      "check": "response_body_bounded",
+      "passed": true
+    },
+    {
+      "check": "range_416",
+      "passed": true,
+      "range": "bytes=2808513-"
+    },
+    {
+      "check": "response_body_bounded",
+      "passed": true
+    },
+    {
+      "check": "range_416",
+      "passed": true,
+      "range": "bytes=0-1,3-4"
+    },
+    {
+      "check": "response_body_bounded",
+      "passed": true
+    },
+    {
+      "check": "range_416",
+      "passed": true,
+      "range": "bytes=invalid"
+    },
+    {
+      "check": "response_body_bounded",
+      "passed": true
+    },
+    {
+      "check": "request_id_present",
+      "passed": true
+    },
+    {
+      "check": "private_fields_absent",
+      "passed": true
+    },
+    {
+      "check": "canceled_state_persisted",
+      "passed": true
+    },
+    {
+      "check": "response_body_bounded",
+      "passed": true
+    },
+    {
+      "check": "request_id_present",
+      "passed": true
+    },
+    {
+      "check": "private_fields_absent",
+      "passed": true
+    },
+    {
+      "check": "canceled_state_persisted",
+      "passed": true
+    },
+    {
+      "check": "response_body_bounded",
+      "passed": true
+    },
+    {
+      "check": "request_id_present",
+      "passed": true
+    },
+    {
+      "check": "private_fields_absent",
+      "passed": true
+    },
+    {
+      "check": "original_metadata_sha_preserved",
+      "passed": true
+    },
+    {
+      "check": "response_body_bounded",
+      "passed": true
+    },
+    {
+      "check": "request_id_present",
+      "passed": true
+    },
+    {
+      "check": "private_fields_absent",
+      "passed": true
+    },
+    {
+      "check": "original_metadata_sha_preserved",
+      "passed": true
+    }
+  ],
+  "observations": {},
+  "downloads": [
+    {
+      "id": "69f40b33-2edc-4a59-ab42-629949454921",
+      "checksum_sha256": "2f8de00b3e8545f485f09199c899abc0df6ff7f17bb6640d9635400fdb51ba90",
+      "byte_size": 3152917
+    },
+    {
+      "id": "0eb40bfc-88ea-4dbf-a9b6-0865234d533d",
+      "checksum_sha256": "06ea86d1c01a5648289c95fd9a703d96aa5cc87f37e237f4729bfd2d7deff10a",
+      "byte_size": 2808513
+    }
+  ],
+  "browser_used": false,
+  "service_lifecycle_performed": false,
+  "direct_database_access": false,
+  "human_auditory_inspection_performed": false,
+  "history": [
+    {
+      "id": "99cc6cb8-f774-4449-9122-e169648a98f4",
+      "project_id": "3f4bc7e0-3b4e-4db6-a812-18b581a398e3",
+      "revision_id": "8a8f3f23-4b76-4dd3-a652-10abc70fe61d",
+      "revision_number": 3,
+      "profile": "high",
+      "preset": "4:5",
+      "render_engine_version": "r05-1",
+      "status": "canceled",
+      "stage": "canceled",
+      "attempts": 1,
+      "max_attempts": 2,
+      "progress_encoded_ms": 1514,
+      "progress_percent": null,
+      "cancel_requested_at": "2026-10-22T19:07:48.330339Z",
+      "created_at": "2026-10-22T19:07:46.678659Z",
+      "updated_at": "2026-10-22T19:07:49.334638Z",
+      "started_at": "2026-10-22T19:07:46.917794Z",
+      "finished_at": "2026-10-22T19:07:49.334638Z",
+      "error_code": null,
+      "artifact_available": false,
+      "checksum_sha256": null,
+      "byte_size": null,
+      "duration_ms": null,
+      "width": null,
+      "height": null,
+      "fps_num": null,
+      "fps_den": null,
+      "video_codec": null,
+      "audio_codec": null,
+      "status_url": "/api/v1/projects/3f4bc7e0-3b4e-4db6-a812-18b581a398e3/renders/99cc6cb8-f774-4449-9122-e169648a98f4",
+      "file_url": null
+    },
+    {
+      "id": "79a1e1e9-2692-4337-b6ad-45274f7d8231",
+      "project_id": "3f4bc7e0-3b4e-4db6-a812-18b581a398e3",
+      "revision_id": "8a8f3f23-4b76-4dd3-a652-10abc70fe61d",
+      "revision_number": 3,
+      "profile": "high",
+      "preset": "4:5",
+      "render_engine_version": "r05-1",
+      "status": "failed",
+      "stage": "failed",
+      "attempts": 1,
+      "max_attempts": 2,
+      "progress_encoded_ms": 0,
+      "progress_percent": null,
+      "cancel_requested_at": null,
+      "created_at": "2026-10-22T17:14:17.904028Z",
+      "updated_at": "2026-10-22T17:14:19.947918Z",
+      "started_at": "2026-10-22T17:14:19.021775Z",
+      "finished_at": "2026-10-22T17:14:19.947918Z",
+      "error_code": "render_encoding_failed",
+      "artifact_available": false,
+      "checksum_sha256": null,
+      "byte_size": null,
+      "duration_ms": null,
+      "width": null,
+      "height": null,
+      "fps_num": null,
+      "fps_den": null,
+      "video_codec": null,
+      "audio_codec": null,
+      "status_url": "/api/v1/projects/3f4bc7e0-3b4e-4db6-a812-18b581a398e3/renders/79a1e1e9-2692-4337-b6ad-45274f7d8231",
+      "file_url": null
+    },
+    {
+      "id": "0eb40bfc-88ea-4dbf-a9b6-0865234d533d",
+      "project_id": "3f4bc7e0-3b4e-4db6-a812-18b581a398e3",
+      "revision_id": "d0dc9cff-7b16-46ff-900b-dd0babe83310",
+      "revision_number": 1,
+      "profile": "standard",
+      "preset": "9:16",
+      "render_engine_version": "r05-1",
+      "status": "completed",
+      "stage": "completed",
+      "attempts": 1,
+      "max_attempts": 2,
+      "progress_encoded_ms": 12000,
+      "progress_percent": 100,
+      "cancel_requested_at": null,
+      "created_at": "2026-10-22T17:14:08.771814Z",
+      "updated_at": "2026-10-22T17:14:17.498913Z",
+      "started_at": "2026-10-22T17:14:09.999939Z",
+      "finished_at": "2026-10-22T17:14:17.498913Z",
+      "error_code": null,
+      "artifact_available": true,
+      "checksum_sha256": "06ea86d1c01a5648289c95fd9a703d96aa5cc87f37e237f4729bfd2d7deff10a",
+      "byte_size": 2808513,
+      "duration_ms": 12000,
+      "width": 1080,
+      "height": 1920,
+      "fps_num": 30,
+      "fps_den": 1,
+      "video_codec": "h264",
+      "audio_codec": "aac",
+      "status_url": "/api/v1/projects/3f4bc7e0-3b4e-4db6-a812-18b581a398e3/renders/0eb40bfc-88ea-4dbf-a9b6-0865234d533d",
+      "file_url": "/api/v1/projects/3f4bc7e0-3b4e-4db6-a812-18b581a398e3/renders/0eb40bfc-88ea-4dbf-a9b6-0865234d533d/file"
+    },
+    {
+      "id": "69f40b33-2edc-4a59-ab42-629949454921",
+      "project_id": "3f4bc7e0-3b4e-4db6-a812-18b581a398e3",
+      "revision_id": "0f4c7a80-714d-40a5-a25d-61c1c2451ce1",
+      "revision_number": 2,
+      "profile": "standard",
+      "preset": "9:16",
+      "render_engine_version": "r05-1",
+      "status": "completed",
+      "stage": "completed",
+      "attempts": 1,
+      "max_attempts": 2,
+      "progress_encoded_ms": 12000,
+      "progress_percent": 100,
+      "cancel_requested_at": null,
+      "created_at": "2026-10-22T17:13:42.446897Z",
+      "updated_at": "2026-10-22T17:14:08.480978Z",
+      "started_at": "2026-10-22T17:14:00.105875Z",
+      "finished_at": "2026-10-22T17:14:08.480978Z",
+      "error_code": null,
+      "artifact_available": true,
+      "checksum_sha256": "2f8de00b3e8545f485f09199c899abc0df6ff7f17bb6640d9635400fdb51ba90",
+      "byte_size": 3152917,
+      "duration_ms": 12000,
+      "width": 1080,
+      "height": 1920,
+      "fps_num": 30,
+      "fps_den": 1,
+      "video_codec": "h264",
+      "audio_codec": "aac",
+      "status_url": "/api/v1/projects/3f4bc7e0-3b4e-4db6-a812-18b581a398e3/renders/69f40b33-2edc-4a59-ab42-629949454921",
+      "file_url": "/api/v1/projects/3f4bc7e0-3b4e-4db6-a812-18b581a398e3/renders/69f40b33-2edc-4a59-ab42-629949454921/file"
+    },
+    {
+      "id": "3bfcb275-efa3-4df2-b9dd-2b967cd67033",
+      "project_id": "3f4bc7e0-3b4e-4db6-a812-18b581a398e3",
+      "revision_id": "0f4c7a80-714d-40a5-a25d-61c1c2451ce1",
+      "revision_number": 2,
+      "profile": "standard",
+      "preset": "9:16",
+      "render_engine_version": "r05-1",
+      "status": "canceled",
+      "stage": "canceled",
+      "attempts": 0,
+      "max_attempts": 2,
+      "progress_encoded_ms": null,
+      "progress_percent": null,
+      "cancel_requested_at": "2026-10-22T12:36:55.175721Z",
+      "created_at": "2026-10-22T12:36:54.859418Z",
+      "updated_at": "2026-10-22T12:36:55.175721Z",
+      "started_at": null,
+      "finished_at": "2026-10-22T12:36:55.175721Z",
+      "error_code": null,
+      "artifact_available": false,
+      "checksum_sha256": null,
+      "byte_size": null,
+      "duration_ms": null,
+      "width": null,
+      "height": null,
+      "fps_num": null,
+      "fps_den": null,
+      "video_codec": null,
+      "audio_codec": null,
+      "status_url": "/api/v1/projects/3f4bc7e0-3b4e-4db6-a812-18b581a398e3/renders/3bfcb275-efa3-4df2-b9dd-2b967cd67033",
+      "file_url": null
+    }
+  ],
+  "project_id": "3f4bc7e0-3b4e-4db6-a812-18b581a398e3",
+  "elapsed_seconds": 0.883
+}

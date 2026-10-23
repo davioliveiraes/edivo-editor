@@ -1,0 +1,13 @@
+{
+  "status": "passed",
+  "scope": "Synthetic JUnit parser checks only, not execution of application tests",
+  "checks": [
+    "Repeated supplemental pass counted once; default skips are not passes",
+    "Harness cases included in backend total, not added again",
+    "Failure remains visible and fails summary",
+    "Skipped opt-in execution cannot appear approved",
+    "Duplicate XML identities and missing default PG cases rejected"
+  ],
+  "check_count": 5,
+  "script_sha256": "22e20f76cdfa2a823c728be3600a70f5349b9e302bf8af5f7a5d21fdda69519a"
+}

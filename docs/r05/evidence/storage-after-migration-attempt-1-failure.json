@@ -1,0 +1,12 @@
+{
+  "status": "failed",
+  "scope": "QA orchestration, not artifact validation",
+  "command": "docker compose exec -T api python - [audit-storage-r05.py]",
+  "exit_code": 1,
+  "stdout_was_empty": true,
+  "wrapper_error": "JSONDecodeError",
+  "original_report_file": "storage-after-migration.json (empty; preserved)",
+  "diagnosis": "Subsequent docker ps -a confirmed Edivo services stopped overnight; the database volume and previous container IDs still exist. No audit result was obtained.",
+  "raw_stderr_retained": false,
+  "correction": "Restart only existing Edivo containers after volume confirmation; retain stdout/stderr before parsing the next attempt."
+}

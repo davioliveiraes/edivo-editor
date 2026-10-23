@@ -5,5 +5,6 @@ from app.models.edit_spec_revision import EditSpecRevision
 from app.models.media_asset import MediaAsset
 from app.models.preview_job import PreviewJob
 from app.models.project import Project
+from app.models.render_job import RenderJob
 
-__all__ = ["AudioAsset", "PreviewJob", "EditSpecRevision", "MediaAsset", "Project"]
+__all__ = ["AudioAsset", "PreviewJob", "EditSpecRevision", "MediaAsset", "Project", "RenderJob"]

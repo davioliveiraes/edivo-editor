@@ -1,0 +1,297 @@
+{
+  "status": "failed",
+  "created_at": "2026-10-22T15:05:12.385945+00:00",
+  "run_id": "4330cb5ec1c1488e92489fbb879f059f",
+  "checks": [
+    {
+      "check": "application_worker_already_stopped",
+      "passed": true
+    },
+    {
+      "check": "all_queues_initially_empty",
+      "passed": true
+    },
+    {
+      "check": "synthetic_project_created",
+      "passed": true
+    },
+    {
+      "check": "real_mp4_imported",
+      "passed": true
+    },
+    {
+      "check": "immutable_v1_revision_saved",
+      "passed": true
+    },
+    {
+      "check": "render_queued_from_saved_revision",
+      "passed": true
+    },
+    {
+      "check": "container_ownership_confirmed",
+      "passed": true,
+      "container_id": "f0575dfcf8e2e6f90fb0cf10fa0cf39cb8281d3450c1cf2e522fe610034bd129"
+    },
+    {
+      "check": "real_ffmpeg_in_encoding_attempt",
+      "passed": true
+    },
+    {
+      "check": "container_ownership_confirmed",
+      "passed": true,
+      "container_id": "f0575dfcf8e2e6f90fb0cf10fa0cf39cb8281d3450c1cf2e522fe610034bd129"
+    },
+    {
+      "check": "dedicated_worker_exit",
+      "passed": true,
+      "case": "sigterm",
+      "exit_code": 0
+    },
+    {
+      "check": "dedicated_worker_removed",
+      "passed": true,
+      "case": "sigterm"
+    },
+    {
+      "check": "sigterm_requeues_after_child_stops",
+      "passed": true
+    },
+    {
+      "check": "container_ownership_confirmed",
+      "passed": true,
+      "container_id": "9cc31a22cda409ac978e6028827f8ec0c5cba25ce21437f21809b8a004bb4277"
+    },
+    {
+      "check": "real_ffmpeg_in_encoding_attempt",
+      "passed": true
+    },
+    {
+      "check": "sigterm_retry_uses_new_fencing_token",
+      "passed": true
+    },
+    {
+      "check": "dedicated_worker_exit",
+      "passed": true,
+      "case": "sigterm-retry",
+      "exit_code": 0
+    },
+    {
+      "check": "dedicated_worker_removed",
+      "passed": true,
+      "case": "sigterm-retry"
+    },
+    {
+      "check": "completed_only_after_valid_artifact",
+      "passed": true
+    },
+    {
+      "check": "completed_real_mp4_sha_and_decode",
+      "passed": true
+    },
+    {
+      "check": "render_queued_from_saved_revision",
+      "passed": true
+    },
+    {
+      "check": "container_ownership_confirmed",
+      "passed": true,
+      "container_id": "4e5f02f512cd43ffb35160c1a3d47eef25397ed8d4dffe64c12e001573270ac7"
+    },
+    {
+      "check": "dedicated_worker_exit",
+      "passed": true,
+      "case": "clone",
+      "exit_code": 0
+    },
+    {
+      "check": "dedicated_worker_removed",
+      "passed": true,
+      "case": "clone"
+    },
+    {
+      "check": "container_ownership_confirmed",
+      "passed": true,
+      "container_id": "db0e0e0bc332ed36ffc169cb36f680981cae1a3d1453d0b2492207b8ad058d1b"
+    },
+    {
+      "check": "real_ffmpeg_in_encoding_attempt",
+      "passed": true
+    },
+    {
+      "check": "container_ownership_confirmed",
+      "passed": true,
+      "container_id": "db0e0e0bc332ed36ffc169cb36f680981cae1a3d1453d0b2492207b8ad058d1b"
+    },
+    {
+      "check": "dedicated_worker_exit",
+      "passed": true,
+      "case": "crash",
+      "exit_code": 137
+    },
+    {
+      "check": "dedicated_worker_removed",
+      "passed": true,
+      "case": "crash"
+    },
+    {
+      "check": "crash_old_attempt_never_publishes",
+      "passed": true
+    },
+    {
+      "check": "container_ownership_confirmed",
+      "passed": true,
+      "container_id": "7caa9b100b9948c938782e6d2976ff2b412d81f1641228c347bbb0f74fdc9e4f"
+    },
+    {
+      "check": "real_ffmpeg_in_encoding_attempt",
+      "passed": true
+    },
+    {
+      "check": "crash_retry_uses_new_fencing_token",
+      "passed": true
+    },
+    {
+      "check": "dedicated_worker_exit",
+      "passed": true,
+      "case": "crash-retry",
+      "exit_code": 0
+    },
+    {
+      "check": "dedicated_worker_removed",
+      "passed": true,
+      "case": "crash-retry"
+    },
+    {
+      "check": "completed_only_after_valid_artifact",
+      "passed": false
+    }
+  ],
+  "jobs": [
+    {
+      "id": "4fd6c78b-2758-41c7-b435-5c836fc8ad03",
+      "status_url": "/api/v1/projects/dd45be04-f6a5-4b6d-864a-f30b88171572/renders/4fd6c78b-2758-41c7-b435-5c836fc8ad03",
+      "result": {
+        "id": "4fd6c78b-2758-41c7-b435-5c836fc8ad03",
+        "project_id": "dd45be04-f6a5-4b6d-864a-f30b88171572",
+        "revision_id": "070941f0-9b98-4bcb-a6ba-89fcb63b7583",
+        "revision_number": 1,
+        "profile": "high",
+        "preset": "9:16",
+        "render_engine_version": "r05-1",
+        "status": "completed",
+        "stage": "completed",
+        "attempts": 2,
+        "max_attempts": 2,
+        "progress_encoded_ms": 11900,
+        "progress_percent": 100,
+        "cancel_requested_at": null,
+        "created_at": "2026-10-22T15:05:16.960377Z",
+        "updated_at": "2026-10-22T15:05:44.872856Z",
+        "started_at": "2026-10-22T15:05:20.409604Z",
+        "finished_at": "2026-10-22T15:05:44.872856Z",
+        "error_code": null,
+        "artifact_available": true,
+        "checksum_sha256": "44ee1a27e402e35f64682f47b2ea3d62480d4c8ab90caebbef2370ed6b958429",
+        "byte_size": 2693132,
+        "duration_ms": 12000,
+        "width": 1080,
+        "height": 1920,
+        "fps_num": 30,
+        "fps_den": 1,
+        "video_codec": "h264",
+        "audio_codec": null,
+        "status_url": "/api/v1/projects/dd45be04-f6a5-4b6d-864a-f30b88171572/renders/4fd6c78b-2758-41c7-b435-5c836fc8ad03",
+        "file_url": "/api/v1/projects/dd45be04-f6a5-4b6d-864a-f30b88171572/renders/4fd6c78b-2758-41c7-b435-5c836fc8ad03/file"
+      },
+      "artifact": {
+        "sha256": "44ee1a27e402e35f64682f47b2ea3d62480d4c8ab90caebbef2370ed6b958429",
+        "bytes": 2693132,
+        "mode": "0o400",
+        "full_decode_passed": true,
+        "duration_seconds": 12.0,
+        "streams": [
+          {
+            "codec_type": "video",
+            "codec_name": "h264",
+            "width": 1080,
+            "height": 1920,
+            "pix_fmt": "yuv420p",
+            "r_frame_rate": "30/1",
+            "sample_aspect_ratio": "1:1"
+          }
+        ]
+      }
+    },
+    {
+      "id": "897ec3e7-3a59-4f5a-b361-26ce0acdcf8b",
+      "status_url": "/api/v1/projects/dd45be04-f6a5-4b6d-864a-f30b88171572/renders/897ec3e7-3a59-4f5a-b361-26ce0acdcf8b"
+    }
+  ],
+  "containers": [
+    {
+      "name": "edivo-r05-control-4330cb5ec1c1-sigterm-60ff0c08",
+      "id": "f0575dfcf8e2e6f90fb0cf10fa0cf39cb8281d3450c1cf2e522fe610034bd129",
+      "case": "sigterm"
+    },
+    {
+      "name": "edivo-r05-control-4330cb5ec1c1-sigterm-retry-191eaace",
+      "id": "9cc31a22cda409ac978e6028827f8ec0c5cba25ce21437f21809b8a004bb4277",
+      "case": "sigterm-retry"
+    },
+    {
+      "name": "edivo-r05-control-4330cb5ec1c1-clone-0d268c0c",
+      "id": "4e5f02f512cd43ffb35160c1a3d47eef25397ed8d4dffe64c12e001573270ac7",
+      "case": "clone",
+      "service": "api"
+    },
+    {
+      "name": "edivo-r05-control-4330cb5ec1c1-crash-3dd18bc4",
+      "id": "db0e0e0bc332ed36ffc169cb36f680981cae1a3d1453d0b2492207b8ad058d1b",
+      "case": "crash"
+    },
+    {
+      "name": "edivo-r05-control-4330cb5ec1c1-crash-retry-f11ff86c",
+      "id": "7caa9b100b9948c938782e6d2976ff2b412d81f1641228c347bbb0f74fdc9e4f",
+      "case": "crash-retry"
+    }
+  ],
+  "application_worker_signalled": false,
+  "other_projects_mutated": false,
+  "limitations": [
+    "POSIX container QA, not a multi-host or distributed-queue test."
+  ],
+  "project_id": "dd45be04-f6a5-4b6d-864a-f30b88171572",
+  "original_before": {
+    "f14e5e10-a4dd-4b65-af77-c3e6f4f1a832": {
+      "sha256": "7ce64b63d0e61d2d47455b628e724019472edf06338ff337042e9bb603e4c157",
+      "bytes": 1495271,
+      "mode": "0400",
+      "mtime_ns": 1792681515107682504
+    }
+  },
+  "revision_id": "070941f0-9b98-4bcb-a6ba-89fcb63b7583",
+  "isolated_clones": [
+    {
+      "asset_id": "f14e5e10-a4dd-4b65-af77-c3e6f4f1a832",
+      "sha256": "7ce64b63d0e61d2d47455b628e724019472edf06338ff337042e9bb603e4c157",
+      "bytes": 1495271,
+      "mode": "0400"
+    }
+  ],
+  "failure": "completed_only_after_valid_artifact",
+  "all_dedicated_containers_gone": true,
+  "cleanup_cancellations": [
+    {
+      "id": "897ec3e7-3a59-4f5a-b361-26ce0acdcf8b",
+      "http_status": 202,
+      "status": "running",
+      "cancel_requested_at": "2026-10-22T15:06:19.049156Z"
+    }
+  ],
+  "isolated_tree_cleanup": [
+    {
+      "owned_tree": "edivo-r05-control-owned-4330cb5e-9ho03pm3",
+      "removed": true
+    }
+  ]
+}

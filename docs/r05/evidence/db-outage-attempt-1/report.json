@@ -1,0 +1,304 @@
+{
+  "status": "passed",
+  "created_at": "2026-10-23T00:42:32.375276+00:00",
+  "run_id": "53b337229c61453287e8ff74f2eab664",
+  "checks": [
+    {
+      "check": "main_edivo_worker_exists_and_is_already_stopped",
+      "passed": true
+    },
+    {
+      "check": "all_queues_initially_empty",
+      "passed": true,
+      "counts": {
+        "preview_jobs": 0,
+        "render_jobs": 0
+      }
+    },
+    {
+      "check": "one_existing_database_container",
+      "passed": true
+    },
+    {
+      "check": "existing_database_is_edivo_non_oneoff_and_running",
+      "passed": true
+    },
+    {
+      "check": "new_synthetic_project_created",
+      "passed": true
+    },
+    {
+      "check": "synthetic_mp4_uploaded_with_exact_sha256",
+      "passed": true
+    },
+    {
+      "check": "saved_immutable_v1_twelve_second_trim",
+      "passed": true
+    },
+    {
+      "check": "render_queued_from_saved_revision",
+      "passed": true
+    },
+    {
+      "check": "container_ownership_confirmed",
+      "passed": true,
+      "container_id": "12f39fc8ce1c85e72fa6060d6fadbe620b867ef456e26bb9e85306f668a05ad1"
+    },
+    {
+      "check": "real_ffmpeg_in_encoding_attempt",
+      "passed": true
+    },
+    {
+      "check": "actual_ffmpeg_positive_encoding_progress_before_database_outage",
+      "passed": true,
+      "progress_encoded_ms": 1800
+    },
+    {
+      "check": "database_identity_was_recorded",
+      "passed": true
+    },
+    {
+      "check": "database_identity_still_matches_before_lifecycle",
+      "passed": true
+    },
+    {
+      "check": "database_identity_was_recorded",
+      "passed": true
+    },
+    {
+      "check": "database_identity_still_matches_before_lifecycle",
+      "passed": true
+    },
+    {
+      "check": "database_offline_liveness_remains_200",
+      "passed": true,
+      "response": {
+        "status": "ok",
+        "service": "edivo-api",
+        "version": "0.1.0"
+      }
+    },
+    {
+      "check": "database_offline_readiness_503_is_sanitized",
+      "passed": true,
+      "response": {
+        "status": "not_ready",
+        "checks": {
+          "database": "unavailable",
+          "storage": "ok"
+        }
+      }
+    },
+    {
+      "check": "dedicated_worker_exit",
+      "passed": true,
+      "case": "database-outage",
+      "exit_code": 0
+    },
+    {
+      "check": "dedicated_worker_removed",
+      "passed": true,
+      "case": "database-outage"
+    },
+    {
+      "check": "database_loss_fences_attempt_and_worker_exits_after_child_stops",
+      "passed": true
+    },
+    {
+      "check": "no_canonical_or_owned_staging_after_database_loss",
+      "passed": true,
+      "project_id": "354f1de2-d502-4999-bd16-cace51757381",
+      "job_id": "6cb4c0e1-adab-4e36-85d3-c5d7c3403820",
+      "canonical_exists": false,
+      "owned_attempt_temporary_entries": 0
+    },
+    {
+      "check": "database_identity_was_recorded",
+      "passed": true
+    },
+    {
+      "check": "database_identity_still_matches_before_lifecycle",
+      "passed": true
+    },
+    {
+      "check": "database_identity_was_recorded",
+      "passed": true
+    },
+    {
+      "check": "database_identity_still_matches_before_lifecycle",
+      "passed": true
+    },
+    {
+      "check": "same_database_container_restored_healthy_and_ready",
+      "passed": true
+    },
+    {
+      "check": "original_attempt_remains_running_expired_without_cancel_or_publication",
+      "passed": true,
+      "state": {
+        "id": "6cb4c0e1-adab-4e36-85d3-c5d7c3403820",
+        "status": "running",
+        "stage": "encoding",
+        "attempts": 1,
+        "claim_token_sha256": "521e90c456558eb4fb330934dd49fc27ee491e76f3d08b661e986c0ae2e48be8",
+        "lease_expired": true,
+        "cancel_requested": false,
+        "published": false,
+        "error_code": null
+      }
+    },
+    {
+      "check": "container_ownership_confirmed",
+      "passed": true,
+      "container_id": "bfc5dbef4948f5b335c9bff5c3a338f41237dcdd5ad08afed30adeeb7a0fa654"
+    },
+    {
+      "check": "real_ffmpeg_in_encoding_attempt",
+      "passed": true
+    },
+    {
+      "check": "database_recovery_claims_only_attempt_two_with_new_fencing_token",
+      "passed": true
+    },
+    {
+      "check": "dedicated_worker_exit",
+      "passed": true,
+      "case": "database-recovery",
+      "exit_code": 0
+    },
+    {
+      "check": "dedicated_worker_removed",
+      "passed": true,
+      "case": "database-recovery"
+    },
+    {
+      "check": "completed_only_after_valid_artifact",
+      "passed": true
+    },
+    {
+      "check": "completed_real_mp4_sha_and_decode",
+      "passed": true
+    },
+    {
+      "check": "recovered_full_export_is_twelve_seconds_final_resolution_and_private",
+      "passed": true
+    },
+    {
+      "check": "original_sha256_mode0400_size_and_mtime_unchanged",
+      "passed": true
+    },
+    {
+      "check": "all_queues_finally_empty",
+      "passed": true,
+      "counts": {
+        "preview_jobs": 0,
+        "render_jobs": 0
+      }
+    }
+  ],
+  "jobs": [
+    {
+      "id": "6cb4c0e1-adab-4e36-85d3-c5d7c3403820",
+      "status_url": "/api/v1/projects/354f1de2-d502-4999-bd16-cace51757381/renders/6cb4c0e1-adab-4e36-85d3-c5d7c3403820",
+      "result": {
+        "id": "6cb4c0e1-adab-4e36-85d3-c5d7c3403820",
+        "project_id": "354f1de2-d502-4999-bd16-cace51757381",
+        "revision_id": "b3c813a9-de33-4326-b8b3-93a190b9763c",
+        "revision_number": 1,
+        "profile": "high",
+        "preset": "9:16",
+        "render_engine_version": "r05-1",
+        "status": "completed",
+        "stage": "completed",
+        "attempts": 2,
+        "max_attempts": 2,
+        "progress_encoded_ms": 11900,
+        "progress_percent": 100,
+        "cancel_requested_at": null,
+        "created_at": "2026-10-23T00:42:40.098456Z",
+        "updated_at": "2026-10-23T00:43:48.518078Z",
+        "started_at": "2026-10-23T00:42:45.018601Z",
+        "finished_at": "2026-10-23T00:43:48.518078Z",
+        "error_code": null,
+        "artifact_available": true,
+        "checksum_sha256": "44ee1a27e402e35f64682f47b2ea3d62480d4c8ab90caebbef2370ed6b958429",
+        "byte_size": 2693132,
+        "duration_ms": 12000,
+        "width": 1080,
+        "height": 1920,
+        "fps_num": 30,
+        "fps_den": 1,
+        "video_codec": "h264",
+        "audio_codec": null,
+        "status_url": "/api/v1/projects/354f1de2-d502-4999-bd16-cace51757381/renders/6cb4c0e1-adab-4e36-85d3-c5d7c3403820",
+        "file_url": "/api/v1/projects/354f1de2-d502-4999-bd16-cace51757381/renders/6cb4c0e1-adab-4e36-85d3-c5d7c3403820/file"
+      },
+      "artifact": {
+        "sha256": "44ee1a27e402e35f64682f47b2ea3d62480d4c8ab90caebbef2370ed6b958429",
+        "bytes": 2693132,
+        "mode": "0o400",
+        "full_decode_passed": true,
+        "duration_seconds": 12.0,
+        "streams": [
+          {
+            "codec_type": "video",
+            "codec_name": "h264",
+            "width": 1080,
+            "height": 1920,
+            "pix_fmt": "yuv420p",
+            "r_frame_rate": "30/1",
+            "sample_aspect_ratio": "1:1"
+          }
+        ]
+      }
+    }
+  ],
+  "containers": [
+    {
+      "name": "edivo-r05-control-53b337229c61-database-outage-d2011a81",
+      "id": "12f39fc8ce1c85e72fa6060d6fadbe620b867ef456e26bb9e85306f668a05ad1",
+      "case": "database-outage"
+    },
+    {
+      "name": "edivo-r05-control-53b337229c61-database-recovery-3393651e",
+      "id": "bfc5dbef4948f5b335c9bff5c3a338f41237dcdd5ad08afed30adeeb7a0fa654",
+      "case": "database-recovery"
+    }
+  ],
+  "application_worker_signalled": false,
+  "other_projects_mutated": false,
+  "limitations": [
+    "POSIX container QA, not a multi-host or distributed-queue test.",
+    "Stops/starts only existing Edivo PostgreSQL in a coordinated idle window.",
+    "One local database outage; not a network partition or multi-host deployment test.",
+    "QA lease/heartbeat are 10/0.5 seconds; production defaults remain 30/5 seconds."
+  ],
+  "scenario": "postgresql_unavailable_during_encoding",
+  "database_lifecycle_performed": true,
+  "application_worker_lifecycle_performed": false,
+  "existing_project_data_mutated": false,
+  "main_worker_container_id": "714ecc26b973624afc2392e12e812c8aca870d2eafb036c456466b89e787b419",
+  "database_container_id": "3f51b3c28b54e5fcf22ae33fdedccd98e972e11314dbd7bba3d87c96c8434e89",
+  "project_id": "354f1de2-d502-4999-bd16-cace51757381",
+  "original_before": {
+    "228d7566-bec8-4a28-8911-68116ea8c7e1": {
+      "sha256": "7ce64b63d0e61d2d47455b628e724019472edf06338ff337042e9bb603e4c157",
+      "bytes": 1495271,
+      "mode": "0400",
+      "mtime_ns": 1792716157231119925
+    }
+  },
+  "revision_id": "b3c813a9-de33-4326-b8b3-93a190b9763c",
+  "first_claim_token_sha256": "521e90c456558eb4fb330934dd49fc27ee491e76f3d08b661e986c0ae2e48be8",
+  "database_stop_requested_at": "2026-10-23T00:42:49.314208+00:00",
+  "database_restored_at": "2026-10-23T00:43:06.292780+00:00",
+  "original_after": {
+    "228d7566-bec8-4a28-8911-68116ea8c7e1": {
+      "sha256": "7ce64b63d0e61d2d47455b628e724019472edf06338ff337042e9bb603e4c157",
+      "bytes": 1495271,
+      "mode": "0400",
+      "mtime_ns": 1792716157231119925
+    }
+  },
+  "all_dedicated_containers_gone": true
+}

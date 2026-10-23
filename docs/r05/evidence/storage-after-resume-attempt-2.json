@@ -1,0 +1,98 @@
+{
+  "includes_soft_deleted_projects": true,
+  "inventories": {
+    "mp3": {
+      "database_rows": 6,
+      "directory_modes": {
+        "0700": 11,
+        "0755": 1
+      },
+      "empty_asset_directory_ids": [],
+      "files_on_disk": 6,
+      "invalid_ids": [],
+      "registered": 6,
+      "unregistered_ids": [],
+      "unsafe_entries": [],
+      "verified_bytes": 358158
+    },
+    "mp4": {
+      "database_rows": 95,
+      "directory_modes": {
+        "0700": 170
+      },
+      "empty_asset_directory_ids": [],
+      "files_on_disk": 95,
+      "invalid_ids": [],
+      "registered": 95,
+      "unregistered_ids": [],
+      "unsafe_entries": [],
+      "verified_bytes": 10550411
+    },
+    "preview": {
+      "database_rows": 49,
+      "directory_modes": {
+        "0700": 9
+      },
+      "empty_asset_directory_ids": [],
+      "files_on_disk": 5,
+      "invalid_ids": [],
+      "registered": 5,
+      "unregistered_ids": [],
+      "unsafe_entries": [],
+      "verified_bytes": 681919
+    },
+    "render": {
+      "database_rows": 11,
+      "directory_modes": {},
+      "empty_asset_directory_ids": [],
+      "files_on_disk": 0,
+      "invalid_ids": [],
+      "registered": 0,
+      "unregistered_ids": [],
+      "unsafe_entries": [],
+      "verified_bytes": 0
+    }
+  },
+  "job_states": {
+    "preview": {
+      "completed": 5,
+      "failed": 44
+    },
+    "render": {
+      "canceled": 3,
+      "failed": 8
+    }
+  },
+  "legacy_directory_policy": "Existing original/preview directory modes are reported and preserved. Non0700 legacy ancestors require the historical baseline and private storage root; this script does not change modes or infer baseline preservation. New renders namespace/project/job directories require0700.",
+  "observed_at_utc": "2026-10-22T12:24:59.992363+00:00",
+  "read_only": true,
+  "root_owned_by_runtime": true,
+  "root_private": true,
+  "space": {
+    "available_bytes": 1009800081408,
+    "can_reserve_maximum_render": true,
+    "free_bytes": 1064792436736,
+    "minimum_reserve_bytes": 67108864,
+    "render_max_output_bytes": 2147483648,
+    "total_bytes": 1081101176832,
+    "used_bytes": 16308740096
+  },
+  "status": "consistent",
+  "temporary": {
+    "temp": {
+      "directory_mode": "0700",
+      "entries": 0,
+      "status": "empty",
+      "symlinks": 0
+    },
+    "workspaces": {
+      "directory_mode": "0700",
+      "entries": 0,
+      "status": "empty",
+      "symlinks": 0
+    }
+  },
+  "temporary_entries": 0,
+  "qa_command_exit_code": 0,
+  "qa_recorded_at": "2026-10-22T12:25:00.423002+00:00"
+}

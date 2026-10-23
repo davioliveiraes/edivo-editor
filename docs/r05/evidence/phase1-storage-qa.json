@@ -1,0 +1,101 @@
+{
+  "phase": "R05.1",
+  "status": "passed",
+  "recorded_at_utc": "2026-10-22T01:03:42.119513+00:00",
+  "scope": "Unit tests use synthetic bytes, private pytest temporary directories and direct ASGI. Existing R04 regressions use isolated SQLite fixtures. No Docker, PostgreSQL integration, FFmpeg, real MP4 playback, application restarts or user media were exercised by these commands.",
+  "files_created": [
+    "backend/tests/test_render_resources_storage.py"
+  ],
+  "production_files_modified_by_this_agent": [],
+  "runtime": {
+    "python": "3.12.3",
+    "ruff": "0.17.1",
+    "venv": "existing backend/.venv preserved"
+  },
+  "checks": [
+    {
+      "name": "resources_storage_attachment_units",
+      "command": "timeout 90s .venv/bin/pytest -q tests/test_render_resources_storage.py --tb=short",
+      "cwd": "backend",
+      "sandbox": "outside",
+      "exit_code": 0,
+      "passed": 111,
+      "warnings": 1,
+      "duration_seconds": 1.1,
+      "log": "phase1-storage-pytest-unsandboxed.log"
+    },
+    {
+      "name": "preserved_r04_storage_range_settings",
+      "command": "timeout 90s .venv/bin/pytest -q tests/test_local_storage.py tests/test_media_stream.py tests/test_preview_config.py --tb=short",
+      "cwd": "backend",
+      "sandbox": "outside",
+      "exit_code": 0,
+      "passed": 101,
+      "warnings": 1,
+      "duration_seconds": 3.48,
+      "log": "phase1-storage-r04-regression.log"
+    },
+    {
+      "name": "ruff_check",
+      "command": ".venv/bin/ruff check tests/test_render_resources_storage.py",
+      "cwd": "backend",
+      "exit_code": 0,
+      "log": "phase1-storage-ruff-check.log"
+    },
+    {
+      "name": "ruff_format",
+      "command": ".venv/bin/ruff format --check tests/test_render_resources_storage.py",
+      "cwd": "backend",
+      "exit_code": 0,
+      "log": "phase1-storage-ruff-format.log"
+    }
+  ],
+  "coverage": [
+    "Independent render and preview resource defaults; lower budgets; rejected bounds, concurrency greater than one, heartbeat/cancellation margins and NaN/Infinity",
+    "Render namespace, source/preview preservation, SHA-256, original bytes, mode0400 and private new directories",
+    "No overwrite, wrong association/namespace, malicious persisted keys, symlinks at all managed levels, missing/inaccessible or wrong-size artifacts",
+    "Disk exhaustion, staging symlinks and conservative preservation after directory fsync failure",
+    "GET/HEAD 200/206/416 attachment headers, exact byte intervals, bounded chunks, closed descriptors, strict generated filenames, inline R04 behavior, pinned-descriptor path replacement and disconnect"
+  ],
+  "negative_attempts_preserved": [
+    {
+      "command": ".venv/bin/ruff check tests/test_render_resources_storage.py --fix",
+      "exit_code": 1,
+      "reason": "New test initially had one unused import and one overlong line. Import was removed by Ruff and file formatted; final check and format passed. No existing source or test was reformatted."
+    },
+    {
+      "command": ".venv/bin/pytest -q tests/test_render_resources_storage.py",
+      "sandbox": "restricted",
+      "exit_code": 130,
+      "log": "phase1-storage-pytest.log",
+      "reason": "Observed one failing new namespace-permission test, then ASGI test stopped making progress under the sandbox. Interrupted only this test process with Ctrl-C; outside-sandbox rerun succeeded."
+    },
+    {
+      "command": ".venv/bin/pytest -q tests/test_render_resources_storage.py -x --tb=short -k \"not attachment and not private_response\"",
+      "exit_code": 1,
+      "passed": 51,
+      "failed": 1,
+      "deselected": 31,
+      "warnings": 1,
+      "duration_seconds": 0.33,
+      "log": "phase1-storage-isolated-failure.log",
+      "reason": "New renders namespace was0755 because mkdir(parents=True) only applied0700 to its final component. Root agent corrected LocalStorage._directory to create missing ancestors as0700 while preserving existing modes; subsequent111 units and101 R04 regressions passed."
+    }
+  ],
+  "upstream_warning": "Starlette TestClient httpx deprecation. No dependency or lock changes made.",
+  "evidence_sha256": {
+    "phase1-storage-pytest.log": "4d6f1be4d2c487a7fcbd778dcb02976e96dea6812c467dfac68ccd68bcae8338",
+    "phase1-storage-isolated-failure.log": "d2df311feb247f9c7f5632112baaed45032b251e97d2edb0ef5940a0ce92511b",
+    "phase1-storage-pytest-unsandboxed.log": "dead46c12fa2f543b2c42891e1a9f1e6113f746279f6670e25653212a256434b",
+    "phase1-storage-r04-regression.log": "8c5af15181d126c4850c099956aad44a459a1bda3fd3106d720bdb98816dbfe7",
+    "phase1-storage-ruff-check.log": "82b3e6a6c090a57601d22943bd23fca9218d1031dbe5a7b754092f9a156b4f18",
+    "phase1-storage-ruff-format.log": "fd2299c9f1c6dc869070883e281051bfe93aacf66c1a3b0069f45b4aa410ca50"
+  },
+  "tested_files_sha256": {
+    "backend/tests/test_render_resources_storage.py": "54606030be68b17412d395418d79426ac98cc72ec028516eedca2fcff9362ba2",
+    "backend/app/core/config.py": "40989144681b487c2e5c570603b220e6e5d327820ad2a0ae05ae4e033ab4d671",
+    "backend/app/storage/local.py": "3934bc719edcff8bb4f136eb512a44ca08775e321fe25c14f4ed3b9680ed1dce",
+    "backend/app/api/media_stream.py": "19fbbb2c0a7b72c71ecadc5cc976585981062171268cfb0bc38d1cfe7b2aac1e"
+  },
+  "counting_note": "111 new unit cases and101 focused historical regressions are reported separately. Later full-suite repetitions must not be added again as distinct cases."
+}

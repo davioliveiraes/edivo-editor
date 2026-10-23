@@ -81,6 +81,7 @@ function server(post: PreviewJob = queued, statuses: PreviewJob[] = [completed])
   const puts: unknown[] = [];
   let gets = 0;
   const fetchMock = vi.fn(async (url: string, options?: RequestInit) => {
+    if (url.includes('/renders?')) return json(page([]));
     if (url.endsWith('/previews')) {
       posts.push(JSON.parse(options?.body as string));
       return createStatus < 300

@@ -1,0 +1,218 @@
+{
+  "status": "passed",
+  "checks": [
+    {
+      "check": "safe_empty_queue_before_worker_stop",
+      "status": "passed",
+      "detail": null
+    },
+    {
+      "check": "create_project",
+      "status": "passed",
+      "detail": null
+    },
+    {
+      "check": "real_r02_video_upload",
+      "status": "passed",
+      "detail": null
+    },
+    {
+      "check": "real_r04_mp3_upload",
+      "status": "passed",
+      "detail": null
+    },
+    {
+      "check": "saved_v2_revision",
+      "status": "passed",
+      "detail": null
+    },
+    {
+      "check": "three_concurrent_equivalent_requests_one_job",
+      "status": "passed",
+      "detail": null
+    },
+    {
+      "check": "second_active_job_window_truncated",
+      "status": "passed",
+      "detail": null
+    },
+    {
+      "check": "third_active_job_rejected_409",
+      "status": "passed",
+      "detail": null
+    },
+    {
+      "check": "queued_artifact_not_readable",
+      "status": "passed",
+      "detail": null
+    },
+    {
+      "check": "worker_completed_valid_artifact",
+      "status": "passed",
+      "detail": {
+        "id": "3bb0d1e7-0418-492c-a9cb-e66d7a0e3720",
+        "observed_stages": [
+          "queued",
+          "encoding",
+          "validating",
+          "completed"
+        ]
+      }
+    },
+    {
+      "check": "worker_completed_valid_artifact",
+      "status": "passed",
+      "detail": {
+        "id": "88d9239c-8d50-419f-811d-d61372dd044d",
+        "observed_stages": [
+          "encoding",
+          "validating",
+          "completed"
+        ]
+      }
+    },
+    {
+      "check": "completed_equivalent_reused_200",
+      "status": "passed",
+      "detail": null
+    },
+    {
+      "check": "full_mp4_checksum_headers",
+      "status": "passed",
+      "detail": null
+    },
+    {
+      "check": "range_bytes=0-15",
+      "status": "passed",
+      "detail": null
+    },
+    {
+      "check": "range_bytes=1024-2047",
+      "status": "passed",
+      "detail": null
+    },
+    {
+      "check": "range_bytes=2048-",
+      "status": "passed",
+      "detail": null
+    },
+    {
+      "check": "range_bytes=-31",
+      "status": "passed",
+      "detail": null
+    },
+    {
+      "check": "range_bytes=7-7",
+      "status": "passed",
+      "detail": null
+    },
+    {
+      "check": "invalid_range_bytes=0-1,5-6",
+      "status": "passed",
+      "detail": null
+    },
+    {
+      "check": "invalid_range_bytes=-0",
+      "status": "passed",
+      "detail": null
+    },
+    {
+      "check": "invalid_range_bytes=189463-",
+      "status": "passed",
+      "detail": null
+    },
+    {
+      "check": "head_full_no_body",
+      "status": "passed",
+      "detail": null
+    },
+    {
+      "check": "new_revision_keeps_old_preview",
+      "status": "passed",
+      "detail": null
+    },
+    {
+      "check": "explicit_old_revision_reused",
+      "status": "passed",
+      "detail": null
+    },
+    {
+      "check": "mp4_mp3_originals_sha_permissions_mtime_unchanged",
+      "status": "passed",
+      "detail": {
+        "7576c552-eac6-4b99-ac26-e17c489fdfd8": {
+          "sha256": "2a3618f20e5dc152a3a6b3417d4b0ab628bf6d4bbc970fdf2faf2c2eeecc9ea7",
+          "bytes": 2272529,
+          "mode": "0400",
+          "mtime_ns": 1792718336882846362
+        },
+        "8d696f23-22c8-4f9c-a7b6-beab61a9e746": {
+          "sha256": "6bfc6c3ce72a59b9271b77a442d0eccb1e31add851755a888a677802d25809dd",
+          "bytes": 33069,
+          "mode": "0400",
+          "mtime_ns": 1792718337148916478
+        }
+      }
+    },
+    {
+      "check": "cross_project_denied",
+      "status": "passed",
+      "detail": null
+    },
+    {
+      "check": "soft_delete_blocks_jobs_and_files",
+      "status": "passed",
+      "detail": null
+    },
+    {
+      "check": "soft_delete_preserves_originals",
+      "status": "passed",
+      "detail": null
+    }
+  ],
+  "jobs": [
+    {
+      "id": "3bb0d1e7-0418-492c-a9cb-e66d7a0e3720",
+      "project_id": "cf5079b9-f6de-484f-85ef-eedad01b6594",
+      "revision_id": "cba818d6-f2cd-48f5-b0d0-d2551779b034",
+      "revision_number": 1,
+      "preview_start_ms": 5000,
+      "duration_ms": 4000,
+      "status": "completed",
+      "stage": "completed",
+      "attempts": 1,
+      "created_at": "2026-10-23T01:19:01.530049Z",
+      "started_at": "2026-10-23T01:19:11.860289Z",
+      "finished_at": "2026-10-23T01:19:13.747706Z",
+      "error_code": null,
+      "artifact_available": true,
+      "checksum_sha256": "4a95a54b486774a5fb3b27319461ba86c5140f28f30b2445e4968c09fb89e67f",
+      "byte_size": 189463,
+      "status_url": "/api/v1/projects/cf5079b9-f6de-484f-85ef-eedad01b6594/previews/3bb0d1e7-0418-492c-a9cb-e66d7a0e3720",
+      "file_url": "/api/v1/projects/cf5079b9-f6de-484f-85ef-eedad01b6594/previews/3bb0d1e7-0418-492c-a9cb-e66d7a0e3720/file"
+    },
+    {
+      "id": "88d9239c-8d50-419f-811d-d61372dd044d",
+      "project_id": "cf5079b9-f6de-484f-85ef-eedad01b6594",
+      "revision_id": "cba818d6-f2cd-48f5-b0d0-d2551779b034",
+      "revision_number": 1,
+      "preview_start_ms": 10000,
+      "duration_ms": 1000,
+      "status": "completed",
+      "stage": "completed",
+      "attempts": 1,
+      "created_at": "2026-10-23T01:19:01.579275Z",
+      "started_at": "2026-10-23T01:19:13.774317Z",
+      "finished_at": "2026-10-23T01:19:14.922423Z",
+      "error_code": null,
+      "artifact_available": true,
+      "checksum_sha256": "cb6f2944d2d66a0d51747b34b35cc41bb4f333fff8c58564d735409219ba195e",
+      "byte_size": 46029,
+      "status_url": "/api/v1/projects/cf5079b9-f6de-484f-85ef-eedad01b6594/previews/88d9239c-8d50-419f-811d-d61372dd044d",
+      "file_url": "/api/v1/projects/cf5079b9-f6de-484f-85ef-eedad01b6594/previews/88d9239c-8d50-419f-811d-d61372dd044d/file"
+    }
+  ],
+  "restart_requested": false,
+  "project_id": "cf5079b9-f6de-484f-85ef-eedad01b6594",
+  "attempt_evidence": "r04-previews-regression-1-1792718362778843838.json"
+}

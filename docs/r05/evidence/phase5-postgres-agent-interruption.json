@@ -1,0 +1,8 @@
+{
+  "status": "unconfirmed_delegated_attempt",
+  "tool_result": "aborted after88.6s during parent-agent handoff; no session/result was returned",
+  "outage_started": false,
+  "no_success_inferred": true,
+  "root_followup": "Confirmed api/db/frontend healthy and principalworker exited. Actual pytest rerun guards against overlapping pytest and uses a new final JUnit path.",
+  "rerun_log": "phase5-postgres-final-attempt-1.log"
+}

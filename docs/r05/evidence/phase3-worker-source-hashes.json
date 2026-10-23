@@ -1,0 +1,30 @@
+{
+  "recorded_at": "2026-10-22T14:18:34.320364+00:00",
+  "status": "passed",
+  "read_only": true,
+  "runtime_service": "api",
+  "files": 9,
+  "changed_files": [],
+  "runtime_sha256": {
+    "app/worker/main.py": "7ebc7e9d9c310102a7db3ed505bc368fffc09e1fb32511fd0575c1606f69580b",
+    "app/worker/preview_worker.py": "1600d3a8b238e4e6f75cffb5981917f2b728837ca5e1bb11d437b94e383a110b",
+    "app/worker/processor.py": "8b071decea16e0dfcf82990bae7437b4d955c2b19846897b3e4321cac6869929",
+    "app/worker/render_worker.py": "6769890234fdffb10f6c79912f6d1453fd8e9a14e0867493d4bc3db711ddefff",
+    "app/worker/render_processor.py": "44d4423cf9a05deb6a7a695727a77cabcf5191e036ce90373d4723d372d9b1f8",
+    "app/worker/scheduler.py": "140602d00a7342d0230224f0644bffa2e6031f602d441fca23f587df0116b885",
+    "app/worker/supervisor.py": "a70c721680cb81f8ea42258a7049758846ccb59214a1bd67235884fa31faa9ea",
+    "app/repositories/preview_jobs.py": "6e3d8cf9003009175be696ba740ea40ad3cdb6231d7caf93d29ae0ccdf2d2a85",
+    "app/repositories/render_jobs.py": "858c6527ce6214a60fce69d951c73a422c5b9bb4b5829dea392b0afa99b7d977"
+  },
+  "workspace_sha256": {
+    "app/worker/main.py": "7ebc7e9d9c310102a7db3ed505bc368fffc09e1fb32511fd0575c1606f69580b",
+    "app/worker/preview_worker.py": "1600d3a8b238e4e6f75cffb5981917f2b728837ca5e1bb11d437b94e383a110b",
+    "app/worker/processor.py": "8b071decea16e0dfcf82990bae7437b4d955c2b19846897b3e4321cac6869929",
+    "app/worker/render_worker.py": "6769890234fdffb10f6c79912f6d1453fd8e9a14e0867493d4bc3db711ddefff",
+    "app/worker/render_processor.py": "44d4423cf9a05deb6a7a695727a77cabcf5191e036ce90373d4723d372d9b1f8",
+    "app/worker/scheduler.py": "140602d00a7342d0230224f0644bffa2e6031f602d441fca23f587df0116b885",
+    "app/worker/supervisor.py": "a70c721680cb81f8ea42258a7049758846ccb59214a1bd67235884fa31faa9ea",
+    "app/repositories/preview_jobs.py": "6e3d8cf9003009175be696ba740ea40ad3cdb6231d7caf93d29ae0ccdf2d2a85",
+    "app/repositories/render_jobs.py": "858c6527ce6214a60fce69d951c73a422c5b9bb4b5829dea392b0afa99b7d977"
+  }
+}

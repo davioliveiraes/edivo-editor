@@ -1,0 +1,538 @@
+{
+  "status": "passed",
+  "run_id": "r05-export-1792717682595939151",
+  "stage": "export",
+  "browser": "145.0.7632.6",
+  "project_id": "4de80745-64ad-41e5-85dc-770d5e3462da",
+  "checks": [
+    {
+      "check": "real_mp4_import_through_ui",
+      "passed": true
+    },
+    {
+      "check": "dirty_draft_cannot_export_or_implicitly_save",
+      "passed": true
+    },
+    {
+      "check": "explicit_saved_v2_from_manual_ui",
+      "passed": true
+    },
+    {
+      "check": "visible_progress_matches_real_worker_status",
+      "passed": true,
+      "details": {
+        "percent": 7
+      }
+    },
+    {
+      "check": "real_worker_full_export_and_measured_progress",
+      "passed": true
+    },
+    {
+      "check": "real_final_mp4_native_play_seek_pause",
+      "passed": true,
+      "details": {
+        "current_time": 1.756152,
+        "duration": 12,
+        "video_width": 1080,
+        "video_height": 1920,
+        "decoded_frames": 55,
+        "error": null
+      }
+    },
+    {
+      "check": "native_browser_download_sha256_matches_saved_artifact",
+      "passed": true,
+      "details": {
+        "checksum_sha256": "6d565a018c9f0daf391a2d291a6ebd315991de9d5e8458b9224bc31b9ff54aea",
+        "byte_size": 2513760,
+        "suggested_filename": "edivo-r1-9x16-standard.mp4"
+      }
+    },
+    {
+      "check": "real_browser_final_mp4_range_206",
+      "passed": true,
+      "details": [
+        {
+          "path": "/api/v1/projects/4de80745-64ad-41e5-85dc-770d5e3462da/renders/415bdb08-82e2-4ea4-ae1b-a2f311c6cd54/file",
+          "status": 206,
+          "range": "bytes=0-",
+          "content_range": "bytes 0-2513759/2513760"
+        },
+        {
+          "path": "/api/v1/projects/4de80745-64ad-41e5-85dc-770d5e3462da/renders/415bdb08-82e2-4ea4-ae1b-a2f311c6cd54/file",
+          "status": 206,
+          "range": "bytes=1376256-",
+          "content_range": "bytes 1376256-2513759/2513760"
+        }
+      ]
+    },
+    {
+      "check": "mobile_375_layout_no_horizontal_overflow",
+      "passed": true,
+      "details": {
+        "width": 375,
+        "scroll_width": 375
+      }
+    },
+    {
+      "check": "mobile_390_layout_no_horizontal_overflow",
+      "passed": true,
+      "details": {
+        "width": 390,
+        "scroll_width": 390
+      }
+    },
+    {
+      "check": "earlier_revision_export_is_identified_without_rewriting_result",
+      "passed": true
+    },
+    {
+      "check": "real_running_cancel_confirmed_without_published_file",
+      "passed": true
+    },
+    {
+      "check": "real_final_mp4_native_play_seek_pause",
+      "passed": true,
+      "details": {
+        "current_time": 1.79458,
+        "duration": 12,
+        "video_width": 1080,
+        "video_height": 1920,
+        "decoded_frames": 57,
+        "error": null
+      }
+    },
+    {
+      "check": "history_and_saved_revision_recover_after_reload",
+      "passed": true,
+      "details": {
+        "render_ids": [
+          "e1bc0284-2c70-4ecf-a2b2-975fc9479b9d",
+          "415bdb08-82e2-4ea4-ae1b-a2f311c6cd54"
+        ]
+      }
+    },
+    {
+      "check": "no_uncaught_browser_errors",
+      "passed": true
+    }
+  ],
+  "screenshots": [
+    "r05-export-1792717682595939151-desktop-encoding-progress.png",
+    "r05-export-1792717682595939151-desktop-claro.png",
+    "r05-export-1792717682595939151-desktop-escuro.png",
+    "r05-export-1792717682595939151-mobile-375-claro.png",
+    "r05-export-1792717682595939151-mobile-375-escuro.png",
+    "r05-export-1792717682595939151-mobile-390-claro.png",
+    "r05-export-1792717682595939151-mobile-390-escuro.png"
+  ],
+  "render_states": [
+    {
+      "id": "415bdb08-82e2-4ea4-ae1b-a2f311c6cd54",
+      "status": "queued",
+      "stage": "queued",
+      "revision_id": "1798b7be-2168-4236-819b-4116a8893878",
+      "progress_percent": null,
+      "progress_encoded_ms": null,
+      "attempts": 0
+    },
+    {
+      "id": "415bdb08-82e2-4ea4-ae1b-a2f311c6cd54",
+      "status": "running",
+      "stage": "encoding",
+      "revision_id": "1798b7be-2168-4236-819b-4116a8893878",
+      "progress_percent": 7,
+      "progress_encoded_ms": 938,
+      "attempts": 1
+    },
+    {
+      "id": "415bdb08-82e2-4ea4-ae1b-a2f311c6cd54",
+      "status": "running",
+      "stage": "encoding",
+      "revision_id": "1798b7be-2168-4236-819b-4116a8893878",
+      "progress_percent": 20,
+      "progress_encoded_ms": 2474,
+      "attempts": 1
+    },
+    {
+      "id": "415bdb08-82e2-4ea4-ae1b-a2f311c6cd54",
+      "status": "running",
+      "stage": "encoding",
+      "revision_id": "1798b7be-2168-4236-819b-4116a8893878",
+      "progress_percent": 41,
+      "progress_encoded_ms": 5013,
+      "attempts": 1
+    },
+    {
+      "id": "415bdb08-82e2-4ea4-ae1b-a2f311c6cd54",
+      "status": "running",
+      "stage": "encoding",
+      "revision_id": "1798b7be-2168-4236-819b-4116a8893878",
+      "progress_percent": 65,
+      "progress_encoded_ms": 7872,
+      "attempts": 1
+    },
+    {
+      "id": "415bdb08-82e2-4ea4-ae1b-a2f311c6cd54",
+      "status": "running",
+      "stage": "encoding",
+      "revision_id": "1798b7be-2168-4236-819b-4116a8893878",
+      "progress_percent": 77,
+      "progress_encoded_ms": 9301,
+      "attempts": 1
+    },
+    {
+      "id": "415bdb08-82e2-4ea4-ae1b-a2f311c6cd54",
+      "status": "running",
+      "stage": "validating",
+      "revision_id": "1798b7be-2168-4236-819b-4116a8893878",
+      "progress_percent": null,
+      "progress_encoded_ms": 12000,
+      "attempts": 1
+    },
+    {
+      "id": "415bdb08-82e2-4ea4-ae1b-a2f311c6cd54",
+      "status": "completed",
+      "stage": "completed",
+      "revision_id": "1798b7be-2168-4236-819b-4116a8893878",
+      "progress_percent": 100,
+      "progress_encoded_ms": 12000,
+      "attempts": 1
+    },
+    {
+      "id": "415bdb08-82e2-4ea4-ae1b-a2f311c6cd54",
+      "status": "completed",
+      "stage": "completed",
+      "revision_id": "1798b7be-2168-4236-819b-4116a8893878",
+      "progress_percent": 100,
+      "progress_encoded_ms": 12000,
+      "attempts": 1
+    },
+    {
+      "id": "415bdb08-82e2-4ea4-ae1b-a2f311c6cd54",
+      "status": "completed",
+      "stage": "completed",
+      "revision_id": "1798b7be-2168-4236-819b-4116a8893878",
+      "progress_percent": 100,
+      "progress_encoded_ms": 12000,
+      "attempts": 1
+    },
+    {
+      "id": "e1bc0284-2c70-4ecf-a2b2-975fc9479b9d",
+      "status": "running",
+      "stage": "preparing",
+      "revision_id": "5b357122-9e4e-4dfb-a229-9dabe05dbb06",
+      "progress_percent": null,
+      "progress_encoded_ms": null,
+      "attempts": 1
+    },
+    {
+      "id": "e1bc0284-2c70-4ecf-a2b2-975fc9479b9d",
+      "status": "running",
+      "stage": "encoding",
+      "revision_id": "5b357122-9e4e-4dfb-a229-9dabe05dbb06",
+      "progress_percent": null,
+      "progress_encoded_ms": null,
+      "attempts": 1
+    },
+    {
+      "id": "e1bc0284-2c70-4ecf-a2b2-975fc9479b9d",
+      "status": "running",
+      "stage": "encoding",
+      "revision_id": "5b357122-9e4e-4dfb-a229-9dabe05dbb06",
+      "progress_percent": null,
+      "progress_encoded_ms": null,
+      "attempts": 1
+    },
+    {
+      "id": "e1bc0284-2c70-4ecf-a2b2-975fc9479b9d",
+      "status": "running",
+      "stage": "encoding",
+      "revision_id": "5b357122-9e4e-4dfb-a229-9dabe05dbb06",
+      "progress_percent": null,
+      "progress_encoded_ms": null,
+      "attempts": 1
+    },
+    {
+      "id": "e1bc0284-2c70-4ecf-a2b2-975fc9479b9d",
+      "status": "running",
+      "stage": "encoding",
+      "revision_id": "5b357122-9e4e-4dfb-a229-9dabe05dbb06",
+      "progress_percent": 0,
+      "progress_encoded_ms": 42,
+      "attempts": 1
+    },
+    {
+      "id": "e1bc0284-2c70-4ecf-a2b2-975fc9479b9d",
+      "status": "running",
+      "stage": "encoding",
+      "revision_id": "5b357122-9e4e-4dfb-a229-9dabe05dbb06",
+      "progress_percent": 0,
+      "progress_encoded_ms": 106,
+      "attempts": 1
+    },
+    {
+      "id": "e1bc0284-2c70-4ecf-a2b2-975fc9479b9d",
+      "status": "running",
+      "stage": "encoding",
+      "revision_id": "5b357122-9e4e-4dfb-a229-9dabe05dbb06",
+      "progress_percent": 1,
+      "progress_encoded_ms": 149,
+      "attempts": 1
+    },
+    {
+      "id": "e1bc0284-2c70-4ecf-a2b2-975fc9479b9d",
+      "status": "canceled",
+      "stage": "canceled",
+      "revision_id": "5b357122-9e4e-4dfb-a229-9dabe05dbb06",
+      "progress_percent": null,
+      "progress_encoded_ms": 149,
+      "attempts": 1
+    },
+    {
+      "id": "e1bc0284-2c70-4ecf-a2b2-975fc9479b9d",
+      "status": "canceled",
+      "stage": "canceled",
+      "revision_id": "5b357122-9e4e-4dfb-a229-9dabe05dbb06",
+      "progress_percent": null,
+      "progress_encoded_ms": 149,
+      "attempts": 1
+    },
+    {
+      "id": "415bdb08-82e2-4ea4-ae1b-a2f311c6cd54",
+      "status": "completed",
+      "stage": "completed",
+      "revision_id": "1798b7be-2168-4236-819b-4116a8893878",
+      "progress_percent": 100,
+      "progress_encoded_ms": 12000,
+      "attempts": 1
+    }
+  ],
+  "range_responses": [
+    {
+      "path": "/api/v1/projects/4de80745-64ad-41e5-85dc-770d5e3462da/media/afb2a469-278e-4d57-8b74-6a35cb47cf94/stream",
+      "status": 206,
+      "range": "bytes=0-",
+      "content_range": "bytes 0-919781/919782"
+    },
+    {
+      "path": "/api/v1/projects/4de80745-64ad-41e5-85dc-770d5e3462da/renders/415bdb08-82e2-4ea4-ae1b-a2f311c6cd54/file",
+      "status": 206,
+      "range": "bytes=0-",
+      "content_range": "bytes 0-2513759/2513760"
+    },
+    {
+      "path": "/api/v1/projects/4de80745-64ad-41e5-85dc-770d5e3462da/renders/415bdb08-82e2-4ea4-ae1b-a2f311c6cd54/file",
+      "status": 206,
+      "range": "bytes=1376256-",
+      "content_range": "bytes 1376256-2513759/2513760"
+    },
+    {
+      "path": "/api/v1/projects/4de80745-64ad-41e5-85dc-770d5e3462da/media/afb2a469-278e-4d57-8b74-6a35cb47cf94/stream",
+      "status": 206,
+      "range": "bytes=0-",
+      "content_range": "bytes 0-919781/919782"
+    },
+    {
+      "path": "/api/v1/projects/4de80745-64ad-41e5-85dc-770d5e3462da/media/afb2a469-278e-4d57-8b74-6a35cb47cf94/stream",
+      "status": 206,
+      "range": "bytes=884736-",
+      "content_range": "bytes 884736-919781/919782"
+    },
+    {
+      "path": "/api/v1/projects/4de80745-64ad-41e5-85dc-770d5e3462da/media/afb2a469-278e-4d57-8b74-6a35cb47cf94/stream",
+      "status": 206,
+      "range": "bytes=65536-",
+      "content_range": "bytes 65536-919781/919782"
+    },
+    {
+      "path": "/api/v1/projects/4de80745-64ad-41e5-85dc-770d5e3462da/renders/415bdb08-82e2-4ea4-ae1b-a2f311c6cd54/file",
+      "status": 206,
+      "range": "bytes=0-",
+      "content_range": "bytes 0-2513759/2513760"
+    },
+    {
+      "path": "/api/v1/projects/4de80745-64ad-41e5-85dc-770d5e3462da/media/afb2a469-278e-4d57-8b74-6a35cb47cf94/stream",
+      "status": 206,
+      "range": "bytes=0-",
+      "content_range": "bytes 0-919781/919782"
+    },
+    {
+      "path": "/api/v1/projects/4de80745-64ad-41e5-85dc-770d5e3462da/media/afb2a469-278e-4d57-8b74-6a35cb47cf94/stream",
+      "status": 206,
+      "range": "bytes=884736-",
+      "content_range": "bytes 884736-919781/919782"
+    },
+    {
+      "path": "/api/v1/projects/4de80745-64ad-41e5-85dc-770d5e3462da/renders/415bdb08-82e2-4ea4-ae1b-a2f311c6cd54/file",
+      "status": 206,
+      "range": "bytes=0-",
+      "content_range": "bytes 0-2513759/2513760"
+    },
+    {
+      "path": "/api/v1/projects/4de80745-64ad-41e5-85dc-770d5e3462da/media/afb2a469-278e-4d57-8b74-6a35cb47cf94/stream",
+      "status": 206,
+      "range": "bytes=65536-",
+      "content_range": "bytes 65536-919781/919782"
+    },
+    {
+      "path": "/api/v1/projects/4de80745-64ad-41e5-85dc-770d5e3462da/media/afb2a469-278e-4d57-8b74-6a35cb47cf94/stream",
+      "status": 206,
+      "range": "bytes=0-",
+      "content_range": "bytes 0-919781/919782"
+    },
+    {
+      "path": "/api/v1/projects/4de80745-64ad-41e5-85dc-770d5e3462da/media/afb2a469-278e-4d57-8b74-6a35cb47cf94/stream",
+      "status": 206,
+      "range": "bytes=884736-",
+      "content_range": "bytes 884736-919781/919782"
+    },
+    {
+      "path": "/api/v1/projects/4de80745-64ad-41e5-85dc-770d5e3462da/media/afb2a469-278e-4d57-8b74-6a35cb47cf94/stream",
+      "status": 206,
+      "range": "bytes=65536-",
+      "content_range": "bytes 65536-919781/919782"
+    },
+    {
+      "path": "/api/v1/projects/4de80745-64ad-41e5-85dc-770d5e3462da/renders/415bdb08-82e2-4ea4-ae1b-a2f311c6cd54/file",
+      "status": 206,
+      "range": "bytes=458752-",
+      "content_range": "bytes 458752-2513759/2513760"
+    },
+    {
+      "path": "/api/v1/projects/4de80745-64ad-41e5-85dc-770d5e3462da/renders/415bdb08-82e2-4ea4-ae1b-a2f311c6cd54/file",
+      "status": 206,
+      "range": "bytes=720896-",
+      "content_range": "bytes 720896-2513759/2513760"
+    }
+  ],
+  "ui_save_requests": [
+    {
+      "schema_version": 2,
+      "source_media_id": "afb2a469-278e-4d57-8b74-6a35cb47cf94",
+      "trim": {
+        "start_ms": 1000,
+        "end_ms": 13000
+      },
+      "canvas": {
+        "preset": "9:16",
+        "fit": "cover",
+        "focal_x": 0.5,
+        "focal_y": 0.5
+      },
+      "text_overlays": [
+        {
+          "id": "733c6a2b-9577-41fd-b4ef-660684c5f25b",
+          "text": "Edivo: 'ação' \\ 100%\nVídeo final local",
+          "start_ms": 1000,
+          "end_ms": 13000,
+          "position": "bottom",
+          "style": "white_outline",
+          "size": "medium"
+        }
+      ],
+      "audio": {
+        "source_volume": 0.7,
+        "background_audio_id": "705f1df2-3ace-4439-805f-d692b5e0a998",
+        "background_volume": 0.15,
+        "background_loop": true,
+        "fade_in_ms": 1000,
+        "fade_out_ms": 1500
+      },
+      "expected_revision": 0
+    },
+    {
+      "schema_version": 2,
+      "source_media_id": "afb2a469-278e-4d57-8b74-6a35cb47cf94",
+      "trim": {
+        "start_ms": 1000,
+        "end_ms": 13000
+      },
+      "canvas": {
+        "preset": "9:16",
+        "fit": "cover",
+        "focal_x": 0.5,
+        "focal_y": 0.5
+      },
+      "text_overlays": [
+        {
+          "id": "733c6a2b-9577-41fd-b4ef-660684c5f25b",
+          "text": "Revisão posterior da prova Chromium",
+          "start_ms": 1000,
+          "end_ms": 13000,
+          "position": "bottom",
+          "style": "white_outline",
+          "size": "medium"
+        }
+      ],
+      "audio": {
+        "source_volume": 0.7,
+        "background_audio_id": "705f1df2-3ace-4439-805f-d692b5e0a998",
+        "background_volume": 0.15,
+        "background_loop": true,
+        "fade_in_ms": 1000,
+        "fade_out_ms": 1500
+      },
+      "expected_revision": 1
+    }
+  ],
+  "ui_render_requests": [
+    {
+      "edit_spec_revision_id": "1798b7be-2168-4236-819b-4116a8893878",
+      "profile": "standard",
+      "idempotency_key": "07249575-bfff-40b1-b654-e9b7e1d79551"
+    },
+    {
+      "edit_spec_revision_id": "5b357122-9e4e-4dfb-a229-9dabe05dbb06",
+      "profile": "high",
+      "idempotency_key": "ed967a7f-ec93-43f0-b87a-7f0d044286c9"
+    }
+  ],
+  "page_errors": [],
+  "human_auditory_inspection_performed": false,
+  "device_scope": "Chromium headless; mobile375/390 emulated, no physical devices",
+  "native_events": [
+    {
+      "name": "loadedmetadata",
+      "time": 0,
+      "label": "Vídeo do projeto"
+    },
+    {
+      "name": "seeking",
+      "time": 1,
+      "label": "Vídeo do projeto"
+    },
+    {
+      "name": "seeked",
+      "time": 1,
+      "label": "Vídeo do projeto"
+    },
+    {
+      "name": "loadedmetadata",
+      "time": 0,
+      "label": "Vídeo exportado"
+    },
+    {
+      "name": "seeking",
+      "time": 1.5,
+      "label": "Vídeo exportado"
+    },
+    {
+      "name": "seeked",
+      "time": 1.5,
+      "label": "Vídeo exportado"
+    },
+    {
+      "name": "playing",
+      "time": 1.513332,
+      "label": "Vídeo exportado"
+    },
+    {
+      "name": "pause",
+      "time": 1.79458,
+      "label": "Vídeo exportado"
+    }
+  ],
+  "application_lifecycle_performed": false
+}

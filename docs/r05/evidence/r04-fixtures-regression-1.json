@@ -1,0 +1,536 @@
+{
+  "status": "passed",
+  "scope": "synthetic fixtures only; not an application preview or upload acceptance",
+  "generator": "scripts/generate-r04-fixtures.py",
+  "runtime_service": "api",
+  "provenance": "FFmpeg lavfi generators and explicitly invalid synthetic bytes",
+  "reproducibility": "deterministic generators; existing bytes must match; runtime-specific",
+  "timing_case": {
+    "source": "horizontal.mp4",
+    "trim_start_ms": 2000,
+    "trim_end_ms": 11000,
+    "preview_start_ms": 5000,
+    "preview_duration_ms": 3000,
+    "expected_music_offset_ms": 3000,
+    "fades_reference": "full trim; do not restart at middle preview boundaries"
+  },
+  "runtime": {
+    "ffmpeg": "ffmpeg version 5.1.9-0+deb12u1 Copyright (c) 2000-2026 the FFmpeg developers",
+    "ffprobe": "ffprobe version 5.1.9-0+deb12u1 Copyright (c) 2007-2026 the FFmpeg developers"
+  },
+  "fixtures": {
+    "horizontal.mp4": {
+      "purpose": "source_video_horizontal",
+      "expected_upload": "accept",
+      "nominal_duration_ms": 12000,
+      "has_audio": true,
+      "tone_hz": 1000,
+      "volume_filter": "0.3",
+      "bytes": 2272529,
+      "sha256": "2a3618f20e5dc152a3a6b3417d4b0ab628bf6d4bbc970fdf2faf2c2eeecc9ea7",
+      "probe": {
+        "programs": [],
+        "streams": [
+          {
+            "codec_name": "h264",
+            "codec_type": "video",
+            "width": 640,
+            "height": 360,
+            "sample_aspect_ratio": "1:1",
+            "pix_fmt": "yuv420p",
+            "r_frame_rate": "30000/1001",
+            "avg_frame_rate": "30000/1001",
+            "duration": "12.012000",
+            "disposition": {
+              "attached_pic": 0
+            }
+          },
+          {
+            "codec_name": "aac",
+            "codec_type": "audio",
+            "sample_rate": "48000",
+            "channels": 1,
+            "r_frame_rate": "0/0",
+            "avg_frame_rate": "0/0",
+            "duration": "12.000000",
+            "disposition": {
+              "attached_pic": 0
+            }
+          }
+        ],
+        "format": {
+          "format_name": "mov,mp4,m4a,3gp,3g2,mj2",
+          "duration": "12.012000"
+        }
+      },
+      "validation": {
+        "probe": "passed",
+        "full_decode": "passed"
+      },
+      "audio_measurements": {
+        "sample_rate": 48000,
+        "decoded_samples": 576512,
+        "decoded_duration_ms": 12010.667,
+        "rms_per_second": [
+          0.0265062,
+          0.0265058,
+          0.0265046,
+          0.0265046,
+          0.0265056,
+          0.0265048,
+          0.0265054,
+          0.0265046,
+          0.0265052,
+          0.026506,
+          0.0265048,
+          0.0265047,
+          0.0001362
+        ],
+        "peak_abs": 0.0406189,
+        "positive_zero_crossing_hz": 1000.0
+      }
+    },
+    "invalid-cover.mp3": {
+      "purpose": "reject_mp3_with_attached_video",
+      "expected_upload": "reject_video_stream",
+      "nominal_duration_ms": 2000,
+      "bytes": 33307,
+      "sha256": "4395fe316410f968e9baf9028629ce38e346604229e699ed102c60d30e669625",
+      "probe": {
+        "programs": [],
+        "streams": [
+          {
+            "codec_name": "mp3",
+            "codec_type": "audio",
+            "sample_rate": "48000",
+            "channels": 1,
+            "r_frame_rate": "0/0",
+            "avg_frame_rate": "0/0",
+            "duration": "2.040000",
+            "disposition": {
+              "attached_pic": 0
+            }
+          },
+          {
+            "codec_name": "png",
+            "codec_type": "video",
+            "width": 64,
+            "height": 64,
+            "sample_aspect_ratio": "1:1",
+            "pix_fmt": "rgb24",
+            "r_frame_rate": "90000/1",
+            "avg_frame_rate": "0/0",
+            "duration": "2.040000",
+            "disposition": {
+              "attached_pic": 1
+            }
+          }
+        ],
+        "format": {
+          "format_name": "mp3",
+          "duration": "2.040000"
+        }
+      },
+      "validation": {
+        "probe": "passed",
+        "full_decode": "passed"
+      }
+    },
+    "invalid-fake.mp3": {
+      "purpose": "reject_nondecodable_synthetic_bytes",
+      "expected_upload": "reject_invalid_audio",
+      "bytes": 51,
+      "sha256": "fa505a8cbbe291ed637afd2808283ba2bd3cc8819d353bf8a15ee5ab0368970b",
+      "probe": null,
+      "validation": {
+        "probe": "expected_failure",
+        "full_decode": "expected_failure"
+      }
+    },
+    "invalid-truncated.mp3": {
+      "purpose": "reject_nondecodable_synthetic_bytes",
+      "expected_upload": "reject_invalid_audio",
+      "bytes": 20,
+      "sha256": "dac507f0619554e35983ccde3dc3ff6458a93cb03c17d693fa931ed060ebd29c",
+      "probe": null,
+      "validation": {
+        "probe": "expected_failure",
+        "full_decode": "expected_failure"
+      }
+    },
+    "music-long.mp3": {
+      "purpose": "synthetic_music",
+      "expected_upload": "accept",
+      "nominal_duration_ms": 12000,
+      "tone_hz": 880,
+      "volume_filter": "0.4+0.05*floor(t)",
+      "bytes": 192813,
+      "sha256": "d13ea613fcfa748e7799d69228a12118f30fbe100b8f1a7211fa316c7309470a",
+      "probe": {
+        "programs": [],
+        "streams": [
+          {
+            "codec_name": "mp3",
+            "codec_type": "audio",
+            "sample_rate": "48000",
+            "channels": 1,
+            "r_frame_rate": "0/0",
+            "avg_frame_rate": "0/0",
+            "duration": "12.024000",
+            "disposition": {
+              "attached_pic": 0
+            }
+          }
+        ],
+        "format": {
+          "format_name": "mp3",
+          "duration": "12.024000"
+        }
+      },
+      "validation": {
+        "probe": "passed",
+        "full_decode": "passed"
+      },
+      "audio_measurements": {
+        "sample_rate": 48000,
+        "decoded_samples": 576000,
+        "decoded_duration_ms": 12000.0,
+        "rms_per_second": [
+          0.0335821,
+          0.0377687,
+          0.0419572,
+          0.0461435,
+          0.0503297,
+          0.0545168,
+          0.0587042,
+          0.0628913,
+          0.0671644,
+          0.0713515,
+          0.0755388,
+          0.0797256
+        ],
+        "peak_abs": 0.1128235,
+        "positive_zero_crossing_hz": 880.0
+      }
+    },
+    "music-short.mp3": {
+      "purpose": "synthetic_music",
+      "expected_upload": "accept",
+      "nominal_duration_ms": 2000,
+      "tone_hz": 660,
+      "volume_filter": "0.7",
+      "bytes": 33069,
+      "sha256": "6bfc6c3ce72a59b9271b77a442d0eccb1e31add851755a888a677802d25809dd",
+      "probe": {
+        "programs": [],
+        "streams": [
+          {
+            "codec_name": "mp3",
+            "codec_type": "audio",
+            "sample_rate": "48000",
+            "channels": 1,
+            "r_frame_rate": "0/0",
+            "avg_frame_rate": "0/0",
+            "duration": "2.040000",
+            "disposition": {
+              "attached_pic": 0
+            }
+          }
+        ],
+        "format": {
+          "format_name": "mp3",
+          "duration": "2.040000"
+        }
+      },
+      "validation": {
+        "probe": "passed",
+        "full_decode": "passed"
+      },
+      "audio_measurements": {
+        "sample_rate": 48000,
+        "decoded_samples": 96000,
+        "decoded_duration_ms": 2000.0,
+        "rms_per_second": [
+          0.0587619,
+          0.0587627
+        ],
+        "peak_abs": 0.0831299,
+        "positive_zero_crossing_hz": 660.0
+      }
+    },
+    "rotated.mp4": {
+      "purpose": "source_video_rotation_matrix",
+      "expected_upload": "accept",
+      "nominal_duration_ms": 12000,
+      "has_audio": true,
+      "tone_hz": 1000,
+      "volume_filter": "0.3",
+      "bytes": 2272529,
+      "sha256": "169855c9ee27a5974ddef04f6ec0036e6d099a54af77eb04147f53e0d84a0898",
+      "probe": {
+        "programs": [],
+        "streams": [
+          {
+            "codec_name": "h264",
+            "codec_type": "video",
+            "width": 640,
+            "height": 360,
+            "sample_aspect_ratio": "1:1",
+            "pix_fmt": "yuv420p",
+            "r_frame_rate": "30000/1001",
+            "avg_frame_rate": "30000/1001",
+            "duration": "12.012000",
+            "disposition": {
+              "attached_pic": 0
+            },
+            "side_data_list": [
+              {
+                "rotation": 90
+              }
+            ]
+          },
+          {
+            "codec_name": "aac",
+            "codec_type": "audio",
+            "sample_rate": "48000",
+            "channels": 1,
+            "r_frame_rate": "0/0",
+            "avg_frame_rate": "0/0",
+            "duration": "12.000000",
+            "disposition": {
+              "attached_pic": 0
+            }
+          }
+        ],
+        "format": {
+          "format_name": "mov,mp4,m4a,3gp,3g2,mj2",
+          "duration": "12.012000"
+        }
+      },
+      "validation": {
+        "probe": "passed",
+        "full_decode": "passed"
+      }
+    },
+    "sar.mp4": {
+      "purpose": "source_video_sar",
+      "expected_upload": "accept",
+      "nominal_duration_ms": 12000,
+      "has_audio": false,
+      "bytes": 899875,
+      "sha256": "970b5ecbd3c530f8794f48c8b252b683903a286ae0d2cc9ebba5883ba290ced7",
+      "probe": {
+        "programs": [],
+        "streams": [
+          {
+            "codec_name": "h264",
+            "codec_type": "video",
+            "width": 320,
+            "height": 240,
+            "sample_aspect_ratio": "2:1",
+            "pix_fmt": "yuv420p",
+            "r_frame_rate": "30000/1001",
+            "avg_frame_rate": "30000/1001",
+            "duration": "12.012000",
+            "disposition": {
+              "attached_pic": 0
+            }
+          }
+        ],
+        "format": {
+          "format_name": "mov,mp4,m4a,3gp,3g2,mj2",
+          "duration": "12.012000"
+        }
+      },
+      "validation": {
+        "probe": "passed",
+        "full_decode": "passed"
+      }
+    },
+    "silent-vertical.mp4": {
+      "purpose": "source_video_silent-vertical",
+      "expected_upload": "accept",
+      "nominal_duration_ms": 12000,
+      "has_audio": false,
+      "bytes": 2267999,
+      "sha256": "353086f121a0242deeeb6a85d6d4f977d732ef5aa19419777ec4c3e460f10dcf",
+      "probe": {
+        "programs": [],
+        "streams": [
+          {
+            "codec_name": "h264",
+            "codec_type": "video",
+            "width": 360,
+            "height": 640,
+            "sample_aspect_ratio": "1:1",
+            "pix_fmt": "yuv420p",
+            "r_frame_rate": "30000/1001",
+            "avg_frame_rate": "30000/1001",
+            "duration": "12.012000",
+            "disposition": {
+              "attached_pic": 0
+            }
+          }
+        ],
+        "format": {
+          "format_name": "mov,mp4,m4a,3gp,3g2,mj2",
+          "duration": "12.012000"
+        }
+      },
+      "validation": {
+        "probe": "passed",
+        "full_decode": "passed"
+      }
+    },
+    "square.mp4": {
+      "purpose": "source_video_square",
+      "expected_upload": "accept",
+      "nominal_duration_ms": 12000,
+      "has_audio": false,
+      "bytes": 1358380,
+      "sha256": "3836b22b3aa19960226a86ecb2160ff3b8d1a6af13a42fb422a67d5801c76c4a",
+      "probe": {
+        "programs": [],
+        "streams": [
+          {
+            "codec_name": "h264",
+            "codec_type": "video",
+            "width": 360,
+            "height": 360,
+            "sample_aspect_ratio": "1:1",
+            "pix_fmt": "yuv420p",
+            "r_frame_rate": "30000/1001",
+            "avg_frame_rate": "30000/1001",
+            "duration": "12.012000",
+            "disposition": {
+              "attached_pic": 0
+            }
+          }
+        ],
+        "format": {
+          "format_name": "mov,mp4,m4a,3gp,3g2,mj2",
+          "duration": "12.012000"
+        }
+      },
+      "validation": {
+        "probe": "passed",
+        "full_decode": "passed"
+      }
+    },
+    "tone-short.mp3": {
+      "purpose": "short_upload",
+      "expected_upload": "accept",
+      "nominal_duration_ms": 1200,
+      "tone_hz": 440,
+      "volume_filter": "0.7",
+      "bytes": 20013,
+      "sha256": "3e6b020df7c516cbf51733f5bf226d12fe09eb94a0d6ba09193e9038b84c66ff",
+      "probe": {
+        "programs": [],
+        "streams": [
+          {
+            "codec_name": "mp3",
+            "codec_type": "audio",
+            "sample_rate": "48000",
+            "channels": 1,
+            "r_frame_rate": "0/0",
+            "avg_frame_rate": "0/0",
+            "duration": "1.224000",
+            "disposition": {
+              "attached_pic": 0
+            }
+          }
+        ],
+        "format": {
+          "format_name": "mp3",
+          "duration": "1.224000"
+        }
+      },
+      "validation": {
+        "probe": "passed",
+        "full_decode": "passed"
+      },
+      "audio_measurements": {
+        "sample_rate": 48000,
+        "decoded_samples": 57600,
+        "decoded_duration_ms": 1200.0,
+        "rms_per_second": [
+          0.0587697,
+          0.0587693
+        ],
+        "peak_abs": 0.0831299,
+        "positive_zero_crossing_hz": 440.0
+      }
+    },
+    "unsupported.mp4": {
+      "purpose": "source_video_unsupported",
+      "expected_upload": "accept",
+      "nominal_duration_ms": 12000,
+      "has_audio": false,
+      "bytes": 416214,
+      "sha256": "5e03f3120ca75193d7fe122af2213cedf62aa0456ba71e188897bf213ce0d69d",
+      "probe": {
+        "programs": [],
+        "streams": [
+          {
+            "codec_name": "mpeg4",
+            "codec_type": "video",
+            "width": 320,
+            "height": 180,
+            "sample_aspect_ratio": "1:1",
+            "pix_fmt": "yuv420p",
+            "r_frame_rate": "30000/1001",
+            "avg_frame_rate": "30000/1001",
+            "duration": "12.012000",
+            "disposition": {
+              "attached_pic": 0
+            }
+          }
+        ],
+        "format": {
+          "format_name": "mov,mp4,m4a,3gp,3g2,mj2",
+          "duration": "12.012000"
+        }
+      },
+      "validation": {
+        "probe": "passed",
+        "full_decode": "passed"
+      }
+    },
+    "vfr.mp4": {
+      "purpose": "source_video_vfr",
+      "expected_upload": "accept",
+      "nominal_duration_ms": 12000,
+      "has_audio": false,
+      "bytes": 445197,
+      "sha256": "2122f25feba3a5cf03197c7e5552539798ca4868a1eb06c60391c2d3973be004",
+      "probe": {
+        "programs": [],
+        "streams": [
+          {
+            "codec_name": "h264",
+            "codec_type": "video",
+            "width": 320,
+            "height": 180,
+            "sample_aspect_ratio": "1:1",
+            "pix_fmt": "yuv420p",
+            "r_frame_rate": "30000/1001",
+            "avg_frame_rate": "360000/25597",
+            "duration": "11.945267",
+            "disposition": {
+              "attached_pic": 0
+            }
+          }
+        ],
+        "format": {
+          "format_name": "mov,mp4,m4a,3gp,3g2,mj2",
+          "duration": "11.946000"
+        }
+      },
+      "validation": {
+        "probe": "passed",
+        "full_decode": "passed"
+      }
+    }
+  }
+}

@@ -1,0 +1,84 @@
+{
+  "status": "passed",
+  "checked_at": "2026-10-23T01:30:45.943220+00:00",
+  "application_lifecycle_performed": false,
+  "restart_log": "final-restart.log",
+  "preserved_negative_reports": [
+    "final-restart.json",
+    "final-restart-verification.json"
+  ],
+  "qa_only_failures": [
+    "Nonexistent wait_frontend helper after successful restarts.",
+    "Incorrectly required Docker healthcheck on worker, whose R01-R05 contract uses process lifecycle and no Docker healthcheck."
+  ],
+  "health": 200,
+  "ready": 200,
+  "frontend": 200,
+  "proxy": 200,
+  "queues": {
+    "preview_jobs": 0,
+    "render_jobs": 0
+  },
+  "services": [
+    {
+      "ID": "0f5bf5503dcb",
+      "Service": "api",
+      "State": "running",
+      "Health": "healthy",
+      "Publishers": [
+        {
+          "URL": "127.0.0.1",
+          "TargetPort": 8000,
+          "PublishedPort": 8001,
+          "Protocol": "tcp"
+        }
+      ]
+    },
+    {
+      "ID": "3f51b3c28b54",
+      "Service": "db",
+      "State": "running",
+      "Health": "healthy",
+      "Publishers": [
+        {
+          "URL": "",
+          "TargetPort": 5432,
+          "PublishedPort": 0,
+          "Protocol": "tcp"
+        }
+      ]
+    },
+    {
+      "ID": "d09d9c3dda50",
+      "Service": "frontend",
+      "State": "running",
+      "Health": "healthy",
+      "Publishers": [
+        {
+          "URL": "127.0.0.1",
+          "TargetPort": 5173,
+          "PublishedPort": 5174,
+          "Protocol": "tcp"
+        }
+      ]
+    },
+    {
+      "ID": "714ecc26b973",
+      "Service": "worker",
+      "State": "running",
+      "Health": "",
+      "Publishers": [
+        {
+          "URL": "",
+          "TargetPort": 8000,
+          "PublishedPort": 0,
+          "Protocol": "tcp"
+        }
+      ]
+    }
+  ],
+  "worker_process": {
+    "pid1_is_edivo_worker": true
+  },
+  "worker_healthcheck": "not configured, matching preserved contract"
+}

@@ -46,11 +46,33 @@ class Settings(BaseSettings):
     preview_max_active_per_project: int = Field(default=2, ge=1, le=2)
     preview_max_attempts: int = Field(default=2, ge=1, le=2)
     preview_process_output_bytes: int = Field(default=256 * 1024, ge=1024, le=8 * 1024 * 1024)
+    render_timeout_seconds: float = Field(default=3600, gt=0, le=3600, allow_inf_nan=False)
+    render_max_output_bytes: int = Field(default=2 * 1024**3, ge=1024, le=2 * 1024**3)
+    render_max_active_per_project: int = Field(default=1, ge=1, le=1)
+    render_max_active_total: int = Field(default=20, ge=1, le=1000)
+    render_worker_concurrency: int = Field(default=1, ge=1, le=1)
+    render_poll_seconds: float = Field(default=2, ge=0.2, le=30, allow_inf_nan=False)
+    render_max_attempts: int = Field(default=2, ge=1, le=2)
+    render_lease_seconds: float = Field(default=30, ge=2, le=300, allow_inf_nan=False)
+    render_heartbeat_seconds: float = Field(default=5, ge=0.1, le=30, allow_inf_nan=False)
+    render_memory_bytes: int = Field(default=1024**3, ge=64 * 1024 * 1024, le=4 * 1024**3)
+    render_cpu_seconds: int = Field(default=3600, ge=1, le=3600)
+    render_threads: int = Field(default=2, ge=1, le=4)
+    render_process_output_bytes: int = Field(default=256 * 1024, ge=1024, le=8 * 1024 * 1024)
+    render_progress_output_bytes: int = Field(
+        default=16 * 1024 * 1024, ge=1024, le=32 * 1024 * 1024
+    )
+    render_cancel_poll_seconds: float = Field(default=0.5, ge=0.1, le=2, allow_inf_nan=False)
+    render_terminate_grace_seconds: float = Field(default=2, ge=0.1, le=5, allow_inf_nan=False)
 
     @model_validator(mode="after")
     def preview_lease_has_heartbeat_margin(self) -> "Settings":
         if self.preview_heartbeat_seconds >= self.preview_lease_seconds / 2:
             raise ValueError("O heartbeat deve ser menor que metade do lease da prévia.")
+        if self.render_heartbeat_seconds >= self.render_lease_seconds / 2:
+            raise ValueError("O heartbeat deve ser menor que metade do lease de renderização.")
+        if self.render_cancel_poll_seconds >= self.render_lease_seconds / 2:
+            raise ValueError("A consulta de cancelamento deve ser menor que metade do lease.")
         return self
 
     @field_validator("database_url")

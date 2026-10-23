@@ -1,0 +1,16 @@
+{
+  "status": "failed",
+  "services": [
+    "db",
+    "api",
+    "worker",
+    "frontend"
+  ],
+  "volume_removal": false,
+  "other_projects_touched": false,
+  "idle_queues_before": {
+    "preview_jobs": 0,
+    "render_jobs": 0
+  },
+  "database_container_id": "3f51b3c28b54e5fcf22ae33fdedccd98e972e11314dbd7bba3d87c96c8434e89"
+}

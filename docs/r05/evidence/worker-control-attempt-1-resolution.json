@@ -1,0 +1,9 @@
+{
+  "initial_report": "worker-control-attempt-1/report.json",
+  "cause": "QA helper matched Docker absence diagnostics case-sensitively; local Docker emitted lowercase no such object during asynchronous creation.",
+  "production_changed": false,
+  "fix": "Casefold only the diagnostic before exact absence matching; other daemon errors continue to fail closed.",
+  "dedicated_container_followup": "Named helper was confirmed absent by a separate Docker inspect. Its captured log shows run_one processed false after queued job was canceled by cleanup.",
+  "initial_logs_preserved": true,
+  "retry_report": "worker-control-attempt-2/report.json"
+}

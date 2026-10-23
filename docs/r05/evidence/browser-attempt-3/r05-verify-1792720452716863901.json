@@ -1,0 +1,269 @@
+{
+  "status": "passed",
+  "run_id": "r05-verify-1792720452716863901",
+  "stage": "verify",
+  "browser": "145.0.7632.6",
+  "project_id": "4de80745-64ad-41e5-85dc-770d5e3462da",
+  "checks": [
+    {
+      "check": "real_history_artifact_and_revision_persist_after_service_restart",
+      "passed": true
+    },
+    {
+      "check": "real_final_mp4_native_play_seek_pause",
+      "passed": true,
+      "details": {
+        "current_time": 1.7254,
+        "duration": 12,
+        "video_width": 1080,
+        "video_height": 1920,
+        "decoded_frames": 56,
+        "error": null
+      }
+    },
+    {
+      "check": "mobile_375_layout_no_horizontal_overflow",
+      "passed": true,
+      "details": {
+        "width": 375,
+        "scroll_width": 375
+      }
+    },
+    {
+      "check": "mobile_390_layout_no_horizontal_overflow",
+      "passed": true,
+      "details": {
+        "width": 390,
+        "scroll_width": 390
+      }
+    },
+    {
+      "check": "no_uncaught_browser_errors",
+      "passed": true
+    }
+  ],
+  "screenshots": [
+    "r05-verify-1792720452716863901-desktop-claro.png",
+    "r05-verify-1792720452716863901-desktop-escuro.png",
+    "r05-verify-1792720452716863901-mobile-375-claro.png",
+    "r05-verify-1792720452716863901-mobile-375-escuro.png",
+    "r05-verify-1792720452716863901-mobile-390-claro.png",
+    "r05-verify-1792720452716863901-mobile-390-escuro.png"
+  ],
+  "render_states": [
+    {
+      "id": "415bdb08-82e2-4ea4-ae1b-a2f311c6cd54",
+      "status": "completed",
+      "stage": "completed",
+      "revision_id": "1798b7be-2168-4236-819b-4116a8893878",
+      "progress_percent": 100,
+      "progress_encoded_ms": 12000,
+      "attempts": 1
+    },
+    {
+      "id": "e1bc0284-2c70-4ecf-a2b2-975fc9479b9d",
+      "status": "canceled",
+      "stage": "canceled",
+      "revision_id": "5b357122-9e4e-4dfb-a229-9dabe05dbb06",
+      "progress_percent": null,
+      "progress_encoded_ms": 149,
+      "attempts": 1
+    },
+    {
+      "id": "415bdb08-82e2-4ea4-ae1b-a2f311c6cd54",
+      "status": "completed",
+      "stage": "completed",
+      "revision_id": "1798b7be-2168-4236-819b-4116a8893878",
+      "progress_percent": 100,
+      "progress_encoded_ms": 12000,
+      "attempts": 1
+    },
+    {
+      "id": "e1bc0284-2c70-4ecf-a2b2-975fc9479b9d",
+      "status": "canceled",
+      "stage": "canceled",
+      "revision_id": "5b357122-9e4e-4dfb-a229-9dabe05dbb06",
+      "progress_percent": null,
+      "progress_encoded_ms": 149,
+      "attempts": 1
+    },
+    {
+      "id": "415bdb08-82e2-4ea4-ae1b-a2f311c6cd54",
+      "status": "completed",
+      "stage": "completed",
+      "revision_id": "1798b7be-2168-4236-819b-4116a8893878",
+      "progress_percent": 100,
+      "progress_encoded_ms": 12000,
+      "attempts": 1
+    },
+    {
+      "id": "e1bc0284-2c70-4ecf-a2b2-975fc9479b9d",
+      "status": "canceled",
+      "stage": "canceled",
+      "revision_id": "5b357122-9e4e-4dfb-a229-9dabe05dbb06",
+      "progress_percent": null,
+      "progress_encoded_ms": 149,
+      "attempts": 1
+    },
+    {
+      "id": "415bdb08-82e2-4ea4-ae1b-a2f311c6cd54",
+      "status": "completed",
+      "stage": "completed",
+      "revision_id": "1798b7be-2168-4236-819b-4116a8893878",
+      "progress_percent": 100,
+      "progress_encoded_ms": 12000,
+      "attempts": 1
+    }
+  ],
+  "range_responses": [
+    {
+      "path": "/api/v1/projects/4de80745-64ad-41e5-85dc-770d5e3462da/media/afb2a469-278e-4d57-8b74-6a35cb47cf94/stream",
+      "status": 206,
+      "range": "bytes=0-",
+      "content_range": "bytes 0-919781/919782"
+    },
+    {
+      "path": "/api/v1/projects/4de80745-64ad-41e5-85dc-770d5e3462da/media/afb2a469-278e-4d57-8b74-6a35cb47cf94/stream",
+      "status": 206,
+      "range": "bytes=884736-",
+      "content_range": "bytes 884736-919781/919782"
+    },
+    {
+      "path": "/api/v1/projects/4de80745-64ad-41e5-85dc-770d5e3462da/renders/415bdb08-82e2-4ea4-ae1b-a2f311c6cd54/file",
+      "status": 206,
+      "range": "bytes=0-",
+      "content_range": "bytes 0-2513759/2513760"
+    },
+    {
+      "path": "/api/v1/projects/4de80745-64ad-41e5-85dc-770d5e3462da/media/afb2a469-278e-4d57-8b74-6a35cb47cf94/stream",
+      "status": 206,
+      "range": "bytes=65536-",
+      "content_range": "bytes 65536-919781/919782"
+    },
+    {
+      "path": "/api/v1/projects/4de80745-64ad-41e5-85dc-770d5e3462da/renders/415bdb08-82e2-4ea4-ae1b-a2f311c6cd54/file",
+      "status": 206,
+      "range": "bytes=229376-",
+      "content_range": "bytes 229376-2513759/2513760"
+    },
+    {
+      "path": "/api/v1/projects/4de80745-64ad-41e5-85dc-770d5e3462da/renders/415bdb08-82e2-4ea4-ae1b-a2f311c6cd54/file",
+      "status": 206,
+      "range": "bytes=491520-",
+      "content_range": "bytes 491520-2513759/2513760"
+    },
+    {
+      "path": "/api/v1/projects/4de80745-64ad-41e5-85dc-770d5e3462da/renders/415bdb08-82e2-4ea4-ae1b-a2f311c6cd54/file",
+      "status": 206,
+      "range": "bytes=655360-",
+      "content_range": "bytes 655360-2513759/2513760"
+    },
+    {
+      "path": "/api/v1/projects/4de80745-64ad-41e5-85dc-770d5e3462da/media/afb2a469-278e-4d57-8b74-6a35cb47cf94/stream",
+      "status": 206,
+      "range": "bytes=0-",
+      "content_range": "bytes 0-919781/919782"
+    },
+    {
+      "path": "/api/v1/projects/4de80745-64ad-41e5-85dc-770d5e3462da/media/afb2a469-278e-4d57-8b74-6a35cb47cf94/stream",
+      "status": 206,
+      "range": "bytes=884736-",
+      "content_range": "bytes 884736-919781/919782"
+    },
+    {
+      "path": "/api/v1/projects/4de80745-64ad-41e5-85dc-770d5e3462da/renders/415bdb08-82e2-4ea4-ae1b-a2f311c6cd54/file",
+      "status": 206,
+      "range": "bytes=0-",
+      "content_range": "bytes 0-2513759/2513760"
+    },
+    {
+      "path": "/api/v1/projects/4de80745-64ad-41e5-85dc-770d5e3462da/media/afb2a469-278e-4d57-8b74-6a35cb47cf94/stream",
+      "status": 206,
+      "range": "bytes=65536-",
+      "content_range": "bytes 65536-919781/919782"
+    },
+    {
+      "path": "/api/v1/projects/4de80745-64ad-41e5-85dc-770d5e3462da/media/afb2a469-278e-4d57-8b74-6a35cb47cf94/stream",
+      "status": 206,
+      "range": "bytes=196608-",
+      "content_range": "bytes 196608-919781/919782"
+    },
+    {
+      "path": "/api/v1/projects/4de80745-64ad-41e5-85dc-770d5e3462da/media/afb2a469-278e-4d57-8b74-6a35cb47cf94/stream",
+      "status": 206,
+      "range": "bytes=0-",
+      "content_range": "bytes 0-919781/919782"
+    },
+    {
+      "path": "/api/v1/projects/4de80745-64ad-41e5-85dc-770d5e3462da/media/afb2a469-278e-4d57-8b74-6a35cb47cf94/stream",
+      "status": 206,
+      "range": "bytes=884736-",
+      "content_range": "bytes 884736-919781/919782"
+    },
+    {
+      "path": "/api/v1/projects/4de80745-64ad-41e5-85dc-770d5e3462da/media/afb2a469-278e-4d57-8b74-6a35cb47cf94/stream",
+      "status": 206,
+      "range": "bytes=65536-",
+      "content_range": "bytes 65536-919781/919782"
+    },
+    {
+      "path": "/api/v1/projects/4de80745-64ad-41e5-85dc-770d5e3462da/renders/415bdb08-82e2-4ea4-ae1b-a2f311c6cd54/file",
+      "status": 206,
+      "range": "bytes=0-",
+      "content_range": "bytes 0-2513759/2513760"
+    }
+  ],
+  "ui_save_requests": [],
+  "ui_render_requests": [],
+  "page_errors": [],
+  "human_auditory_inspection_performed": false,
+  "device_scope": "Chromium headless; mobile375/390 emulated, no physical devices",
+  "native_events": [
+    {
+      "name": "loadedmetadata",
+      "time": 0,
+      "label": "Vídeo do projeto"
+    },
+    {
+      "name": "loadedmetadata",
+      "time": 0,
+      "label": "Vídeo exportado"
+    },
+    {
+      "name": "seeking",
+      "time": 1,
+      "label": "Vídeo do projeto"
+    },
+    {
+      "name": "seeked",
+      "time": 1,
+      "label": "Vídeo do projeto"
+    },
+    {
+      "name": "loadedmetadata",
+      "time": 0,
+      "label": "Vídeo exportado"
+    },
+    {
+      "name": "seeking",
+      "time": 1.5,
+      "label": "Vídeo exportado"
+    },
+    {
+      "name": "seeked",
+      "time": 1.5,
+      "label": "Vídeo exportado"
+    },
+    {
+      "name": "playing",
+      "time": 1.50153,
+      "label": "Vídeo exportado"
+    },
+    {
+      "name": "pause",
+      "time": 1.7254,
+      "label": "Vídeo exportado"
+    }
+  ],
+  "application_lifecycle_performed": false
+}

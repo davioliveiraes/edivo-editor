@@ -1,0 +1,74 @@
+{
+  "status": "passed",
+  "checked_at": "2026-10-23T02:03:10.760488+00:00",
+  "read_only": true,
+  "services": [
+    {
+      "ID": "46be91c9ee40",
+      "Service": "api",
+      "State": "running",
+      "Health": "healthy",
+      "Publishers": [
+        {
+          "URL": "127.0.0.1",
+          "TargetPort": 8000,
+          "PublishedPort": 8001,
+          "Protocol": "tcp"
+        }
+      ]
+    },
+    {
+      "ID": "3f51b3c28b54",
+      "Service": "db",
+      "State": "running",
+      "Health": "healthy",
+      "Publishers": [
+        {
+          "URL": "",
+          "TargetPort": 5432,
+          "PublishedPort": 0,
+          "Protocol": "tcp"
+        }
+      ]
+    },
+    {
+      "ID": "9e0a1576d42e",
+      "Service": "frontend",
+      "State": "running",
+      "Health": "healthy",
+      "Publishers": [
+        {
+          "URL": "127.0.0.1",
+          "TargetPort": 5173,
+          "PublishedPort": 5174,
+          "Protocol": "tcp"
+        }
+      ]
+    },
+    {
+      "ID": "b7c70fb531b8",
+      "Service": "worker",
+      "State": "running",
+      "Health": "",
+      "Publishers": [
+        {
+          "URL": "",
+          "TargetPort": 8000,
+          "PublishedPort": 0,
+          "Protocol": "tcp"
+        }
+      ]
+    }
+  ],
+  "http": {
+    "frontend": 200,
+    "health": 200,
+    "ready": 200,
+    "capabilities": 200,
+    "proxy": 200
+  },
+  "active_queues": {
+    "preview_jobs": 0,
+    "render_jobs": 0
+  }
+}

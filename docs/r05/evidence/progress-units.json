@@ -1,0 +1,12 @@
+{
+  "created_at": "2026-10-22T12:02:02.314131+00:00",
+  "ffmpeg": "ffmpeg version 5.1.9-0+deb12u1 Copyright (c) 2000-2026 the FFmpeg developers",
+  "known_duration_seconds": 1,
+  "frame_count": 30,
+  "out_time_us": 1000000,
+  "out_time_ms": 1000000,
+  "out_time": "00:00:01.000000",
+  "progress": "end",
+  "units_verified": "Both out_time_us and historical out_time_ms are microseconds",
+  "raw_progress": "frame=1\nfps=0.00\nstream_0_0_q=-0.0\nbitrate=N/A\ntotal_size=N/A\nout_time_us=33333\nout_time_ms=33333\nout_time=00:00:00.033333\ndup_frames=0\ndrop_frames=0\nspeed=N/A\nprogress=continue\nframe=30\nfps=0.00\nstream_0_0_q=-0.0\nbitrate=N/A\ntotal_size=N/A\nout_time_us=1000000\nout_time_ms=1000000\nout_time=00:00:01.000000\ndup_frames=0\ndrop_frames=0\nspeed= 255x\nprogress=end\n"
+}

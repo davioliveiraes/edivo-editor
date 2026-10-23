@@ -1,0 +1,1179 @@
+{
+  "status": "passed",
+  "stage": "finish",
+  "created_at": "2026-10-22T19:07:46.422220+00:00",
+  "checks": [
+    {
+      "check": "finish_seed_has_completed_exports_and_saved_revision",
+      "passed": true
+    },
+    {
+      "check": "response_body_bounded",
+      "passed": true
+    },
+    {
+      "check": "request_id_present",
+      "passed": true
+    },
+    {
+      "check": "private_fields_absent",
+      "passed": true
+    },
+    {
+      "check": "resume_preserves_completed_export",
+      "passed": true,
+      "render_id": "69f40b33-2edc-4a59-ab42-629949454921",
+      "checksum_sha256": "2f8de00b3e8545f485f09199c899abc0df6ff7f17bb6640d9635400fdb51ba90"
+    },
+    {
+      "check": "response_body_bounded",
+      "passed": true
+    },
+    {
+      "check": "request_id_present",
+      "passed": true
+    },
+    {
+      "check": "private_fields_absent",
+      "passed": true
+    },
+    {
+      "check": "resume_preserves_completed_export",
+      "passed": true,
+      "render_id": "0eb40bfc-88ea-4dbf-a9b6-0865234d533d",
+      "checksum_sha256": "06ea86d1c01a5648289c95fd9a703d96aa5cc87f37e237f4729bfd2d7deff10a"
+    },
+    {
+      "check": "response_body_bounded",
+      "passed": true
+    },
+    {
+      "check": "request_id_present",
+      "passed": true
+    },
+    {
+      "check": "private_fields_absent",
+      "passed": true
+    },
+    {
+      "check": "resume_uses_existing_saved_revision_without_put",
+      "passed": true,
+      "revision_id": "8a8f3f23-4b76-4dd3-a652-10abc70fe61d",
+      "revision_number": 3
+    },
+    {
+      "check": "response_body_bounded",
+      "passed": true
+    },
+    {
+      "check": "request_id_present",
+      "passed": true
+    },
+    {
+      "check": "private_fields_absent",
+      "passed": true
+    },
+    {
+      "check": "previous_cancel_candidate_recovered",
+      "passed": true
+    },
+    {
+      "check": "previous_terminal_cancel_candidate_retained",
+      "passed": true,
+      "render_id": "79a1e1e9-2692-4337-b6ad-45274f7d8231",
+      "status": "failed",
+      "error_code": "render_encoding_failed"
+    },
+    {
+      "check": "response_body_bounded",
+      "passed": true
+    },
+    {
+      "check": "request_id_present",
+      "passed": true
+    },
+    {
+      "check": "private_fields_absent",
+      "passed": true
+    },
+    {
+      "check": "render_create_status",
+      "passed": true,
+      "expected": 202,
+      "actual": 202
+    },
+    {
+      "check": "response_body_bounded",
+      "passed": true
+    },
+    {
+      "check": "request_id_present",
+      "passed": true
+    },
+    {
+      "check": "private_fields_absent",
+      "passed": true
+    },
+    {
+      "check": "cancel_candidate_available",
+      "passed": true
+    },
+    {
+      "check": "response_body_bounded",
+      "passed": true
+    },
+    {
+      "check": "request_id_present",
+      "passed": true
+    },
+    {
+      "check": "private_fields_absent",
+      "passed": true
+    },
+    {
+      "check": "cancel_candidate_available",
+      "passed": true
+    },
+    {
+      "check": "response_body_bounded",
+      "passed": true
+    },
+    {
+      "check": "request_id_present",
+      "passed": true
+    },
+    {
+      "check": "private_fields_absent",
+      "passed": true
+    },
+    {
+      "check": "cancel_candidate_available",
+      "passed": true
+    },
+    {
+      "check": "response_body_bounded",
+      "passed": true
+    },
+    {
+      "check": "request_id_present",
+      "passed": true
+    },
+    {
+      "check": "private_fields_absent",
+      "passed": true
+    },
+    {
+      "check": "cancel_candidate_available",
+      "passed": true
+    },
+    {
+      "check": "response_body_bounded",
+      "passed": true
+    },
+    {
+      "check": "request_id_present",
+      "passed": true
+    },
+    {
+      "check": "private_fields_absent",
+      "passed": true
+    },
+    {
+      "check": "cancel_candidate_available",
+      "passed": true
+    },
+    {
+      "check": "response_body_bounded",
+      "passed": true
+    },
+    {
+      "check": "request_id_present",
+      "passed": true
+    },
+    {
+      "check": "private_fields_absent",
+      "passed": true
+    },
+    {
+      "check": "cancel_candidate_available",
+      "passed": true
+    },
+    {
+      "check": "response_body_bounded",
+      "passed": true
+    },
+    {
+      "check": "request_id_present",
+      "passed": true
+    },
+    {
+      "check": "private_fields_absent",
+      "passed": true
+    },
+    {
+      "check": "cancel_candidate_available",
+      "passed": true
+    },
+    {
+      "check": "response_body_bounded",
+      "passed": true
+    },
+    {
+      "check": "request_id_present",
+      "passed": true
+    },
+    {
+      "check": "private_fields_absent",
+      "passed": true
+    },
+    {
+      "check": "cancel_candidate_available",
+      "passed": true
+    },
+    {
+      "check": "response_body_bounded",
+      "passed": true
+    },
+    {
+      "check": "request_id_present",
+      "passed": true
+    },
+    {
+      "check": "private_fields_absent",
+      "passed": true
+    },
+    {
+      "check": "cancel_candidate_available",
+      "passed": true
+    },
+    {
+      "check": "response_body_bounded",
+      "passed": true
+    },
+    {
+      "check": "request_id_present",
+      "passed": true
+    },
+    {
+      "check": "private_fields_absent",
+      "passed": true
+    },
+    {
+      "check": "cancel_candidate_available",
+      "passed": true
+    },
+    {
+      "check": "response_body_bounded",
+      "passed": true
+    },
+    {
+      "check": "request_id_present",
+      "passed": true
+    },
+    {
+      "check": "private_fields_absent",
+      "passed": true
+    },
+    {
+      "check": "cancel_candidate_available",
+      "passed": true
+    },
+    {
+      "check": "response_body_bounded",
+      "passed": true
+    },
+    {
+      "check": "request_id_present",
+      "passed": true
+    },
+    {
+      "check": "private_fields_absent",
+      "passed": true
+    },
+    {
+      "check": "cancel_candidate_available",
+      "passed": true
+    },
+    {
+      "check": "response_body_bounded",
+      "passed": true
+    },
+    {
+      "check": "request_id_present",
+      "passed": true
+    },
+    {
+      "check": "private_fields_absent",
+      "passed": true
+    },
+    {
+      "check": "cancel_candidate_available",
+      "passed": true
+    },
+    {
+      "check": "response_body_bounded",
+      "passed": true
+    },
+    {
+      "check": "request_id_present",
+      "passed": true
+    },
+    {
+      "check": "private_fields_absent",
+      "passed": true
+    },
+    {
+      "check": "cancel_candidate_available",
+      "passed": true
+    },
+    {
+      "check": "response_body_bounded",
+      "passed": true
+    },
+    {
+      "check": "request_id_present",
+      "passed": true
+    },
+    {
+      "check": "private_fields_absent",
+      "passed": true
+    },
+    {
+      "check": "cancel_candidate_available",
+      "passed": true
+    },
+    {
+      "check": "response_body_bounded",
+      "passed": true
+    },
+    {
+      "check": "request_id_present",
+      "passed": true
+    },
+    {
+      "check": "private_fields_absent",
+      "passed": true
+    },
+    {
+      "check": "cancel_candidate_available",
+      "passed": true
+    },
+    {
+      "check": "response_body_bounded",
+      "passed": true
+    },
+    {
+      "check": "request_id_present",
+      "passed": true
+    },
+    {
+      "check": "private_fields_absent",
+      "passed": true
+    },
+    {
+      "check": "cancel_candidate_available",
+      "passed": true
+    },
+    {
+      "check": "response_body_bounded",
+      "passed": true
+    },
+    {
+      "check": "request_id_present",
+      "passed": true
+    },
+    {
+      "check": "private_fields_absent",
+      "passed": true
+    },
+    {
+      "check": "cancel_candidate_available",
+      "passed": true
+    },
+    {
+      "check": "response_body_bounded",
+      "passed": true
+    },
+    {
+      "check": "request_id_present",
+      "passed": true
+    },
+    {
+      "check": "private_fields_absent",
+      "passed": true
+    },
+    {
+      "check": "cancel_candidate_available",
+      "passed": true
+    },
+    {
+      "check": "response_body_bounded",
+      "passed": true
+    },
+    {
+      "check": "request_id_present",
+      "passed": true
+    },
+    {
+      "check": "private_fields_absent",
+      "passed": true
+    },
+    {
+      "check": "cancel_candidate_available",
+      "passed": true
+    },
+    {
+      "check": "response_body_bounded",
+      "passed": true
+    },
+    {
+      "check": "request_id_present",
+      "passed": true
+    },
+    {
+      "check": "private_fields_absent",
+      "passed": true
+    },
+    {
+      "check": "cancel_candidate_available",
+      "passed": true
+    },
+    {
+      "check": "response_body_bounded",
+      "passed": true
+    },
+    {
+      "check": "request_id_present",
+      "passed": true
+    },
+    {
+      "check": "private_fields_absent",
+      "passed": true
+    },
+    {
+      "check": "cancel_candidate_available",
+      "passed": true
+    },
+    {
+      "check": "response_body_bounded",
+      "passed": true
+    },
+    {
+      "check": "request_id_present",
+      "passed": true
+    },
+    {
+      "check": "private_fields_absent",
+      "passed": true
+    },
+    {
+      "check": "cancel_candidate_available",
+      "passed": true
+    },
+    {
+      "check": "response_body_bounded",
+      "passed": true
+    },
+    {
+      "check": "request_id_present",
+      "passed": true
+    },
+    {
+      "check": "private_fields_absent",
+      "passed": true
+    },
+    {
+      "check": "cancel_candidate_available",
+      "passed": true
+    },
+    {
+      "check": "response_body_bounded",
+      "passed": true
+    },
+    {
+      "check": "request_id_present",
+      "passed": true
+    },
+    {
+      "check": "private_fields_absent",
+      "passed": true
+    },
+    {
+      "check": "cancel_candidate_available",
+      "passed": true
+    },
+    {
+      "check": "response_body_bounded",
+      "passed": true
+    },
+    {
+      "check": "request_id_present",
+      "passed": true
+    },
+    {
+      "check": "private_fields_absent",
+      "passed": true
+    },
+    {
+      "check": "cancel_candidate_available",
+      "passed": true
+    },
+    {
+      "check": "response_body_bounded",
+      "passed": true
+    },
+    {
+      "check": "request_id_present",
+      "passed": true
+    },
+    {
+      "check": "private_fields_absent",
+      "passed": true
+    },
+    {
+      "check": "running_cancel_intention_202",
+      "passed": true
+    },
+    {
+      "check": "response_body_bounded",
+      "passed": true
+    },
+    {
+      "check": "request_id_present",
+      "passed": true
+    },
+    {
+      "check": "private_fields_absent",
+      "passed": true
+    },
+    {
+      "check": "render_status_available",
+      "passed": true
+    },
+    {
+      "check": "progress_monotonic_per_attempt",
+      "passed": true
+    },
+    {
+      "check": "no_early_100_percent",
+      "passed": true
+    },
+    {
+      "check": "response_body_bounded",
+      "passed": true
+    },
+    {
+      "check": "request_id_present",
+      "passed": true
+    },
+    {
+      "check": "private_fields_absent",
+      "passed": true
+    },
+    {
+      "check": "render_status_available",
+      "passed": true
+    },
+    {
+      "check": "progress_monotonic_per_attempt",
+      "passed": true
+    },
+    {
+      "check": "no_early_100_percent",
+      "passed": true
+    },
+    {
+      "check": "response_body_bounded",
+      "passed": true
+    },
+    {
+      "check": "request_id_present",
+      "passed": true
+    },
+    {
+      "check": "private_fields_absent",
+      "passed": true
+    },
+    {
+      "check": "render_status_available",
+      "passed": true
+    },
+    {
+      "check": "progress_monotonic_per_attempt",
+      "passed": true
+    },
+    {
+      "check": "no_early_100_percent",
+      "passed": true
+    },
+    {
+      "check": "response_body_bounded",
+      "passed": true
+    },
+    {
+      "check": "request_id_present",
+      "passed": true
+    },
+    {
+      "check": "private_fields_absent",
+      "passed": true
+    },
+    {
+      "check": "render_status_available",
+      "passed": true
+    },
+    {
+      "check": "progress_monotonic_per_attempt",
+      "passed": true
+    },
+    {
+      "check": "no_early_100_percent",
+      "passed": true
+    },
+    {
+      "check": "response_body_bounded",
+      "passed": true
+    },
+    {
+      "check": "request_id_present",
+      "passed": true
+    },
+    {
+      "check": "private_fields_absent",
+      "passed": true
+    },
+    {
+      "check": "render_status_available",
+      "passed": true
+    },
+    {
+      "check": "progress_monotonic_per_attempt",
+      "passed": true
+    },
+    {
+      "check": "no_early_100_percent",
+      "passed": true
+    },
+    {
+      "check": "response_body_bounded",
+      "passed": true
+    },
+    {
+      "check": "request_id_present",
+      "passed": true
+    },
+    {
+      "check": "private_fields_absent",
+      "passed": true
+    },
+    {
+      "check": "render_status_available",
+      "passed": true
+    },
+    {
+      "check": "progress_monotonic_per_attempt",
+      "passed": true
+    },
+    {
+      "check": "no_early_100_percent",
+      "passed": true
+    },
+    {
+      "check": "render_reached_canceled",
+      "passed": true,
+      "render_id": "99cc6cb8-f774-4449-9122-e169648a98f4",
+      "error_code": null
+    },
+    {
+      "check": "canceled_never_publishes_artifact",
+      "passed": true
+    },
+    {
+      "check": "response_body_bounded",
+      "passed": true
+    },
+    {
+      "check": "request_id_present",
+      "passed": true
+    },
+    {
+      "check": "sanitized_error_envelope",
+      "passed": true
+    },
+    {
+      "check": "canceled_running_file_unavailable",
+      "passed": true
+    },
+    {
+      "check": "response_body_bounded",
+      "passed": true
+    },
+    {
+      "check": "request_id_present",
+      "passed": true
+    },
+    {
+      "check": "private_fields_absent",
+      "passed": true
+    },
+    {
+      "check": "history_page_200",
+      "passed": true
+    },
+    {
+      "check": "response_body_bounded",
+      "passed": true
+    },
+    {
+      "check": "request_id_present",
+      "passed": true
+    },
+    {
+      "check": "private_fields_absent",
+      "passed": true
+    },
+    {
+      "check": "history_page_200",
+      "passed": true
+    },
+    {
+      "check": "response_body_bounded",
+      "passed": true
+    },
+    {
+      "check": "request_id_present",
+      "passed": true
+    },
+    {
+      "check": "private_fields_absent",
+      "passed": true
+    },
+    {
+      "check": "history_page_200",
+      "passed": true
+    },
+    {
+      "check": "history_deterministic_no_duplicates",
+      "passed": true
+    },
+    {
+      "check": "history_preserves_all_expected_jobs",
+      "passed": true,
+      "expected_count": 5,
+      "expected_ids": [
+        "0eb40bfc-88ea-4dbf-a9b6-0865234d533d",
+        "3bfcb275-efa3-4df2-b9dd-2b967cd67033",
+        "69f40b33-2edc-4a59-ab42-629949454921",
+        "79a1e1e9-2692-4337-b6ad-45274f7d8231",
+        "99cc6cb8-f774-4449-9122-e169648a98f4"
+      ]
+    },
+    {
+      "check": "prior_cancel_candidate_outcomes_remain_in_history",
+      "passed": true,
+      "prior_candidates": [
+        {
+          "id": "79a1e1e9-2692-4337-b6ad-45274f7d8231",
+          "status": "failed",
+          "stage": "failed",
+          "error_code": "render_encoding_failed",
+          "revision_id": "8a8f3f23-4b76-4dd3-a652-10abc70fe61d"
+        }
+      ]
+    },
+    {
+      "check": "response_body_bounded",
+      "passed": true
+    },
+    {
+      "check": "request_id_present",
+      "passed": true
+    },
+    {
+      "check": "private_fields_absent",
+      "passed": true
+    },
+    {
+      "check": "history_status_filter",
+      "passed": true,
+      "expected_total": 2
+    }
+  ],
+  "observations": {
+    "99cc6cb8-f774-4449-9122-e169648a98f4": [
+      {
+        "status": "running",
+        "stage": "encoding",
+        "attempts": 1,
+        "progress_percent": 12,
+        "progress_encoded_ms": 1514,
+        "cancel_requested_at": "2026-10-22T19:07:48.330339Z"
+      },
+      {
+        "status": "canceled",
+        "stage": "canceled",
+        "attempts": 1,
+        "progress_percent": null,
+        "progress_encoded_ms": 1514,
+        "cancel_requested_at": "2026-10-22T19:07:48.330339Z"
+      }
+    ]
+  },
+  "downloads": [],
+  "browser_used": false,
+  "service_lifecycle_performed": false,
+  "direct_database_access": false,
+  "human_auditory_inspection_performed": false,
+  "resumed_completed_exports": [
+    {
+      "id": "69f40b33-2edc-4a59-ab42-629949454921",
+      "project_id": "3f4bc7e0-3b4e-4db6-a812-18b581a398e3",
+      "revision_id": "0f4c7a80-714d-40a5-a25d-61c1c2451ce1",
+      "revision_number": 2,
+      "profile": "standard",
+      "preset": "9:16",
+      "render_engine_version": "r05-1",
+      "status": "completed",
+      "stage": "completed",
+      "attempts": 1,
+      "max_attempts": 2,
+      "progress_encoded_ms": 12000,
+      "progress_percent": 100,
+      "cancel_requested_at": null,
+      "created_at": "2026-10-22T17:13:42.446897Z",
+      "updated_at": "2026-10-22T17:14:08.480978Z",
+      "started_at": "2026-10-22T17:14:00.105875Z",
+      "finished_at": "2026-10-22T17:14:08.480978Z",
+      "error_code": null,
+      "artifact_available": true,
+      "checksum_sha256": "2f8de00b3e8545f485f09199c899abc0df6ff7f17bb6640d9635400fdb51ba90",
+      "byte_size": 3152917,
+      "duration_ms": 12000,
+      "width": 1080,
+      "height": 1920,
+      "fps_num": 30,
+      "fps_den": 1,
+      "video_codec": "h264",
+      "audio_codec": "aac",
+      "status_url": "/api/v1/projects/3f4bc7e0-3b4e-4db6-a812-18b581a398e3/renders/69f40b33-2edc-4a59-ab42-629949454921",
+      "file_url": "/api/v1/projects/3f4bc7e0-3b4e-4db6-a812-18b581a398e3/renders/69f40b33-2edc-4a59-ab42-629949454921/file"
+    },
+    {
+      "id": "0eb40bfc-88ea-4dbf-a9b6-0865234d533d",
+      "project_id": "3f4bc7e0-3b4e-4db6-a812-18b581a398e3",
+      "revision_id": "d0dc9cff-7b16-46ff-900b-dd0babe83310",
+      "revision_number": 1,
+      "profile": "standard",
+      "preset": "9:16",
+      "render_engine_version": "r05-1",
+      "status": "completed",
+      "stage": "completed",
+      "attempts": 1,
+      "max_attempts": 2,
+      "progress_encoded_ms": 12000,
+      "progress_percent": 100,
+      "cancel_requested_at": null,
+      "created_at": "2026-10-22T17:14:08.771814Z",
+      "updated_at": "2026-10-22T17:14:17.498913Z",
+      "started_at": "2026-10-22T17:14:09.999939Z",
+      "finished_at": "2026-10-22T17:14:17.498913Z",
+      "error_code": null,
+      "artifact_available": true,
+      "checksum_sha256": "06ea86d1c01a5648289c95fd9a703d96aa5cc87f37e237f4729bfd2d7deff10a",
+      "byte_size": 2808513,
+      "duration_ms": 12000,
+      "width": 1080,
+      "height": 1920,
+      "fps_num": 30,
+      "fps_den": 1,
+      "video_codec": "h264",
+      "audio_codec": "aac",
+      "status_url": "/api/v1/projects/3f4bc7e0-3b4e-4db6-a812-18b581a398e3/renders/0eb40bfc-88ea-4dbf-a9b6-0865234d533d",
+      "file_url": "/api/v1/projects/3f4bc7e0-3b4e-4db6-a812-18b581a398e3/renders/0eb40bfc-88ea-4dbf-a9b6-0865234d533d/file"
+    }
+  ],
+  "previous_cancel_candidates": [
+    {
+      "id": "79a1e1e9-2692-4337-b6ad-45274f7d8231",
+      "project_id": "3f4bc7e0-3b4e-4db6-a812-18b581a398e3",
+      "revision_id": "8a8f3f23-4b76-4dd3-a652-10abc70fe61d",
+      "revision_number": 3,
+      "profile": "high",
+      "preset": "4:5",
+      "render_engine_version": "r05-1",
+      "status": "failed",
+      "stage": "failed",
+      "attempts": 1,
+      "max_attempts": 2,
+      "progress_encoded_ms": 0,
+      "progress_percent": null,
+      "cancel_requested_at": null,
+      "created_at": "2026-10-22T17:14:17.904028Z",
+      "updated_at": "2026-10-22T17:14:19.947918Z",
+      "started_at": "2026-10-22T17:14:19.021775Z",
+      "finished_at": "2026-10-22T17:14:19.947918Z",
+      "error_code": "render_encoding_failed",
+      "artifact_available": false,
+      "checksum_sha256": null,
+      "byte_size": null,
+      "duration_ms": null,
+      "width": null,
+      "height": null,
+      "fps_num": null,
+      "fps_den": null,
+      "video_codec": null,
+      "audio_codec": null,
+      "status_url": "/api/v1/projects/3f4bc7e0-3b4e-4db6-a812-18b581a398e3/renders/79a1e1e9-2692-4337-b6ad-45274f7d8231",
+      "file_url": null
+    }
+  ],
+  "previous_cancel_candidate_on_resume": {
+    "id": "79a1e1e9-2692-4337-b6ad-45274f7d8231",
+    "project_id": "3f4bc7e0-3b4e-4db6-a812-18b581a398e3",
+    "revision_id": "8a8f3f23-4b76-4dd3-a652-10abc70fe61d",
+    "revision_number": 3,
+    "profile": "high",
+    "preset": "4:5",
+    "render_engine_version": "r05-1",
+    "status": "failed",
+    "stage": "failed",
+    "attempts": 1,
+    "max_attempts": 2,
+    "progress_encoded_ms": 0,
+    "progress_percent": null,
+    "cancel_requested_at": null,
+    "created_at": "2026-10-22T17:14:17.904028Z",
+    "updated_at": "2026-10-22T17:14:19.947918Z",
+    "started_at": "2026-10-22T17:14:19.021775Z",
+    "finished_at": "2026-10-22T17:14:19.947918Z",
+    "error_code": "render_encoding_failed",
+    "artifact_available": false,
+    "checksum_sha256": null,
+    "byte_size": null,
+    "duration_ms": null,
+    "width": null,
+    "height": null,
+    "fps_num": null,
+    "fps_den": null,
+    "video_codec": null,
+    "audio_codec": null,
+    "status_url": "/api/v1/projects/3f4bc7e0-3b4e-4db6-a812-18b581a398e3/renders/79a1e1e9-2692-4337-b6ad-45274f7d8231",
+    "file_url": null
+  },
+  "cancel_candidate_observations": [
+    {
+      "id": "99cc6cb8-f774-4449-9122-e169648a98f4",
+      "status": "queued",
+      "stage": "queued",
+      "attempts": 0,
+      "progress_encoded_ms": null,
+      "error_code": null,
+      "cancel_requested_at": null
+    },
+    {
+      "id": "99cc6cb8-f774-4449-9122-e169648a98f4",
+      "status": "running",
+      "stage": "preparing",
+      "attempts": 1,
+      "progress_encoded_ms": null,
+      "error_code": null,
+      "cancel_requested_at": null
+    },
+    {
+      "id": "99cc6cb8-f774-4449-9122-e169648a98f4",
+      "status": "running",
+      "stage": "encoding",
+      "attempts": 1,
+      "progress_encoded_ms": null,
+      "error_code": null,
+      "cancel_requested_at": null
+    },
+    {
+      "id": "99cc6cb8-f774-4449-9122-e169648a98f4",
+      "status": "running",
+      "stage": "encoding",
+      "attempts": 1,
+      "progress_encoded_ms": 0,
+      "error_code": null,
+      "cancel_requested_at": null
+    },
+    {
+      "id": "99cc6cb8-f774-4449-9122-e169648a98f4",
+      "status": "running",
+      "stage": "encoding",
+      "attempts": 1,
+      "progress_encoded_ms": 1514,
+      "error_code": null,
+      "cancel_requested_at": null
+    }
+  ],
+  "history": [
+    {
+      "id": "99cc6cb8-f774-4449-9122-e169648a98f4",
+      "project_id": "3f4bc7e0-3b4e-4db6-a812-18b581a398e3",
+      "revision_id": "8a8f3f23-4b76-4dd3-a652-10abc70fe61d",
+      "revision_number": 3,
+      "profile": "high",
+      "preset": "4:5",
+      "render_engine_version": "r05-1",
+      "status": "canceled",
+      "stage": "canceled",
+      "attempts": 1,
+      "max_attempts": 2,
+      "progress_encoded_ms": 1514,
+      "progress_percent": null,
+      "cancel_requested_at": "2026-10-22T19:07:48.330339Z",
+      "created_at": "2026-10-22T19:07:46.678659Z",
+      "updated_at": "2026-10-22T19:07:49.334638Z",
+      "started_at": "2026-10-22T19:07:46.917794Z",
+      "finished_at": "2026-10-22T19:07:49.334638Z",
+      "error_code": null,
+      "artifact_available": false,
+      "checksum_sha256": null,
+      "byte_size": null,
+      "duration_ms": null,
+      "width": null,
+      "height": null,
+      "fps_num": null,
+      "fps_den": null,
+      "video_codec": null,
+      "audio_codec": null,
+      "status_url": "/api/v1/projects/3f4bc7e0-3b4e-4db6-a812-18b581a398e3/renders/99cc6cb8-f774-4449-9122-e169648a98f4",
+      "file_url": null
+    },
+    {
+      "id": "79a1e1e9-2692-4337-b6ad-45274f7d8231",
+      "project_id": "3f4bc7e0-3b4e-4db6-a812-18b581a398e3",
+      "revision_id": "8a8f3f23-4b76-4dd3-a652-10abc70fe61d",
+      "revision_number": 3,
+      "profile": "high",
+      "preset": "4:5",
+      "render_engine_version": "r05-1",
+      "status": "failed",
+      "stage": "failed",
+      "attempts": 1,
+      "max_attempts": 2,
+      "progress_encoded_ms": 0,
+      "progress_percent": null,
+      "cancel_requested_at": null,
+      "created_at": "2026-10-22T17:14:17.904028Z",
+      "updated_at": "2026-10-22T17:14:19.947918Z",
+      "started_at": "2026-10-22T17:14:19.021775Z",
+      "finished_at": "2026-10-22T17:14:19.947918Z",
+      "error_code": "render_encoding_failed",
+      "artifact_available": false,
+      "checksum_sha256": null,
+      "byte_size": null,
+      "duration_ms": null,
+      "width": null,
+      "height": null,
+      "fps_num": null,
+      "fps_den": null,
+      "video_codec": null,
+      "audio_codec": null,
+      "status_url": "/api/v1/projects/3f4bc7e0-3b4e-4db6-a812-18b581a398e3/renders/79a1e1e9-2692-4337-b6ad-45274f7d8231",
+      "file_url": null
+    },
+    {
+      "id": "0eb40bfc-88ea-4dbf-a9b6-0865234d533d",
+      "project_id": "3f4bc7e0-3b4e-4db6-a812-18b581a398e3",
+      "revision_id": "d0dc9cff-7b16-46ff-900b-dd0babe83310",
+      "revision_number": 1,
+      "profile": "standard",
+      "preset": "9:16",
+      "render_engine_version": "r05-1",
+      "status": "completed",
+      "stage": "completed",
+      "attempts": 1,
+      "max_attempts": 2,
+      "progress_encoded_ms": 12000,
+      "progress_percent": 100,
+      "cancel_requested_at": null,
+      "created_at": "2026-10-22T17:14:08.771814Z",
+      "updated_at": "2026-10-22T17:14:17.498913Z",
+      "started_at": "2026-10-22T17:14:09.999939Z",
+      "finished_at": "2026-10-22T17:14:17.498913Z",
+      "error_code": null,
+      "artifact_available": true,
+      "checksum_sha256": "06ea86d1c01a5648289c95fd9a703d96aa5cc87f37e237f4729bfd2d7deff10a",
+      "byte_size": 2808513,
+      "duration_ms": 12000,
+      "width": 1080,
+      "height": 1920,
+      "fps_num": 30,
+      "fps_den": 1,
+      "video_codec": "h264",
+      "audio_codec": "aac",
+      "status_url": "/api/v1/projects/3f4bc7e0-3b4e-4db6-a812-18b581a398e3/renders/0eb40bfc-88ea-4dbf-a9b6-0865234d533d",
+      "file_url": "/api/v1/projects/3f4bc7e0-3b4e-4db6-a812-18b581a398e3/renders/0eb40bfc-88ea-4dbf-a9b6-0865234d533d/file"
+    },
+    {
+      "id": "69f40b33-2edc-4a59-ab42-629949454921",
+      "project_id": "3f4bc7e0-3b4e-4db6-a812-18b581a398e3",
+      "revision_id": "0f4c7a80-714d-40a5-a25d-61c1c2451ce1",
+      "revision_number": 2,
+      "profile": "standard",
+      "preset": "9:16",
+      "render_engine_version": "r05-1",
+      "status": "completed",
+      "stage": "completed",
+      "attempts": 1,
+      "max_attempts": 2,
+      "progress_encoded_ms": 12000,
+      "progress_percent": 100,
+      "cancel_requested_at": null,
+      "created_at": "2026-10-22T17:13:42.446897Z",
+      "updated_at": "2026-10-22T17:14:08.480978Z",
+      "started_at": "2026-10-22T17:14:00.105875Z",
+      "finished_at": "2026-10-22T17:14:08.480978Z",
+      "error_code": null,
+      "artifact_available": true,
+      "checksum_sha256": "2f8de00b3e8545f485f09199c899abc0df6ff7f17bb6640d9635400fdb51ba90",
+      "byte_size": 3152917,
+      "duration_ms": 12000,
+      "width": 1080,
+      "height": 1920,
+      "fps_num": 30,
+      "fps_den": 1,
+      "video_codec": "h264",
+      "audio_codec": "aac",
+      "status_url": "/api/v1/projects/3f4bc7e0-3b4e-4db6-a812-18b581a398e3/renders/69f40b33-2edc-4a59-ab42-629949454921",
+      "file_url": "/api/v1/projects/3f4bc7e0-3b4e-4db6-a812-18b581a398e3/renders/69f40b33-2edc-4a59-ab42-629949454921/file"
+    },
+    {
+      "id": "3bfcb275-efa3-4df2-b9dd-2b967cd67033",
+      "project_id": "3f4bc7e0-3b4e-4db6-a812-18b581a398e3",
+      "revision_id": "0f4c7a80-714d-40a5-a25d-61c1c2451ce1",
+      "revision_number": 2,
+      "profile": "standard",
+      "preset": "9:16",
+      "render_engine_version": "r05-1",
+      "status": "canceled",
+      "stage": "canceled",
+      "attempts": 0,
+      "max_attempts": 2,
+      "progress_encoded_ms": null,
+      "progress_percent": null,
+      "cancel_requested_at": "2026-10-22T12:36:55.175721Z",
+      "created_at": "2026-10-22T12:36:54.859418Z",
+      "updated_at": "2026-10-22T12:36:55.175721Z",
+      "started_at": null,
+      "finished_at": "2026-10-22T12:36:55.175721Z",
+      "error_code": null,
+      "artifact_available": false,
+      "checksum_sha256": null,
+      "byte_size": null,
+      "duration_ms": null,
+      "width": null,
+      "height": null,
+      "fps_num": null,
+      "fps_den": null,
+      "video_codec": null,
+      "audio_codec": null,
+      "status_url": "/api/v1/projects/3f4bc7e0-3b4e-4db6-a812-18b581a398e3/renders/3bfcb275-efa3-4df2-b9dd-2b967cd67033",
+      "file_url": null
+    }
+  ],
+  "project_id": "3f4bc7e0-3b4e-4db6-a812-18b581a398e3",
+  "elapsed_seconds": 3.046
+}

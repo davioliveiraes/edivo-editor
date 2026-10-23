@@ -1,0 +1,286 @@
+.export-panel {
+  margin-top: 24px;
+}
+.export-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 0.78fr) minmax(0, 1.22fr);
+  gap: 32px;
+  margin-top: 28px;
+}
+.export-settings,
+.export-selected {
+  min-width: 0;
+}
+.export-project-name {
+  margin: 0;
+  font-family: 'Manrope', sans-serif;
+  font-size: 19px;
+  overflow-wrap: anywhere;
+}
+.export-format {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  align-items: center;
+  gap: 8px 14px;
+  padding: 18px 0 22px;
+  border-bottom: 1px solid var(--border);
+  margin-bottom: 22px;
+}
+.export-format > span {
+  padding: 8px 10px;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  color: var(--accent);
+  font-size: 12px;
+}
+.export-format strong {
+  font-weight: 500;
+  font-size: 18px;
+  font-variant-numeric: tabular-nums;
+}
+.export-format small {
+  grid-column: 1 / -1;
+  margin-top: 4px;
+  color: var(--muted-foreground);
+  font-size: 10px;
+  line-height: 1.8;
+}
+.export-settings > label {
+  display: grid;
+  gap: 10px;
+}
+.export-settings > .field-help {
+  margin: 12px 0 20px;
+}
+.export-settings > button {
+  margin-top: 6px;
+}
+.export-selected {
+  border-left: 1px solid var(--border);
+  padding-left: 32px;
+}
+.export-selected h3,
+.export-history h3 {
+  margin: 0 0 14px;
+  font-family: 'Manrope', sans-serif;
+  font-weight: 500;
+  font-size: 21px;
+  letter-spacing: -0.65px;
+}
+.export-empty {
+  display: flex;
+  min-height: 280px;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+}
+.export-empty > svg {
+  color: var(--accent);
+  margin-bottom: 24px;
+}
+.export-empty p {
+  max-width: 310px;
+  color: var(--muted-foreground);
+  font-size: 12px;
+  line-height: 1.8;
+}
+.export-tracking {
+  margin-top: 26px;
+  padding-top: 20px;
+  border-top: 1px solid var(--border);
+}
+.export-tracking > button {
+  margin-top: 16px;
+}
+.export-status {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  font-size: 13px;
+  font-weight: 500;
+}
+.export-status svg {
+  color: var(--accent);
+  width: 17px;
+  height: 17px;
+  flex-shrink: 0;
+}
+.export-progress {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin: 20px 0;
+}
+.export-progress progress {
+  width: 100%;
+  min-width: 0;
+  height: 6px;
+  accent-color: var(--accent);
+}
+.export-progress span {
+  font-size: 11px;
+  font-variant-numeric: tabular-nums;
+}
+.export-metadata {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 17px;
+  margin: 22px 0;
+}
+.export-metadata dt {
+  margin-bottom: 5px;
+  color: var(--muted-foreground);
+  font-size: 10px;
+}
+.export-metadata dd {
+  margin: 0;
+  font-size: 11px;
+  overflow-wrap: anywhere;
+  font-variant-numeric: tabular-nums;
+}
+.export-video video {
+  display: block;
+  width: 100%;
+  max-height: 420px;
+  object-fit: contain;
+  background: #101410;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+}
+.export-video > .field-help {
+  margin-top: 12px;
+}
+.export-download {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 9px;
+  min-height: 44px;
+  border-radius: 8px;
+  padding: 0 17px;
+  margin: 18px 0 12px;
+  background: var(--primary);
+  color: var(--primary-foreground);
+  text-decoration: none;
+  font-size: 13px;
+  font-weight: 600;
+}
+.export-download:hover {
+  opacity: 0.85;
+}
+.export-download:focus-visible {
+  outline: 2px solid var(--ring);
+  outline-offset: 4px;
+}
+.export-checksum {
+  display: block;
+  overflow-wrap: anywhere;
+  font-size: 9px;
+}
+.export-history {
+  margin-top: 32px;
+  padding-top: 26px;
+  border-top: 1px solid var(--border);
+}
+.export-history-heading {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 18px;
+  margin-bottom: 22px;
+}
+.export-history-heading .section-kicker {
+  margin-bottom: 10px;
+}
+.export-history-heading h3 {
+  margin-bottom: 0;
+}
+.export-history-empty {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: var(--muted-foreground);
+  font-size: 12px;
+  line-height: 1.8;
+}
+.export-history-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
+  padding: 20px 0;
+  border-top: 1px solid var(--border);
+}
+.export-history-main {
+  min-width: 0;
+  font-size: 12px;
+}
+.export-history-main strong {
+  font-size: 13px;
+  font-weight: 500;
+}
+.export-history-main p {
+  margin: 7px 0;
+  color: var(--muted-foreground);
+  line-height: 1.7;
+}
+.export-history-main small {
+  font-size: 10px;
+  color: var(--muted-foreground);
+}
+.export-history-main .export-history-error {
+  max-width: 430px;
+  color: var(--error);
+}
+.export-old-revision {
+  display: inline-block;
+  margin-left: 9px;
+  padding: 2px 6px;
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  font-size: 9px;
+}
+.export-history-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 8px;
+  flex-shrink: 0;
+}
+.export-panel .feedback {
+  flex-wrap: wrap;
+}
+.export-panel .feedback > p {
+  margin: 0;
+}
+@media (max-width: 760px) {
+  .export-layout {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 28px;
+  }
+  .export-selected {
+    border-left: 0;
+    border-top: 1px solid var(--border);
+    padding: 24px 0 0;
+  }
+  .export-empty {
+    min-height: 190px;
+  }
+  .export-history-item {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 14px;
+  }
+  .export-history-actions {
+    justify-content: flex-start;
+  }
+  .export-settings > button,
+  .export-download {
+    width: 100%;
+    box-sizing: border-box;
+  }
+  .export-history-actions button {
+    flex: 1;
+  }
+}

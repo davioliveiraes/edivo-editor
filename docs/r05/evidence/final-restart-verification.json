@@ -1,0 +1,74 @@
+{
+  "status": "failed",
+  "application_lifecycle_performed": false,
+  "preceding_restart_log": "final-restart.log",
+  "negative_qa_report": "final-restart.json",
+  "negative_explanation": "Restart commands succeeded; wrapper then called nonexistent QA wait_frontend helper. This verification uses actual HTTP and container health without repeating lifecycle.",
+  "checked_at": "2026-10-23T01:29:15.790384+00:00",
+  "health": 200,
+  "ready": 200,
+  "frontend": 200,
+  "proxy": 200,
+  "idle_queues_after": {
+    "preview_jobs": 0,
+    "render_jobs": 0
+  },
+  "services": [
+    {
+      "ID": "0f5bf5503dcb",
+      "Service": "api",
+      "State": "running",
+      "Health": "healthy",
+      "Publishers": [
+        {
+          "URL": "127.0.0.1",
+          "TargetPort": 8000,
+          "PublishedPort": 8001,
+          "Protocol": "tcp"
+        }
+      ]
+    },
+    {
+      "ID": "3f51b3c28b54",
+      "Service": "db",
+      "State": "running",
+      "Health": "healthy",
+      "Publishers": [
+        {
+          "URL": "",
+          "TargetPort": 5432,
+          "PublishedPort": 0,
+          "Protocol": "tcp"
+        }
+      ]
+    },
+    {
+      "ID": "d09d9c3dda50",
+      "Service": "frontend",
+      "State": "running",
+      "Health": "healthy",
+      "Publishers": [
+        {
+          "URL": "127.0.0.1",
+          "TargetPort": 5173,
+          "PublishedPort": 5174,
+          "Protocol": "tcp"
+        }
+      ]
+    },
+    {
+      "ID": "714ecc26b973",
+      "Service": "worker",
+      "State": "running",
+      "Health": "",
+      "Publishers": [
+        {
+          "URL": "",
+          "TargetPort": 8000,
+          "PublishedPort": 0,
+          "Protocol": "tcp"
+        }
+      ]
+    }
+  ]
+}

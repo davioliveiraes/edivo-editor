@@ -1,0 +1,193 @@
+{
+  "status": "passed",
+  "stage": "queued",
+  "created_at": "2026-10-22T12:36:52.238958+00:00",
+  "checks": [
+    {
+      "check": "new_seed_required",
+      "passed": true
+    },
+    {
+      "check": "synthetic_fixture_present",
+      "passed": true
+    },
+    {
+      "check": "synthetic_fixture_present",
+      "passed": true
+    },
+    {
+      "check": "response_body_bounded",
+      "passed": true
+    },
+    {
+      "check": "request_id_present",
+      "passed": true
+    },
+    {
+      "check": "private_fields_absent",
+      "passed": true
+    },
+    {
+      "check": "create_synthetic_project",
+      "passed": true
+    },
+    {
+      "check": "synthetic_upload_media",
+      "passed": true
+    },
+    {
+      "check": "upload_sha256_real_bytes",
+      "passed": true
+    },
+    {
+      "check": "synthetic_upload_audio",
+      "passed": true
+    },
+    {
+      "check": "upload_sha256_real_bytes",
+      "passed": true
+    },
+    {
+      "check": "response_body_bounded",
+      "passed": true
+    },
+    {
+      "check": "request_id_present",
+      "passed": true
+    },
+    {
+      "check": "private_fields_absent",
+      "passed": true
+    },
+    {
+      "check": "save_v1_revision",
+      "passed": true
+    },
+    {
+      "check": "response_body_bounded",
+      "passed": true
+    },
+    {
+      "check": "request_id_present",
+      "passed": true
+    },
+    {
+      "check": "private_fields_absent",
+      "passed": true
+    },
+    {
+      "check": "save_v2_revision",
+      "passed": true
+    },
+    {
+      "check": "response_body_bounded",
+      "passed": true
+    },
+    {
+      "check": "request_id_present",
+      "passed": true
+    },
+    {
+      "check": "private_fields_absent",
+      "passed": true
+    },
+    {
+      "check": "render_create_status",
+      "passed": true,
+      "expected": 202,
+      "actual": 202
+    },
+    {
+      "check": "worker_stopped_job_really_queued",
+      "passed": true
+    },
+    {
+      "check": "response_body_bounded",
+      "passed": true
+    },
+    {
+      "check": "request_id_present",
+      "passed": true
+    },
+    {
+      "check": "sanitized_error_envelope",
+      "passed": true
+    },
+    {
+      "check": "one_active_render_per_project",
+      "passed": true
+    },
+    {
+      "check": "response_body_bounded",
+      "passed": true
+    },
+    {
+      "check": "request_id_present",
+      "passed": true
+    },
+    {
+      "check": "sanitized_error_envelope",
+      "passed": true
+    },
+    {
+      "check": "queued_artifact_unavailable",
+      "passed": true
+    },
+    {
+      "check": "response_body_bounded",
+      "passed": true
+    },
+    {
+      "check": "request_id_present",
+      "passed": true
+    },
+    {
+      "check": "private_fields_absent",
+      "passed": true
+    },
+    {
+      "check": "queued_cancel_atomic",
+      "passed": true
+    },
+    {
+      "check": "response_body_bounded",
+      "passed": true
+    },
+    {
+      "check": "request_id_present",
+      "passed": true
+    },
+    {
+      "check": "private_fields_absent",
+      "passed": true
+    },
+    {
+      "check": "queued_cancel_idempotent",
+      "passed": true
+    },
+    {
+      "check": "response_body_bounded",
+      "passed": true
+    },
+    {
+      "check": "request_id_present",
+      "passed": true
+    },
+    {
+      "check": "sanitized_error_envelope",
+      "passed": true
+    },
+    {
+      "check": "canceled_has_no_download",
+      "passed": true
+    }
+  ],
+  "observations": {},
+  "downloads": [],
+  "browser_used": false,
+  "service_lifecycle_performed": false,
+  "direct_database_access": false,
+  "human_auditory_inspection_performed": false,
+  "project_id": "3f4bc7e0-3b4e-4db6-a812-18b581a398e3",
+  "elapsed_seconds": 2.98
+}

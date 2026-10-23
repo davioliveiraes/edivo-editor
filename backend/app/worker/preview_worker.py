@@ -123,9 +123,16 @@ class PreviewWorker:
             return False
         if claim is None:
             return False
+        self.process_claim(claim)
+        return True
+
+    def process_claim(self, claim: PreviewClaim) -> None:
+        """Process only a committed claim, including those from the shared scheduler."""
         logger.info("preview_job_claimed", extra={**claim_log_fields(claim), "stage": "preparing"})
         control = LeaseController(self.settings, self.sessions, claim, self.stopped)
         try:
+            if self.stopped.is_set():
+                raise ProcessStopped()
             self.processor(claim, control)
             # A correct processor has already published/committed completion. If
             # it returned without doing so, fail only its still-owned live claim.
@@ -141,7 +148,6 @@ class PreviewWorker:
             self.finish_failure(claim, error.code)
         except Exception:
             self.finish_failure(claim, "preview_processing_failed")
-        return True
 
     def run(self) -> None:
         while not self.stopped.is_set():

@@ -9,6 +9,7 @@ import logging
 import re
 from collections.abc import AsyncIterator
 from contextlib import asynccontextmanager
+from typing import Literal
 
 import anyio
 from starlette.datastructures import Headers
@@ -33,14 +34,34 @@ SINGLE_RANGE = re.compile(r"bytes=[0-9]*-[0-9]*", re.IGNORECASE | re.ASCII)
 
 
 class PrivateMediaResponse(FileResponse):
-    def __init__(self, original: OpenedOriginal, checksum_sha256: str) -> None:
+    def __init__(
+        self,
+        original: OpenedOriginal,
+        checksum_sha256: str,
+        *,
+        filename: str | None = None,
+        disposition: Literal["inline", "attachment"] = "inline",
+    ) -> None:
         self.original = original
+        self.private_headers = {**PRIVATE_HEADERS}
+        if disposition == "attachment":
+            if (
+                filename is None
+                or re.fullmatch(
+                    r"edivo-r[1-9][0-9]*-(9x16|1x1|4x5|16x9)-(standard|high)\.mp4", filename
+                )
+                is None
+            ):
+                raise ValueError("invalid_render_download_filename")
+            self.private_headers["Content-Disposition"] = f'attachment; filename="{filename}"'
+        elif disposition != "inline" or filename is not None:
+            raise ValueError("invalid_media_disposition")
         super().__init__(
             # The path is never opened or sent to the server: all reads use the FD.
             path="source.mp4",
             media_type="video/mp4",
             stat_result=original.stat_result,
-            headers={**PRIVATE_HEADERS, "ETag": f'"sha256:{checksum_sha256}"'},
+            headers={**self.private_headers, "ETag": f'"sha256:{checksum_sha256}"'},
         )
 
     def _valid_range(self, headers: Headers) -> bool:
@@ -73,7 +94,7 @@ class PrivateMediaResponse(FileResponse):
                         "request_id": scope.get("state", {}).get("request_id", ""),
                     },
                     headers={
-                        **PRIVATE_HEADERS,
+                        **self.private_headers,
                         "Content-Range": f"bytes */{self.original.stat_result.st_size}",
                     },
                 )

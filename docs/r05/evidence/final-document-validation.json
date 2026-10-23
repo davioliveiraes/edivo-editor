@@ -1,0 +1,24 @@
+{
+  "status": "passed",
+  "checked_at": "2026-10-23T02:04:26.306982+00:00",
+  "read_only_git": true,
+  "git_diff_check_exit": 0,
+  "local_markdown_links_passed": true,
+  "criteria_passed": 22,
+  "evidence_sha256_verified": 13,
+  "documents_sha256": {
+    "AGENTS.md": "5ed786f3172733862403a1dea9ad9e0866222f2ecc8acfdfbd3512d3bcc0d284",
+    "README.md": "3f55fd01c862defc9f0501a0688e90ce820e905ce7d3b43fddeea130434c7026",
+    "docs/architecture.md": "ef40e4f4c1498bf80d77c0230025a17ed5f5441be11e6ceddde2eb526220e47f",
+    "docs/roadmap.md": "575ea56a5b79383d14706fa72ce3ed510e681f158b885064a9e6c2d9f203c39f",
+    "docs/r05/compatibility.md": "503bf1a9c81203c9741d8b4d27e7c911fcec6e8ff72a6a5ad248a551cd4f9af0",
+    "docs/r05/acceptance.md": "883409063104930a86b2b34d1286f2eca3a69a516570845d05cc1a562b3be516",
+    "docs/r05/report.md": "a0824de928280879baa92a225a134a6622ffc4650aec4a6b92d59573d17cc047"
+  },
+  "format_check": {
+    "command": "frontend/node_modules/.bin/prettier --check AGENTS.md README.md docs/architecture.md docs/roadmap.md docs/r05/compatibility.md docs/r05/acceptance.md docs/r05/report.md docs/r05/qa-results.json",
+    "exit_code": 0,
+    "observed_output": "All matched files use Prettier code style!"
+  },
+  "r06_started": false
+}

@@ -1,0 +1,182 @@
+{
+  "status": "passed",
+  "stage": "verify",
+  "created_at": "2026-10-23T01:54:12.604781+00:00",
+  "checks": [
+    {
+      "check": "queued_preview_seed_present",
+      "passed": true
+    },
+    {
+      "check": "bounded_http_response",
+      "passed": true
+    },
+    {
+      "check": "request_id_present",
+      "passed": true
+    },
+    {
+      "check": "preview_status_available",
+      "passed": true
+    },
+    {
+      "check": "real_shared_scheduler_completed_preview",
+      "passed": true
+    },
+    {
+      "check": "bounded_http_response",
+      "passed": true
+    },
+    {
+      "check": "preview_head_private_headers",
+      "passed": true
+    },
+    {
+      "check": "preview_full_get_200",
+      "passed": true
+    },
+    {
+      "check": "preview_sha256_exact",
+      "passed": true,
+      "byte_size": 332765,
+      "checksum_sha256": "2b390bc1f7317513ebb82140f341f6e5d99dbae0e957acca5cc62592bb7c03bb"
+    },
+    {
+      "check": "bounded_http_response",
+      "passed": true
+    },
+    {
+      "check": "preview_range_206_exact",
+      "passed": true
+    },
+    {
+      "check": "bounded_http_response",
+      "passed": true
+    },
+    {
+      "check": "preview_suffix_head_206",
+      "passed": true
+    },
+    {
+      "check": "bounded_http_response",
+      "passed": true
+    },
+    {
+      "check": "preview_range_416",
+      "passed": true
+    },
+    {
+      "check": "original_r03_full_get_200",
+      "passed": true
+    },
+    {
+      "check": "original_r03_sha256_exact",
+      "passed": true,
+      "byte_size": 919782,
+      "checksum_sha256": "a220876b0e90f28f91e984a45054caf3c92c27e980bda4c9d95de860a041dc3e"
+    },
+    {
+      "check": "bounded_http_response",
+      "passed": true
+    },
+    {
+      "check": "original_r03_range_preserved",
+      "passed": true
+    },
+    {
+      "check": "real_api_runtime_inspection_passed",
+      "passed": true
+    },
+    {
+      "check": "preview_profile_r04_still_reduced_24fps",
+      "passed": true
+    },
+    {
+      "check": "original_mp4_mp3_sha0400_unchanged",
+      "passed": true,
+      "asset_id": "5490c581-f4ca-4548-8c4d-6e1aac6fbc2e"
+    },
+    {
+      "check": "original_mp4_mp3_sha0400_unchanged",
+      "passed": true,
+      "asset_id": "b99c049d-1f73-4133-8113-ab20c678b9a5"
+    },
+    {
+      "check": "bounded_http_response",
+      "passed": true
+    },
+    {
+      "check": "request_id_present",
+      "passed": true
+    },
+    {
+      "check": "existing_revision_not_modified",
+      "passed": true
+    }
+  ],
+  "service_lifecycle_performed": false,
+  "direct_database_mutation": false,
+  "browser_used": false,
+  "observations": [
+    {
+      "id": "2bd24155-09d5-45c7-aa99-1d9952142be5",
+      "status": "completed",
+      "stage": "completed",
+      "attempts": 1
+    }
+  ],
+  "job": {
+    "id": "2bd24155-09d5-45c7-aa99-1d9952142be5",
+    "project_id": "3f4bc7e0-3b4e-4db6-a812-18b581a398e3",
+    "revision_id": "0f4c7a80-714d-40a5-a25d-61c1c2451ce1",
+    "revision_number": 2,
+    "preview_start_ms": 3000,
+    "duration_ms": 4000,
+    "status": "completed",
+    "stage": "completed",
+    "attempts": 1,
+    "created_at": "2026-10-22T17:13:41.285737Z",
+    "started_at": "2026-10-22T17:13:57.362848Z",
+    "finished_at": "2026-10-22T17:14:00.081953Z",
+    "error_code": null,
+    "artifact_available": true,
+    "checksum_sha256": "2b390bc1f7317513ebb82140f341f6e5d99dbae0e957acca5cc62592bb7c03bb",
+    "byte_size": 332765,
+    "status_url": "/api/v1/projects/3f4bc7e0-3b4e-4db6-a812-18b581a398e3/previews/2bd24155-09d5-45c7-aa99-1d9952142be5",
+    "file_url": "/api/v1/projects/3f4bc7e0-3b4e-4db6-a812-18b581a398e3/previews/2bd24155-09d5-45c7-aa99-1d9952142be5/file"
+  },
+  "runtime": {
+    "originals": {
+      "5490c581-f4ca-4548-8c4d-6e1aac6fbc2e": {
+        "checksum_sha256": "a220876b0e90f28f91e984a45054caf3c92c27e980bda4c9d95de860a041dc3e",
+        "byte_size": 919782,
+        "mode": "0400"
+      },
+      "b99c049d-1f73-4133-8113-ab20c678b9a5": {
+        "checksum_sha256": "7055fd0edb521ce6b00b877d1cdd0a50ab055637e0a99c5958d9cf4ecb70bf63",
+        "byte_size": 24813,
+        "mode": "0400"
+      }
+    },
+    "preview": {
+      "duration_ms": 4000,
+      "requested_duration_ms": 4000,
+      "width": 540,
+      "height": 960,
+      "fps_num": 24,
+      "fps_den": 1,
+      "video_codec": "h264",
+      "pixel_format": "yuv420p",
+      "sample_aspect_ratio": "1:1",
+      "has_audio": true,
+      "audio_codec": "aac",
+      "frame_count": 96,
+      "decoded_frames": 96,
+      "checksum_sha256": "2b390bc1f7317513ebb82140f341f6e5d99dbae0e957acca5cc62592bb7c03bb",
+      "byte_size": 332765,
+      "mode": "0400"
+    }
+  },
+  "project_id": "3f4bc7e0-3b4e-4db6-a812-18b581a398e3",
+  "elapsed_seconds": 3.401
+}

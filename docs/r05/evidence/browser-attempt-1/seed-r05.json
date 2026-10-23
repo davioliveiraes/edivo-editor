@@ -1,0 +1,170 @@
+{
+  "project": {
+    "id": "4de80745-64ad-41e5-85dc-770d5e3462da",
+    "name": "QA R05 browser r05-export-1792717682595939151",
+    "purpose": "Synthetic Chromium export validation",
+    "target_preset": "9:16",
+    "created_at": "2026-10-23T01:08:05.480221Z",
+    "updated_at": "2026-10-23T01:08:05.480225Z"
+  },
+  "source": {
+    "id": "afb2a469-278e-4d57-8b74-6a35cb47cf94",
+    "project_id": "4de80745-64ad-41e5-85dc-770d5e3462da",
+    "kind": "source_video",
+    "original_filename": "horizontal.mp4",
+    "checksum_sha256": "a220876b0e90f28f91e984a45054caf3c92c27e980bda4c9d95de860a041dc3e",
+    "byte_size": 919782,
+    "mime_detected": "video/mp4",
+    "duration_ms": 16000,
+    "width": 320,
+    "height": 180,
+    "fps_num": 24,
+    "fps_den": 1,
+    "video_codec": "h264",
+    "has_audio": true,
+    "audio_codec": "aac",
+    "created_at": "2026-10-23T01:08:08.506502Z"
+  },
+  "audio": {
+    "id": "705f1df2-3ace-4439-805f-d692b5e0a998",
+    "project_id": "4de80745-64ad-41e5-85dc-770d5e3462da",
+    "original_filename": "short.mp3",
+    "checksum_sha256": "7055fd0edb521ce6b00b877d1cdd0a50ab055637e0a99c5958d9cf4ecb70bf63",
+    "byte_size": 24813,
+    "mime_detected": "audio/mpeg",
+    "duration_ms": 2040,
+    "codec": "mp3",
+    "sample_rate": 48000,
+    "channels": 1,
+    "created_at": "2026-10-23T01:08:10.130667Z"
+  },
+  "saved_revision": {
+    "id": "5b357122-9e4e-4dfb-a229-9dabe05dbb06",
+    "project_id": "4de80745-64ad-41e5-85dc-770d5e3462da",
+    "revision_number": 2,
+    "created_at": "2026-10-23T01:08:48.191626Z",
+    "source_media_id": "afb2a469-278e-4d57-8b74-6a35cb47cf94",
+    "trim": {
+      "start_ms": 1000,
+      "end_ms": 13000
+    },
+    "canvas": {
+      "preset": "9:16",
+      "fit": "cover",
+      "focal_x": 0.5,
+      "focal_y": 0.5
+    },
+    "schema_version": 2,
+    "text_overlays": [
+      {
+        "id": "733c6a2b-9577-41fd-b4ef-660684c5f25b",
+        "text": "Revisão posterior da prova Chromium",
+        "start_ms": 1000,
+        "end_ms": 13000,
+        "position": "bottom",
+        "style": "white_outline",
+        "size": "medium"
+      }
+    ],
+    "audio": {
+      "source_volume": 0.7,
+      "background_audio_id": "705f1df2-3ace-4439-805f-d692b5e0a998",
+      "background_volume": 0.15,
+      "background_loop": true,
+      "fade_in_ms": 1000,
+      "fade_out_ms": 1500
+    }
+  },
+  "completed_job": {
+    "id": "415bdb08-82e2-4ea4-ae1b-a2f311c6cd54",
+    "project_id": "4de80745-64ad-41e5-85dc-770d5e3462da",
+    "revision_id": "1798b7be-2168-4236-819b-4116a8893878",
+    "revision_number": 1,
+    "profile": "standard",
+    "preset": "9:16",
+    "render_engine_version": "r05-1",
+    "status": "completed",
+    "stage": "completed",
+    "attempts": 1,
+    "max_attempts": 2,
+    "progress_encoded_ms": 12000,
+    "progress_percent": 100,
+    "cancel_requested_at": null,
+    "created_at": "2026-10-23T01:08:15.238678Z",
+    "updated_at": "2026-10-23T01:08:29.244724Z",
+    "started_at": "2026-10-23T01:08:15.349753Z",
+    "finished_at": "2026-10-23T01:08:29.244724Z",
+    "error_code": null,
+    "artifact_available": true,
+    "checksum_sha256": "6d565a018c9f0daf391a2d291a6ebd315991de9d5e8458b9224bc31b9ff54aea",
+    "byte_size": 2513760,
+    "duration_ms": 12000,
+    "width": 1080,
+    "height": 1920,
+    "fps_num": 30,
+    "fps_den": 1,
+    "video_codec": "h264",
+    "audio_codec": "aac",
+    "status_url": "/api/v1/projects/4de80745-64ad-41e5-85dc-770d5e3462da/renders/415bdb08-82e2-4ea4-ae1b-a2f311c6cd54",
+    "file_url": "/api/v1/projects/4de80745-64ad-41e5-85dc-770d5e3462da/renders/415bdb08-82e2-4ea4-ae1b-a2f311c6cd54/file"
+  },
+  "cancel_job": {
+    "id": "e1bc0284-2c70-4ecf-a2b2-975fc9479b9d",
+    "project_id": "4de80745-64ad-41e5-85dc-770d5e3462da",
+    "revision_id": "5b357122-9e4e-4dfb-a229-9dabe05dbb06",
+    "revision_number": 2,
+    "profile": "high",
+    "preset": "9:16",
+    "render_engine_version": "r05-1",
+    "status": "canceled",
+    "stage": "canceled",
+    "attempts": 1,
+    "max_attempts": 2,
+    "progress_encoded_ms": 149,
+    "progress_percent": null,
+    "cancel_requested_at": "2026-10-23T01:09:06.080658Z",
+    "created_at": "2026-10-23T01:08:50.695462Z",
+    "updated_at": "2026-10-23T01:09:08.617440Z",
+    "started_at": "2026-10-23T01:08:51.308570Z",
+    "finished_at": "2026-10-23T01:09:08.617441Z",
+    "error_code": null,
+    "artifact_available": false,
+    "checksum_sha256": null,
+    "byte_size": null,
+    "duration_ms": null,
+    "width": null,
+    "height": null,
+    "fps_num": null,
+    "fps_den": null,
+    "video_codec": null,
+    "audio_codec": null,
+    "status_url": "/api/v1/projects/4de80745-64ad-41e5-85dc-770d5e3462da/renders/e1bc0284-2c70-4ecf-a2b2-975fc9479b9d",
+    "file_url": null
+  },
+  "history_ids": [
+    "e1bc0284-2c70-4ecf-a2b2-975fc9479b9d",
+    "415bdb08-82e2-4ea4-ae1b-a2f311c6cd54"
+  ],
+  "storage_state": {
+    "cookies": [],
+    "origins": [
+      {
+        "origin": "http://127.0.0.1:5173",
+        "localStorage": [
+          {
+            "name": "edivo:render:4de80745-64ad-41e5-85dc-770d5e3462da",
+            "value": "e1bc0284-2c70-4ecf-a2b2-975fc9479b9d"
+          },
+          {
+            "name": "edivo-theme",
+            "value": "dark"
+          },
+          {
+            "name": "edivo:render-result:4de80745-64ad-41e5-85dc-770d5e3462da",
+            "value": "415bdb08-82e2-4ea4-ae1b-a2f311c6cd54"
+          }
+        ]
+      }
+    ]
+  }
+}

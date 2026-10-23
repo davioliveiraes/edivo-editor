@@ -17,6 +17,7 @@ import { Timeline } from './timeline';
 import { TextPanel } from './text-panel';
 import { AudioPanel } from './audio-panel';
 import { PreviewPanel } from './preview-panel';
+import { ExportPanel } from './export-panel';
 
 interface EditorData {
   project: Project;
@@ -484,6 +485,13 @@ function EditorSession({ data }: { data: EditorData }) {
               </div>
             </div>
           )}
+          <ExportPanel
+            projectId={project.id}
+            projectName={project.name}
+            revision={revision}
+            dirty={dirty}
+            busy={locked || conflict}
+          />
         </>
       )}
     </div>
